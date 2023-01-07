@@ -1,4 +1,4 @@
-package com.poly.datn.DTO.response;
+package com.poly.datn.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class GenericResponse<T> {
+public class ResponseBody<T> {
     private int status;
     private String message;
     private T data;

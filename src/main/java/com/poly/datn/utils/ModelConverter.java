@@ -1,4 +1,4 @@
-package com.poly.datn.converter;
+package com.poly.datn.utils;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
