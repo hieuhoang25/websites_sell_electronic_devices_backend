@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//Swagger url: http://localhost:8080/swagger-ui/index.html
 @SpringBootApplication
 @OpenAPIDefinition(info = @Info(title = "API for project", version = "v1.0.0"), security = { @SecurityRequirement(name = "bearerAuth") })
 @SecurityScheme(
@@ -17,7 +18,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
         scheme = "bearer"
 )
 public class BackendApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(BackendApplication.class, args);
     }
