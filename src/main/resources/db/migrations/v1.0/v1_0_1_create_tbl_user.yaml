@@ -1,14 +1,14 @@
-databaseChangeLog:
-  -  preConditions:
-        onFail: CONTINUE
-        onError: CONTINUE
-  -  changeSet:
-       id:  v1_0_1
-       author:  hieuhoang
-       changes:
-            sql: |
-              create table tbl_user (  
-                username varchar(20) primary key,
-                password varchar(255),
-                fullname varchar(100)
-              );
+#databaseChangeLog:
+#  -  preConditions:
+#        onFail: CONTINUE
+#        onError: CONTINUE
+#  -  changeSet:
+#       id:  v1_0_1
+#       author:  hieuhoang
+#       changes:
+#            sql: |
+#              create table tbl_user (
+#                username varchar(20) primary key,
+#                password varchar(255),
+#                fullname varchar(100)
+#              );
