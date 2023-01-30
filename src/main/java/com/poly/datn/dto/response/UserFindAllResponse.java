@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
+
 @Data
 public class UserFindAllResponse implements Serializable {
     private final Integer id;

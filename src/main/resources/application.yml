@@ -12,7 +12,7 @@ spring:
       ddl-auto: none
   liquibase:
     change-log: classpath:db/migrations/migration-root.yaml
-    enabled: true #false is not use liquibase when no have new design
+    enabled: false #false is not use liquibase when no have new design
 logging:
   level:
     org:
