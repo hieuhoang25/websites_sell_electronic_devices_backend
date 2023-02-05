@@ -11,8 +11,8 @@ spring:
     hibernate:
       ddl-auto: none
   liquibase:
-    change-log: classpath:db/migrations/migration-root.yaml
-    enabled: false #false is not use liquibase when no have new design
+    change-log: classpath:db/migrations/init_database.sql
+    enabled: true #false is not use liquibase when no have new design
 logging:
   level:
     org:

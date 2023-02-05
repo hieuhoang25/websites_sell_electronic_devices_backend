@@ -12,7 +12,7 @@ public class UserFindAllResponse implements Serializable {
     @Size(max = 255)
     private final String email;
     @Size(max = 255)
-    private final String fullName;
+    private final String full_name;
     @Size(max = 13)
     private final String phone;
     private final Instant createDate;
