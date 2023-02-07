@@ -17,8 +17,8 @@ public class PromotionType {
     @Column(name = "name_promotion_type")
     private String namePromotionType;
 
-    @Column(name = "condition_minimun")
-    private Integer conditionMinimun;
+    @Column(name = "condition_minimum")
+    private Integer conditionMinimum;
 
     @Column(name = "amount")
     private Double amount;
@@ -45,12 +45,12 @@ public class PromotionType {
         this.namePromotionType = namePromotionType;
     }
 
-    public Integer getConditionMinimun() {
-        return conditionMinimun;
+    public Integer getConditionMinimum() {
+        return conditionMinimum;
     }
 
-    public void setConditionMinimun(Integer conditionMinimun) {
-        this.conditionMinimun = conditionMinimun;
+    public void setConditionMinimum(Integer conditionMinimum) {
+        this.conditionMinimum = conditionMinimum;
     }
 
     public Double getAmount() {
