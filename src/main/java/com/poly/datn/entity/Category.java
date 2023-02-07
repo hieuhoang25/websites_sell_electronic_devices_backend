@@ -28,10 +28,6 @@ public class Category {
     @Column(name = "update_date")
     private Instant updateDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "promotion_id")
-    private PromotionProduct promotion;
-
     @OneToMany(mappedBy = "category")
     private Set<Product> products = new LinkedHashSet<>();
 
@@ -76,14 +72,6 @@ public class Category {
 
     public void setUpdateDate(Instant updateDate) {
         this.updateDate = updateDate;
-    }
-
-    public PromotionProduct getPromotion() {
-        return promotion;
-    }
-
-    public void setPromotion(PromotionProduct promotion) {
-        this.promotion = promotion;
     }
 
     public Set<Product> getProducts() {

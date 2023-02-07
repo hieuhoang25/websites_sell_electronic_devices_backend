@@ -18,8 +18,8 @@ public class Product {
     @Column(name = "product_name")
     private String productName;
 
-    @Size(max = 1000)
-    @Column(name = "description", length = 1000)
+    @Size(max = 255)
+    @Column(name = "description")
     private String description;
 
     @Column(name = "create_date")

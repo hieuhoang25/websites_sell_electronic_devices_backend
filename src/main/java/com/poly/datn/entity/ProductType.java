@@ -17,8 +17,8 @@ public class ProductType {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "mutil_variation")
-    private Boolean mutilVariation;
+    @Column(name = "multi_variation")
+    private Boolean multiVariation;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "variant_type_id")
@@ -43,12 +43,12 @@ public class ProductType {
         this.name = name;
     }
 
-    public Boolean getMutilVariation() {
-        return mutilVariation;
+    public Boolean getMultiVariation() {
+        return multiVariation;
     }
 
-    public void setMutilVariation(Boolean mutilVariation) {
-        this.mutilVariation = mutilVariation;
+    public void setMultiVariation(Boolean multiVariation) {
+        this.multiVariation = multiVariation;
     }
 
     public ProductVariantType getVariantType() {

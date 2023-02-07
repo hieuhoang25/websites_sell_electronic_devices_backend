@@ -14,8 +14,8 @@ public class PromotionProduct {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "expriation_date")
-    private Instant expriationDate;
+    @Column(name = "expiation_date")
+    private Instant expiationDate;
 
     @Column(name = "created_date")
     private Instant createdDate;
@@ -36,9 +36,6 @@ public class PromotionProduct {
     @OneToMany(mappedBy = "promotion")
     private Set<Product> products = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "promotion")
-    private Set<Category> categories = new LinkedHashSet<>();
-
     public Integer getId() {
         return id;
     }
@@ -47,12 +44,12 @@ public class PromotionProduct {
         this.id = id;
     }
 
-    public Instant getExpriationDate() {
-        return expriationDate;
+    public Instant getExpiationDate() {
+        return expiationDate;
     }
 
-    public void setExpriationDate(Instant expriationDate) {
-        this.expriationDate = expriationDate;
+    public void setExpiationDate(Instant expiationDate) {
+        this.expiationDate = expiationDate;
     }
 
     public Instant getCreatedDate() {
@@ -101,14 +98,6 @@ public class PromotionProduct {
 
     public void setProducts(Set<Product> products) {
         this.products = products;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
     }
 
 }
