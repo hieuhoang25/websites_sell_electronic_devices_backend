@@ -57,11 +57,6 @@ INSERT INTO `authority`
 VALUES (1, 3, 1);
 
 
-INSERT INTO `product`
-VALUES (1, 'Iphone 12',
-        'Trong những tháng cuối năm 2020, Apple đã chính thức giới thiệu đến người dùng cũng như iFan thế hệ iPhone 12 series mới với hàng loạt tính năng bứt phá, thiết kế được lột xác hoàn toàn, hiệu năng đầy mạnh mẽ và một trong số đó chính là iPhone 12 64GB.',
-        '2023-02-02 21:26:56', NULL, 1, b'1', 2, NULL, 1, NULL);
-
 
 INSERT INTO `product_variant_type`
 VALUES (1, 'Iphone');
@@ -95,12 +90,15 @@ VALUES (5, '128GB', 3, 1);
 INSERT INTO `product_attribute_value`
 VALUES (7, '256GB', 3, 1);
 
+INSERT INTO `product`
+VALUES (1, 'Iphone 12',
+        'Trong những tháng cuối năm 2020, Apple đã chính thức giới thiệu đến người dùng cũng như iFan thế hệ iPhone 12 series mới với hàng loạt tính năng bứt phá, thiết kế được lột xác hoàn toàn, hiệu năng đầy mạnh mẽ và một trong số đó chính là iPhone 12 64GB.',
+        '2023-02-02 21:26:56', NULL, 1, b'1', 2, NULL, 1, NULL);
 
 INSERT INTO `product_variant`
 VALUES (1, 'IP12W', 100, 20000000, b'1', 1, NULL, 1, 'Iphone 12 màu trắng');
 INSERT INTO `product_variant`
 VALUES (2, 'IP12B', 100, 22000000, b'1', 1, NULL, 1, 'Iphone 12 màu đen');
-
 
 INSERT INTO `product_variant_option`
 VALUES (1, 'Color', 1, 1, b'1');
