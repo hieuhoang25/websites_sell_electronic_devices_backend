@@ -213,7 +213,7 @@ CREATE TABLE promotion_user
 CREATE TABLE promotion_product
 (
     id             int          NOT NULL AUTO_INCREMENT,
-    expiation_date datetime     NULL DEFAULT NULL,
+    expiration_date datetime     NULL DEFAULT NULL,
     created_date   datetime     NULL DEFAULT NULL,
     name           varchar(255) NULL DEFAULT NULL,
     updated_date   datetime     NULL DEFAULT NULL,

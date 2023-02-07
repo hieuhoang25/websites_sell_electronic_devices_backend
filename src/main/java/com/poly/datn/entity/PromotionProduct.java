@@ -14,8 +14,8 @@ public class PromotionProduct {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Column(name = "expiation_date")
-    private Instant expiationDate;
+    @Column(name = "expiration_date")
+    private Instant expirationDate;
 
     @Column(name = "created_date")
     private Instant createdDate;
@@ -44,12 +44,12 @@ public class PromotionProduct {
         this.id = id;
     }
 
-    public Instant getExpiationDate() {
-        return expiationDate;
+    public Instant getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setExpiationDate(Instant expiationDate) {
-        this.expiationDate = expiationDate;
+    public void setExpirationDate(Instant expirationDate) {
+        this.expirationDate = expirationDate;
     }
 
     public Instant getCreatedDate() {
