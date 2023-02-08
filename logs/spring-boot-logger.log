@@ -1,196 +1,271 @@
-2023-02-07 00:02:47,583 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.poly.datn.BackendApplicationTests], using SpringBootContextLoader
-2023-02-07 00:02:47,606 INFO org.springframework.test.context.support.AbstractContextLoader [main] Could not detect default resource locations for test class [com.poly.datn.BackendApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2023-02-07 00:02:47,608 INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.poly.datn.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2023-02-07 00:02:47,838 INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.poly.datn.BackendApplication for test class com.poly.datn.BackendApplicationTests
-2023-02-07 00:02:47,986 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2023-02-07 00:02:48,015 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@478ee483, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@1a7288a3, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@2974f221, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@58fe0499, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@686449f9, org.springframework.test.context.support.DirtiesContextTestExecutionListener@665df3c6, org.springframework.test.context.transaction.TransactionalTestExecutionListener@68b6f0d6, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@4044fb95, org.springframework.test.context.event.EventPublishingTestExecutionListener@aa549e5, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@36f48b4, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@5c00384f, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@3b7ff809, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@1bb564e2, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@62e6b5c8, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@3f792b9b]
-2023-02-07 00:02:48,551 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplicationTests using Java 15.0.2 on Admin with PID 5312 (started by Admin in C:\Users\Admin\Desktop\sell_electronic_devices_backend)
-2023-02-07 00:02:48,552 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-02-07 00:02:49,872 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-07 00:02:50,145 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 258 ms. Found 25 JPA repository interfaces.
-2023-02-07 00:02:51,837 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-02-07 00:02:52,216 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-02-07 00:02:53,714 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:02:55,074 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-07 00:02:58,323 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplicationTests in 10.23 seconds (JVM running for 11.921)
-2023-02-07 00:02:58,754 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:02:58,759 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2023-02-07 00:02:58,780 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2023-02-07 00:06:24,199 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.poly.datn.BackendApplicationTests], using SpringBootContextLoader
-2023-02-07 00:06:24,212 INFO org.springframework.test.context.support.AbstractContextLoader [main] Could not detect default resource locations for test class [com.poly.datn.BackendApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2023-02-07 00:06:24,213 INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.poly.datn.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2023-02-07 00:06:24,397 INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.poly.datn.BackendApplication for test class com.poly.datn.BackendApplicationTests
-2023-02-07 00:06:24,570 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2023-02-07 00:06:24,596 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1021f6c9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7516e4e5, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@488eb7f2, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5e81e5ac, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@4189d70b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3fa2213, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3e7634b9, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6f0b0a5e, org.springframework.test.context.event.EventPublishingTestExecutionListener@6035b93b, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@320de594, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3dd1dc90, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@abf688e, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@478ee483, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1a7288a3, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@2974f221]
-2023-02-07 00:06:25,197 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplicationTests using Java 15.0.2 on Admin with PID 16516 (started by Admin in C:\Users\Admin\Desktop\sell_electronic_devices_backend)
-2023-02-07 00:06:25,198 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-02-07 00:06:26,386 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-07 00:06:26,594 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 195 ms. Found 25 JPA repository interfaces.
-2023-02-07 00:06:28,090 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-02-07 00:06:28,481 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-02-07 00:06:29,840 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:06:31,125 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-07 00:06:33,687 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplicationTests in 9.005 seconds (JVM running for 10.746)
-2023-02-07 00:06:34,032 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:06:34,036 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2023-02-07 00:06:34,052 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2023-02-07 00:15:27,260 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.poly.datn.BackendApplicationTests], using SpringBootContextLoader
-2023-02-07 00:15:27,273 INFO org.springframework.test.context.support.AbstractContextLoader [main] Could not detect default resource locations for test class [com.poly.datn.BackendApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2023-02-07 00:15:27,275 INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.poly.datn.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2023-02-07 00:15:27,443 INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.poly.datn.BackendApplication for test class com.poly.datn.BackendApplicationTests
-2023-02-07 00:15:27,617 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2023-02-07 00:15:27,649 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1021f6c9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7516e4e5, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@488eb7f2, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5e81e5ac, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@4189d70b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3fa2213, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3e7634b9, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6f0b0a5e, org.springframework.test.context.event.EventPublishingTestExecutionListener@6035b93b, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@320de594, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3dd1dc90, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@abf688e, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@478ee483, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1a7288a3, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@2974f221]
-2023-02-07 00:15:28,178 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplicationTests using Java 15.0.2 on Admin with PID 8828 (started by Admin in C:\Users\Admin\Desktop\sell_electronic_devices_backend)
-2023-02-07 00:15:28,179 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-02-07 00:15:29,298 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-07 00:15:29,507 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 197 ms. Found 25 JPA repository interfaces.
-2023-02-07 00:15:30,881 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-02-07 00:15:31,164 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-02-07 00:15:32,410 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:15:33,581 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-07 00:15:36,171 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplicationTests in 8.436 seconds (JVM running for 9.905)
-2023-02-07 00:15:36,544 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:15:36,548 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2023-02-07 00:15:36,567 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2023-02-07 00:36:55,007 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.poly.datn.BackendApplicationTests], using SpringBootContextLoader
-2023-02-07 00:36:55,020 INFO org.springframework.test.context.support.AbstractContextLoader [main] Could not detect default resource locations for test class [com.poly.datn.BackendApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2023-02-07 00:36:55,022 INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.poly.datn.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2023-02-07 00:36:55,224 INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.poly.datn.BackendApplication for test class com.poly.datn.BackendApplicationTests
-2023-02-07 00:36:55,385 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2023-02-07 00:36:55,413 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@5e81e5ac, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@4189d70b, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@3fa2213, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3e7634b9, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@6f0b0a5e, org.springframework.test.context.support.DirtiesContextTestExecutionListener@6035b93b, org.springframework.test.context.transaction.TransactionalTestExecutionListener@320de594, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@3dd1dc90, org.springframework.test.context.event.EventPublishingTestExecutionListener@abf688e, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@478ee483, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@1a7288a3, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@2974f221, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@58fe0499, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@686449f9, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@665df3c6]
-2023-02-07 00:36:55,836 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplicationTests using Java 15.0.2 on Admin with PID 3160 (started by Admin in C:\Users\Admin\Desktop\sell_electronic_devices_backend)
-2023-02-07 00:36:55,838 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-02-07 00:36:56,925 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-07 00:36:57,135 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 194 ms. Found 25 JPA repository interfaces.
-2023-02-07 00:36:58,418 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-02-07 00:37:00,655 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-02-07 00:37:01,871 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:37:05,777 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-07 00:37:08,321 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplicationTests in 12.847 seconds (JVM running for 14.558)
-2023-02-07 00:37:08,594 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:37:08,598 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2023-02-07 00:37:08,614 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2023-02-07 00:44:52,912 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.poly.datn.BackendApplicationTests], using SpringBootContextLoader
-2023-02-07 00:44:52,925 INFO org.springframework.test.context.support.AbstractContextLoader [main] Could not detect default resource locations for test class [com.poly.datn.BackendApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
-2023-02-07 00:44:52,928 INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.poly.datn.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
-2023-02-07 00:44:53,156 INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.poly.datn.BackendApplication for test class com.poly.datn.BackendApplicationTests
-2023-02-07 00:44:53,290 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
-2023-02-07 00:44:53,317 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@1021f6c9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@7516e4e5, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@488eb7f2, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@5e81e5ac, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@4189d70b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@3fa2213, org.springframework.test.context.transaction.TransactionalTestExecutionListener@3e7634b9, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@6f0b0a5e, org.springframework.test.context.event.EventPublishingTestExecutionListener@6035b93b, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@320de594, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@3dd1dc90, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@abf688e, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@478ee483, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@1a7288a3, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@2974f221]
-2023-02-07 00:44:53,927 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplicationTests using Java 15.0.2 on Admin with PID 9420 (started by Admin in C:\Users\Admin\Desktop\sell_electronic_devices_backend)
-2023-02-07 00:44:53,929 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-02-07 00:44:55,075 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-07 00:44:55,327 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 234 ms. Found 25 JPA repository interfaces.
-2023-02-07 00:44:56,737 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-02-07 00:44:57,407 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-02-07 00:44:58,730 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:44:59,722 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-07 00:45:02,160 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplicationTests in 8.762 seconds (JVM running for 10.234)
-2023-02-07 00:45:02,459 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 00:45:02,464 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2023-02-07 00:45:02,481 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2023-02-07 15:31:35,020 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.17 on Admin with PID 8972 (C:\Users\Admin\Desktop\sell_electronic_devices_backend\target\classes started by Admin in C:\Users\Admin\Desktop\sell_electronic_devices_backend)
-2023-02-07 15:31:35,029 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-02-07 15:31:36,860 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-07 15:31:37,212 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 328 ms. Found 25 JPA repository interfaces.
-2023-02-07 15:31:37,583 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.17 on Admin with PID 10152 (C:\Users\Admin\Desktop\sell_electronic_devices_backend\target\classes started by Admin in C:\Users\Admin\Desktop\sell_electronic_devices_backend)
-2023-02-07 15:31:37,588 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-02-07 15:31:38,304 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2023-02-07 15:31:38,322 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:31:38,324 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2023-02-07 15:31:38,324 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
-2023-02-07 15:31:38,544 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2023-02-07 15:31:38,544 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3351 ms
-2023-02-07 15:31:38,802 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-07 15:31:39,036 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 218 ms. Found 25 JPA repository interfaces.
-2023-02-07 15:31:39,284 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-02-07 15:31:39,826 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2023-02-07 15:31:39,838 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:31:39,839 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2023-02-07 15:31:39,840 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
-2023-02-07 15:31:39,994 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2023-02-07 15:31:39,994 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2293 ms
-2023-02-07 15:31:39,997 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-02-07 15:31:40,651 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-02-07 15:31:41,244 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-02-07 15:31:41,603 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 15:31:42,519 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-07 15:31:42,622 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 15:31:43,561 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-07 15:31:44,772 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:31:44,804 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-07 15:31:44,822 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 10.702 seconds (JVM running for 14.163)
-2023-02-07 15:31:45,355 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:31:45,364 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
-2023-02-07 15:31:45,375 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 15:31:45,377 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
-2023-02-07 15:31:45,398 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown completed.
-2023-02-07 15:31:45,401 INFO org.apache.juli.logging.DirectJDKLog [main] Pausing ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:31:45,402 INFO org.apache.juli.logging.DirectJDKLog [main] Stopping service [Tomcat]
-2023-02-07 15:31:45,409 INFO org.apache.juli.logging.DirectJDKLog [main] Stopping ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:31:45,410 INFO org.apache.juli.logging.DirectJDKLog [main] Destroying ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:31:45,425 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] 
+2023-02-08 21:14:34,883 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Neither @ContextConfiguration nor @ContextHierarchy found for test class [com.poly.datn.BackendApplicationTests], using SpringBootContextLoader
+2023-02-08 21:14:34,887 INFO org.springframework.test.context.support.AbstractContextLoader [main] Could not detect default resource locations for test class [com.poly.datn.BackendApplicationTests]: no resource found for suffixes {-context.xml, Context.groovy}.
+2023-02-08 21:14:34,887 INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils [main] Could not detect default configuration classes for test class [com.poly.datn.BackendApplicationTests]: BackendApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+2023-02-08 21:14:34,934 INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper [main] Found @SpringBootConfiguration com.poly.datn.BackendApplication for test class com.poly.datn.BackendApplicationTests
+2023-02-08 21:14:34,970 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Loaded default TestExecutionListener class names from location [META-INF/spring.factories]: [org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener, org.springframework.test.context.web.ServletTestExecutionListener, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener, org.springframework.test.context.event.ApplicationEventsTestExecutionListener, org.springframework.test.context.support.DependencyInjectionTestExecutionListener, org.springframework.test.context.support.DirtiesContextTestExecutionListener, org.springframework.test.context.transaction.TransactionalTestExecutionListener, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener, org.springframework.test.context.event.EventPublishingTestExecutionListener]
+2023-02-08 21:14:34,978 INFO org.springframework.test.context.support.AbstractTestContextBootstrapper [main] Using TestExecutionListeners: [org.springframework.test.context.web.ServletTestExecutionListener@4d722ac9, org.springframework.test.context.support.DirtiesContextBeforeModesTestExecutionListener@53f0a4cb, org.springframework.test.context.event.ApplicationEventsTestExecutionListener@77a7cf58, org.springframework.boot.test.mock.mockito.MockitoTestExecutionListener@3d97a632, org.springframework.boot.test.autoconfigure.SpringBootDependencyInjectionTestExecutionListener@616fe72b, org.springframework.test.context.support.DirtiesContextTestExecutionListener@37efd131, org.springframework.test.context.transaction.TransactionalTestExecutionListener@7e7b159b, org.springframework.test.context.jdbc.SqlScriptsTestExecutionListener@7e5d9a50, org.springframework.test.context.event.EventPublishingTestExecutionListener@60957c0f, org.springframework.boot.test.mock.mockito.ResetMocksTestExecutionListener@293a5f75, org.springframework.boot.test.autoconfigure.restdocs.RestDocsTestExecutionListener@fcb4004, org.springframework.boot.test.autoconfigure.web.client.MockRestServiceServerResetTestExecutionListener@1dd6d4b7, org.springframework.boot.test.autoconfigure.web.servlet.MockMvcPrintOnlyOnFailureTestExecutionListener@56e8b606, org.springframework.boot.test.autoconfigure.web.servlet.WebDriverTestExecutionListener@2dd29a59, org.springframework.boot.test.autoconfigure.webservices.client.MockWebServiceServerTestExecutionListener@784c3487]
+2023-02-08 21:14:35,236 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplicationTests using Java 19.0.1 on Hoangs-MacBook-Pro.local with PID 41104 (started by hicode in /Users/hicode/Documents/GitHub/sell_electronic_devices_backend)
+2023-02-08 21:14:35,236 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 21:14:35,500 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 21:14:35,544 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 40 ms. Found 25 JPA repository interfaces.
+2023-02-08 21:14:35,884 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-02-08 21:14:36,973 ERROR com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Exception during pool initialization.
+java.sql.SQLSyntaxErrorException: Unknown database 'electronic_db'
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:120)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
+	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
+	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:448)
+	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:241)
+	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:198)
+	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:138)
+	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:364)
+	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:206)
+	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:476)
+	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:561)
+	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:115)
+	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:112)
+	at org.hibernate.engine.jdbc.connections.internal.DatasourceConnectionProviderImpl.getConnection(DatasourceConnectionProviderImpl.java:122)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:181)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:68)
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator.initiateService(JdbcEnvironmentInitiator.java:35)
+	at org.hibernate.boot.registry.internal.StandardServiceRegistryImpl.initiateService(StandardServiceRegistryImpl.java:101)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.createService(AbstractServiceRegistryImpl.java:263)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:237)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.id.factory.internal.DefaultIdentifierGeneratorFactory.injectServices(DefaultIdentifierGeneratorFactory.java:175)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.injectDependencies(AbstractServiceRegistryImpl.java:286)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.initializeService(AbstractServiceRegistryImpl.java:243)
+	at org.hibernate.service.internal.AbstractServiceRegistryImpl.getService(AbstractServiceRegistryImpl.java:214)
+	at org.hibernate.boot.internal.InFlightMetadataCollectorImpl.<init>(InFlightMetadataCollectorImpl.java:173)
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:127)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1460)
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1494)
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409)
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396)
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:136)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:141)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:90)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:124)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:190)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:132)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:248)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:138)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$8(ClassBasedTestDescriptor.java:363)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:368)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$9(ClassBasedTestDescriptor.java:363)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.StreamSpliterators$WrappingSpliterator.forEachRemaining(StreamSpliterators.java:310)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:735)
+	at java.base/java.util.stream.Streams$ConcatSpliterator.forEachRemaining(Streams.java:734)
+	at java.base/java.util.stream.ReferencePipeline$Head.forEach(ReferencePipeline.java:762)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:362)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$6(ClassBasedTestDescriptor.java:283)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:282)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$4(ClassBasedTestDescriptor.java:272)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$5(ClassBasedTestDescriptor.java:271)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:31)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:102)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:101)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:66)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$2(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:123)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:90)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:220)
+	at org.junit.platform.launcher.core.DefaultLauncher.lambda$execute$6(DefaultLauncher.java:188)
+	at org.junit.platform.launcher.core.DefaultLauncher.withInterceptedStreams(DefaultLauncher.java:202)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:181)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:128)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:150)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:124)
+	at org.apache.maven.surefire.booter.ForkedBooter.invokeProviderInSameClassLoader(ForkedBooter.java:384)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:345)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:126)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:418)
+2023-02-08 21:14:37,390 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 21:14:37,652 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 21:14:38,345 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplicationTests in 3.35 seconds (JVM running for 3.788)
+2023-02-08 21:14:38,435 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 21:16:19,862 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.17 on Hoangs-MacBook-Pro.local with PID 41625 (/Users/hicode/Documents/GitHub/sell_electronic_devices_backend/target/classes started by hicode in /Users/hicode/Documents/GitHub/sell_electronic_devices_backend)
+2023-02-08 21:16:19,864 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 21:16:20,173 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 21:16:20,217 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 40 ms. Found 25 JPA repository interfaces.
+2023-02-08 21:16:20,439 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-02-08 21:16:20,443 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-08 21:16:20,443 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-02-08 21:16:20,443 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-02-08 21:16:20,496 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-02-08 21:16:20,496 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 597 ms
+2023-02-08 21:16:20,669 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-02-08 21:16:20,771 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-02-08 21:16:21,164 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 21:16:21,367 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 21:16:21,980 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-02-08 21:16:21,993 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-08 21:16:21,998 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 2.366 seconds (JVM running for 2.957)
+2023-02-08 21:16:40,252 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 21:16:40,255 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-02-08 21:16:40,264 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-02-08 21:16:41,260 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.17 on Hoangs-MacBook-Pro.local with PID 41750 (/Users/hicode/Documents/GitHub/sell_electronic_devices_backend/target/classes started by hicode in /Users/hicode/Documents/GitHub/sell_electronic_devices_backend)
+2023-02-08 21:16:41,261 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 21:16:41,551 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 21:16:41,595 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 39 ms. Found 25 JPA repository interfaces.
+2023-02-08 21:16:41,868 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-02-08 21:16:41,872 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-08 21:16:41,873 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-02-08 21:16:41,873 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-02-08 21:16:41,939 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-02-08 21:16:41,939 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 655 ms
+2023-02-08 21:16:41,998 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-02-08 21:16:42,222 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-02-08 21:16:42,554 INFO liquibase.logging.core.JavaLogger [main] Successfully acquired change log lock
+2023-02-08 21:16:42,706 INFO liquibase.logging.core.JavaLogger [main] Creating database history table with name: electronic_db.DATABASECHANGELOG
+2023-02-08 21:16:42,719 INFO liquibase.logging.core.JavaLogger [main] Reading from electronic_db.DATABASECHANGELOG
+2023-02-08 21:16:42,733 INFO liquibase.logging.core.JavaLogger [main] Successfully released change log lock
+2023-02-08 21:16:42,734 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.UnexpectedLiquibaseException: java.io.FileNotFoundException: /Users/hicode/Documents/GitHub/sell_electronic_devices_backend/target/classes/changelog/init_database.sql (No such file or directory)
+2023-02-08 21:16:42,734 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
+2023-02-08 21:16:42,742 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown completed.
+2023-02-08 21:16:42,744 INFO org.apache.juli.logging.DirectJDKLog [main] Stopping service [Tomcat]
+2023-02-08 21:16:42,749 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-02-07 15:31:45,459 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [main] 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
-
-2023-02-07 15:32:05,949 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 15:32:05,955 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2023-02-07 15:32:05,980 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2023-02-07 15:32:12,701 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.17 on Admin with PID 588 (C:\Users\Admin\Desktop\sell_electronic_devices_backend\target\classes started by Admin in C:\Users\Admin\Desktop\sell_electronic_devices_backend)
-2023-02-07 15:32:12,706 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-02-07 15:32:13,639 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-07 15:32:13,812 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 163 ms. Found 25 JPA repository interfaces.
-2023-02-07 15:32:14,307 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2023-02-07 15:32:14,315 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:32:14,315 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2023-02-07 15:32:14,316 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
-2023-02-07 15:32:14,429 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2023-02-07 15:32:14,429 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1643 ms
-2023-02-07 15:32:14,864 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-02-07 15:32:15,226 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-02-07 15:32:16,270 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 15:32:16,776 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-07 15:32:18,088 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:32:18,110 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-07 15:32:18,123 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 5.988 seconds (JVM running for 7.378)
-2023-02-07 15:32:40,042 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-02-07 15:32:40,044 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
-2023-02-07 15:32:40,049 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 4 ms
-2023-02-07 15:33:31,783 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 15:33:31,789 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2023-02-07 15:33:31,841 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2023-02-07 15:40:07,238 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.17 on Admin with PID 13812 (C:\Users\Admin\Desktop\sell_electronic_devices_backend\target\classes started by Admin in C:\Users\Admin\Desktop\sell_electronic_devices_backend)
-2023-02-07 15:40:07,244 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2023-02-07 15:40:09,210 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-02-07 15:40:09,434 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 210 ms. Found 25 JPA repository interfaces.
-2023-02-07 15:40:10,191 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2023-02-07 15:40:10,206 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:40:10,208 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2023-02-07 15:40:10,208 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
-2023-02-07 15:40:10,444 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2023-02-07 15:40:10,445 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3074 ms
-2023-02-07 15:40:11,107 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-02-07 15:40:11,652 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-02-07 15:40:12,927 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 15:40:13,637 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-02-07 15:40:15,248 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2023-02-07 15:40:15,281 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
-2023-02-07 15:40:15,300 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 8.698 seconds (JVM running for 10.426)
-2023-02-07 15:40:30,680 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2023-02-07 15:40:30,682 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
-2023-02-07 15:40:30,685 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
-2023-02-07 15:40:47,651 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-02-07 15:40:47,654 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2023-02-07 15:40:47,680 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-02-08 21:16:42,757 ERROR org.springframework.boot.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'liquibase' defined in class path resource [org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration$LiquibaseConfiguration.class]: Invocation of init method failed; nested exception is liquibase.exception.LiquibaseException: liquibase.exception.UnexpectedLiquibaseException: java.io.FileNotFoundException: /Users/hicode/Documents/GitHub/sell_electronic_devices_backend/target/classes/changelog/init_database.sql (No such file or directory)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:322)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.poly.datn.BackendApplication.main(BackendApplication.java:22)
+Caused by: liquibase.exception.LiquibaseException: liquibase.exception.UnexpectedLiquibaseException: java.io.FileNotFoundException: /Users/hicode/Documents/GitHub/sell_electronic_devices_backend/target/classes/changelog/init_database.sql (No such file or directory)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:126)
+	at liquibase.changelog.DatabaseChangeLog.validate(DatabaseChangeLog.java:329)
+	at liquibase.Liquibase.lambda$update$1(Liquibase.java:257)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Liquibase.runInScope(Liquibase.java:2447)
+	at liquibase.Liquibase.update(Liquibase.java:236)
+	at liquibase.Liquibase.update(Liquibase.java:221)
+	at liquibase.integration.spring.SpringLiquibase.performUpdate(SpringLiquibase.java:328)
+	at liquibase.integration.spring.SpringLiquibase.afterPropertiesSet(SpringLiquibase.java:283)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 18 common frames omitted
+Caused by: liquibase.exception.UnexpectedLiquibaseException: java.io.FileNotFoundException: /Users/hicode/Documents/GitHub/sell_electronic_devices_backend/target/classes/changelog/init_database.sql (No such file or directory)
+	at liquibase.change.AbstractSQLChange.generateCheckSum(AbstractSQLChange.java:204)
+	at liquibase.changelog.ChangeSet.generateCheckSum(ChangeSet.java:314)
+	at liquibase.changelog.ChangeSet.toString(ChangeSet.java:1036)
+	at liquibase.changelog.ChangeLogIterator.createKey(ChangeLogIterator.java:181)
+	at liquibase.changelog.ChangeLogIterator.alreadySaw(ChangeLogIterator.java:189)
+	at liquibase.changelog.ChangeLogIterator$2.lambda$run$1(ChangeLogIterator.java:94)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.changelog.ChangeLogIterator$2.run(ChangeLogIterator.java:93)
+	at liquibase.Scope.lambda$child$0(Scope.java:180)
+	at liquibase.Scope.child(Scope.java:189)
+	at liquibase.Scope.child(Scope.java:179)
+	at liquibase.Scope.child(Scope.java:158)
+	at liquibase.Scope.child(Scope.java:243)
+	at liquibase.Scope.child(Scope.java:247)
+	at liquibase.changelog.ChangeLogIterator.run(ChangeLogIterator.java:65)
+	... 31 common frames omitted
+Caused by: java.io.FileNotFoundException: /Users/hicode/Documents/GitHub/sell_electronic_devices_backend/target/classes/changelog/init_database.sql (No such file or directory)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at java.base/sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:86)
+	at java.base/sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:184)
+	at org.springframework.core.io.UrlResource.getInputStream(UrlResource.java:187)
+	at liquibase.integration.spring.SpringResource.openInputStream(SpringResource.java:58)
+	at liquibase.change.core.SQLFileChange.openSqlStream(SQLFileChange.java:120)
+	at liquibase.change.AbstractSQLChange.generateCheckSum(AbstractSQLChange.java:190)
+	... 49 common frames omitted
+2023-02-08 21:22:28,564 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.17 on Hoangs-MacBook-Pro.local with PID 42419 (/Users/hicode/Documents/GitHub/sell_electronic_devices_backend/target/classes started by hicode in /Users/hicode/Documents/GitHub/sell_electronic_devices_backend)
+2023-02-08 21:22:28,566 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-08 21:22:28,892 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-08 21:22:28,936 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 39 ms. Found 25 JPA repository interfaces.
+2023-02-08 21:22:29,171 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-02-08 21:22:29,175 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-08 21:22:29,175 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-02-08 21:22:29,175 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-02-08 21:22:29,226 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-02-08 21:22:29,226 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 630 ms
+2023-02-08 21:22:29,427 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-02-08 21:22:29,501 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-02-08 21:22:29,950 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 21:22:30,238 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-08 21:22:30,847 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-02-08 21:22:30,863 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-08 21:22:30,869 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 2.466 seconds (JVM running for 2.995)
+2023-02-08 21:23:16,900 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-08 21:23:16,900 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-02-08 21:23:16,903 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2023-02-08 23:17:15,112 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-08 23:17:15,134 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-02-08 23:17:15,169 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
