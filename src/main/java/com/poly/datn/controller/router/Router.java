@@ -10,7 +10,7 @@ public class Router {
 
         // OPTIONS
         public static final String FIND_BY = "/{id}";
-        public static final String SEARCH = "/search";
+        public static final String FILTER = "/filter";
     }
 
     public static class ADMIN_API {

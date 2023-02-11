@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import  com.poly.datn.controller.router.Router.USER_API.*;
 
-import static com.poly.datn.controller.router.Router.USER_API.SEARCH;
+import static com.poly.datn.controller.router.Router.USER_API.FILTER;
 import static com.poly.datn.controller.router.Router.USER_API.PRODUCT;
 
 @RequiredArgsConstructor
@@ -43,7 +43,7 @@ public class UserFindAllController {
 
 
 
-    @GetMapping(PRODUCT+SEARCH)
+    @GetMapping(PRODUCT+FILTER)
     public ResponseBody<SearchResult<ProductResponse>> findProductsByMultiFiels(@RequestBody  List<SearchCriteria> criteria, @RequestParam("size")  Integer size, @RequestParam("page") Integer page){
         Pageable pageable = PageRequest.of(page, size);
         return new ResponseBody<SearchResult<ProductResponse>>(1,MessageResponse.MESSAGE_SUCCESS, userFindAll.findProductsByMultiFiels(criteria, pageable));
