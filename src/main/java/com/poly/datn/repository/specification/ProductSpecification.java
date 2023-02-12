@@ -16,18 +16,19 @@ import java.util.List;
 @Data
 public class ProductSpecification implements Specification<Product> {
 
-    private List<SearchCriteria> list =  new ArrayList<>();
+    private List<SearchCriteria> list = new ArrayList<>();
 
-    public void add(SearchCriteria criteria){
+    public void add(SearchCriteria criteria) {
         list.add(criteria);
     }
+
     @Override
     public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<>();
 
-        for (SearchCriteria criteria:
+        for (SearchCriteria criteria :
                 list) {
-            switch(criteria.getOperation()) {
+            switch (criteria.getOperation()) {
                 case GREATER_THAN:
                     predicates.add(criteriaBuilder.greaterThan(root.get(criteria.getKey()), criteria.getValue().toString()));
                     break;

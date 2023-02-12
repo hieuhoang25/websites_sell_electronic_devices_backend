@@ -10,8 +10,8 @@ public class MessageResponse {
     private static final int STATUS_ERROR = 0;
 
     //Text message
-    public static final String MESSAGE_SUCCESS = "successfully";
+    public static final String MESSAGE_SUCCESS = "Successfully";
 
-    public static final String MESSAGE_ERROR = "successfully";
+    public static final String MESSAGE_ERROR = "Error";
 
 }
