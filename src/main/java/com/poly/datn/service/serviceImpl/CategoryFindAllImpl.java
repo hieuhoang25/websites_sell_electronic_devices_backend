@@ -1,5 +1,7 @@
 package com.poly.datn.service.serviceImpl;
 
+import com.poly.datn.common.mapper.ModelConverter;
+import com.poly.datn.dto.response.CategoryFindAllResponse;
 import com.poly.datn.entity.Category;
 import com.poly.datn.repository.CategoryRepository;
 import com.poly.datn.service.CategoryFindAll;
@@ -13,13 +15,10 @@ import java.util.List;
 @Slf4j
 public class CategoryFindAllImpl implements CategoryFindAll {
     private final CategoryRepository categoryRepository;
+    private final ModelConverter modelConverter;
     @Override
-    public List<Category> findAll() {
+    public List<CategoryFindAllResponse> getCategory() {
         List<Category> categories = categoryRepository.findAll();
-        for(Category c : categories.get(2).getCategories()){
-            log.info(c.getCategoryName());
-        }
-        System.out.println("hello ??");
-        return categories;
+        return modelConverter.mapAllByIterator(categories,CategoryFindAllResponse.class);
     }
 }

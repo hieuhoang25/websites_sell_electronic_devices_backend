@@ -2,7 +2,6 @@ package com.poly.datn.controller;
 
 import com.poly.datn.common.MessageResponse;
 import com.poly.datn.common.ResponseBody;
-import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.response.UserFindAllResponse;
 import com.poly.datn.service.UserFindAll;
@@ -19,7 +18,6 @@ import java.util.List;
 @RequestMapping(Router.USER_API.BASE)
 public class UserFindAllController {
     private final UserFindAll userFindAll;
-    private final ModelConverter modelConverter;
 
     @GetMapping
     public ResponseEntity<ResponseBody<List<UserFindAllResponse>>> userFindAll() {
@@ -27,8 +25,7 @@ public class UserFindAllController {
                 new ResponseBody<>(
                         1,
                         MessageResponse.MESSAGE_SUCCESS,
-                        modelConverter.mapAllByIterator
-                                (userFindAll.findAll(), UserFindAllResponse.class))
+                        userFindAll.getUser())
         );
     }
 }
