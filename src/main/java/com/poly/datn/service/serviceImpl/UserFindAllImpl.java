@@ -1,6 +1,7 @@
 package com.poly.datn.service.serviceImpl;
 
-import com.poly.datn.entity.User;
+import com.poly.datn.common.mapper.ModelConverter;
+import com.poly.datn.dto.response.UserFindAllResponse;
 import com.poly.datn.repository.UserRepository;
 import com.poly.datn.service.UserFindAll;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +15,10 @@ import java.util.List;
 @Service
 public class UserFindAllImpl implements UserFindAll {
     private final UserRepository userRepository;
+    private final ModelConverter modelConverter;
 
     @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public List<UserFindAllResponse> getUser() {
+        return modelConverter.mapAllByIterator(userRepository.findAll(), UserFindAllResponse.class);
     }
 }

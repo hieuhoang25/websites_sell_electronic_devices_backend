@@ -9,8 +9,11 @@ public class Router {
         public static final String PRODUCT = "/product";
 
         // OPTIONS
-        public static final String FIND_BY = "/{id}";
+        public static final String FIND_BY_ID = "/{id}";
         public static final String FILTER = "/filter";
+
+        //CATEGORY
+        public static final String CATEGORY = "/category";
     }
 
     public static class ADMIN_API {

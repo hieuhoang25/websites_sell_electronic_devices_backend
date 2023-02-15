@@ -1,4 +1,3 @@
-
 CREATE TABLE account
 (
     unique_id   int          NOT NULL AUTO_INCREMENT,
@@ -212,13 +211,13 @@ CREATE TABLE promotion_user
 );
 CREATE TABLE promotion_product
 (
-    id             int          NOT NULL AUTO_INCREMENT,
+    id              int          NOT NULL AUTO_INCREMENT,
     expiration_date datetime     NULL DEFAULT NULL,
-    created_date   datetime     NULL DEFAULT NULL,
-    name           varchar(255) NULL DEFAULT NULL,
-    updated_date   datetime     NULL DEFAULT NULL,
-    maximum_price  double       NULL DEFAULT NULL,
-    activate       bit(1)       NULL DEFAULT NULL,
+    created_date    datetime     NULL DEFAULT NULL,
+    name            varchar(255) NULL DEFAULT NULL,
+    updated_date    datetime     NULL DEFAULT NULL,
+    maximum_price   double       NULL DEFAULT NULL,
+    activate        bit(1)       NULL DEFAULT NULL,
     PRIMARY KEY (id)
 );
 
@@ -337,6 +336,18 @@ INSERT INTO `category`
 VALUES (5, 'Tablet', NULL, '2023-02-02 21:24:47', NULL);
 INSERT INTO `category`
 VALUES (6, 'PC', NULL, '2023-02-02 21:25:02', NULL);
+INSERT INTO `category`
+VALUES (7, 'Phụ kiện di động', 3, '2023-02-14 21:26:52', NULL);
+INSERT INTO `category`
+VALUES (8, 'Phụ kiện laptop', 3, '2023-02-14 21:30:22', NULL);
+INSERT INTO `category`
+VALUES (9, 'Sạc dự phòng', 7, '2023-02-14 21:30:48', NULL);
+INSERT INTO `category`
+VALUES (10, 'Ốp lưng điện thoại', 7, '2023-02-14 21:31:09', NULL);
+INSERT INTO `category`
+VALUES (11, 'Giá đỡ laptop', 8, '2023-02-14 21:31:29', NULL);
+INSERT INTO `category`
+VALUES (12, 'Chuột, bàn phím', 8, '2023-02-14 21:31:58', NULL);
 
 
 INSERT INTO `brand`

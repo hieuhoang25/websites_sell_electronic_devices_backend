@@ -3,8 +3,8 @@ package com.poly.datn.controller;
 import com.poly.datn.common.MessageResponse;
 import com.poly.datn.common.ResponseBody;
 import com.poly.datn.controller.router.Router;
-import com.poly.datn.dto.response.UserFindAllResponse;
-import com.poly.datn.service.UserFindAll;
+import com.poly.datn.dto.response.CategoryFindAllResponse;
+import com.poly.datn.service.CategoryFindAll;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequiredArgsConstructor
-@RestController
-@RequestMapping(Router.USER_API.BASE)
-public class UserFindAllController {
-    private final UserFindAll userFindAll;
+import static com.poly.datn.controller.router.Router.USER_API.CATEGORY;
 
-    @GetMapping
-    public ResponseEntity<ResponseBody<List<UserFindAllResponse>>> userFindAll() {
+@RequiredArgsConstructor
+@RequestMapping(Router.USER_API.BASE)
+@RestController
+public class CategoryFindAllController {
+    private final CategoryFindAll categoryFindAll;
+
+    @GetMapping(CATEGORY)
+    public ResponseEntity<ResponseBody<List<CategoryFindAllResponse>>> categoryFindAllResponse() {
         return ResponseEntity.ok(
                 new ResponseBody<>(
                         1,
                         MessageResponse.MESSAGE_SUCCESS,
-                        userFindAll.getUser())
+                        categoryFindAll.getCategory())
         );
     }
 }
