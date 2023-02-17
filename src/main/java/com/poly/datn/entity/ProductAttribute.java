@@ -2,8 +2,6 @@ package com.poly.datn.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "product_attribute")
@@ -13,12 +11,16 @@ public class ProductAttribute {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @Size(max = 50)
-    @Column(name = "name_attribute", length = 50)
-    private String nameAttribute;
+    @Size(max = 100)
+    @Column(name = "attribute_name", length = 100)
+    private String attributeName;
 
-    @OneToMany(mappedBy = "attribute")
-    private Set<ProductAttributeValue> productAttributeValues = new LinkedHashSet<>();
+    @Column(name = "attribute_value")
+    private Integer attributeValue;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public Integer getId() {
         return id;
@@ -28,20 +30,28 @@ public class ProductAttribute {
         this.id = id;
     }
 
-    public String getNameAttribute() {
-        return nameAttribute;
+    public String getAttributeName() {
+        return attributeName;
     }
 
-    public void setNameAttribute(String nameAttribute) {
-        this.nameAttribute = nameAttribute;
+    public void setAttributeName(String attributeName) {
+        this.attributeName = attributeName;
     }
 
-    public Set<ProductAttributeValue> getProductAttributeValues() {
-        return productAttributeValues;
+    public Integer getAttributeValue() {
+        return attributeValue;
     }
 
-    public void setProductAttributeValues(Set<ProductAttributeValue> productAttributeValues) {
-        this.productAttributeValues = productAttributeValues;
+    public void setAttributeValue(Integer attributeValue) {
+        this.attributeValue = attributeValue;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
 }

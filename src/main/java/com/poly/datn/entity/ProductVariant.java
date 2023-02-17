@@ -34,22 +34,23 @@ public class ProductVariant {
     @Column(name = "image")
     private String image;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "variant_type")
-    private ProductVariantType variantType;
-
     @Size(max = 255)
     @Column(name = "display_name")
     private String displayName;
 
-    @OneToMany(mappedBy = "variant")
-    private Set<ProductVariantOption> productVariantOptions = new LinkedHashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "color_id")
+    private Color color;
 
-    @OneToMany(mappedBy = "productVariant")
-    private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "storage_id")
+    private Storage storage;
 
     @OneToMany(mappedBy = "productVariant")
     private Set<CartDetail> cartDetails = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "productVariant")
+    private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
 
     public Integer getId() {
         return id;
@@ -107,14 +108,6 @@ public class ProductVariant {
         this.image = image;
     }
 
-    public ProductVariantType getVariantType() {
-        return variantType;
-    }
-
-    public void setVariantType(ProductVariantType variantType) {
-        this.variantType = variantType;
-    }
-
     public String getDisplayName() {
         return displayName;
     }
@@ -123,20 +116,20 @@ public class ProductVariant {
         this.displayName = displayName;
     }
 
-    public Set<ProductVariantOption> getProductVariantOptions() {
-        return productVariantOptions;
+    public Color getColor() {
+        return color;
     }
 
-    public void setProductVariantOptions(Set<ProductVariantOption> productVariantOptions) {
-        this.productVariantOptions = productVariantOptions;
+    public void setColor(Color color) {
+        this.color = color;
     }
 
-    public Set<OrderDetail> getOrderDetails() {
-        return orderDetails;
+    public Storage getStorage() {
+        return storage;
     }
 
-    public void setOrderDetails(Set<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
+    public void setStorage(Storage storage) {
+        this.storage = storage;
     }
 
     public Set<CartDetail> getCartDetails() {
@@ -145,6 +138,14 @@ public class ProductVariant {
 
     public void setCartDetails(Set<CartDetail> cartDetails) {
         this.cartDetails = cartDetails;
+    }
+
+    public Set<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Set<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
 }

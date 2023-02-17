@@ -2,6 +2,7 @@ package com.poly.datn.repository.specification;
 
 import com.poly.datn.common.SearchCriteria;
 import com.poly.datn.entity.Product;
+
 import lombok.Data;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -11,7 +12,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
-
 
 @Data
 public class ProductSpecification implements Specification<Product> {
@@ -26,29 +26,35 @@ public class ProductSpecification implements Specification<Product> {
     public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<>();
 
-        for (SearchCriteria criteria :
-                list) {
+        for (SearchCriteria criteria : list) {
             switch (criteria.getOperation()) {
                 case GREATER_THAN:
-                    predicates.add(criteriaBuilder.greaterThan(root.get(criteria.getKey()), criteria.getValue().toString()));
+                    predicates.add(
+                            criteriaBuilder.greaterThan(root.get(criteria.getKey()), criteria.getValue().toString()));
                     break;
                 case LESS_THAN:
-                    predicates.add(criteriaBuilder.lessThan(root.get(criteria.getKey()), criteria.getValue().toString()));
+                    predicates
+                            .add(criteriaBuilder.lessThan(root.get(criteria.getKey()), criteria.getValue().toString()));
                     break;
                 case GREATER_THAN_EQUAL:
-                    predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get(criteria.getKey()), criteria.getValue().toString()));
+                    predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get(criteria.getKey()),
+                            criteria.getValue().toString()));
                     break;
                 case LESS_THAN_EQUAL:
-                    predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get(criteria.getKey()), criteria.getValue().toString()));
+                    predicates.add(criteriaBuilder.lessThanOrEqualTo(root.get(criteria.getKey()),
+                            criteria.getValue().toString()));
                     break;
                 case LIKE:
-                    predicates.add(criteriaBuilder.like(root.get(criteria.getKey()), "%" + criteria.getValue().toString() + "%"));
+                    predicates.add(criteriaBuilder.like(root.get(criteria.getKey()),
+                            "%" + criteria.getValue().toString() + "%"));
                     break;
                 case LIKE_START:
-                    predicates.add(criteriaBuilder.like(root.get(criteria.getKey()), "%" + criteria.getValue().toString()));
+                    predicates.add(
+                            criteriaBuilder.like(root.get(criteria.getKey()), "%" + criteria.getValue().toString()));
                     break;
                 case LIKE_END:
-                    predicates.add(criteriaBuilder.like(root.get(criteria.getKey()), criteria.getValue().toString() + "%"));
+                    predicates.add(
+                            criteriaBuilder.like(root.get(criteria.getKey()), criteria.getValue().toString() + "%"));
                     break;
                 case EQUAL:
                     predicates.add(criteriaBuilder.equal(root.get(criteria.getKey()), criteria.getValue()));

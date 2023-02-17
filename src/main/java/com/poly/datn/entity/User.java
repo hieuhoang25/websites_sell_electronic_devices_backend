@@ -33,10 +33,10 @@ public class User {
     private Instant updateDate;
 
     @OneToMany(mappedBy = "user")
-    private Set<Account> accounts = new LinkedHashSet<>();
+    private Set<Wishlist> wishlists = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
-    private Set<Wishlist> wishlists = new LinkedHashSet<>();
+    private Set<Account> accounts = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
     private Set<Rating> ratings = new LinkedHashSet<>();
@@ -98,20 +98,20 @@ public class User {
         this.updateDate = updateDate;
     }
 
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
-    }
-
     public Set<Wishlist> getWishlists() {
         return wishlists;
     }
 
     public void setWishlists(Set<Wishlist> wishlists) {
         this.wishlists = wishlists;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
     }
 
     public Set<Rating> getRatings() {

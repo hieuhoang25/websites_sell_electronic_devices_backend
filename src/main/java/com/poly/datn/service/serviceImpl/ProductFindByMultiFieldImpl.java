@@ -25,12 +25,10 @@ public class ProductFindByMultiFieldImpl implements ProductFindByMultiField {
     public SearchResult<ProductFilterResponse> findByMultiField(List<SearchCriteria> criteria, Pageable pageable) {
         ProductSpecification specification = new ProductSpecification();
         specification.setList(criteria);
-        return new SearchResult<ProductFilterResponse>
-                (
-                        pageable.getPageSize(),
-                        pageable.getPageNumber(),
-                        modelConverter.mapAllByIterator
-                                (productRepository.findAll(specification, pageable).getContent(), ProductFilterResponse.class)
-                );
+        return new SearchResult<ProductFilterResponse>(
+                pageable.getPageSize(),
+                pageable.getPageNumber(),
+                modelConverter.mapAllByIterator(productRepository.findAll(specification, pageable).getContent(),
+                        ProductFilterResponse.class));
     }
 }

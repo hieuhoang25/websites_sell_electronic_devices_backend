@@ -43,9 +43,8 @@ public class Product {
     @JoinColumn(name = "promotion_id")
     private PromotionProduct promotion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "type")
-    private ProductType type;
+    @Column(name = "type")
+    private Integer type;
 
     @Size(max = 255)
     @Column(name = "image")
@@ -53,6 +52,9 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private Set<Wishlist> wishlists = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductAttribute> productAttributes = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "product")
     private Set<Rating> ratings = new LinkedHashSet<>();
@@ -132,11 +134,11 @@ public class Product {
         this.promotion = promotion;
     }
 
-    public ProductType getType() {
+    public Integer getType() {
         return type;
     }
 
-    public void setType(ProductType type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 
@@ -154,6 +156,14 @@ public class Product {
 
     public void setWishlists(Set<Wishlist> wishlists) {
         this.wishlists = wishlists;
+    }
+
+    public Set<ProductAttribute> getProductAttributes() {
+        return productAttributes;
+    }
+
+    public void setProductAttributes(Set<ProductAttribute> productAttributes) {
+        this.productAttributes = productAttributes;
     }
 
     public Set<Rating> getRatings() {
