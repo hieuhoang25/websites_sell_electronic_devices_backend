@@ -20,4 +20,9 @@ public class Router {
         public static final String BASE = "/api/admin";
 
     }
+
+    public static class PRODUCT_API {
+        public static final String BASE = "/api/product";
+
+    }
 }

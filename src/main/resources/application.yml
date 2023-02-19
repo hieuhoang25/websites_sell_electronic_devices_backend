@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/electronic_db
     username: root
-    password: nhatphu234aA.
+    password: huynhvanvong
   jpa:
     show-sql: true
     properties:
