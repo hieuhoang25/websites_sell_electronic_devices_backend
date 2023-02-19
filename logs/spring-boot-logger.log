@@ -171,3 +171,23 @@ Caused by: java.net.UnknownHostException: No such host is known (localhos)
 2023-02-18 15:29:14,966 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
 2023-02-18 15:29:14,967 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
 2023-02-18 15:29:56,696 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-19 13:11:59,322 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 18.0.2 on ThinkBook14P with PID 10140 (D:\SCHOOL\DATN\sell_electronic_devices_backend\target\classes started by lenovo in D:\SCHOOL\DATN\sell_electronic_devices_backend)
+2023-02-19 13:11:59,324 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2023-02-19 13:12:00,291 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-19 13:12:00,420 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 118 ms. Found 23 JPA repository interfaces.
+2023-02-19 13:12:00,933 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-02-19 13:12:00,945 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-19 13:12:00,945 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-02-19 13:12:00,945 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-02-19 13:12:01,088 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-02-19 13:12:01,088 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1701 ms
+2023-02-19 13:12:01,612 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-02-19 13:12:02,082 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-02-19 13:12:02,945 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-19 13:12:03,434 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-19 13:12:04,366 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-02-19 13:12:04,390 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-19 13:12:04,402 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 5.513 seconds (JVM running for 6.361)
+2023-02-19 13:13:24,998 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-19 13:13:25,001 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-02-19 13:13:25,011 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

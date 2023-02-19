@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.poly.datn.common.ResponseBody;
 import java.util.Optional;
-import static com.poly.datn.controller.router.Router.USER_API.PRODUCT;
+import static com.poly.datn.controller.router.Router.PRODUCT_API.BASE;
 
 @RequiredArgsConstructor
-@RequestMapping("api")
+@RequestMapping(BASE)
 @RestController
 public class ProductListController {
     private final ProductList productList;
-    @GetMapping(PRODUCT)
+    @GetMapping()
     @Tag(name = "Product")
     public ResponseEntity<ResponseBody<SearchResult<ProductListResponse>>> productListResponse(
             @RequestParam("size") Optional<Integer> size,
