@@ -1,7 +1,5 @@
 package com.poly.datn.controller;
 
-import com.poly.datn.common.MessageResponse;
-import com.poly.datn.common.ResponseBody;
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.response.UserFindAllResponse;
 import com.poly.datn.service.UserFindAll;
@@ -20,12 +18,7 @@ public class UserFindAllController {
     private final UserFindAll userFindAll;
 
     @GetMapping
-    public ResponseEntity<ResponseBody<List<UserFindAllResponse>>> userFindAll() {
-        return ResponseEntity.ok(
-                new ResponseBody<>(
-                        1,
-                        MessageResponse.MESSAGE_SUCCESS,
-                        userFindAll.getUser())
-        );
+    public ResponseEntity<List<UserFindAllResponse>> userFindAll() {
+        return ResponseEntity.ok(userFindAll.getUser());
     }
 }

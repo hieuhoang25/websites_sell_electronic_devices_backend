@@ -2,7 +2,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/electronic_db
     username: root
-    password: huynhvanvong
+    password:
   jpa:
     show-sql: true
     properties:
@@ -11,6 +11,12 @@ spring:
 
     hibernate:
       ddl-auto: none
+  messages:
+    basename: messageErrors
+    fallback-to-system-locale: false
+  web:
+    locale: vi_VN
+    locale-resolver: fixed
 
   liquibase:
     change-log: classpath:db/changelog.xml

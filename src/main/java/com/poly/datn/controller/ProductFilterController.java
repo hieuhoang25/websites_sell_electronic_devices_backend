@@ -4,7 +4,6 @@ import com.poly.datn.common.MessageResponse;
 import com.poly.datn.common.ResponseBody;
 import com.poly.datn.common.SearchCriteria;
 import com.poly.datn.common.SearchResult;
-import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.response.ProductFilterResponse;
 import com.poly.datn.service.ProductFindByMultiField;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +17,11 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Optional;
 
-import static com.poly.datn.controller.router.Router.USER_API.FILTER;
-import static com.poly.datn.controller.router.Router.USER_API.PRODUCT;
+import static com.poly.datn.controller.router.Router.USER_API.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(Router.USER_API.BASE)
+@RequestMapping(BASE)
 @Validated
 public class ProductFilterController {
     private final ProductFindByMultiField productFindByMultiField;

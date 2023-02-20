@@ -5,10 +5,11 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-public class UserCreateRequest {
+public class UserCreateRequest implements Serializable {
     @Size(max = 255)
     @NotBlank
     private String email;
