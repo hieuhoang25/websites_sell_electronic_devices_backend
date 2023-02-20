@@ -8,9 +8,11 @@ import com.poly.datn.service.ProductList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
+@Transactional(rollbackFor = Exception.class)
 public class ProductListImpl implements ProductList {
     private final ProductRepository productRepository;
     private final ModelConverter modelConverter;

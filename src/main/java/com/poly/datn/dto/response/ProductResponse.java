@@ -1,21 +1,18 @@
 package com.poly.datn.dto.response;
 
-import com.poly.datn.entity.Brand;
-import com.poly.datn.entity.Category;
-import com.poly.datn.entity.PromotionProduct;
 import com.poly.datn.entity.Rating;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.time.Instant;
-import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductResponse {
+public class ProductResponse implements Serializable {
     private Integer id;
     private String productName;
     private String description;

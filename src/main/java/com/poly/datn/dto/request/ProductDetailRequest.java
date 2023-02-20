@@ -7,18 +7,19 @@ import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductDetailRequest {
-    @NotNull
+public class ProductDetailRequest implements Serializable {
+    @NotNull(message = "{NotNull.colorId}")
     @Min(1)
     private Integer colorId;
-    @NotNull
+    @NotNull(message = "{NotNull.productId}")
     @Min(1)
     private Integer productId;
-    @NotNull
+    @NotNull(message = "{NotNull.storageId}")
     @Min(1)
     private Integer storageId;
 }

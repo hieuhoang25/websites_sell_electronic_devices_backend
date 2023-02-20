@@ -3,13 +3,17 @@ package com.poly.datn.dto.response;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
-public class ProductDetailResponse {
+public class ProductDetailResponse implements Serializable {
     private Integer id;
     private String sku_name;
     private Integer quantity;
     private Double price;
     private String image;
     private String display_name;
+    private List<ProductRatingResponse> rating;
 }

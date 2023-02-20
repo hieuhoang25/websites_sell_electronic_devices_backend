@@ -14,7 +14,6 @@ public class Router {
 
         //CATEGORY
         public static final String CATEGORY = "/category";
-        public static final String PRODUCT_DETAIL = "/product-detail";
     }
 
     public static class ADMIN_API {
