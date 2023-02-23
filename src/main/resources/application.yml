@@ -1,0 +1,31 @@
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/electronic_db
+    username: root
+    password:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+    hibernate:
+      ddl-auto: none
+  messages:
+    basename: messageErrors
+    fallback-to-system-locale: false
+  web:
+    locale: vi_VN
+    locale-resolver: fixed
+
+  liquibase:
+    change-log: classpath:db/changelog.xml
+    enabled: false #false is not use liquibase when no have new design
+logging:
+  level:
+    org:
+      hibernate: ERROR
+

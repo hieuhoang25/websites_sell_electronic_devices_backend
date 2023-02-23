@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+    <changeSet id="202326_init_database" author="Phu"
+               labels="202326_init_database">
+        <sqlFile path="changelog/init_database.sql" dbms="mysql" encoding="UTF-8"
+                 relativeToChangelogFile="true" splitStatements="false" stripComments="false"/>
+        <!--    <rollback>-->
+        <!--      <sqlFile path="changelog/rollback/202210180944_init_database.sql" dbms="postgresql"-->
+        <!--        encoding="UTF-8"-->
+        <!--        endDelimiter=";"-->
+        <!--        relativeToChangelogFile="true" splitStatements="false" stripComments="true"/>-->
+        <!--    </rollback>-->
+    </changeSet>
+    <changeSet id="202326_init_data_database" author="Phu" labels="202326_init_data_database">
+        <sqlFile path="changelog/init_data_database.sql" dbms="mysql" encoding="UTF-8"
+                 relativeToChangelogFile="true" splitStatements="false" stripComments="true"/>
+        <!--    <rollback>-->
+        <!--      <sqlFile path="changelog/rollback/202210180948_insert_data.sql" dbms="postgresql"-->
+        <!--        encoding="UTF-8"-->
+        <!--        endDelimiter=";"-->
+        <!--        relativeToChangelogFile="true" splitStatements="false" stripComments="true"/>-->
+        <!--    </rollback>-->
+    </changeSet>
+</databaseChangeLog>
