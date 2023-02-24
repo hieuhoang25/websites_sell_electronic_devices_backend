@@ -9,4 +9,5 @@ import java.util.List;
 public interface ColorRepository extends JpaRepository<Color, Integer> {
     @Query("select distinct o.color from ProductVariant o where o.product.id=:productId and o.status=true")
     List<Color> findByProduct(Integer productId);
+
 }
