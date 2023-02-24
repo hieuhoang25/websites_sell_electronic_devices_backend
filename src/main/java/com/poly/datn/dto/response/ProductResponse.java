@@ -14,7 +14,11 @@ import java.util.Set;
 @AllArgsConstructor
 public class ProductResponse implements Serializable {
     private Integer id;
+
     private String product_name;
+
+    private String productName;
+
     private String description;
     private Instant create_date;
     private Instant update_date;
@@ -27,6 +31,7 @@ public class ProductResponse implements Serializable {
     private Integer promotion_id;
 
     private String image;
+
 
     private Set<RatingResponse> ratings ;
 

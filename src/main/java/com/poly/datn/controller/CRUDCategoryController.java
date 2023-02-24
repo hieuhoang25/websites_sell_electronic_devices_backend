@@ -19,7 +19,6 @@ public class CRUDCategoryController {
 
     @GetMapping()
     public ResponseEntity<?> fetchData(){
-
         return ResponseEntity.ok(cudCategoryService.findAll());
     }
 

@@ -17,4 +17,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
     @Query(value = "UPDATE product SET is_delete = 1 WHERE id = :id LIMIT 1",nativeQuery = true)
     void deleteProduct(@Param("id") Integer id);
 
+
+
 }
