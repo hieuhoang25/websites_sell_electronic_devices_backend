@@ -20,6 +20,7 @@ public class Router {
         public static final String BASE = "/api/admin";
 
         public static final String CATEGORY = "/category";
+        public static final String ORDER_STATUS = "/order-status";
 
     }
 
