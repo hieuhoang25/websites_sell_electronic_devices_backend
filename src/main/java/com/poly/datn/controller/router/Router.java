@@ -22,6 +22,15 @@ public class Router {
         public static final String CATEGORY = "/category";
         public static final String ORDER_STATUS = "/order-status";
 
+        public static final String PRODUCT = "/product";
+
+        public static final String PRODUCT_VARIANT = "/product_variant";
+
+        public static final String PRODUCT_ATTRIBUTE = "/product_attribute";
+
+        public static final String USER = "/user";
+
+
     }
 
     public static class PRODUCT_API {

@@ -1,5 +1,9 @@
 package com.poly.datn.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
@@ -18,14 +22,20 @@ public class Product {
     @Column(name = "product_name")
     private String productName;
 
+
+    @Size(max = 1000)
+
     @Size(max = 255)
     @Column(name = "description")
     private String description;
 
     @Column(name = "create_date")
+    @CreationTimestamp
     private Instant createDate;
 
+
     @Column(name = "update_date")
+    @UpdateTimestamp
     private Instant updateDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
