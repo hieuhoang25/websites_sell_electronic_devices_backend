@@ -816,6 +816,7 @@ ALTER TABLE `category`
 ALTER TABLE `orders`
   ADD CONSTRAINT `fk_orders_order_status_1` FOREIGN KEY (`status`) REFERENCES `order_status` (`id`),
   ADD CONSTRAINT `fk_orders_payment_method_1` FOREIGN KEY (`payment_id`) REFERENCES `payment_method` (`id`),
+  ADD CONSTRAINT `fk_orders_user_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   ADD CONSTRAINT `fk_orders_promotion_user_1` FOREIGN KEY (`promotion_id`) REFERENCES `promotion_user` (`id`);
 
 --
