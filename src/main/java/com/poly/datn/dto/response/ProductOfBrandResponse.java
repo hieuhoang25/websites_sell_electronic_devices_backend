@@ -3,18 +3,19 @@ package com.poly.datn.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ListProductOfBrand {
+public class ProductOfBrandResponse {
     private Integer id;
 
-    private String brandName;
+    private String product_name;
+
+    private String productName;
+
+    private String description;
 
     private String image;
 
-    private Set<ProductOfBrandResponse> products = new LinkedHashSet<>();
 }

@@ -6,16 +6,14 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-
 import static com.poly.datn.controller.router.Router.BRANCH_API.BASE;
 
 @RestController
 @RequestMapping(BASE)
 @RequiredArgsConstructor
-public class CRUDBranchController {
+public class CRUDBrandController {
     private final CRUDBrandService crudBrandService;
 
     @GetMapping()
@@ -37,7 +35,7 @@ public class CRUDBranchController {
 
     }
 
-    @GetMapping("products_of_brand/{id}")
+    @GetMapping("products-of-brand/{id}")
     @Tag(name = "Brand CRUD")
     public ResponseEntity<?> listProductOfBrand(@PathVariable("id") @NotNull Integer id){
         return ResponseEntity.ok(crudBrandService.listProductOfBrand(id));

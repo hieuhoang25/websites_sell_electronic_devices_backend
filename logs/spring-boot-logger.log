@@ -15444,7 +15444,7 @@ The last packet sent successfully to the server was 0 milliseconds ago. The driv
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
 	at com.poly.datn.service.serviceImpl.CRUDBrandServiceImpl$$EnhancerBySpringCGLIB$$b5ffe94.listProductOfBrand(<generated>)
-	at com.poly.datn.controller.CRUDBranchController.listProductOfBrand(CRUDBranchController.java:40)
+	at com.poly.datn.controller.CRUDBrandController.listProductOfBrand(CRUDBranchController.java:40)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
@@ -15563,7 +15563,7 @@ java.net.NoRouteToHostException: No route to host: no further information
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:763)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:708)
 	at com.poly.datn.service.serviceImpl.CRUDBrandServiceImpl$$EnhancerBySpringCGLIB$$b5ffe94.listProductOfBrand(<generated>)
-	at com.poly.datn.controller.CRUDBranchController.listProductOfBrand(CRUDBranchController.java:40)
+	at com.poly.datn.controller.CRUDBrandController.listProductOfBrand(CRUDBranchController.java:40)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
 	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
@@ -16805,3 +16805,50 @@ java.lang.StackOverflowError: null
 2023-02-26 18:40:20,723 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-02-26 18:40:20,725 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2023-02-26 18:40:20,992 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-02-26 22:41:51,523 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 18.0.2 on ThinkBook14P with PID 18900 (D:\SCHOOL\DATN\sell_electronic_devices_backend\target\classes started by lenovo in D:\SCHOOL\DATN\sell_electronic_devices_backend)
+2023-02-26 22:41:51,527 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "dev"
+2023-02-26 22:41:53,186 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-26 22:41:53,288 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 93 ms. Found 23 JPA repository interfaces.
+2023-02-26 22:41:53,909 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-02-26 22:41:53,917 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-26 22:41:53,918 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-02-26 22:41:53,918 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-02-26 22:41:54,033 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-02-26 22:41:54,034 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2431 ms
+2023-02-26 22:41:54,502 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-02-26 22:41:56,033 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-02-26 22:41:56,851 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-26 22:41:57,917 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-26 22:41:59,257 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-02-26 22:41:59,291 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-26 22:41:59,306 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 8.258 seconds (JVM running for 8.987)
+2023-02-26 22:42:05,108 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-26 22:42:05,108 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-02-26 22:42:05,109 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-02-26 22:42:05,804 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8080-exec-7] Init duration for springdoc-openapi is: 468 ms
+2023-02-26 22:44:27,214 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-26 22:44:27,215 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-02-26 22:44:27,477 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-02-26 22:44:29,698 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 18.0.2 on ThinkBook14P with PID 21048 (D:\SCHOOL\DATN\sell_electronic_devices_backend\target\classes started by lenovo in D:\SCHOOL\DATN\sell_electronic_devices_backend)
+2023-02-26 22:44:29,701 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "dev"
+2023-02-26 22:44:30,469 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-02-26 22:44:30,561 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 84 ms. Found 23 JPA repository interfaces.
+2023-02-26 22:44:31,177 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-02-26 22:44:31,186 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-02-26 22:44:31,186 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-02-26 22:44:31,186 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-02-26 22:44:31,289 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-02-26 22:44:31,289 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1518 ms
+2023-02-26 22:44:31,733 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-02-26 22:44:32,253 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-02-26 22:44:33,021 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-02-26 22:44:34,322 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-02-26 22:44:35,470 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-02-26 22:44:35,518 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-02-26 22:44:35,529 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 6.229 seconds (JVM running for 6.748)
+2023-02-26 22:44:45,574 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-02-26 22:44:45,574 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-02-26 22:44:45,575 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2023-02-26 22:49:43,241 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-02-26 22:49:43,242 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-02-26 22:49:43,490 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
