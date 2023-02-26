@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(Router.ADMIN_API.BASE+ Router.ADMIN_API.PROMOTION_PRODUCT)
-public class CRUDPromotionProductServiceController {
+public class CRUDPromotionProductController {
 
     private final CRUDPromotionProductService promotionProductService;
 
