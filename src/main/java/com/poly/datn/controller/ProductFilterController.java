@@ -17,7 +17,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Optional;
 
-import static com.poly.datn.controller.router.Router.USER_API.*;
+import static com.poly.datn.controller.router.Router.API.*;
 
 @RequiredArgsConstructor
 @RestController

@@ -18,7 +18,7 @@ import com.poly.datn.common.ResponseBody;
 import java.util.Optional;
 
 import static com.poly.datn.controller.router.Router.PRODUCT_API.BASE;
-import static com.poly.datn.controller.router.Router.USER_API.PRODUCT;
+import static com.poly.datn.controller.router.Router.API.PRODUCT;
 
 @RequiredArgsConstructor
 @RequestMapping(BASE)

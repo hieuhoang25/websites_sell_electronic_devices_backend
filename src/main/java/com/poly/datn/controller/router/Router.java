@@ -1,7 +1,7 @@
 package com.poly.datn.controller.router;
 
 public class Router {
-    public static class USER_API {
+    public static class API {
         // BASE API
         public static final String BASE = "/api";
 
@@ -14,6 +14,11 @@ public class Router {
 
         //CATEGORY
         public static final String CATEGORY = "/category";
+    }
+
+    public static class USER_API{
+        // BASE API
+        public static final String BASE = "/api/user";
     }
 
     public static class ADMIN_API {
@@ -29,6 +34,7 @@ public class Router {
         public static final String PRODUCT_ATTRIBUTE = "/product_attribute";
 
         public static final String USER = "/user";
+        public static final String ORDER = "/order";
 
 
     }
