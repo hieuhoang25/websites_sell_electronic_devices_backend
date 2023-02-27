@@ -7,7 +7,7 @@ import com.poly.datn.dto.response.ProductRatingResponse;
 import com.poly.datn.entity.ProductVariant;
 import com.poly.datn.repository.ProductVariantRepository;
 import com.poly.datn.repository.RatingRepository;
-import com.poly.datn.service.ProductDetail;
+import com.poly.datn.service.ProductDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ import java.util.Objects;
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
-public class ProductDetailImpl implements ProductDetail {
+public class ProductDetailServiceImpl implements ProductDetailService {
     private final ProductVariantRepository repository;
     private final ModelConverter modelConverter;
     private final RatingRepository ratingRepository;

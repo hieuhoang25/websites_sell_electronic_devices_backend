@@ -6,7 +6,7 @@ import com.poly.datn.dto.request.OrderStatusUpdateRequest;
 import com.poly.datn.dto.response.OrderStatusResponse;
 import com.poly.datn.entity.OrderStatus;
 import com.poly.datn.repository.OrderStatusRepository;
-import com.poly.datn.service.CRUDOrderStatus;
+import com.poly.datn.service.CRUDOrderStatusService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +16,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
-public class CRUDOrderStatusImpl implements CRUDOrderStatus {
+public class CRUDOrderStatusServiceImpl implements CRUDOrderStatusService {
     private final OrderStatusRepository repository;
     private ModelConverter converter;
 

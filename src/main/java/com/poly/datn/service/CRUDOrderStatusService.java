@@ -6,7 +6,7 @@ import com.poly.datn.dto.response.OrderStatusResponse;
 
 import java.util.List;
 
-public interface CRUDOrderStatus {
+public interface CRUDOrderStatusService {
     List<OrderStatusResponse> getOrderStatus();
     OrderStatusResponse create(OrderStatusCreateRequest request);
     OrderStatusResponse update(OrderStatusUpdateRequest request);

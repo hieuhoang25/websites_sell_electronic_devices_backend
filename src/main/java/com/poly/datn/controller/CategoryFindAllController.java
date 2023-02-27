@@ -1,7 +1,7 @@
 package com.poly.datn.controller;
 
 import com.poly.datn.dto.response.CategoryFindAllResponse;
-import com.poly.datn.service.CategoryFindAll;
+import com.poly.datn.service.CategoryFindAllService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +18,11 @@ import static com.poly.datn.controller.router.Router.API.CATEGORY;
 @RequestMapping(BASE)
 @RestController
 public class CategoryFindAllController {
-    private final CategoryFindAll categoryFindAll;
+    private final CategoryFindAllService categoryFindAllService;
 
     @GetMapping(CATEGORY)
     @Tag(name = "category")
     public ResponseEntity<List<CategoryFindAllResponse>> categoryFindAllResponse() {
-        return ResponseEntity.ok(categoryFindAll.getCategory());
+        return ResponseEntity.ok(categoryFindAllService.getCategory());
     }
 }

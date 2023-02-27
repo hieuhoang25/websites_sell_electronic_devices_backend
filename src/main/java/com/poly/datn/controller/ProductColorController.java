@@ -1,7 +1,7 @@
 package com.poly.datn.controller;
 
 import com.poly.datn.dto.response.ProductColorResponse;
-import com.poly.datn.service.ProductColor;
+import com.poly.datn.service.ProductColorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -22,11 +22,11 @@ import static com.poly.datn.controller.router.Router.API.PRODUCT;
 @RequiredArgsConstructor
 @Validated
 public class ProductColorController {
-    private final ProductColor productColor;
+    private final ProductColorService productColorService;
 
     @GetMapping(PRODUCT + "-color/{productId}")
     public ResponseEntity<List<ProductColorResponse>>
     getProductColor(@PathVariable @Valid @NotNull Integer productId) {
-        return ResponseEntity.ok(productColor.getProductColor(productId));
+        return ResponseEntity.ok(productColorService.getProductColor(productId));
     }
 }

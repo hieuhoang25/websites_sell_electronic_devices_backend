@@ -4,6 +4,6 @@ import com.poly.datn.dto.response.OrderResponse;
 
 import java.util.List;
 
-public interface OrderFindByStatus {
+public interface OrderFindByStatusService {
     List<OrderResponse> getOrder(Integer idStatus);
 }

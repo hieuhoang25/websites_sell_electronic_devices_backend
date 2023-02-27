@@ -2,7 +2,7 @@ package com.poly.datn.controller;
 
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.response.OrderResponse;
-import com.poly.datn.service.OrderFindByStatus;
+import com.poly.datn.service.OrderFindByStatusService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +24,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.ORDER;
 @RequestMapping(Router.ADMIN_API.BASE)
 @Validated
 public class OrderFindByStatusController {
-    private final OrderFindByStatus service;
+    private final OrderFindByStatusService service;
 
     @GetMapping(ORDER + "/{idStatus}")
     @Tag(name = "admin/order")

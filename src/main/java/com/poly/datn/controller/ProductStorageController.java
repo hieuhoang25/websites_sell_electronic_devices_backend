@@ -1,7 +1,7 @@
 package com.poly.datn.controller;
 
 import com.poly.datn.dto.response.ProductStorageResponse;
-import com.poly.datn.service.ProductStorage;
+import com.poly.datn.service.ProductStorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,12 +21,12 @@ import static com.poly.datn.controller.router.Router.API.*;
 @RequiredArgsConstructor
 @Validated
 public class ProductStorageController {
-    private final ProductStorage productStorage;
+    private final ProductStorageService productStorageService;
 
     @GetMapping(PRODUCT + "-storage/{productId}/{colorId}")
     public ResponseEntity<List<ProductStorageResponse>>
-    getProductStorage(@PathVariable @Valid @NotNull Integer productId,
-                      @PathVariable @Valid @NotNull Integer colorId) {
-        return ResponseEntity.ok(productStorage.getProductStorage(productId, colorId));
+    getProductStorageService(@PathVariable @Valid @NotNull Integer productId,
+                             @PathVariable @Valid @NotNull Integer colorId) {
+        return ResponseEntity.ok(productStorageService.getProductStorage(productId, colorId));
     }
 }

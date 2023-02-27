@@ -4,7 +4,7 @@ import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.response.ProductStorageResponse;
 import com.poly.datn.entity.Storage;
 import com.poly.datn.repository.StorageRepository;
-import com.poly.datn.service.ProductStorage;
+import com.poly.datn.service.ProductStorageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
-public class ProductStorageImpl implements ProductStorage {
+public class ProductStorageServiceImpl implements ProductStorageService {
     private final StorageRepository repository;
     private final ModelConverter converter;
 
