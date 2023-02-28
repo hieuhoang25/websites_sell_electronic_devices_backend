@@ -6,7 +6,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderResponse {
+public class OrderManagerResponse {
     private Integer id;
     private String user_fullName;
     private String status_name;

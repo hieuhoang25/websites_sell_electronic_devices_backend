@@ -19,6 +19,8 @@ public class Router {
     public static class USER_API{
         // BASE API
         public static final String BASE = "/api/user";
+        public static final String ORDER = "/order";
+        public static final String TRACKING = "-tracking";
     }
 
     public static class ADMIN_API {
@@ -38,11 +40,6 @@ public class Router {
 
         public static final String ORDER_DETAIL = "/order-detail";
 
-
-    }
-
-    public static class PRODUCT_API {
-        public static final String BASE = "/api/product";
 
     }
 }

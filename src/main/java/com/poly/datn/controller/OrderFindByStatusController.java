@@ -1,7 +1,7 @@
 package com.poly.datn.controller;
 
 import com.poly.datn.controller.router.Router;
-import com.poly.datn.dto.response.OrderResponse;
+import com.poly.datn.dto.response.OrderManagerResponse;
 import com.poly.datn.service.OrderFindByStatusService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -28,11 +28,11 @@ public class OrderFindByStatusController {
 
     @GetMapping(ORDER + "/{idStatus}")
     @Tag(name = "admin/order")
-    public ResponseEntity<List<OrderResponse>> getOrder(
+    public ResponseEntity<List<OrderManagerResponse>> getOrder(
             @PathVariable @Valid @NotNull(message = "Không để trống tình trạng đơn hàng") Integer idStatus) {
-        List<OrderResponse> orderResponse = service.getOrder(idStatus);
-        if (orderResponse.isEmpty())
+        List<OrderManagerResponse> orderManagerResponse = service.getOrder(idStatus);
+        if (orderManagerResponse.isEmpty())
             return ResponseEntity.notFound().build();
-        return ResponseEntity.ok(orderResponse);
+        return ResponseEntity.ok(orderManagerResponse);
     }
 }
