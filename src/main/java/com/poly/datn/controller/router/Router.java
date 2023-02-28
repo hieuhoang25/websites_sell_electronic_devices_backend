@@ -42,4 +42,8 @@ public class Router {
         public static final String BASE = "/api/product";
 
     }
+
+    public static class BRANCH_API{
+        public static final String BASE = "/api/brand";
+    }
 }
