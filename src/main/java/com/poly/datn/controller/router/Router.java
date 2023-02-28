@@ -46,4 +46,5 @@ public class Router {
     public static class BRANCH_API{
         public static final String BASE = "/api/brand";
     }
+    public static final String FILE_API = "/api/files";
 }
