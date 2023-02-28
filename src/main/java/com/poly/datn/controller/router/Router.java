@@ -27,6 +27,12 @@ public class Router {
 
         public static final String PRODUCT_ATTRIBUTE = "/product_attribute";
 
+        public static final String PROMOTION_TYPE = "/promotion_type";
+
+        public static final String PROMOTION_USER = "/promotion_user";
+
+        public static final String PROMOTION_PRODUCT = "/promotion_product";
+
         public static final String USER = "/user";
 
 
