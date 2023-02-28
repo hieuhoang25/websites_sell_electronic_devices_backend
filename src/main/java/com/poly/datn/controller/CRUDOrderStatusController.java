@@ -5,6 +5,7 @@ import com.poly.datn.dto.request.OrderStatusCreateRequest;
 import com.poly.datn.dto.request.OrderStatusUpdateRequest;
 import com.poly.datn.dto.response.OrderStatusResponse;
 import com.poly.datn.service.CRUDOrderStatusService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -21,6 +22,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.ORDER_STATUS;
 @RequestMapping(Router.ADMIN_API.BASE)
 @RestController
 @Validated
+@Tag(name = "admin/order-status")
 public class CRUDOrderStatusController {
     private final CRUDOrderStatusService crudOrderStatusService;
 
