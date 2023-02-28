@@ -4,6 +4,8 @@ services:
   mysqldb:
     container_name: mysqldb
     image: mysql
+    volumes:
+      - "./.mysqlspringenv-data/db:/var/lib/mysqlenv"
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: 123456789
