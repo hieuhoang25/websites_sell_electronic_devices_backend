@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -12,7 +14,10 @@ import java.time.Instant;
 @AllArgsConstructor
 public class ProductRequest implements Serializable {
     private Integer id;
+
+
     private String product_name;
+
     private String description;
     private Integer category_id;
     private Boolean is_delete;
