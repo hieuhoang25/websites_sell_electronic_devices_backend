@@ -1,16 +1,18 @@
 package com.poly.datn.service.serviceImpl;
 
+import com.poly.datn.common.SearchResult;
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.ProductRequest;
+import com.poly.datn.dto.response.Pagination;
 import com.poly.datn.dto.response.ProductResponse;
 import com.poly.datn.entity.Product;
 import com.poly.datn.repository.ProductRepository;
 import com.poly.datn.service.CURDProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,9 +22,21 @@ public class CURDProductServiceImpl implements CURDProductService {
     private final ProductRepository productRepository;
     private final ModelConverter modelConverter;
 
+
+
     @Override
-    public List<ProductResponse> findAll() {
-        return modelConverter.mapAllByIterator(productRepository.findAll(),ProductResponse.class);
+    public Pagination<ProductResponse> findAll(Pageable pageable) {
+        //Fix lỗi totalPage khi join bảng , tính thủ công totalPage
+        Integer size = pageable.getPageSize();
+        Integer totalPages= Math.ceil((float)productRepository.countProduct()/size)==0
+                ? 1: (int) Math.ceil((float)productRepository.countProduct()/size);
+        return new Pagination<ProductResponse>(
+                pageable.getPageSize(),
+                pageable.getPageNumber(),
+                totalPages,
+                modelConverter.mapAllByIterator(productRepository.findAllProductAndBrandName(pageable),ProductResponse.class)
+        );
+
     }
 
     @Override

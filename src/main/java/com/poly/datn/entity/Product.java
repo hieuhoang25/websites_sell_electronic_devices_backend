@@ -24,8 +24,6 @@ public class Product {
 
 
     @Size(max = 1000)
-
-    @Size(max = 255)
     @Column(name = "description")
     private String description;
 

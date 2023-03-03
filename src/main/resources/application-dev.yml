@@ -1,4 +1,3 @@
-
 spring:
   datasource:
     url: jdbc:mysql://103.130.212.177:3306/electronic_db

@@ -14,6 +14,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT_ATTRIBUTE
 @RestController
 @RequestMapping(BASE+PRODUCT_ATTRIBUTE)
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"http://localhost:3000"})
 public class ProductAttributeController {
 
     private final ProductAttributeService productAttributeService;
