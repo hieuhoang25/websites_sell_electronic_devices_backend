@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(Router.USER_API.BASE)
+@RequestMapping(Router.API.BASE)
 public class UserFindAllController {
     private final UserFindAll userFindAll;
 
