@@ -30,8 +30,8 @@ public class OrderDetail {
     @Column(name = "promotion_value")
     private Double promotionValue;
 
-    @Column(name = "quatity")
-    private Integer quatity;
+    @Column(name = "quantity")
+    private Integer quantity;
 
     @OneToMany(mappedBy = "orderDetail")
     private Set<Rating> ratings = new LinkedHashSet<>();
@@ -84,12 +84,12 @@ public class OrderDetail {
         this.promotionValue = promotionValue;
     }
 
-    public Integer getQuatity() {
-        return quatity;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setQuatity(Integer quatity) {
-        this.quatity = quatity;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Set<Rating> getRatings() {

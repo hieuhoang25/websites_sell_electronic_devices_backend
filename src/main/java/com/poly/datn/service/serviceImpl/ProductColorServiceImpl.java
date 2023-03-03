@@ -4,7 +4,7 @@ import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.response.ProductColorResponse;
 import com.poly.datn.entity.Color;
 import com.poly.datn.repository.ColorRepository;
-import com.poly.datn.service.ProductColor;
+import com.poly.datn.service.ProductColorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = Exception.class)
-public class ProductColorImpl implements ProductColor {
+public class ProductColorServiceImpl implements ProductColorService {
     private final ColorRepository repository;
     private final ModelConverter converter;
 
