@@ -21,16 +21,19 @@ spring:
     locale: vi_VN
     locale-resolver: fixed
   mail:
+    default-encoding: UTF-8
     host: smtp.gmail.com
-    port: 587
     username: ebonikshop@gmail.com
     password: aibzzxjrffupjjrf
+    port: 587
     properties:
       mail:
         smtp:
           auth: true
           starttls:
-            anable: true
+            enable: true
+    protocol: smtp
+    test-connection: false
   liquibase:
     change-log: classpath:db/changelog.xml
     enabled: false #false is not use liquibase when no have new design
