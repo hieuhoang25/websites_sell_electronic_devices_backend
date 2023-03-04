@@ -4,6 +4,6 @@ import com.poly.datn.dto.response.ProductStorageResponse;
 
 import java.util.List;
 
-public interface ProductStorage {
+public interface ProductStorageService {
     List<ProductStorageResponse> getProductStorage(Integer productId, Integer colorId);
 }

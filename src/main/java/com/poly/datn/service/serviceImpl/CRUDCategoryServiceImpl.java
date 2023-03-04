@@ -21,7 +21,7 @@ public class CRUDCategoryServiceImpl implements CRUDCategoryService {
 
     @Override
     public List<CategoryResponse> findAll() {
-        return modelConverter.mapAllByIterator(categoryRepository.findAll(),CategoryResponse.class);
+        return modelConverter.mapAllByIterator(categoryRepository.findAll(), CategoryResponse.class);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class CRUDCategoryServiceImpl implements CRUDCategoryService {
 
     @Override
     public CategoryResponse create(CategoryRequest categoryRequest) {
-        Category category = modelConverter.map(categoryRequest,Category.class);
-        if (categoryRequest.getParent_id()!=null){
+        Category category = modelConverter.map(categoryRequest, Category.class);
+        if (categoryRequest.getParent_id() != null) {
             category.setParent(categoryRepository.findById(categoryRequest.getParent_id()).orElse(null));
         }
 
@@ -41,8 +41,8 @@ public class CRUDCategoryServiceImpl implements CRUDCategoryService {
 
     @Override
     public CategoryResponse update(CategoryRequest categoryRequest) {
-        Category category = modelConverter.map(categoryRequest,Category.class);
-        if (categoryRequest.getParent_id()!=null){
+        Category category = modelConverter.map(categoryRequest, Category.class);
+        if (categoryRequest.getParent_id() != null) {
             category.setParent(categoryRepository.findById(categoryRequest.getParent_id()).orElse(null));
         }
 

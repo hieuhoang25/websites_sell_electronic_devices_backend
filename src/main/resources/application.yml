@@ -20,7 +20,17 @@ spring:
   web:
     locale: vi_VN
     locale-resolver: fixed
-
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ebonikshop@gmail.com
+    password: aibzzxjrffupjjrf
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            anable: true
   liquibase:
     change-log: classpath:db/changelog.xml
     enabled: false #false is not use liquibase when no have new design
@@ -28,4 +38,10 @@ logging:
   level:
     org:
       hibernate: ERROR
+app:
+  frontend:
+    cros:
+     - http://localhost:3000/ #domain of user frontend
+     - http://localhost:3001/ #domain of admin frontend
+
 

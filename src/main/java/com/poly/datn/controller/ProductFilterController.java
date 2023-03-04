@@ -9,6 +9,7 @@ import com.poly.datn.service.ProductFindByMultiField;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.List;
 import java.util.Optional;
 
-import static com.poly.datn.controller.router.Router.USER_API.*;
+import static com.poly.datn.controller.router.Router.API.*;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,12 +28,11 @@ public class ProductFilterController {
     private final ProductFindByMultiField productFindByMultiField;
 
     @GetMapping(PRODUCT + FILTER)
-    public ResponseBody<SearchResult<ProductFilterResponse>>
+    public ResponseEntity<SearchResult<ProductFilterResponse>>
     productFindByMultiField(@RequestBody @NotEmpty(message = "Khong de criteria rong") List<@Valid SearchCriteria> criteria,
                             @RequestParam("size") Optional<Integer> size,
                             @RequestParam("page") Optional<Integer> page) {
         Pageable pageable = PageRequest.of(page.orElse(0), size.orElse(1));
-        return new ResponseBody<>
-                (1, MessageResponse.MESSAGE_SUCCESS, productFindByMultiField.findByMultiField(criteria, pageable));
+        return ResponseEntity.ok(productFindByMultiField.findByMultiField(criteria, pageable));
     }
 }

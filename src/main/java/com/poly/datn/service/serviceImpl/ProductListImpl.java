@@ -19,7 +19,7 @@ public class ProductListImpl implements ProductList {
 
     @Override
     public SearchResult<ProductListResponse> getAllProducts(Pageable pageable) {
-        return new SearchResult<ProductListResponse> (
+        return new SearchResult (
                         pageable.getPageSize(),
                         pageable.getPageNumber(),
                         modelConverter.mapAllByIterator(

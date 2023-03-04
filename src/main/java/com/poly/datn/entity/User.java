@@ -48,6 +48,9 @@ public class User {
     private Set<PromotionUser> promotionUsers = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "user")
+    private Set<Order> orders = new LinkedHashSet<>();
+
+    @OneToMany(mappedBy = "user")
     private Set<Cart> carts = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -146,4 +149,11 @@ public class User {
         this.carts = carts;
     }
 
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
 }

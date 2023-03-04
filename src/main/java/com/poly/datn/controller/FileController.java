@@ -1,8 +1,10 @@
 package com.poly.datn.controller;
 
 
+import com.poly.datn.common.constant.EOrderStatus;
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.service.FileService;
+import com.poly.datn.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +20,8 @@ public class FileController {
     @Autowired
     private FileService fileService;
 
+    @Autowired
+    private MailService mailService;
     //https://firebasestorage.googleapis.com/v0/b/image-cloud-98533.appspot.com/o/menu.png
     /*
     * prefix: https://firebasestorage.googleapis.com/v0/b/image-cloud-98533.appspot.com/o/
@@ -26,6 +30,7 @@ public class FileController {
     * */
     @PostMapping()
     public ResponseEntity<Object> upload(@RequestPart("file") MultipartFile multipartFile) {
+//        mailService.sendOrderStatus("12345", EOrderStatus.DELIVERED.name(), "synhatphu2@gmail.com");
         return ResponseEntity.ok(fileService.upload(multipartFile));
     }
 

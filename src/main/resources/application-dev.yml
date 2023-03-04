@@ -1,4 +1,3 @@
-
 spring:
   datasource:
     url: jdbc:mysql://103.130.212.177:3306/electronic_db
@@ -18,7 +17,20 @@ spring:
   web:
     locale: vi_VN
     locale-resolver: fixed
-
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: ebonikshop@gmail.com
+    password: aibzzxjrffupjjrf
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
   liquibase:
     change-log: classpath:db/changelog.xml
     enabled: false #false is not use liquibase when no have new design
@@ -26,4 +38,8 @@ logging:
   level:
     org:
       hibernate: ERROR
-
+app:
+  frontend:
+    cros:
+      - http://localhost:3000/ #domain of user frontend
+      - http://localhost:3001/ #domain of admin frontend
