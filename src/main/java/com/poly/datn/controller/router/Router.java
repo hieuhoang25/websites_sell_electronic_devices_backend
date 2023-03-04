@@ -47,4 +47,10 @@ public class Router {
         public static final String BASE = "/api/brand";
     }
     public static final String FILE_API = "/api/files";
+
+    public static class CART_API {
+        public static final String BASE = "/api/cart";
+
+        public static final String USER_CART = "/{userId}";
+    }
 }
