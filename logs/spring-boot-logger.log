@@ -179,3 +179,26 @@ org.springframework.mail.MailSendException: Failed messages: com.sun.mail.smtp.S
 2023-03-04 09:52:56,528 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-03-04 09:52:56,549 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2023-03-04 09:52:56,883 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-04 13:55:50,437 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 17.0.6 on Vongs-Air.lan with PID 3029 (/Users/vonghuynh/Desktop/MY DATA/sell_electronic_devices_backend/target/classes started by vonghuynh in /Users/vonghuynh/Desktop/MY DATA/sell_electronic_devices_backend)
+2023-03-04 13:55:50,441 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "dev"
+2023-03-04 13:55:51,184 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-04 13:55:51,261 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 71 ms. Found 23 JPA repository interfaces.
+2023-03-04 13:55:51,664 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-04 13:55:51,671 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-04 13:55:51,671 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-04 13:55:51,671 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-04 13:55:51,744 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-04 13:55:51,744 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1076 ms
+2023-03-04 13:55:52,028 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-04 13:55:52,490 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-04 13:55:53,075 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-04 13:55:53,915 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-04 13:55:54,925 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-04 13:55:54,941 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-04 13:55:54,952 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 4.9 seconds (JVM running for 5.498)
+2023-03-04 14:07:38,316 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-04 14:07:38,317 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-04 14:07:38,321 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 4 ms
+2023-03-04 14:11:59,125 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-04 14:11:59,131 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-04 14:11:59,416 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
