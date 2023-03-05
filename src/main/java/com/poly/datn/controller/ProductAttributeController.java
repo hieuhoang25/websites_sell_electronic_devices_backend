@@ -1,6 +1,7 @@
 package com.poly.datn.controller;
 
 
+import com.google.gson.Gson;
 import com.poly.datn.dto.request.ProductAttributeRequest;
 import com.poly.datn.service.ProductAttributeService;
 import lombok.RequiredArgsConstructor;
@@ -19,27 +20,30 @@ public class ProductAttributeController {
 
     private final ProductAttributeService productAttributeService;
 
-    @GetMapping()
-    public ResponseEntity<?> findAll(){
-        return ResponseEntity.ok(productAttributeService.findAll());
-    }
+//    @GetMapping()
+//    public ResponseEntity<?> findAll(){
+//        return ResponseEntity.ok(productAttributeService.findAll());
+//    }
     @GetMapping("/{productId}")
     public ResponseEntity<?> findByProductId(@PathVariable("productId") Integer productId){
+
         return ResponseEntity.ok(productAttributeService.findByProductId(productId));
     }
-
+//    produces = {"application/json"}
     @PostMapping()
-    public ResponseEntity<?> createProductAttribute(@RequestBody List<ProductAttributeRequest> productAttributeRequestList){
+    public ResponseEntity<?> createProductAttribute(@RequestBody ProductAttributeRequest productAttributeRequestList){
+        System.out.println(productAttributeRequestList);
         return ResponseEntity.ok(productAttributeService.create(productAttributeRequestList));
     }
+
 
     @PutMapping()
     public ResponseEntity<?> updateProductAttribute(@RequestBody List<ProductAttributeRequest> productAttributeRequestList){
-        return ResponseEntity.ok(productAttributeService.create(productAttributeRequestList));
+        return ResponseEntity.ok(productAttributeService.update(productAttributeRequestList));
     }
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteProductAttribute(@PathVariable("id") Integer id){
-        productAttributeService.delete(id);
+    @DeleteMapping()
+    public ResponseEntity<?> deleteProductAttribute(@RequestBody List<Integer> listId){
+        productAttributeService.delete(listId);
         return ResponseEntity.ok().build();
     }
 
