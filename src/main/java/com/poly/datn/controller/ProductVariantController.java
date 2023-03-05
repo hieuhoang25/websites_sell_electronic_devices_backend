@@ -17,7 +17,6 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT_VARIANT;
 @RestController
 @RequestMapping(BASE + PRODUCT_VARIANT)
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000"})
 public class ProductVariantController {
     private final ProductVariantService productVariantService;
 
@@ -30,6 +29,7 @@ public class ProductVariantController {
     }
     @PostMapping()
     public ResponseEntity<?> createProductVariant(@RequestBody ProductVariantRequest productVariantRequest){
+        productVariantRequest.setStatus(true);
         return ResponseEntity.ok(productVariantService.create(productVariantRequest));
     }
     @PutMapping()
@@ -37,6 +37,7 @@ public class ProductVariantController {
         productVariantRequest.setStatus(true);
         return ResponseEntity.ok(productVariantService.update(productVariantRequest));
     }
+
 
 
 }

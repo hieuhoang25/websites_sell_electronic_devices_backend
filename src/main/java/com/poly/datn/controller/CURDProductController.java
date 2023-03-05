@@ -19,7 +19,6 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT;
 @RestController
 @RequestMapping(BASE+ PRODUCT)
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000"})
 public class CURDProductController {
 
     private final CURDProductService curdProductService;
