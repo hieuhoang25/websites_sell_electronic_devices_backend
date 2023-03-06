@@ -2,6 +2,7 @@ package com.poly.datn.exception;
 
 import com.poly.datn.common.ErrorItem;
 import com.poly.datn.common.ErrorResponse;
+import com.poly.datn.common.ResponseBody;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -37,6 +38,11 @@ public class ApiExceptionHandler{
             errors.put(fieldName, message);
         });
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
+    @ExceptionHandler(RuntimeException.class) //lỗi do mình custom
+    protected ResponseEntity<Object> handleExceptionRuntime(RuntimeException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
 

@@ -8,7 +8,7 @@ import com.poly.datn.dto.response.ProductVariantResponse;
 import java.util.List;
 
 public interface ProductAttributeService {
-    List<ProductAttributeResponse> create(List<ProductAttributeRequest> productAttributeRequest);
+    ProductAttributeResponse create(ProductAttributeRequest productAttributeRequest);
 
     List<ProductAttributeResponse> update(List<ProductAttributeRequest> productAttributeRequest);
 
@@ -16,7 +16,7 @@ public interface ProductAttributeService {
 
     List<ProductAttributeResponse> findAll();
 
-    void delete(Integer id);
+    void delete(List<Integer> listId);
 
 
 

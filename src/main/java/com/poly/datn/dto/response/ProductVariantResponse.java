@@ -23,7 +23,9 @@ public class ProductVariantResponse implements Serializable {
     private String display_name;
 
     private Integer color_id;
+    private String color_name;
     private Integer storage_id;
+    private String storage_name;
 //    private Set<ColorResponse> color;
 //    private Set<StorageResponse> storage;
 }
