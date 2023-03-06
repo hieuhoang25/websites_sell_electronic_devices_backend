@@ -14,6 +14,7 @@ public class Router {
 
         //CATEGORY
         public static final String CATEGORY = "/category";
+        public static final String LOGIN = "/login";
     }
 
     public static class USER_API{
@@ -21,6 +22,7 @@ public class Router {
         public static final String BASE = "/api/user";
         public static final String ORDER = "/order";
         public static final String TRACKING = "-tracking";
+        public static final String INFO = "/info";
     }
 
     public static class ADMIN_API {
@@ -31,15 +33,23 @@ public class Router {
 
         public static final String PRODUCT = "/product";
 
-        public static final String PRODUCT_VARIANT = "/product_variant";
+        public static final String PRODUCT_VARIANT = "/product-variant";
 
-        public static final String PRODUCT_ATTRIBUTE = "/product_attribute";
+        public static final String PRODUCT_ATTRIBUTE = "/product-attribute";
+
+        public static final String PROMOTION_TYPE = "/promotion-type";
+
+        public static final String PROMOTION_USER = "/promotion-user";
+
+        public static final String PROMOTION_PRODUCT = "/promotion-product";
 
         public static final String USER = "/user";
         public static final String ORDER = "/order";
 
         public static final String ORDER_DETAIL = "/order-detail";
 
-
+        public static final String BRAND = "/brand";
     }
+
+    public static final String FILE_API = "/api/files";
 }
