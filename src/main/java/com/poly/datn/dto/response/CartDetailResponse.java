@@ -3,6 +3,8 @@ package com.poly.datn.dto.response;
 import java.io.Serializable;
 import java.time.Instant;
 
+import com.google.firebase.database.annotations.NotNull;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -12,13 +14,14 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 public class CartDetailResponse implements Serializable{
     
+    @NotNull
     private Integer id;
 
-    private Integer quantity;
-
-    private Instant createDate;
-
+    @NotNull
     private Integer productVariant_id;
 
-    private String productVariant_product_name;
+    @NotNull
+    private Integer quantity;
+
+
 }

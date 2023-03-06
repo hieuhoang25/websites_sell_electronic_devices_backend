@@ -1,15 +1,25 @@
 package com.poly.datn.service;
 
+import java.util.List;
+
 import com.poly.datn.dto.request.CartDetailRequest;
+import com.poly.datn.dto.request.CartItemRequest;
 import com.poly.datn.dto.response.CartDetailResponse;
+import com.poly.datn.dto.response.CartResponse;
 
 public interface CartDetailService {
     
-    CartDetailResponse getCartDetailById(Integer cartDetailId);
+    CartDetailResponse findCartDetailById(Integer cartDetailId);
 
-    void update(CartDetailRequest request);
+    CartDetailResponse findByCartId(Integer cartId, Integer cartDetailId);
 
-    void add(CartDetailRequest request);
+    List<CartDetailResponse> findAllByCartId(Integer cartId);
+
+    CartDetailResponse update(CartDetailRequest request);
+
+    CartDetailResponse update(Integer cartId,CartDetailRequest request);
+
+    CartDetailResponse add(CartItemRequest request);
 
     void delete(CartDetailRequest request);
 }
