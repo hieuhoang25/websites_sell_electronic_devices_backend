@@ -1,4 +1,4 @@
-package com.poly.datn.security;
+package com.poly.datn.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
