@@ -1,11 +1,10 @@
-
 spring:
   profiles:
     active: dev
   datasource:
     url: jdbc:mysql://localhost:3306/electronic_db
     username: root
-    password:
+    password: nhatphu234aA.
   jpa:
     show-sql: true
     properties:
@@ -37,14 +36,13 @@ spring:
   liquibase:
     change-log: classpath:db/changelog.xml
     enabled: false #false is not use liquibase when no have new design
-logging:
-  level:
-    org:
-      hibernate: ERROR
-app:
-  frontend:
-    cros:
-     - http://localhost:3000/ #domain of user frontend
-     - http://localhost:3001/ #domain of admin frontend
+  logging:
+    level:
+      org:
+        hibernate: ERROR
+  app:
+    cors:
+      allowedOrigins: http://localhost:3000,http://localhost:3001 #domain of user frontend
+ #domain of admin frontend
 
 
