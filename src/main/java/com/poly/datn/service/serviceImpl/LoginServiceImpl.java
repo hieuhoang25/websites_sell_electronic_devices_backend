@@ -30,7 +30,7 @@ public class LoginServiceImpl implements LoginService {
         if (account == null) {
             map.put("error", "Tài hoặc mật khẩu không chính xác");
             return map;
-        } else if (!passwordEncoder.matches(request.getPassword(),passwordEncoder.encode(account.getPassword()))) {
+        } else if (!passwordEncoder.matches(request.getPassword(),account.getPassword())) {
             map.put("error", "Tài hoặc mật khẩu không chính xác");
             return map;
         }
