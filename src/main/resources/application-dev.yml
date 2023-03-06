@@ -41,3 +41,14 @@
 #  app:
 #    cors:
 #      allowedOrigins: http://localhost:3000,http://localhost:3001
+#  security:
+#    oauth2:
+#      client:
+#        registration:
+#          google:
+#            client-id: 496256023815-gfnv445ste0ep1o56qqr2j7ffggbd17s.apps.googleusercontent.com
+#            client-secret: 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
+#            redirect-uri: "{baseUrl}/oauth2/callback"
+#            scope:
+#              - email
+#              - profile
