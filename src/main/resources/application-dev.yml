@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://103.130.212.177:3306/electronic_db
+    url: jdbc:mysql://14.225.210.86:3306/electronic_db
     username: root
-    password: rootpass1234
+    password: rootpw12345
   jpa:
     show-sql: true
     properties:

@@ -25,9 +25,9 @@ public class ProductAttributeServiceImpl implements ProductAttributeService {
     private  final ProductAttributeRepository productAttributeRepository;
     private  final ModelConverter modelConverter;
     @Override
-    public List<ProductAttributeResponse> create(List<ProductAttributeRequest> productAttributeRequest) {
-        List<ProductAttribute> productAttribute = modelConverter.mapAllByIterator(productAttributeRequest, ProductAttribute.class);
-        return modelConverter.mapAllByIterator(productAttributeRepository.saveAll(productAttribute), ProductAttributeResponse.class);
+    public ProductAttributeResponse create(ProductAttributeRequest productAttributeRequest) {
+        ProductAttribute productAttribute = modelConverter.map(productAttributeRequest,ProductAttribute.class);
+        return modelConverter.map(productAttributeRepository.save(productAttribute), ProductAttributeResponse.class);
     }
 
     @Override
@@ -47,8 +47,8 @@ public class ProductAttributeServiceImpl implements ProductAttributeService {
     }
 
     @Override
-    public void delete(Integer id) {
-        productAttributeRepository.deleteById(id);
+    public void delete(List<Integer> id) {
+        productAttributeRepository.deleteByListId(id);
     }
 
 

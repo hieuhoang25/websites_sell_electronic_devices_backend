@@ -775,7 +775,7 @@ ALTER TABLE `wishlist`
 -- Constraints for table `account`
 --
 ALTER TABLE `account`
-    ADD CONSTRAINT `fk_account_user_1` FOREIGN KEY (`unique_id`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `fk_account_user_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) unique;
 
 --
 -- Constraints for table `address`

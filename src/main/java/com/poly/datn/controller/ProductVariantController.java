@@ -30,6 +30,7 @@ public class ProductVariantController {
     }
     @PostMapping()
     public ResponseEntity<?> createProductVariant(@RequestBody ProductVariantRequest productVariantRequest){
+        productVariantRequest.setStatus(true);
         return ResponseEntity.ok(productVariantService.create(productVariantRequest));
     }
     @PutMapping()
@@ -37,6 +38,7 @@ public class ProductVariantController {
         productVariantRequest.setStatus(true);
         return ResponseEntity.ok(productVariantService.update(productVariantRequest));
     }
+
 
 
 }
