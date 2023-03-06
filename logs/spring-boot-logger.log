@@ -21,3 +21,89 @@
 2023-03-05 14:13:12,650 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-03-05 14:13:12,651 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2023-03-05 14:13:12,718 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-06 22:32:39,900 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.16 on NAYMTs-Air with PID 75244 (/Users/naymt/Documents/datn/sell_electronic_devices_backend/target/classes started by naymt in /Users/naymt/Documents/datn/sell_electronic_devices_backend)
+2023-03-06 22:32:39,905 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "dev"
+2023-03-06 22:32:41,905 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-06 22:32:42,121 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 195 ms. Found 23 JPA repository interfaces.
+2023-03-06 22:32:43,172 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-06 22:32:43,192 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-06 22:32:43,192 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-06 22:32:43,193 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-06 22:32:43,403 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-06 22:32:43,404 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2948 ms
+2023-03-06 22:32:44,280 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-06 22:32:44,870 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-06 22:32:46,725 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-06 22:32:48,867 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-06 22:32:51,357 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-06 22:32:51,442 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-06 22:32:51,471 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 12.265 seconds (JVM running for 13.517)
+2023-03-06 22:33:20,200 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-06 22:33:20,201 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-06 22:33:20,205 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 3 ms
+2023-03-06 22:33:22,016 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8080-exec-5] Init duration for springdoc-openapi is: 1269 ms
+2023-03-06 22:35:41,996 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-06 22:35:42,000 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-06 22:35:42,090 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-06 22:35:44,175 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.16 on NAYMTs-Air with PID 75978 (/Users/naymt/Documents/datn/sell_electronic_devices_backend/target/classes started by naymt in /Users/naymt/Documents/datn/sell_electronic_devices_backend)
+2023-03-06 22:35:44,179 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "default"
+2023-03-06 22:35:45,858 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-06 22:35:46,045 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 163 ms. Found 23 JPA repository interfaces.
+2023-03-06 22:35:47,057 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-06 22:35:47,076 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-06 22:35:47,077 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-06 22:35:47,078 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-06 22:35:47,260 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-06 22:35:47,261 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2606 ms
+2023-03-06 22:35:48,019 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-06 22:35:48,490 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-06 22:35:50,081 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-06 22:35:52,145 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-06 22:35:54,326 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-06 22:35:54,399 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-06 22:35:54,423 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 10.938 seconds (JVM running for 11.661)
+2023-03-06 22:36:39,884 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-06 22:36:39,885 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-06 22:36:39,887 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 2 ms
+2023-03-06 22:37:09,834 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-06 22:37:09,838 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-06 22:37:09,857 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-06 22:37:11,847 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.16 on NAYMTs-Air with PID 76082 (/Users/naymt/Documents/datn/sell_electronic_devices_backend/target/classes started by naymt in /Users/naymt/Documents/datn/sell_electronic_devices_backend)
+2023-03-06 22:37:11,852 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "default"
+2023-03-06 22:37:13,541 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-06 22:37:13,751 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 190 ms. Found 23 JPA repository interfaces.
+2023-03-06 22:37:14,821 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-06 22:37:14,842 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-06 22:37:14,844 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-06 22:37:14,845 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-06 22:37:15,095 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-06 22:37:15,095 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2775 ms
+2023-03-06 22:37:15,944 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-06 22:37:16,409 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-06 22:37:18,213 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-06 22:37:20,626 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-06 22:37:23,787 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-06 22:37:23,860 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-06 22:37:23,897 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 12.711 seconds (JVM running for 13.708)
+2023-03-06 22:37:34,958 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-06 22:37:34,959 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-06 22:37:34,967 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 6 ms
+2023-03-06 22:37:37,937 INFO org.springdoc.api.AbstractOpenApiResource [http-nio-8080-exec-3] Init duration for springdoc-openapi is: 2039 ms
+2023-03-06 22:44:45,587 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-06 22:44:45,590 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-06 22:44:45,620 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-06 22:44:48,133 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 11.0.16 on NAYMTs-Air with PID 77649 (/Users/naymt/Documents/datn/sell_electronic_devices_backend/target/classes started by naymt in /Users/naymt/Documents/datn/sell_electronic_devices_backend)
+2023-03-06 22:44:48,139 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "dev"
+2023-03-06 22:44:50,113 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-06 22:44:50,452 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 315 ms. Found 23 JPA repository interfaces.
+2023-03-06 22:44:52,080 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-06 22:44:52,362 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 3687 ms
+2023-03-06 22:44:53,227 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-06 22:44:53,981 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-06 22:44:56,722 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-06 22:45:00,397 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-06 22:45:03,305 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-06 22:45:03,337 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 16.047 seconds (JVM running for 17.083)
+2023-03-06 22:45:03,419 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-06 22:45:03,427 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-06 22:45:03,517 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

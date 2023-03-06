@@ -1,5 +1,4 @@
-Drop PROCEDURE if exists sp_sumTotalInCart;
-DELIMITER $$
+Drop PROCEDURE if exists sp_sumTotalInCart //
 
 CREATE PROCEDURE sp_sumTotalInCart(
 	In cartId int,
@@ -21,13 +20,5 @@ BEGIN
 	set updated = false;
 END;
 END IF;
-END$$
-DELIMITER ;
+END //
 
--- --------------------------
-
--- --------------------------
-
-
-call sp_sumTotalInCart(4, @d); 
-select @d;
