@@ -4,6 +4,7 @@ import com.poly.datn.common.MessageResponse;
 import com.poly.datn.common.ResponseBody;
 import com.poly.datn.dto.request.ProductRequest;
 import com.poly.datn.service.CURDProductService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT;
 @RestController
 @RequestMapping(BASE+ PRODUCT)
 @RequiredArgsConstructor
+@Tag(name = BASE+ PRODUCT)
 public class CURDProductController {
 
     private final CURDProductService curdProductService;
