@@ -35,8 +35,9 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Wishlist> wishlists = new LinkedHashSet<>();
 
-    @OneToMany(mappedBy = "user")
-    private Set<Account> accounts = new LinkedHashSet<>();
+    @OneToOne
+    @JoinColumn(name = "id", referencedColumnName = "unique_id")
+    private Account account;
 
     @OneToMany(mappedBy = "user")
     private Set<Rating> ratings = new LinkedHashSet<>();
@@ -109,14 +110,6 @@ public class User {
         this.wishlists = wishlists;
     }
 
-    public Set<Account> getAccounts() {
-        return accounts;
-    }
-
-    public void setAccounts(Set<Account> accounts) {
-        this.accounts = accounts;
-    }
-
     public Set<Rating> getRatings() {
         return ratings;
     }
@@ -155,5 +148,13 @@ public class User {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }

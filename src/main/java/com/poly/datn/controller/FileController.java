@@ -5,6 +5,7 @@ import com.poly.datn.common.constant.EOrderStatus;
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.service.FileService;
 import com.poly.datn.service.MailService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(Router.FILE_API)
+@Tag(name = Router.FILE_API)
 public class FileController {
     @Autowired
     private FileService fileService;

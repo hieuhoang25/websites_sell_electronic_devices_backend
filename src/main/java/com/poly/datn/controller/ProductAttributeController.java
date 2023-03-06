@@ -4,6 +4,7 @@ package com.poly.datn.controller;
 import com.google.gson.Gson;
 import com.poly.datn.dto.request.ProductAttributeRequest;
 import com.poly.datn.service.ProductAttributeService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +16,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT_ATTRIBUTE
 @RestController
 @RequestMapping(BASE+PRODUCT_ATTRIBUTE)
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000"})
+@Tag(name = BASE+PRODUCT_ATTRIBUTE)
 public class ProductAttributeController {
 
     private final ProductAttributeService productAttributeService;

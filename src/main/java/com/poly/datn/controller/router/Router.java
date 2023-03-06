@@ -14,6 +14,7 @@ public class Router {
 
         //CATEGORY
         public static final String CATEGORY = "/category";
+        public static final String LOGIN = "/login";
     }
 
     public static class USER_API{
@@ -21,6 +22,7 @@ public class Router {
         public static final String BASE = "/api/user";
         public static final String ORDER = "/order";
         public static final String TRACKING = "-tracking";
+        public static final String INFO = "/info";
     }
 
     public static class ADMIN_API {

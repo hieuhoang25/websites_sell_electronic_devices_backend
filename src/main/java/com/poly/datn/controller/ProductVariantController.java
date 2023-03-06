@@ -3,6 +3,7 @@ package com.poly.datn.controller;
 import com.poly.datn.dto.request.ProductVariantRequest;
 import com.poly.datn.dto.response.ProductVariantResponse;
 import com.poly.datn.service.ProductVariantService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +19,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT_VARIANT;
 @RequestMapping(BASE + PRODUCT_VARIANT)
 @RequiredArgsConstructor
 @CrossOrigin(origins = {"http://localhost:3000"})
+@Tag(name = BASE + PRODUCT_VARIANT)
 public class ProductVariantController {
     private final ProductVariantService productVariantService;
 

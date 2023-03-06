@@ -1,4 +1,3 @@
-
 spring:
   profiles:
     active: dev
@@ -40,14 +39,29 @@ spring:
   jackson:
     deserialization:
       fail-on-unknown-properties: true
-logging:
-  level:
-    org:
-      hibernate: ERROR
-app:
-  frontend:
-    cros:
-     - http://localhost:3000/ #domain of user frontend
-     - http://localhost:3001/ #domain of admin frontend
+  logging:
+    level:
+      org:
+        hibernate: ERROR
+  app:
+    cors:
+      allowedOrigins: http://localhost:3000,http://localhost:3001,http://localhost:8080
+    oauth2:
+      # After successfully authenticating with the OAuth2 Provider,
+      # we'll be generating an auth token for the user and sending the token to the
+      # redirectUri mentioned by the client in the /oauth2/authorize request.
+      authorizedRedirectUris:
+        - http://localhost:3000/oauth2/redirect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 496256023815-gfnv445ste0ep1o56qqr2j7ffggbd17s.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: "{baseUrl}/oauth2/callback"
+            scope:
+              - email
+              - profile
 
 

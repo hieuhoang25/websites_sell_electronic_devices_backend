@@ -31,8 +31,7 @@ public class Account {
     @Column(name = "active")
     private Boolean active;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @OneToOne(mappedBy = "account")
     private User user;
 
     @Column(name = "last_access")

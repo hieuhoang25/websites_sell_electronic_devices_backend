@@ -15,13 +15,13 @@ import static com.poly.datn.controller.router.Router.API.BASE;
 import static com.poly.datn.controller.router.Router.API.CATEGORY;
 
 @RequiredArgsConstructor
-@RequestMapping(BASE)
+@RequestMapping(BASE + CATEGORY)
 @RestController
+@Tag(name = BASE + CATEGORY)
 public class CategoryFindAllController {
     private final CategoryFindAllService categoryFindAllService;
 
-    @GetMapping(CATEGORY)
-    @Tag(name = "category")
+    @GetMapping
     public ResponseEntity<List<CategoryFindAllResponse>> categoryFindAllResponse() {
         return ResponseEntity.ok(categoryFindAllService.getCategory());
     }

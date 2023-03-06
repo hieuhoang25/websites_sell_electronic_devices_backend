@@ -6,6 +6,7 @@ import com.poly.datn.common.SearchCriteria;
 import com.poly.datn.common.SearchResult;
 import com.poly.datn.dto.response.ProductFilterResponse;
 import com.poly.datn.service.ProductFindByMultiField;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,12 +23,13 @@ import static com.poly.datn.controller.router.Router.API.*;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(BASE)
+@RequestMapping(BASE + PRODUCT)
 @Validated
+@Tag(name = BASE + PRODUCT)
 public class ProductFilterController {
     private final ProductFindByMultiField productFindByMultiField;
 
-    @GetMapping(PRODUCT + FILTER)
+    @GetMapping( FILTER)
     public ResponseEntity<SearchResult<ProductFilterResponse>>
     productFindByMultiField(@RequestBody @NotEmpty(message = "Khong de criteria rong") List<@Valid SearchCriteria> criteria,
                             @RequestParam("size") Optional<Integer> size,

@@ -18,15 +18,15 @@ import java.util.List;
 
 import static com.poly.datn.controller.router.Router.ADMIN_API.ORDER_DETAIL;
 
-@RequestMapping(Router.ADMIN_API.BASE)
+@RequestMapping(Router.ADMIN_API.BASE + ORDER_DETAIL)
 @RestController
 @RequiredArgsConstructor
 @Validated
+@Tag(name = Router.ADMIN_API.BASE + ORDER_DETAIL)
 public class OrderDetailController {
     private final OrderDetailService service;
 
-    @GetMapping(ORDER_DETAIL + "/{idOrder}")
-    @Tag(name = "admin/order-detail")
+    @GetMapping( "/{idOrder}")
     public ResponseEntity<List<OrderDetailResponse>> getOrderDetail(
             @PathVariable @Valid @NotNull(message = "idOrder can not be null") Integer idOrder) {
         List<OrderDetailResponse> orderDetailResponses = service.getOrderDetail(idOrder);
