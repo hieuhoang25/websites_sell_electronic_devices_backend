@@ -1,6 +1,7 @@
 package com.poly.datn.common.mapper;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeMap;
 import org.modelmapper.TypeToken;
 import org.modelmapper.convention.NameTokenizers;
 import org.springframework.stereotype.Component;
@@ -80,5 +81,12 @@ public class ModelConverter {
    */
   public <D, S> List<D> mapAllByMappingType(final Collection<S> sourceList) {
     return modelMapper.map(sourceList, new TypeToken<List<D>>() {}.getType());
+  }
+
+  public <S, D> TypeMap<S, D> getTypeMap(Class<S> sourceClazz, Class<D> destinationClazz ) {
+    ModelMapper mapper = new ModelMapper();
+    mapper.getConfiguration().setSourceNameTokenizer(NameTokenizers.UNDERSCORE)
+        .setDestinationNameTokenizer(NameTokenizers.UNDERSCORE).setSkipNullEnabled(true);
+    return mapper.createTypeMap(sourceClazz, destinationClazz);
   }
 }
