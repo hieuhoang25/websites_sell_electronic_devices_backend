@@ -1,4 +1,4 @@
-package com.poly.datn.security;
+package com.poly.datn.config;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
@@ -32,6 +32,7 @@ public class CustomAuthorizationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         //lấy header authorization
         String authorizationHeader = request.getHeader(AUTHORIZATION);
+
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             try {
                 String token = authorizationHeader.substring("Bearer ".length());// lấy token
