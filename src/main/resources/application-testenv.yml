@@ -43,3 +43,4 @@ app:
     cros:
       - http://localhost:3000/ #domain of user frontend
       - http://localhost:3001/ #domain of admin frontend
+      - http://14.225.210.86:8081/
