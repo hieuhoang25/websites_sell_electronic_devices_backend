@@ -18,7 +18,7 @@ import java.util.List;
 @Transactional(rollbackFor = Exception.class)
 public class CRUDOrderStatusServiceImpl implements CRUDOrderStatusService {
     private final OrderStatusRepository repository;
-    private ModelConverter converter;
+    private final ModelConverter converter;
 
     @Override
     public List<OrderStatusResponse> getOrderStatus() {
@@ -36,14 +36,14 @@ public class CRUDOrderStatusServiceImpl implements CRUDOrderStatusService {
     @Override
     public OrderStatusResponse create(OrderStatusCreateRequest request) {
         OrderStatus orderStatus = converter.map(request, OrderStatus.class);
-        OrderStatusResponse orderStatusResponse = converter.map(orderStatus, OrderStatusResponse.class);
+        OrderStatusResponse orderStatusResponse = converter.map(repository.save(orderStatus), OrderStatusResponse.class);
         return orderStatusResponse;
     }
 
     @Override
     public OrderStatusResponse update(OrderStatusUpdateRequest request) {
         OrderStatus orderStatus = converter.map(request, OrderStatus.class);
-        OrderStatusResponse orderStatusResponse = converter.map(orderStatus, OrderStatusResponse.class);
+        OrderStatusResponse orderStatusResponse = converter.map(repository.save(orderStatus), OrderStatusResponse.class);
         return orderStatusResponse;
     }
 
