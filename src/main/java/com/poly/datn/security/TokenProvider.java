@@ -16,13 +16,13 @@ import java.util.stream.Collectors;
 public class TokenProvider {
 
     public String createToken(Authentication authentication) {
-        User user = (User) authentication.getPrincipal();
+        UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
 //        Date now = new Date();
 //        Date expiryDate = new Date(now.getTime() + appProperties.getAuth().getTokenExpirationMsec());
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
-        String access_token = JWT.create().withSubject(user.getUsername())
+        String access_token = JWT.create().withSubject(userPrincipal.getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 60 * 1000))
-                .withClaim("roles", user.getAuthorities()
+                .withClaim("roles",userPrincipal.getAuthorities()
                         .stream()
                         .map(GrantedAuthority::getAuthority)
                         .collect(Collectors.toList()))
