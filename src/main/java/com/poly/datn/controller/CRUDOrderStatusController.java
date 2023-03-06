@@ -19,30 +19,30 @@ import java.util.List;
 import static com.poly.datn.controller.router.Router.ADMIN_API.ORDER_STATUS;
 
 @RequiredArgsConstructor
-@RequestMapping(Router.ADMIN_API.BASE)
+@RequestMapping(Router.ADMIN_API.BASE + ORDER_STATUS)
 @RestController
 @Validated
-@Tag(name = "admin/order-status")
+@Tag(name = Router.ADMIN_API.BASE + ORDER_STATUS)
 public class CRUDOrderStatusController {
     private final CRUDOrderStatusService crudOrderStatusService;
 
-    @GetMapping(ORDER_STATUS)
+    @GetMapping()
     public ResponseEntity<List<OrderStatusResponse>> getOrderStatus() {
         return ResponseEntity.ok(crudOrderStatusService.getOrderStatus());
     }
 
-    @PostMapping(ORDER_STATUS)
+    @PostMapping()
     public ResponseEntity<OrderStatusResponse> createOrderStatus(@RequestBody @Valid OrderStatusCreateRequest request) {
         return ResponseEntity.ok(crudOrderStatusService.create(request));
     }
 
-    @PutMapping(ORDER_STATUS)
+    @PutMapping()
     public ResponseEntity<OrderStatusResponse> updateOrderStatus(@RequestBody @Valid OrderStatusUpdateRequest request) {
         return ResponseEntity.ok(crudOrderStatusService.update(request));
     }
 
 
-    @DeleteMapping(ORDER_STATUS)
+    @DeleteMapping()
     public ResponseEntity<?> deleteOrderStatus(@PathVariable @Valid @Min(1) @NotNull Integer id) {
         crudOrderStatusService.delete(id);
         return ResponseEntity.noContent().build();

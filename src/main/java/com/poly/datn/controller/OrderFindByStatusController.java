@@ -21,13 +21,13 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.ORDER;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(Router.ADMIN_API.BASE)
+@RequestMapping(Router.ADMIN_API.BASE + ORDER)
 @Validated
+@Tag(name = Router.ADMIN_API.BASE + ORDER)
 public class OrderFindByStatusController {
     private final OrderFindByStatusService service;
 
-    @GetMapping(ORDER + "/{idStatus}")
-    @Tag(name = "admin/order")
+    @GetMapping("/{idStatus}")
     public ResponseEntity<List<OrderManagerResponse>> getOrder(
             @PathVariable @Valid @NotNull(message = "Không để trống tình trạng đơn hàng") Integer idStatus) {
         List<OrderManagerResponse> orderManagerResponse = service.getOrder(idStatus);

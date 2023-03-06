@@ -3,6 +3,7 @@ package com.poly.datn.controller;
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.request.PromotionTypeRequest;
 import com.poly.datn.service.CRUDPromotionTypeService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PROMOTION_TYPE;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping(BASE+ PROMOTION_TYPE)
+@Tag(name = BASE+ PROMOTION_TYPE)
 public class CRUDPromotionTypeController {
     private final CRUDPromotionTypeService promotionTypeService;
 

@@ -16,7 +16,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.BRAND;
 @RestController
 @RequestMapping(Router.ADMIN_API.BASE + BRAND)
 @RequiredArgsConstructor
-@Tag(name = "admin/brand")
+@Tag(name = Router.ADMIN_API.BASE + BRAND)
 public class CRUDBrandController {
     private final CRUDBrandService crudBrandService;
 
