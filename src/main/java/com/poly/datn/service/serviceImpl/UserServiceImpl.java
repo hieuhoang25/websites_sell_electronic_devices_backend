@@ -8,16 +8,16 @@ import com.poly.datn.repository.UserRepository;
 import com.poly.datn.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.springframework.security.core.userdetails.User;
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -25,7 +25,6 @@ public class UserServiceImpl implements UserService , UserDetailsService {
     private final ModelConverter modelConverter;
     private  final UserRepository userRepository;
     private final AccountRepository accountRepository;
-    private final PasswordEncoder passwordEncoder;
     @Override
     public List<UserResponse> findAll() {
         return modelConverter.mapAllByIterator(userRepository.findAll(),UserResponse.class);
@@ -39,6 +38,6 @@ public class UserServiceImpl implements UserService , UserDetailsService {
         // Tạo UserDetails từ Account
         Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
         account.getAuthorities().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getRole().getRoleName())));
-        return new User(account.getUsername(),passwordEncoder.encode(account.getPassword()), authorities);
+        return new User(account.getUsername(),account.getPassword(), authorities);
     }
 }
