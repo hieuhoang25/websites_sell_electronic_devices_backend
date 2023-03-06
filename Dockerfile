@@ -3,6 +3,8 @@ WORKDIR /app
 COPY pom.xml ./
 COPY src ./src
 
+COPY src/main/resources/application-testenv.yml ./src/main/resources/application.yml
+
 RUN mvn clean install
 
 # Second stage: Minimal runtime environment
