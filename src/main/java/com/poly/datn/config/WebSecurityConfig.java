@@ -59,6 +59,7 @@ public class WebSecurityConfig {
     @Bean //phan quyen
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        http.cors();
         http.exceptionHandling().authenticationEntryPoint(new RestAuthenticationEntryPoint());
         http.authorizeRequests()
                 .antMatchers("/api/login", "/api/token/refresh", "/api/*","/auth/**", "/oauth2/**")
