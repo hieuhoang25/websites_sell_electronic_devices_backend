@@ -1,54 +1,60 @@
-#spring:
-#  datasource:
-#    url: jdbc:mysql://14.225.210.86:3306/electronic_db
-#    username: root
-#    password: rootpw12345
-#  jpa:
-#    show-sql: true
-#    properties:
-#      hibernate:
-#        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-#
-#    hibernate:
-#      ddl-auto: none
-#  messages:
-#    basename: messageErrors
-#    fallback-to-system-locale: false
-#  web:
-#    locale: vi_VN
-#    locale-resolver: fixed
-#  mail:
-#    default-encoding: UTF-8
-#    host: smtp.gmail.com
-#    username: ebonikshop@gmail.com
-#    password: aibzzxjrffupjjrf
-#    port: 587
-#    properties:
-#      mail:
-#        smtp:
-#          auth: true
-#          starttls:
-#            enable: true
-#    protocol: smtp
-#    test-connection: false
-#  liquibase:
-#    change-log: classpath:db/changelog.xml
-#    enabled: false #false is not use liquibase when no have new design
-#  logging:
-#    level:
-#      org:
-#        hibernate: ERROR
-#  app:
-#    cors:
-#      allowedOrigins: http://localhost:3000,http://localhost:3001
-#  security:
-#    oauth2:
-#      client:
-#        registration:
-#          google:
-#            client-id: 496256023815-gfnv445ste0ep1o56qqr2j7ffggbd17s.apps.googleusercontent.com
-#            client-secret: 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
-#            redirect-uri: "{baseUrl}/oauth2/callback"
-#            scope:
-#              - email
-#              - profile
+spring:
+  datasource:
+    url: jdbc:mysql://14.225.210.86:3306/electronic_db
+    username: root
+    password: rootpw12345
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+    hibernate:
+      ddl-auto: none
+  messages:
+    basename: messageErrors
+    fallback-to-system-locale: false
+  web:
+    locale: vi_VN
+    locale-resolver: fixed
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: ebonikshop@gmail.com
+    password: aibzzxjrffupjjrf
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
+  liquibase:
+    change-log: classpath:db/changelog.xml
+    enabled: false #false is not use liquibase when no have new design
+  logging:
+    level:
+      org:
+        hibernate: ERROR
+  app:
+    cors:
+      allowedOrigins: http://localhost:3000,http://localhost:3001,http://localhost:8080
+    oauth2:
+      # After successfully authenticating with the OAuth2 Provider,
+      # we'll be generating an auth token for the user and sending the token to the
+      # redirectUri mentioned by the client in the /oauth2/authorize request.
+      authorizedRedirectUris:
+        - http://localhost:3000/oauth2/redirect
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 496256023815-gfnv445ste0ep1o56qqr2j7ffggbd17s.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: "{baseUrl}/oauth2/callback"
+            scope:
+              - email
+              - profile
