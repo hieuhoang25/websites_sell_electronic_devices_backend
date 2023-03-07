@@ -52,4 +52,23 @@ public class Router {
     }
 
     public static final String FILE_API = "/api/files";
+
+    public static class CART_API {
+        public static final String CART_DETAIL_TAG_NAME = "Cart Detail Controller";
+        public static final String BASE = "/api/cart";
+
+        public static final String USER_CART = "/{userId}";
+
+        public static final String CART_ID_VAR = "/{cartId}";
+
+        public static final String CART_ITEMS = "/items";
+
+        public static final String CART_DETAIL = "/item";
+    }
+
+    public static class CHECK_OUT_API {
+        public static final String BASE = "/api/checkout";
+        public static final String AUTH_VAR = "/{userId}";
+        public static final String CHECKED_OUT_RERIRECT_API = "/order";
+    }
 }

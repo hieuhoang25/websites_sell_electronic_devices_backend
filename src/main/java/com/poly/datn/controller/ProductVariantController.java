@@ -18,6 +18,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT_VARIANT;
 @RestController
 @RequestMapping(BASE + PRODUCT_VARIANT)
 @RequiredArgsConstructor
+@CrossOrigin(origins = {"http://localhost:3000"})
 @Tag(name = BASE + PRODUCT_VARIANT)
 public class ProductVariantController {
     private final ProductVariantService productVariantService;

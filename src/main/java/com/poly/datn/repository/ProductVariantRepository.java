@@ -1,14 +1,13 @@
 package com.poly.datn.repository;
 
+import java.util.List;
 
-import com.poly.datn.entity.ProductVariant;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-import java.util.List;
-
-
+import com.poly.datn.entity.ProductVariant;
 
 public interface ProductVariantRepository extends JpaRepository<ProductVariant, Integer> {
     @Query("select o from ProductVariant o where o.product.id=:productId " +
@@ -27,5 +26,6 @@ public interface ProductVariantRepository extends JpaRepository<ProductVariant, 
             "s.id = pv.storage_id where product_id = :id",nativeQuery = true)
     List<ProductVariant> findByProduct(Integer id);
 
-
+    @Query("select v.status from ProductVariant v where v.id =:id ")    
+    boolean isStatusTrue(@Param("id") Integer id);
 }

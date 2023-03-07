@@ -118,7 +118,7 @@ CREATE TABLE `cart` (
                         `id` int(11) NOT NULL,
                         `user_id` int(11) DEFAULT NULL,
                         `create_date` datetime DEFAULT NULL,
-                        `price_sum` float DEFAULT NULL
+                        `price_sum` double DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -213,7 +213,7 @@ CREATE TABLE `order_detail` (
                                 `order_id` int(11) DEFAULT NULL,
                                 `product_variant_id` int(11) DEFAULT NULL,
                                 `create_date` datetime DEFAULT NULL,
-                                `price_sum` int(11) DEFAULT NULL,
+                                `price_sum` double DEFAULT NULL,
                                 `promotion_value` double DEFAULT NULL,
                                 `quatity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;

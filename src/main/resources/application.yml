@@ -4,7 +4,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/electronic_db
     username: root
-    password: nhatphu234aA.
+    password: 
   jpa:
     show-sql: true
     properties:
@@ -36,6 +36,9 @@ spring:
   liquibase:
     change-log: classpath:db/changelog.xml
     enabled: false #false is not use liquibase when no have new design
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
   logging:
     level:
       org:

@@ -1,24 +1,54 @@
 package com.poly.datn.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.google.firebase.database.annotations.NotNull;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+
 @Entity
 @Table(name = "orders")
+@NoArgsConstructor
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Builder(setterPrefix = "with")
 public class Order {
+
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
+    @NotNull
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @NotNull
     private User user;
 
     @Column(name = "created_date")
+    @CreationTimestamp
     private Instant createdDate;
 
     @Column(name = "is_pay")
@@ -26,10 +56,12 @@ public class Order {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "payment_id")
+    @NotNull
     private PaymentMethod payment;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status")
+    @NotNull
     private OrderStatus status;
 
     @Column(name = "is_cancelled")
@@ -55,7 +87,7 @@ public class Order {
     @Column(name = "postal_id", length = 50)
     private String postalId;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order",  cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
 
     public String getAddress(){
@@ -154,7 +186,10 @@ public class Order {
     }
 
     public void setOrderDetails(Set<OrderDetail> orderDetails) {
-        this.orderDetails = orderDetails;
+        if(!(orderDetails == null)) {
+            this.orderDetails = new LinkedHashSet<>(orderDetails);
+            orderDetails.stream().forEach(detail -> detail.setOrder(this));
+        }
     }
 
     public User getUser() {

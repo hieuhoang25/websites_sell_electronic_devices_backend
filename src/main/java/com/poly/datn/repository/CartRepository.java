@@ -1,7 +1,23 @@
 package com.poly.datn.repository;
 
-import com.poly.datn.entity.Cart;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
+import org.springframework.data.repository.query.Param;
+
+import com.poly.datn.entity.Cart;
 
 public interface CartRepository extends JpaRepository<Cart, Integer> {
+
+    @Query("select c from Cart c where c.user.id =:userId")
+    Optional<Cart> findCartByUserId(@Param("userId") Integer userId);
+
+
+    boolean existsById(Integer id);
+
+    @Procedure(procedureName = "sp_sumTotalInCart")
+    Integer updateCartPriceSum(Integer cartId );
+
 }
