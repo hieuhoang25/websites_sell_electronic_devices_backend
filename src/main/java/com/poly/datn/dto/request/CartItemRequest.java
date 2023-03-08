@@ -28,4 +28,9 @@ public class CartItemRequest implements Serializable {
     @Max(value= 5, message="quantity per item must can't more than 1")
     @NotNull
     private Integer quantity;
+
+    public CartDetailRequest toCartDetailRequest(Integer detailId) {
+        CartDetailRequest dr = new CartDetailRequest(detailId, this.cart_id,this.quantity, this.product_variant_id);
+        return dr;
+    }
 }
