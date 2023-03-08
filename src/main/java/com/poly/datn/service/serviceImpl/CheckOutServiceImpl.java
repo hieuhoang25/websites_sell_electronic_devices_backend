@@ -58,7 +58,8 @@ public class CheckOutServiceImpl implements CheckOutService {
             log.info("saved order");
             saved = orderRepository.save(newOrder).getId();
             if (saved > 0)
-                cartService.deleteAllItemsInCart(userCart.getId());
+            log.info("removed items");
+            cartService.deleteAllItemsInCart(userCart.getId());
         } catch (Exception ex) {
             ex.printStackTrace();
             if (ex instanceof CartException) {
@@ -137,5 +138,4 @@ public class CheckOutServiceImpl implements CheckOutService {
         }
 
     }
-
 }
