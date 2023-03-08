@@ -4,5 +4,4 @@ public class VariantAlreadyInCartException extends CartException{
     public VariantAlreadyInCartException(String message) {
         super(message);
     }
-    
 }
