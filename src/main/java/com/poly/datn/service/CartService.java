@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Modifying;
 
 import com.poly.datn.dto.request.CartDetailRequest;
+import com.poly.datn.dto.request.CartItemRequest;
 import com.poly.datn.dto.response.CartDetailResponse;
 import com.poly.datn.dto.response.CartResponse;
 import com.poly.datn.entity.Cart;
+import com.poly.datn.entity.User;
 
 public interface CartService {
 
@@ -27,18 +29,21 @@ public interface CartService {
 
     boolean isCartEmpty(Integer cartId);
 
-    CartResponse addProductToCart(List<CartDetailRequest> itmes);
-
-    CartResponse updateCart(List<CartDetailRequest> items);
-
-    boolean deleteAllItemsInCart(Integer cartId);
-
-
     @Modifying(flushAutomatically = true)
     Integer updatedPriceSum(Integer cartId);
     /* 
     ! Logged in user, authenticated-user scenario when userId is omitted
     * Overide later
     */
-    List<CartDetailResponse> findAllItemsInCart();
+    CartResponse findCartOfCurrentUser();
+
+    CartResponse mergeItemsToCart(List<CartItemRequest> items);
+
+    boolean deleteAllItemsInCart(Integer cartId);
+
+    User getCurrentUser();
+
+    CartResponse addProductToCart(List<CartDetailRequest> itmes);
+
+    CartResponse updateCart(List<CartDetailRequest> items);
 }
