@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.poly.datn.entity.CartDetail;
 
@@ -27,4 +26,11 @@ public interface CartDetailRepository extends JpaRepository<CartDetail, Integer>
    @Modifying(flushAutomatically = true)
    @Query(value = "delete from cart_detail where cart_id =:cartId", nativeQuery = true)
    Integer deleteAllByCartId(@Param("cartId") Integer cartId);
+
+   @Modifying(flushAutomatically = true)
+   @Query(value = "delete from cart_detail where id=:detailId", nativeQuery = true)
+   void deleteById(@Param("detailId") Integer detailId);
+
+   @Query("select d from  CartDetail d where d.cart.id =:cartId and d.productVariant.id=:variantId")
+   CartDetail findByProductVariantId(Integer cartId, Integer variantId);
 }

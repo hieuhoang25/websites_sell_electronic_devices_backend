@@ -18,6 +18,12 @@ import com.poly.datn.exception.cart.CartException;
 import com.poly.datn.repository.CartDetailRepository;
 import com.poly.datn.repository.CartRepository;
 import com.poly.datn.service.CartService;
+import com.poly.datn.dto.request.CartItemRequest;
+import com.poly.datn.entity.Account;
+import com.poly.datn.entity.User;
+import com.poly.datn.repository.AccountRepository;
+import com.poly.datn.service.CartDetailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,6 +37,8 @@ public class CartServiceImpl implements CartService {
     private final CartRepository cartRepo;
     private final ModelConverter modelConverter;
     private final CartDetailRepository cartDetail;
+    private final AccountRepository accountRepository;
+    private final CartDetailService cartDetailService;
 
     @Override
     public CartResponse findByUserId(Integer userId) {
@@ -43,12 +51,6 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public CartResponse updateCart(List<CartDetailRequest> items) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateCart'");
-    }
-
-    @Override
     public Integer exitsProductVariantInCart(Integer cartId, Integer variantId) {
         if(!cartRepo.existsById(cartId)) throw new EntityNotFoundException("Cart not found");    
         return  cartDetail.countVariantQuantityInCart(cartId, variantId).orElse(-1);
@@ -56,16 +58,20 @@ public class CartServiceImpl implements CartService {
 
     // After authenticated
     @Override
-    public CartResponse addProductToCart(List<CartDetailRequest> items) {
-        return new CartResponse();
+    public CartResponse mergeItemsToCart(List<CartItemRequest> items) {
+        Cart cart = getCartEntityByUserId(getCurrentUser().getId());
+        try {
+            items.forEach(i -> {
+                cartDetailService.add(i);
+            });
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        // log.info("cart size: " +  get);
+        return  modelConverter.map(getCartEntityByUserId(getCurrentUser().getId()), CartResponse.class);
+
     }
-
-    @Override
-    public List<CartDetailResponse> findAllItemsInCart() {
-        return null;
-
-    }
-
+   
     @Override
     public List<CartDetailResponse> findAllItemsInCart(Integer cartId){
         Set<CartDetail> items = getCartEntityByCartId(cartId).getCartDetails();
@@ -103,9 +109,7 @@ public class CartServiceImpl implements CartService {
        if(cart.getCartDetails() == null || cart.getCartDetails().size() == 0) {
         throw new CartException("Cart is empty");
        }
-     
        return true;
-
     }
 
     @Override
@@ -123,12 +127,31 @@ public class CartServiceImpl implements CartService {
             ex.printStackTrace();
             throw new RuntimeException("Error: Can't delete items in cart");
         }
-   
     }
 
-
+    @Override
+    public CartResponse findCartOfCurrentUser() {
+            return findByUserId(getCurrentUser().getId());
     
+    }
 
-    
+    public User getCurrentUser() {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        Account account = accountRepository.findByUsername(name);
+        return  account.getUser();
+    }
 
+    @Override
+    public CartResponse updateCart(List<CartDetailRequest> items) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateCart'");
+    }
+
+    @Override
+    public CartResponse addProductToCart(List<CartDetailRequest> items) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateCart'");
+    }
 }
+
+    

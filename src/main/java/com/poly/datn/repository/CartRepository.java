@@ -3,6 +3,7 @@ package com.poly.datn.repository;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +18,7 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 
     boolean existsById(Integer id);
 
+    @Modifying(flushAutomatically = true)
     @Procedure(procedureName = "sp_sumTotalInCart")
     Integer updateCartPriceSum(Integer cartId );
 

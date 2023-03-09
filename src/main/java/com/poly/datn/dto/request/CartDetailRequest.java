@@ -8,12 +8,14 @@ import javax.validation.constraints.NotNull;
 
 import com.google.auto.value.AutoValue.Builder;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @Builder
+@AllArgsConstructor
 public class CartDetailRequest  implements Serializable {
     
     
@@ -30,4 +32,6 @@ public class CartDetailRequest  implements Serializable {
     protected Integer product_variant_id;
 
    
+
+    
 }

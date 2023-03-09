@@ -16,6 +16,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedStoredProcedureQueries;
 import javax.persistence.NamedStoredProcedureQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.ParameterMode;
 import javax.persistence.StoredProcedureParameter;
 import javax.persistence.Table;
@@ -37,8 +38,8 @@ public class Cart {
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
     @Column(name = "create_date")
@@ -49,8 +50,10 @@ public class Cart {
     private Double priceSum;
 
   
-    @OneToMany(mappedBy = "cart")
+    @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Set<CartDetail> cartDetails = new LinkedHashSet<>();
+
+
 
     public Integer getId() {
         return id;
@@ -89,7 +92,11 @@ public class Cart {
     }
 
     public void setCartDetails(Set<CartDetail> cartDetails) {
-        this.cartDetails = cartDetails;
+        if(cartDetails != null) {
+            this.cartDetails = cartDetails;
+            this.cartDetails.forEach(cd -> cd.setCart(this));
+        }
+     
     }
 
 }

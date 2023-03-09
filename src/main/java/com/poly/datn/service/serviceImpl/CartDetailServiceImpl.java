@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +22,7 @@ import com.poly.datn.repository.ProductVariantRepository;
 import com.poly.datn.service.CartDetailService;
 import com.poly.datn.service.CartService;
 
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,8 +34,11 @@ public class CartDetailServiceImpl implements CartDetailService {
 
     final CartDetailRepository catDetailRepo;
     final ModelConverter modelConverter;
-    final CartService cartService;
+   
     final ProductVariantRepository variantRepo;
+  
+    @Autowired @Lazy
+    private CartService cartService;
 
     @Override
     public List<CartDetailResponse> findAllByCartId(Integer cartId) {
@@ -68,16 +74,28 @@ public class CartDetailServiceImpl implements CartDetailService {
             //         + entity.getProductVariant().getId() + " " + entity.getProductVariant().getStatus());
             
             CartDetail newEntity =  catDetailRepo.save(entity);
+            log.info("saved C:" + request.getCart_id() + "V: " + request.getProduct_variant_id() + " Q: " +request.getQuantity());
+
             // ? how to call after update child
             cartService.updatedPriceSum(cartId);        
             
             return modelConverter.map(newEntity,
             CartDetailResponse.class) ;
         } catch (Exception ex) {
-            if (ex instanceof VariantAlreadyInCartException)
-                throw (VariantAlreadyInCartException) ex;
-            else if (ex instanceof VariantUnavailable)  {
-                throw new RuntimeException(((VariantUnavailable)ex).getMessage()); 
+            if (ex instanceof VariantAlreadyInCartException) {
+                log.info("catch VariantAlreadyInCartException in add() for variant: ", request.getProduct_variant_id());
+                CartDetail cd =  catDetailRepo.findByProductVariantId(request.getCart_id(), request.getProduct_variant_id());
+                Integer detailId = cd.getId();
+                request.setQuantity(resolveQuantity(cd.getQuantity() + request.getQuantity()));
+                CartDetailRequest updateRequest =  request.toCartDetailRequest(detailId);
+                 return update(updateRequest);
+            }else if (ex instanceof VariantUnavailable)  {
+                log.warn("delete variant " + request.getProduct_variant_id() +" from cart");
+                return CartDetailResponse.getDeletedDetailResponse();
+                // throw new RuntimeException(((VariantUnavailable)ex).getMessage()); 
+            }else if (ex instanceof EntityNotFoundException) {
+                log.warn(((EntityNotFoundException) ex).getMessage());
+                return null;
             }
                 
         }
@@ -101,15 +119,16 @@ public class CartDetailServiceImpl implements CartDetailService {
         validateCartIdAndItemId(detail);
         request.setQuantity(resolveQuantity(request.getQuantity()));
         try {
-
             validateVariantStatus(request.getProduct_variant_id());
             catDetailRepo.save(detail);
         }catch(Exception ex) {
             
             if(ex instanceof VariantUnavailable) {
                 log.info("remove item" + ((VariantUnavailable)ex).getMessage());
+                
             //    ! removed all unvailable item
-                // delete(request);
+                 delete(request);
+                return CartDetailResponse.getDeletedDetailResponse();
             }
         }finally {
             log.info("updating cart's sum_price ...");
@@ -125,10 +144,10 @@ public class CartDetailServiceImpl implements CartDetailService {
     @Override
     public void delete(CartDetailRequest request) {
         CartDetail entity = modelConverter.map(request, CartDetail.class);
-
+        // log.info("call delete on " + request.getId() + " V: " + request.getProduct_variant_id());
         validateCartIdAndItemId(entity);
-        catDetailRepo.deleteById(entity.getId());
-
+        catDetailRepo.deleteById(request.getId());
+        log.info("finish removed");
     }
 
     public void validateCartIdAndItemId(CartDetail convertedDetail) {
@@ -157,9 +176,10 @@ public class CartDetailServiceImpl implements CartDetailService {
         
         // vairant's status valid -> mapper doesn't deep map entity -> variant null
         validateVariantStatus(request.getProduct_variant_id());
-        
+        log.info("check variant available");
         request.setQuantity(resolveQuantity(request.getQuantity()));
 
+        log.info("validateCartItemRequest finished");
         return request;
 
     }
@@ -177,11 +197,14 @@ public class CartDetailServiceImpl implements CartDetailService {
     }
 
     private boolean getStatusOfVariant(Integer variantId) {
+        if(!variantRepo.existsById(variantId)) throw new EntityNotFoundException("Variant " + variantId + "not exist");
         return  variantRepo.isStatusTrue(variantId);
     }
 
     private void validateVariantStatus(Integer vairantId) {
-        if(!getStatusOfVariant(vairantId))  throw new VariantUnavailable("Product's Variant Id is "+ vairantId +" unvailable");
+        boolean status = getStatusOfVariant(vairantId);
+        // log.info("validateVariantStatus status: " + status);
+        if(!status)  throw new VariantUnavailable("Product's Variant Id is "+ vairantId +" unvailable");
     }
 
 }

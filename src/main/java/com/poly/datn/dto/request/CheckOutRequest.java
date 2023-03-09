@@ -17,9 +17,6 @@ import lombok.Setter;
 public class CheckOutRequest implements Serializable{
     
     @NotNull
-    private Integer user_id;
-
-    @NotNull
     private Integer payment_method_id;
 
     private Integer promotionUser_id;
