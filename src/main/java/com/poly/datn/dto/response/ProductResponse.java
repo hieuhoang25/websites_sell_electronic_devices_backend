@@ -29,10 +29,9 @@ public class ProductResponse implements Serializable {
     private String brand_name;
     private Integer promotion_id;
     private String promotion_name;
-
     private String image;
 
-    private Set<RatingResponse> ratings ;
+//    private Set<RatingResponse> ratings ;
     private Set<ProductVariantResponse> product_variant ;
 
 
