@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class BrandResponse implements Serializable {
     private Integer id;
 
-    private String brandName;
+    private String brand_name;
 
     private String image;
 }

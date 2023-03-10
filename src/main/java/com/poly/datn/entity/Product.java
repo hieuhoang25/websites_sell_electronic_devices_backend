@@ -1,5 +1,6 @@
 package com.poly.datn.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,6 +12,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "product")
 public class Product {
     @Id
@@ -27,8 +29,10 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "create_date")
+//    @Column(name = "create_date")
+    @Column(name= "create_date", nullable = false, updatable = false)
     @CreationTimestamp
+
     private Instant createDate;
 
 
@@ -70,124 +74,8 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<ProductVariant> productVariants = new LinkedHashSet<>();
 
-    public Integer getId() {
-        return id;
+    @PostPersist
+    private void postCreate(){
+        this.image = "product-"+this.id+".png";
     }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Instant getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Instant createDate) {
-        this.createDate = createDate;
-    }
-
-    public Instant getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Instant updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Boolean getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Boolean isDelete) {
-        this.isDelete = isDelete;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    public PromotionProduct getPromotion() {
-        return promotion;
-    }
-
-    public void setPromotion(PromotionProduct promotion) {
-        this.promotion = promotion;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public Set<Wishlist> getWishlists() {
-        return wishlists;
-    }
-
-    public void setWishlists(Set<Wishlist> wishlists) {
-        this.wishlists = wishlists;
-    }
-
-    public Set<ProductAttribute> getProductAttributes() {
-        return productAttributes;
-    }
-
-    public void setProductAttributes(Set<ProductAttribute> productAttributes) {
-        this.productAttributes = productAttributes;
-    }
-
-    public Set<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(Set<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
-    public Set<ProductVariant> getProductVariants() {
-        return productVariants;
-    }
-
-    public void setProductVariants(Set<ProductVariant> productVariants) {
-        this.productVariants = productVariants;
-    }
-
 }

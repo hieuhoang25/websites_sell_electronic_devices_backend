@@ -16,7 +16,9 @@ public interface CURDProductService {
 
     ProductResponse update(ProductRequest productRequest);
 
-    void delete(Integer id);
+    void delete(Integer id,Integer isDeleted);
+
+    ProductResponse findById(Integer id);
 
 
 }

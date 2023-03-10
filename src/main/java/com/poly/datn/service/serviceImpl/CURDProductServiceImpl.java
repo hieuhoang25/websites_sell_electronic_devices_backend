@@ -53,7 +53,12 @@ public class CURDProductServiceImpl implements CURDProductService {
     }
 
     @Override
-    public void delete(Integer id) {
-        productRepository.deleteProduct(id);
+    public void delete(Integer id,Integer isDeleted) {
+        productRepository.deleteProduct(id,isDeleted);
+    }
+
+    @Override
+    public ProductResponse findById(Integer id) {
+        return modelConverter.map(productRepository.findByProductId(id),ProductResponse.class);
     }
 }

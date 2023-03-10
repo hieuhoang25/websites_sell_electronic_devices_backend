@@ -14,8 +14,6 @@ import java.time.Instant;
 @AllArgsConstructor
 public class ProductRequest implements Serializable {
     private Integer id;
-
-
     private String product_name;
 
     private String description;
@@ -23,6 +21,7 @@ public class ProductRequest implements Serializable {
     private Boolean is_delete;
     private Integer brand_id;
     private Integer promotion_id;
+//    private Instant create_date;
 
     private String image;
 }
