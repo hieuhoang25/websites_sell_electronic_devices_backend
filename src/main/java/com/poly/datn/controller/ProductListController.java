@@ -21,13 +21,13 @@ import static com.poly.datn.controller.router.Router.API.PRODUCT;
 ;
 
 @RequiredArgsConstructor
-@RequestMapping(BASE)
+@RequestMapping(BASE + PRODUCT)
 @RestController
+@Tag(name = BASE + PRODUCT)
 public class ProductListController {
     private final ProductList productList;
 
-    @GetMapping(PRODUCT)
-    @Tag(name = "Product")
+    @GetMapping()
     public ResponseEntity<SearchResult<ProductListResponse>> productListResponse(
             @RequestParam("size") Optional<Integer> size,
             @RequestParam("page") Optional<Integer> page) {

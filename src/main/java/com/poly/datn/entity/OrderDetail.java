@@ -1,12 +1,31 @@
 package com.poly.datn.entity;
 
-import javax.persistence.*;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Entity
 @Table(name = "order_detail")
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,17 +34,19 @@ public class OrderDetail {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
+    @JsonBackReference
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_variant_id")
+    @JoinColumn(name = "product_variant_id", referencedColumnName = "id")
     private ProductVariant productVariant;
 
     @Column(name = "create_date")
+    @CreationTimestamp
     private Instant createDate;
 
     @Column(name = "price_sum")
-    private Integer priceSum;
+    private Double priceSum;
 
     @Column(name = "promotion_value")
     private Double promotionValue;
@@ -68,11 +89,11 @@ public class OrderDetail {
         this.createDate = createDate;
     }
 
-    public Integer getPriceSum() {
+    public Double getPriceSum() {
         return priceSum;
     }
 
-    public void setPriceSum(Integer priceSum) {
+    public void setPriceSum(Double priceSum) {
         this.priceSum = priceSum;
     }
 

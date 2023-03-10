@@ -21,13 +21,13 @@ import static com.poly.datn.controller.router.Router.USER_API.TRACKING;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping(Router.USER_API.BASE)
+@RequestMapping(Router.USER_API.BASE + ORDER)
 @Validated
+@Tag(name = Router.USER_API.BASE + ORDER)
 public class OrderTrackingByUserController {
     private final OrderFindByUserService service;
 
-    @GetMapping(ORDER + TRACKING + "/{userId}")
-    @Tag(name = "user/order")
+    @GetMapping(TRACKING + "/{userId}")
     public ResponseEntity<List<OrderTrackingResponse>> getUserOrdered(
             @PathVariable @Valid @NotNull(message = "User can not be null") Integer userId){
         List<OrderTrackingResponse> orderTrackingResponses = service.getUserOrdered(userId);

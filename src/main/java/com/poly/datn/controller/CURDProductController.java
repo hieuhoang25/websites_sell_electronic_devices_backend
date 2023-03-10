@@ -21,6 +21,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT;
 @RestController
 @RequestMapping(BASE+ PRODUCT)
 @RequiredArgsConstructor
+@Tag(name = BASE+ PRODUCT)
 public class CURDProductController {
 
     private final CURDProductService curdProductService;
