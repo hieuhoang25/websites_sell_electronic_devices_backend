@@ -5,7 +5,7 @@ services:
     container_name: springboot-restful-webservices
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: testenv.Dockerfile
     ports:
       - "8079:8080"
     restart: unless-stopped

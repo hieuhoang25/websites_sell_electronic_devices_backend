@@ -25,8 +25,6 @@ public class FileServiceImpl implements FileService {
 
     private String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/image-cloud-98533.appspot.com/o/%s?alt=media";
 
-
-
     private String uploadFile(File file, String fileName) throws IOException {
         BlobId blobId = BlobId.of("image-cloud-98533.appspot.com", fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();

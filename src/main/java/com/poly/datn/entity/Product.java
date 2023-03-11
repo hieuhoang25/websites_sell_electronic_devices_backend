@@ -1,5 +1,6 @@
 package com.poly.datn.entity;
 
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -10,6 +11,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "product")
 public class Product {
     @Id
@@ -26,8 +28,10 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "create_date")
+//    @Column(name = "create_date")
+    @Column(name= "create_date", nullable = false, updatable = false)
     @CreationTimestamp
+
     private Instant createDate;
 
 
@@ -68,6 +72,7 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private Set<ProductVariant> productVariants = new LinkedHashSet<>();
+
 
     public Double getPrice() {
         if (!productVariants.isEmpty())
@@ -173,34 +178,10 @@ public class Product {
 
     public Set<Wishlist> getWishlists() {
         return wishlists;
-    }
 
-    public void setWishlists(Set<Wishlist> wishlists) {
-        this.wishlists = wishlists;
-    }
+    @PostPersist
+    private void postCreate(){
+        this.image = "product-"+this.id+".png";
 
-    public Set<ProductAttribute> getProductAttributes() {
-        return productAttributes;
     }
-
-    public void setProductAttributes(Set<ProductAttribute> productAttributes) {
-        this.productAttributes = productAttributes;
-    }
-
-    public Set<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(Set<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
-    public Set<ProductVariant> getProductVariants() {
-        return productVariants;
-    }
-
-    public void setProductVariants(Set<ProductVariant> productVariants) {
-        this.productVariants = productVariants;
-    }
-
 }

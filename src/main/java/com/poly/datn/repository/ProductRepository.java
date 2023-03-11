@@ -17,8 +17,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 
     @Modifying
     @Transactional
-    @Query(value = "UPDATE product SET is_delete = 1 WHERE id = :id LIMIT 1",nativeQuery = true)
-    void deleteProduct(@Param("id") Integer id);
+    @Query(value = "UPDATE product SET is_delete = :isDeleted WHERE id = :id LIMIT 1",nativeQuery = true)
+    void deleteProduct(@Param("id") Integer id,@Param("isDeleted") Integer isDeleted);
 
     @Query(value = " select p.id, product_name,description,p.create_date,p.update_date," +
             "category_id,is_delete,brand_id,promotion_id,type,p.image,brand_name " +
@@ -29,6 +29,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 
     @Query(value = "select count(*) from product",nativeQuery = true)
     Integer countProduct();
+
+    @Query(value = "select * from product where id = :id",nativeQuery = true)
+    Product findByProductId(Integer id);
+
 
 
 
