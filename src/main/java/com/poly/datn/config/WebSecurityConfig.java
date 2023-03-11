@@ -62,7 +62,7 @@ public class WebSecurityConfig {
         http.cors();
         http.exceptionHandling().authenticationEntryPoint(new RestAuthenticationEntryPoint());
         http.authorizeRequests()
-                .antMatchers("/api/login", "/api/token/refresh", "/api/*","/auth/**", "/oauth2/**")
+                .antMatchers("/api/login", "/api/token/refresh", "/api/**","/auth/**", "/oauth2/**")
                 .permitAll()
                 .antMatchers("/api/user/**")
                 .hasAnyAuthority("USER", "ADMIN", "SUPER_ADMIN")
