@@ -41,6 +41,7 @@ public class CURDProductServiceImpl implements CURDProductService {
 
     @Override
     public ProductResponse create(ProductRequest productRequest) {
+
         Product product = modelConverter.map(productRequest, Product.class);
         return modelConverter.map(productRepository.save(product),ProductResponse.class);
     }

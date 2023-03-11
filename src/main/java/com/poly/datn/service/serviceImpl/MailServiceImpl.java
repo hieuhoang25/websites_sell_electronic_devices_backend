@@ -24,8 +24,16 @@ public class MailServiceImpl implements MailService {
         }
     }
 
-    @Override
-    public void sendEmailVerification() {
 
+    @Async
+    @Override
+    public void sendEmailVerification(String code, String email) {
+        try {
+            mailUtil.sendEmailVerification(code,email);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+
 }
