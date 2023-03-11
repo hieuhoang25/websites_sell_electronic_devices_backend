@@ -12,5 +12,6 @@ import java.util.List;
 public class SearchResult<T> {
     private int size;
     private int page;
+    private int totalPage;
     private List<T> data;
 }
