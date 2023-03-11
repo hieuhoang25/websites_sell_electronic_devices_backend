@@ -3,7 +3,6 @@ package com.poly.datn.entity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
@@ -69,6 +68,20 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private Set<ProductVariant> productVariants = new LinkedHashSet<>();
+
+    public Double getPrice() {
+        if (!productVariants.isEmpty())
+            return productVariants.stream().mapToDouble(ProductVariant::getPrice).min().getAsDouble();
+        return 0.0;
+    }
+
+    public Double getAveragePoint() {
+        int size = ratings.size();
+        Double point = 0.0;
+        if (size != 0)
+            point = ratings.stream().mapToDouble(Rating::getPoint).sum() / size;
+        return point;
+    }
 
     public Integer getId() {
         return id;
