@@ -29,7 +29,7 @@ import static com.poly.datn.controller.router.Router.API.*;
 public class ProductFilterController {
     private final ProductFindByMultiField productFindByMultiField;
 
-    @GetMapping( FILTER)
+    @PostMapping( FILTER)
     public ResponseEntity<SearchResult<ProductFilterResponse>>
     productFindByMultiField(@RequestBody @NotEmpty(message = "Khong de criteria rong") List<@Valid SearchCriteria> criteria,
                             @RequestParam("size") Optional<Integer> size,

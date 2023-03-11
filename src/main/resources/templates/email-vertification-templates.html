@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <title>Card HTML đẹp</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+		.card {
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+			max-width: 300px;
+			margin: auto;
+			text-align: center;
+			font-family: arial;
+		}
+
+		.title {
+			font-size: 18px;
+			font-weight: bold;
+			margin-top: 10px;
+			margin-bottom: 10px;
+		}
+
+		.description {
+			font-size: 14px;
+			margin-bottom: 10px;
+		}
+
+	</style>
 </head>
 <body>
-
+<div class="card">
+    <div class="title">Xin chào, Dưới đây là OTP xác minh tài khoản của bạn</div>
+    <div class="description">OTP: <b th:text="${otp}"></b> </div>
+</div>
 </body>
 </html>

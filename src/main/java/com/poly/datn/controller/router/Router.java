@@ -15,6 +15,9 @@ public class Router {
         //CATEGORY
         public static final String CATEGORY = "/category";
         public static final String LOGIN = "/login";
+        public static final String REGISTER = "/register";
+        public static final String VERIFICATION_OTP = "/verification-otp/{username}/{code}";
+        public static final String RESEND_OTP = "/resend-otp/{username}";
     }
 
     public static class USER_API{
