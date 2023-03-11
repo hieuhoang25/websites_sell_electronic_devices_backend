@@ -5,25 +5,19 @@ import java.util.Set;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import com.poly.datn.entity.*;
+import com.poly.datn.repository.*;
+import com.poly.datn.security.UserPrincipal;
+import com.poly.datn.service.MailService;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.CheckOutRequest;
-import com.poly.datn.entity.Cart;
-import com.poly.datn.entity.CartDetail;
-import com.poly.datn.entity.Order;
 import com.poly.datn.entity.Order.OrderBuilder;
-import com.poly.datn.entity.OrderDetail;
-import com.poly.datn.entity.OrderStatus;
-import com.poly.datn.entity.PaymentMethod;
-import com.poly.datn.entity.PromotionUser;
-import com.poly.datn.entity.User;
 import com.poly.datn.exception.cart.CartException;
-import com.poly.datn.repository.OrderRepository;
-import com.poly.datn.repository.OrderStatusRepository;
-import com.poly.datn.repository.PaymentMethodRepository;
-import com.poly.datn.repository.PromotionUserRepository;
 import com.poly.datn.service.CartService;
 import com.poly.datn.service.CheckOutService;
 
@@ -42,7 +36,10 @@ public class CheckOutServiceImpl implements CheckOutService {
     final OrderStatusRepository orderStatusRepo;
     final OrderRepository orderRepository;
     final ModelConverter modelConverter;
-
+    final SimpMessageSendingOperations messagingTemplate;
+    final AccountRepository accountRepository;
+    final UserRepository userRepository;
+    final MailService mailService;
     @Override
     public Integer checkout(Integer userId, CheckOutRequest request) {
         int saved = -1;
@@ -53,10 +50,13 @@ public class CheckOutServiceImpl implements CheckOutService {
             Order newOrder = buildOrder(userCart, request);
 
             Set<OrderDetail> orderDetails = mapAllByIterator(cartDetails);
-
             newOrder.setOrderDetails(orderDetails);
             log.info("saved order");
             saved = orderRepository.save(newOrder).getId();
+            UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            Account account = accountRepository.findByUsername(userPrincipal.getUsername());
+            mailService.sendEmailThankLetter(account.getUser().getFullName(), account.getUser().getEmail());
+            this.messagingTemplate.convertAndSend("/topic/server", "Khách hàng " + account.getUser().getFullName()+ " đã đặt hàng thành công!");
             if (saved > 0)
             log.info("removed items");
             cartService.deleteAllItemsInCart(userCart.getId());

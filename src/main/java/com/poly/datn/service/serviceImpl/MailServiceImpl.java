@@ -35,5 +35,14 @@ public class MailServiceImpl implements MailService {
         }
     }
 
+    @Override
+    public void sendEmailThankLetter(String fullname, String email) {
+        try {
+            mailUtil.sendEmailThankLetter(fullname,email);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
