@@ -178,7 +178,7 @@ public class Product {
 
     public Set<Wishlist> getWishlists() {
         return wishlists;
-
+    }
     @PostPersist
     private void postCreate(){
         this.image = "product-"+this.id+".png";
