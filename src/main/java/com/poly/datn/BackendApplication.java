@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.filter.ForwardedHeaderFilter;
 
 import java.io.IOException;
 
@@ -39,5 +40,10 @@ public class BackendApplication {
     @Bean
     BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    ForwardedHeaderFilter forwardedHeaderFilter(){
+        return new ForwardedHeaderFilter();
     }
 }
