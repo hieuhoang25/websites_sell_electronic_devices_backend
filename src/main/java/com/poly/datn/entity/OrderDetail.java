@@ -1,6 +1,7 @@
 package com.poly.datn.entity;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -43,7 +44,7 @@ public class OrderDetail {
 
     @Column(name = "create_date")
     @CreationTimestamp
-    private Instant createDate;
+    private LocalDateTime createDate;
 
     @Column(name = "price_sum")
     private Double priceSum;
@@ -81,11 +82,11 @@ public class OrderDetail {
         this.productVariant = productVariant;
     }
 
-    public Instant getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Instant createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 

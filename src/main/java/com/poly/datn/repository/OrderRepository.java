@@ -20,4 +20,9 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     List<Order> findByUserId(Integer userId);
     List<Order> findByUserIdAndStatusId(Integer userId, Integer statusId);
+
+    @Query(value = "select count(o) from Order o where o.status.id = 1")
+    Integer countOrderYetApprove();
+
+
 }

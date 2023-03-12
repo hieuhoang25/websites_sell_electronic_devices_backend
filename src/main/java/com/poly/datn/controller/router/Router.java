@@ -52,6 +52,8 @@ public class Router {
         public static final String ORDER_DETAIL = "/order-detail";
 
         public static final String BRAND = "/brand";
+
+        public static final String STATISTIC = "/statistic";
     }
 
     public static final String FILE_API = "/api/files";
