@@ -12,14 +12,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.apache.commons.collections4.functors.WhileClosure;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = "wishlist")
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder(setterPrefix = "with")
 public class Wishlist {
     @Id

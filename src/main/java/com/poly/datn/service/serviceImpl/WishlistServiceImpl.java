@@ -7,8 +7,10 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.databind.MappingIterator;
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.WishlistRequest;
 import com.poly.datn.dto.response.WishlistResponse;
@@ -22,56 +24,112 @@ import com.poly.datn.service.UserInfoByTokenService;
 import com.poly.datn.service.WishlistService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 @Transactional(rollbackOn = Exception.class)
-public class WishlistServiceImpl implements WishlistService{
+public class WishlistServiceImpl implements WishlistService {
 
+  final ModelConverter converter;
+  final WishlistRepository wishlistRepository;
+  final UserInfoByTokenService userService;
+  final ProductRepository productRepository;
 
-    final ModelConverter converter;
-    final WishlistRepository wishlistRepository;
-    final UserInfoByTokenService userService;
-    final ProductRepository productRepository;
+  @Override
+  public List<WishlistResponse> addProductToWishlist(List<WishlistRequest> request) {
+    log.info("calling addProductToWishlist()");
 
-    @Override
-    public List<WishlistResponse> addProductToWishlist(List<WishlistRequest> request) {
-      List<Wishlist> wishlists = convertRequestToEntity(getCurrentUser(), request);
-        return converter.mapAllByIterator( wishlistRepository.saveAll(wishlists), WishlistResponse.class);
+    List<Wishlist> wishlists = convertRequestToEntity(getCurrentUser(), request);
+
+    log.info("get list and return...");
+    try {
+      wishlistRepository.saveAllAndFlush(wishlists);
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      if (ex instanceof DataIntegrityViolationException) {
+        log.info("duplicated");
+        throw new RuntimeException("Product's already in user's wishlists");
+      }
     }
 
-    @Override
-    public List<WishlistResponse> deleteProductFromWishlist(List<WishlistRequest> productId) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteProductFromWishlist'");
+    return getWishlistOfCurrentUser();
+  }
+
+  @Override
+  public List<WishlistResponse> deleteProductFromWishlist(List<WishlistRequest> requests) {
+    List<Integer> listIds = requests.stream().map(r -> r.getProduct_id()).collect(Collectors.toList());
+    Integer deletedCount = wishlistRepository.deleteAllByProductIds(listIds, getCurrentUser());
+    log.info("finished deleted " + deletedCount + " item(s).");
+    if (deletedCount == 0)
+      throw new EntityNotFoundException("Product not found ");
+
+    return getWishlistOfCurrentUser();
+  }
+
+  @Override
+  public List<WishlistResponse> getWishlistOfCurrentUser() {
+    try {
+      return converter.mapAllByIterator(wishlistRepository.findAllByUser(getCurrentUser()), WishlistResponse.class);
+      // return
+      // mappingIterator(List.copyOf(wishlistRepository.findAllByUser(getCurrentUser())));
+    } catch (Exception ex) {
+      ex.printStackTrace();
+      return null;
     }
+  }
 
-    @Override
-    public List<WishlistResponse> getWishlistOfCurrentUser() {
-       return converter.mapAllByIterator(wishlistRepository.findAllByUser(getCurrentUser()), WishlistResponse.class);
-    }
+  public User getCurrentUser() {
+    User user = userService.getCurrentUser();
+    if (user == null)
+      throw new RuntimeException("User not found");
+    return user;
+  }
 
-    public User getCurrentUser() {
-       User user =  userService.getCurrentUser();
-       if(user == null) throw new RuntimeException("User not found");
-       return user;
-    }
+  public List<Wishlist> convertRequestToEntity(User user, List<WishlistRequest> request) {
+    log.info(" start to convert in convertRequestToEntity()");
+    WishlistBuilder builder = Wishlist.builder();
+    log.info("builder = " + builder);
+    List<Wishlist> list = request.stream().map(w -> {
+      try {
 
-    public List<Wishlist> convertRequestToEntity(User user, List<WishlistRequest> request) {
-        WishlistBuilder builder = Wishlist.builder();
-        List<Wishlist> list = request.stream().map(w -> {
-          return  builder.withId(0)
-            .withUser(user)
-            .withProduct(getProductById(w.getProduct_id())).build();
-        }).collect(Collectors.toCollection(ArrayList::new));
+        Wishlist wl = builder.withId(0).withUser(user).withProduct(getProductById(w.getProduct_id())).build();
+        return wl;
+      } catch (Exception e) {
+        log.info("convert failed...");
+        e.printStackTrace();
+        throw new RuntimeException(((EntityNotFoundException) e).getMessage());
+      }
+    }).collect(Collectors.toCollection(ArrayList::new));
+    log.info("finished mapping request to entity");
+    return list;
+  }
 
-        return list;
-    }
+  public Product getProductById(Integer productId) {
+    return productRepository.findById(productId)
+        .orElseThrow(() -> new EntityNotFoundException("Product id " + productId + " not found "));
 
-    public Product getProductById(Integer productId) {
-      return productRepository.findById(productId).orElseThrow(() -> new EntityNotFoundException("Product id " + productId + " not found "));
+  }
 
+  // public WishlistResponse mapping(Wishlist source) {
+  // WishlistResponse wl =
+  // converter.getTypeMap(Wishlist.class,WishlistResponse.class)
+  // .addMappings((mapper) -> {
+  // mapper.<String>map((s) -> s.getProduct().getProductName(), (d, v) ->
+  // d.setProduct_name(v));
+  // mapper.<String>map((s) -> s.getProduct().getImage(), (d, v) ->
+  // d.setProduct_image(v));
+  // mapper.<String>map((s) -> s.getProduct().getCategory().getCategoryName(), (d,
+  // v) -> d.setProduct_category_name(v));
+  // mapper.<Integer>map((s) -> s.getProduct().getId(), (d, v) ->
+  // d.setProduct_id(v));
+  // }).map(source);
+  // return wl;
+  // }
 
-    }
-    
+  // public List<WishlistResponse> mappingIterator(List<Wishlist> list) {
+  // return list.stream().map((w) -> mapping(w)).collect(Collectors.toList());
+  // }
+
 }
