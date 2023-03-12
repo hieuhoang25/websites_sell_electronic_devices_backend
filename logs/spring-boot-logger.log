@@ -789,3 +789,40 @@ Caused by: org.hibernate.hql.internal.ast.QuerySyntaxException: unexpected token
 2023-03-12 16:12:10,374 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-03-12 16:12:10,376 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
 2023-03-12 16:12:10,447 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-12 16:32:56,194 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-12 16:32:56,209 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.1 on Hoangs-MacBook-Pro.local with PID 17427 (/Users/hicode/Documents/GitHub/sell_electronic_devices_backend/target/classes started by hicode in /Users/hicode/Documents/GitHub/sell_electronic_devices_backend)
+2023-03-12 16:32:56,210 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-12 16:32:57,029 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-12 16:32:57,079 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 46 ms. Found 24 JPA repository interfaces.
+2023-03-12 16:32:57,360 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-12 16:32:57,364 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-12 16:32:57,365 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-12 16:32:57,365 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-12 16:32:57,416 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-12 16:32:57,416 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1093 ms
+2023-03-12 16:32:57,488 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-12 16:32:57,510 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-12 16:32:57,567 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-12 16:32:57,600 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-12 16:32:57,827 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-12 16:32:57,834 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-12 16:32:58,195 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-12 16:32:58,198 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-12 16:32:58,919 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-12 16:32:59,346 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2b1f0667, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6000ca67, org.springframework.security.web.context.SecurityContextPersistenceFilter@c105912, org.springframework.security.web.header.HeaderWriterFilter@4fe87cb9, org.springframework.web.filter.CorsFilter@27e25c2f, org.springframework.security.web.authentication.logout.LogoutFilter@36e8fefe, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@423e35f0, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@14bbfdee, com.poly.datn.config.CustomAuthorizationFilter@56a7f57f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4c954b79, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@58338338, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5d8edf2, org.springframework.security.web.session.SessionManagementFilter@4843b35f, org.springframework.security.web.access.ExceptionTranslationFilter@59eff566, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@33903444]
+2023-03-12 16:32:59,349 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-12 16:32:59,349 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-12 16:32:59,349 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-12 16:32:59,349 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-12 16:32:59,540 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-12 16:32:59,557 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-12 16:32:59,558 INFO org.springframework.core.log.CompositeLog [main] Starting...
+2023-03-12 16:32:59,558 INFO org.springframework.core.log.CompositeLog [main] BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@47ffce5d]]
+2023-03-12 16:32:59,559 INFO org.springframework.core.log.CompositeLog [main] Started.
+2023-03-12 16:32:59,565 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.777 seconds (JVM running for 4.318)
+2023-03-12 16:33:54,942 INFO org.springframework.core.log.CompositeLog [SpringApplicationShutdownHook] Stopping...
+2023-03-12 16:33:54,944 INFO org.springframework.core.log.CompositeLog [SpringApplicationShutdownHook] BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@47ffce5d]]
+2023-03-12 16:33:54,944 INFO org.springframework.core.log.CompositeLog [SpringApplicationShutdownHook] Stopped.
+2023-03-12 16:33:54,969 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-12 16:33:54,972 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-12 16:33:55,075 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
