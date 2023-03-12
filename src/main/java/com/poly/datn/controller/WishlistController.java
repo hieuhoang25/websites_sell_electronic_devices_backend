@@ -41,7 +41,7 @@ public class WishlistController {
         @ApiResponse(responseCode = "401",description = "Unauthorized user"),
     })
     public ResponseEntity<?> getCurrentUserWishlist() {
-        if(!isUserLoggedIn()) return getUnAuthorizedResponse();
+        // if(!isUserLoggedIn()) return getUnAuthorizedResponse();
 
         return ResponseEntity.ok().body(wishlistService.getWishlistOfCurrentUser());
     }
@@ -55,7 +55,7 @@ public class WishlistController {
                      description = "Add product to wishlist FAILED, product's already in wishlists")
     })
     public ResponseEntity<?> addProductToWishlist(@RequestBody List<WishlistRequest> request) {
-        if(!isUserLoggedIn()) return getUnAuthorizedResponse();
+        // if(!isUserLoggedIn()) return getUnAuthorizedResponse();
        
         return  ResponseEntity.ok().body(wishlistService.addProductToWishlist(request));
     }
@@ -69,7 +69,7 @@ public class WishlistController {
     })
     @DeleteMapping
     public ResponseEntity<?> deleteProductFromWishlist(@RequestBody List<WishlistRequest> requests) {
-        if(!isUserLoggedIn()) return getUnAuthorizedResponse();
+        // if(!isUserLoggedIn()) return getUnAuthorizedResponse();
 
         return ResponseEntity.ok().body(wishlistService.deleteProductFromWishlist(requests));
     }
