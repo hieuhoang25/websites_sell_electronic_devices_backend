@@ -14,10 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SearchCriteria {
-    @NotBlank
-    @NotNull
     private String key;
     private Object value;
-    @NotNull
     private SearchOperation operation;
 }

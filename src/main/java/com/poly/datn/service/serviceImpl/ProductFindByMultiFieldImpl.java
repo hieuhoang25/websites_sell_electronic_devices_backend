@@ -8,6 +8,7 @@ import com.poly.datn.repository.ProductRepository;
 import com.poly.datn.repository.specification.ProductSpecification;
 import com.poly.datn.service.ProductFindByMultiField;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,10 +28,11 @@ public class ProductFindByMultiFieldImpl implements ProductFindByMultiField {
     public SearchResult<ProductFilterResponse> findByMultiField(List<SearchCriteria> criteria, Pageable pageable) {
         ProductSpecification specification = new ProductSpecification();
         specification.setList(criteria);
+        Page<ProductFilterResponse> filterResponses = productRepository.findAll(specification, pageable);
         return new SearchResult<ProductFilterResponse>(
-                pageable.getPageSize(),
-                pageable.getPageNumber(),
-                modelConverter.mapAllByIterator(productRepository.findAll(specification, pageable).getContent(),
-                        ProductFilterResponse.class));
+                filterResponses.getSize(),
+                filterResponses.getNumber(),
+                filterResponses.getTotalPages(),
+                modelConverter.mapAllByIterator(filterResponses.getContent(), ProductFilterResponse.class));
     }
 }

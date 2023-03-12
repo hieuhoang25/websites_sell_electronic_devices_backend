@@ -1,15 +1,13 @@
 package com.poly.datn.repository.specification;
 
 import com.poly.datn.common.SearchCriteria;
+import com.poly.datn.entity.Category;
 import com.poly.datn.entity.Product;
 
 import lombok.Data;
 import org.springframework.data.jpa.domain.Specification;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +18,23 @@ public class ProductSpecification implements Specification<Product> {
 
     public void add(SearchCriteria criteria) {
         list.add(criteria);
+    }
+
+    private Predicate categoryAndSubCategory(Root<Product> root,
+                                             CriteriaQuery<?> query,
+                                             CriteriaBuilder criteriaBuilder,
+                                             Integer id) {
+        Subquery<Integer> subquery1 = query.subquery(Integer.class);
+        Root<Category> subRoot1 = subquery1.from(Category.class);
+        subquery1.select(subRoot1.get("id"))
+                .where(criteriaBuilder.or(
+                        criteriaBuilder.equal(subRoot1.get("id"),id),
+                        criteriaBuilder.equal(subRoot1.get("parent").get("id"),id),
+                        criteriaBuilder.equal(subRoot1.get("parent").get("parent").get("id"),id)
+                ));
+        return criteriaBuilder.and(root.get("category").get("id").in(subquery1));
+
+
     }
 
     @Override
@@ -57,6 +72,10 @@ public class ProductSpecification implements Specification<Product> {
                             criteriaBuilder.like(root.get(criteria.getKey()), criteria.getValue().toString() + "%"));
                     break;
                 case EQUAL:
+                    if(criteria.getKey().equals("category")){
+                        predicates.add(categoryAndSubCategory(root,query,criteriaBuilder,Integer.parseInt(criteria.getValue().toString())));
+                        break;
+                    }
                     predicates.add(criteriaBuilder.equal(root.get(criteria.getKey()), criteria.getValue()));
                     break;
                 case NOT_EQUAL:
