@@ -26,7 +26,8 @@ import java.io.IOException;
         @SecurityRequirement(name = "bearerAuth")},
         servers = {
                 @Server(url = "http://localhost:8080", description = "Default Server URL"),
-                @Server(url = "https://vongtayyeuthuong.shop")
+                @Server(url = "https://vongtayyeuthuong.shop"),
+                @Server(url = "http://vongtayyeuthuong.shop")
         })
 @SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 @EnableScheduling
