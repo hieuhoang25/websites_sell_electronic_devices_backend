@@ -3,7 +3,7 @@ package com.poly.datn.controller.router;
 public class Router {
     public static class API {
         // BASE API
-        public static final String BASE = "/api";
+        public static final String BASE = "/api/un";
 
         // API FOR PRODUCT
         public static final String PRODUCT = "/product";
