@@ -61,7 +61,7 @@ public class Router {
 
     public static class CART_API {
         public static final String CART_DETAIL_TAG_NAME = "Cart Detail Controller";
-        public static final String BASE = "/api/cart";
+        public static final String CART = "/cart";
 
         public static final String USER_CART = "/{userId}";
 
