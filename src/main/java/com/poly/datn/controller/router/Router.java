@@ -26,6 +26,7 @@ public class Router {
         public static final String ORDER = "/order";
         public static final String TRACKING = "-tracking";
         public static final String INFO = "/info";
+        public static final String WISHLIST = "/wishlists";
     }
 
     public static class ADMIN_API {

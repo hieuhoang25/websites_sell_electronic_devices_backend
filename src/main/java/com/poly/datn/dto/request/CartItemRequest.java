@@ -4,9 +4,10 @@ import java.io.Serializable;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.google.firebase.database.annotations.NotNull;
+
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
