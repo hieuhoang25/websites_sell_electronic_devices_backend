@@ -1,9 +1,10 @@
 package com.poly.datn.service;
 
 import com.poly.datn.dto.request.LoginRequest;
+import org.springframework.http.ResponseEntity;
 
 import java.util.Map;
 
 public interface LoginService {
-    Map<String,String> login(LoginRequest request);
+    ResponseEntity<?> login(LoginRequest request);
 }
