@@ -32,7 +32,6 @@ public class Product {
 //    @Column(name = "create_date")
     @Column(name= "create_date", nullable = false, updatable = false)
     @CreationTimestamp
-
     private Instant createDate;
 
 

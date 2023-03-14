@@ -1,51 +1,842 @@
-2023-03-11 10:42:10,945 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
-2023-03-11 10:42:10,961 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 17.0.6 on Vongs-Air.lan with PID 33366 (/Users/vonghuynh/Desktop/MY DATA/sell_electronic_devices_backend/target/classes started by vonghuynh in /Users/vonghuynh/Desktop/MY DATA/sell_electronic_devices_backend)
-2023-03-11 10:42:10,962 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
-2023-03-11 10:42:11,822 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-03-11 10:42:11,918 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 88 ms. Found 24 JPA repository interfaces.
-2023-03-11 10:42:12,362 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
-2023-03-11 10:42:12,369 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
-2023-03-11 10:42:12,369 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
-2023-03-11 10:42:12,369 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
-2023-03-11 10:42:12,465 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
-2023-03-11 10:42:12,465 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1229 ms
-2023-03-11 10:42:12,581 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-03-11 10:42:12,616 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
-2023-03-11 10:42:12,712 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-03-11 10:42:12,767 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
-2023-03-11 10:42:13,120 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
-2023-03-11 10:42:13,134 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
-2023-03-11 10:42:13,736 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-03-11 10:42:13,741 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-03-11 10:42:14,914 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-03-11 10:42:15,988 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@27bfa57f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@39b50027, org.springframework.security.web.context.SecurityContextPersistenceFilter@68d1f4e2, org.springframework.security.web.header.HeaderWriterFilter@34ad750f, org.springframework.web.filter.CorsFilter@24c4370a, org.springframework.security.web.authentication.logout.LogoutFilter@4c541b00, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@54c15e, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@5d38758a, com.poly.datn.config.CustomAuthorizationFilter@1b6daf20, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a63de07, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7d364bce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@41a3656f, org.springframework.security.web.session.SessionManagementFilter@c34fd2, org.springframework.security.web.access.ExceptionTranslationFilter@6d58ed12, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@105e9fef]
-2023-03-11 10:42:15,990 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2023-03-11 10:42:15,991 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
-2023-03-11 10:42:15,991 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
-2023-03-11 10:42:15,991 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
-2023-03-11 10:42:16,329 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
-2023-03-11 10:42:16,335 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
-2023-03-11 10:42:16,347 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-03-11 10:42:16,349 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
-2023-03-11 10:42:16,438 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown completed.
-2023-03-11 10:42:16,439 INFO org.apache.juli.logging.DirectJDKLog [main] Pausing ProtocolHandler ["http-nio-8080"]
-2023-03-11 10:42:16,440 INFO org.apache.juli.logging.DirectJDKLog [main] Stopping service [Tomcat]
-2023-03-11 10:42:16,442 INFO org.apache.juli.logging.DirectJDKLog [main] Stopping ProtocolHandler ["http-nio-8080"]
-2023-03-11 10:42:16,442 INFO org.apache.juli.logging.DirectJDKLog [main] Destroying ProtocolHandler ["http-nio-8080"]
-2023-03-11 10:42:16,449 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] 
+2023-03-14 12:43:46,989 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 12:43:46,995 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 2744 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 12:43:46,995 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 12:43:47,596 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 12:43:47,674 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 72 ms. Found 24 JPA repository interfaces.
+2023-03-14 12:43:48,033 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 12:43:48,038 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 12:43:48,039 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 12:43:48,039 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 12:43:48,099 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 12:43:48,100 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 978 ms
+2023-03-14 12:43:48,186 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 12:43:48,209 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 12:43:48,281 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 12:43:48,329 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 12:43:48,561 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 12:43:48,569 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 12:43:48,996 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 12:43:49,000 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 12:43:49,694 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 12:43:50,200 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@305230ea, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2493f9a8, org.springframework.security.web.context.SecurityContextPersistenceFilter@6eac71db, org.springframework.security.web.header.HeaderWriterFilter@6f13ed1, org.springframework.web.filter.CorsFilter@b7e53b1, org.springframework.security.web.authentication.logout.LogoutFilter@3129792a, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@550ce3a9, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@28878a52, com.poly.datn.config.CustomAuthorizationFilter@5545c42, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@25af2afe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@21a1554, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2420e962, org.springframework.security.web.session.SessionManagementFilter@23e0b938, org.springframework.security.web.access.ExceptionTranslationFilter@4945cd1f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2408ca4c]
+2023-03-14 12:43:50,202 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 12:43:50,202 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 12:43:50,202 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 12:43:50,202 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 12:43:50,428 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 12:43:50,442 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 12:43:50,450 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.775 seconds (JVM running for 4.115)
+2023-03-14 12:44:22,712 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 12:44:22,713 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 12:44:22,714 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-03-14 14:23:38,378 ERROR com.poly.datn.security.RestAuthenticationEntryPoint [http-nio-8080-exec-7] Responding with unauthorized error. Message - Full authentication is required to access this resource
+2023-03-14 14:23:43,838 ERROR com.poly.datn.security.RestAuthenticationEntryPoint [http-nio-8080-exec-5] Responding with unauthorized error. Message - Full authentication is required to access this resource
+2023-03-14 14:23:47,189 ERROR com.poly.datn.security.RestAuthenticationEntryPoint [http-nio-8080-exec-1] Responding with unauthorized error. Message - Full authentication is required to access this resource
+2023-03-14 14:23:49,104 ERROR com.poly.datn.security.RestAuthenticationEntryPoint [http-nio-8080-exec-9] Responding with unauthorized error. Message - Full authentication is required to access this resource
+2023-03-14 14:49:48,144 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 14:49:48,145 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 14:49:48,219 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 14:49:50,483 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 14:49:50,486 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5518 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 14:49:50,487 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 14:49:50,776 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.poly.datn.BackendApplication]; nested exception is java.io.FileNotFoundException: class path resource [com/poly/datn/controller/ProductAttributeController.class] cannot be opened because it does not exist
+2023-03-14 14:49:50,792 ERROR org.springframework.boot.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.poly.datn.BackendApplication]; nested exception is java.io.FileNotFoundException: class path resource [com/poly/datn/controller/ProductAttributeController.class] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:188)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.poly.datn.BackendApplication.main(BackendApplication.java:28)
+Caused by: java.io.FileNotFoundException: class path resource [com/poly/datn/controller/ProductAttributeController.class] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:199)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.getClassReader(SimpleMetadataReader.java:55)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.<init>(SimpleMetadataReader.java:48)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:103)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.createMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:86)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.getMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:73)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:81)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:197)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:303)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:249)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:206)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:174)
+	... 13 common frames omitted
+2023-03-14 14:50:30,687 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 14:50:30,692 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5526 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 14:50:30,692 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 14:50:30,948 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.poly.datn.BackendApplication]; nested exception is java.io.FileNotFoundException: class path resource [com/poly/datn/controller/ProductAttributeController.class] cannot be opened because it does not exist
+2023-03-14 14:50:30,962 ERROR org.springframework.boot.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.poly.datn.BackendApplication]; nested exception is java.io.FileNotFoundException: class path resource [com/poly/datn/controller/ProductAttributeController.class] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:188)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.poly.datn.BackendApplication.main(BackendApplication.java:28)
+Caused by: java.io.FileNotFoundException: class path resource [com/poly/datn/controller/ProductAttributeController.class] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:199)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.getClassReader(SimpleMetadataReader.java:55)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.<init>(SimpleMetadataReader.java:48)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:103)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.createMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:86)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.getMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:73)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:81)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:197)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:303)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:249)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:206)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:174)
+	... 13 common frames omitted
+2023-03-14 14:51:20,594 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 14:51:20,598 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5548 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 14:51:20,598 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 14:51:20,847 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.poly.datn.BackendApplication]; nested exception is java.io.FileNotFoundException: class path resource [com/poly/datn/controller/ProductAttributeController.class] cannot be opened because it does not exist
+2023-03-14 14:51:20,863 ERROR org.springframework.boot.SpringApplication [main] Application run failed
+org.springframework.beans.factory.BeanDefinitionStoreException: Failed to parse configuration class [com.poly.datn.BackendApplication]; nested exception is java.io.FileNotFoundException: class path resource [com/poly/datn/controller/ProductAttributeController.class] cannot be opened because it does not exist
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:188)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.processConfigBeanDefinitions(ConfigurationClassPostProcessor.java:331)
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanDefinitionRegistry(ConfigurationClassPostProcessor.java:247)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanDefinitionRegistryPostProcessors(PostProcessorRegistrationDelegate.java:311)
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:112)
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:746)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:564)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.poly.datn.BackendApplication.main(BackendApplication.java:28)
+Caused by: java.io.FileNotFoundException: class path resource [com/poly/datn/controller/ProductAttributeController.class] cannot be opened because it does not exist
+	at org.springframework.core.io.ClassPathResource.getInputStream(ClassPathResource.java:199)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.getClassReader(SimpleMetadataReader.java:55)
+	at org.springframework.core.type.classreading.SimpleMetadataReader.<init>(SimpleMetadataReader.java:48)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:103)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.createMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:86)
+	at org.springframework.boot.type.classreading.ConcurrentReferenceCachingMetadataReaderFactory.getMetadataReader(ConcurrentReferenceCachingMetadataReaderFactory.java:73)
+	at org.springframework.core.type.classreading.SimpleMetadataReaderFactory.getMetadataReader(SimpleMetadataReaderFactory.java:81)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:197)
+	at org.springframework.context.annotation.ConfigurationClassParser.doProcessConfigurationClass(ConfigurationClassParser.java:303)
+	at org.springframework.context.annotation.ConfigurationClassParser.processConfigurationClass(ConfigurationClassParser.java:249)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:206)
+	at org.springframework.context.annotation.ConfigurationClassParser.parse(ConfigurationClassParser.java:174)
+	... 13 common frames omitted
+2023-03-14 14:52:36,511 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 14:52:36,517 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5570 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 14:52:36,517 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 14:52:37,048 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 14:52:37,116 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 62 ms. Found 24 JPA repository interfaces.
+2023-03-14 14:52:37,449 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 14:52:37,458 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 14:52:37,459 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 14:52:37,459 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 14:52:37,522 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 14:52:37,522 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 889 ms
+2023-03-14 14:52:37,608 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 14:52:37,629 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 14:52:37,703 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 14:52:37,745 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 14:52:37,957 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 14:52:37,965 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 14:52:38,399 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 14:52:38,403 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 14:52:39,112 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 14:52:39,524 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1b7c1c6f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f9b37b5, org.springframework.security.web.context.SecurityContextPersistenceFilter@483f19c0, org.springframework.security.web.header.HeaderWriterFilter@27f6854b, org.springframework.web.filter.CorsFilter@2f5a23c1, org.springframework.security.web.authentication.logout.LogoutFilter@119f02d2, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@2afd8972, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@33fefbbe, com.poly.datn.config.CustomAuthorizationFilter@17abef0f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@35d44cd3, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@64dc0a5f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ccf06f1, org.springframework.security.web.session.SessionManagementFilter@65145fb7, org.springframework.security.web.access.ExceptionTranslationFilter@7b0d88e0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3e94a6f6]
+2023-03-14 14:52:39,532 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 14:52:39,532 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 14:52:39,532 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 14:52:39,532 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 14:52:39,766 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 14:52:39,782 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 14:52:39,790 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.699 seconds (JVM running for 3.966)
+2023-03-14 14:52:45,601 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 14:52:45,602 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 14:52:45,603 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-03-14 15:04:08,965 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:04:08,966 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:04:09,037 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:04:11,108 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:04:11,112 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5698 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:04:11,113 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:04:11,652 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:04:11,727 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 72 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:04:12,050 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:04:12,058 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:04:12,059 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:04:12,059 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:04:12,124 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:04:12,124 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 900 ms
+2023-03-14 15:04:12,204 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:04:12,224 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:04:12,289 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:04:12,329 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:04:12,534 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:04:12,540 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:04:12,961 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:04:12,966 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:04:13,625 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:04:14,063 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1b7c1c6f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5f9b37b5, org.springframework.security.web.context.SecurityContextPersistenceFilter@64dc0a5f, org.springframework.security.web.header.HeaderWriterFilter@651bec9a, org.springframework.web.filter.CorsFilter@2f5a23c1, org.springframework.security.web.authentication.logout.LogoutFilter@468dbd07, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@2afd8972, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@33fefbbe, com.poly.datn.config.CustomAuthorizationFilter@17abef0f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@537fb7bf, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@445adbd7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ccf06f1, org.springframework.security.web.session.SessionManagementFilter@483f19c0, org.springframework.security.web.access.ExceptionTranslationFilter@72499396, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3e94a6f6]
+2023-03-14 15:04:14,066 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:04:14,067 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:04:14,067 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:04:14,067 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:04:14,290 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:04:14,305 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:04:14,313 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.394 seconds (JVM running for 3.668)
+2023-03-14 15:04:17,627 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:04:17,627 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:04:17,628 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-03-14 15:04:17,644 ERROR com.poly.datn.security.RestAuthenticationEntryPoint [http-nio-8080-exec-1] Responding with unauthorized error. Message - Full authentication is required to access this resource
+2023-03-14 15:04:23,129 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-3] Error logging in: The Token has expired on 2023-03-11T07:24:27Z.
+2023-03-14 15:07:26,228 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:07:26,229 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:07:26,303 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:07:28,433 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:07:28,438 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5740 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:07:28,438 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:07:28,965 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:07:29,044 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 75 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:07:29,356 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:07:29,368 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:07:29,369 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:07:29,369 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:07:29,430 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:07:29,430 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 882 ms
+2023-03-14 15:07:29,516 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:07:29,535 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:07:29,602 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:07:29,653 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:07:29,858 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:07:29,865 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:07:30,293 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:07:30,297 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:07:31,026 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:07:31,063 WARN org.springframework.context.support.AbstractApplicationContext [main] Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'filterChain' defined in class path resource [com/poly/datn/config/WebSecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'CURDStorage' method 
+com.poly.datn.controller.CURDStorage#findAll()
+to {GET [/api/admin/color]}: There is already 'CURDColor' bean method
+com.poly.datn.controller.CURDColor#findAll() mapped.
+2023-03-14 15:07:31,068 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:07:31,069 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:07:31,126 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Shutdown completed.
+2023-03-14 15:07:31,127 INFO org.apache.juli.logging.DirectJDKLog [main] Stopping service [Tomcat]
+2023-03-14 15:07:31,134 INFO org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener [main] 
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2023-03-11 10:42:16,460 ERROR org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter [main] 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8080 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
-
+2023-03-14 15:07:31,141 ERROR org.springframework.boot.SpringApplication [main] Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Unsatisfied dependency expressed through method 'setFilterChains' parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'filterChain' defined in class path resource [com/poly/datn/config/WebSecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'CURDStorage' method 
+com.poly.datn.controller.CURDStorage#findAll()
+to {GET [/api/admin/color]}: There is already 'CURDColor' bean method
+com.poly.datn.controller.CURDColor#findAll() mapped.
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:768)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.inject(AutowiredAnnotationBeanPostProcessor.java:720)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:399)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:731)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:408)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:307)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292)
+	at com.poly.datn.BackendApplication.main(BackendApplication.java:28)
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'filterChain' defined in class path resource [com/poly/datn/config/WebSecurityConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'CURDStorage' method 
+com.poly.datn.controller.CURDStorage#findAll()
+to {GET [/api/admin/color]}: There is already 'CURDColor' bean method
+com.poly.datn.controller.CURDColor#findAll() mapped.
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:638)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.addCandidateEntry(DefaultListableBeanFactory.java:1609)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:1573)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveMultipleBeans(DefaultListableBeanFactory.java:1462)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1349)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredMethodElement.resolveMethodArguments(AutowiredAnnotationBeanPostProcessor.java:760)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.springframework.security.web.SecurityFilterChain]: Factory method 'filterChain' threw exception; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'CURDStorage' method 
+com.poly.datn.controller.CURDStorage#findAll()
+to {GET [/api/admin/color]}: There is already 'CURDColor' bean method
+com.poly.datn.controller.CURDColor#findAll() mapped.
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 36 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'mvcHandlerMappingIntrospector' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'CURDStorage' method 
+com.poly.datn.controller.CURDStorage#findAll()
+to {GET [/api/admin/color]}: There is already 'CURDColor' bean method
+com.poly.datn.controller.CURDColor#findAll() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:213)
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1160)
+	at org.springframework.security.config.annotation.web.configurers.CorsConfigurer$MvcCorsFilter.getMvcCorsFilter(CorsConfigurer.java:111)
+	at org.springframework.security.config.annotation.web.configurers.CorsConfigurer$MvcCorsFilter.access$000(CorsConfigurer.java:94)
+	at org.springframework.security.config.annotation.web.configurers.CorsConfigurer.getCorsFilter(CorsConfigurer.java:89)
+	at org.springframework.security.config.annotation.web.configurers.CorsConfigurer.configure(CorsConfigurer.java:67)
+	at org.springframework.security.config.annotation.web.configurers.CorsConfigurer.configure(CorsConfigurer.java:41)
+	at org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder.configure(AbstractConfiguredSecurityBuilder.java:349)
+	at org.springframework.security.config.annotation.AbstractConfiguredSecurityBuilder.doBuild(AbstractConfiguredSecurityBuilder.java:303)
+	at org.springframework.security.config.annotation.AbstractSecurityBuilder.build(AbstractSecurityBuilder.java:38)
+	at com.poly.datn.config.WebSecurityConfig.filterChain(WebSecurityConfig.java:92)
+	at com.poly.datn.config.WebSecurityConfig$$EnhancerBySpringCGLIB$$fd5ea9d8.CGLIB$filterChain$1(<generated>)
+	at com.poly.datn.config.WebSecurityConfig$$EnhancerBySpringCGLIB$$fd5ea9d8$$FastClassBySpringCGLIB$$6840fe87.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at com.poly.datn.config.WebSecurityConfig$$EnhancerBySpringCGLIB$$fd5ea9d8.filterChain(<generated>)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:578)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 37 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'CURDStorage' method 
+com.poly.datn.controller.CURDStorage#findAll()
+to {GET [/api/admin/color]}: There is already 'CURDColor' bean method
+com.poly.datn.controller.CURDColor#findAll() mapped.
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBeansOfType(DefaultListableBeanFactory.java:673)
+	at org.springframework.context.support.AbstractApplicationContext.getBeansOfType(AbstractApplicationContext.java:1308)
+	at org.springframework.beans.factory.BeanFactoryUtils.beansOfTypeIncludingAncestors(BeanFactoryUtils.java:378)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.initHandlerMappings(HandlerMappingIntrospector.java:226)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.afterPropertiesSet(HandlerMappingIntrospector.java:115)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 61 common frames omitted
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'CURDStorage' method 
+com.poly.datn.controller.CURDStorage#findAll()
+to {GET [/api/admin/color]}: There is already 'CURDColor' bean method
+com.poly.datn.controller.CURDColor#findAll() mapped.
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:669)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:635)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:332)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:420)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.registerHandlerMethod(RequestMappingHandlerMapping.java:76)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.lambda$detectHandlerMethods$2(AbstractHandlerMethodMapping.java:299)
+	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:729)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.detectHandlerMethods(AbstractHandlerMethodMapping.java:297)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.processCandidateBean(AbstractHandlerMethodMapping.java:266)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.initHandlerMethods(AbstractHandlerMethodMapping.java:225)
+	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.afterPropertiesSet(AbstractHandlerMethodMapping.java:213)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping.afterPropertiesSet(RequestMappingHandlerMapping.java:205)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 74 common frames omitted
+2023-03-14 15:07:59,300 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:07:59,304 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5746 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:07:59,304 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:07:59,839 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:07:59,915 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 73 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:08:00,242 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:08:00,251 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:08:00,251 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:08:00,251 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:08:00,312 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:08:00,312 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 891 ms
+2023-03-14 15:08:00,400 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:08:00,422 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:08:00,497 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:08:00,543 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:08:00,760 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:08:00,766 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:08:01,184 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:08:01,188 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:08:01,859 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:08:02,279 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@17abef0f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6ccf06f1, org.springframework.security.web.context.SecurityContextPersistenceFilter@76d4e1af, org.springframework.security.web.header.HeaderWriterFilter@724e483f, org.springframework.web.filter.CorsFilter@6aefb242, org.springframework.security.web.authentication.logout.LogoutFilter@8c54f48, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@5d0ca8a5, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@1b7c1c6f, com.poly.datn.config.CustomAuthorizationFilter@1455d0f5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@f111e97, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@35d44cd3, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5c4e86e7, org.springframework.security.web.session.SessionManagementFilter@72499396, org.springframework.security.web.access.ExceptionTranslationFilter@14e8304b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@eb1d7c8]
+2023-03-14 15:08:02,283 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:08:02,284 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:08:02,284 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:08:02,284 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:08:02,504 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:08:02,519 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:08:02,526 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.412 seconds (JVM running for 3.682)
+2023-03-14 15:08:03,766 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:08:03,766 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:08:03,767 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2023-03-14 15:09:03,732 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:09:03,734 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:09:03,803 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:09:05,760 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:09:05,764 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5759 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:09:05,764 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:09:06,319 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:09:06,397 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 73 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:09:06,726 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:09:06,735 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:09:06,735 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:09:06,736 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:09:06,798 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:09:06,798 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 910 ms
+2023-03-14 15:09:06,890 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:09:06,909 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:09:06,975 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:09:07,015 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:09:07,211 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:09:07,218 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:09:07,634 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:09:07,638 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:09:08,312 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:09:08,804 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@66df2165, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@41cec7b0, org.springframework.security.web.context.SecurityContextPersistenceFilter@73864c16, org.springframework.security.web.header.HeaderWriterFilter@21a1554, org.springframework.web.filter.CorsFilter@62065d12, org.springframework.security.web.authentication.logout.LogoutFilter@2ee949d4, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@b7e53b1, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@5545c42, com.poly.datn.config.CustomAuthorizationFilter@5523f107, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@e10809f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@470c2a7a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ae836cf, org.springframework.security.web.session.SessionManagementFilter@5ea50a98, org.springframework.security.web.access.ExceptionTranslationFilter@48a32c4f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1633962a]
+2023-03-14 15:09:08,807 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:09:08,807 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:09:08,807 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:09:08,807 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:09:09,045 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:09:09,060 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:09:09,068 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.486 seconds (JVM running for 3.75)
+2023-03-14 15:09:21,380 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:09:21,380 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:09:21,381 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2023-03-14 15:10:37,960 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:10:37,962 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:10:38,028 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:10:40,156 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:10:40,159 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5775 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:10:40,160 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:10:40,749 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:10:40,833 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 80 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:10:41,184 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:10:41,192 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:10:41,192 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:10:41,192 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:10:41,256 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:10:41,257 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 973 ms
+2023-03-14 15:10:41,344 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:10:41,362 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:10:41,425 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:10:41,463 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:10:41,660 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:10:41,666 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:10:42,090 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:10:42,093 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:10:42,775 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:10:43,254 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@41cec7b0, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@62065d12, org.springframework.security.web.context.SecurityContextPersistenceFilter@50e336d9, org.springframework.security.web.header.HeaderWriterFilter@25af2afe, org.springframework.web.filter.CorsFilter@5523f107, org.springframework.security.web.authentication.logout.LogoutFilter@1f612968, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@5545c42, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@2420e962, com.poly.datn.config.CustomAuthorizationFilter@4ae836cf, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5016934, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e10809f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7d2c9b65, org.springframework.security.web.session.SessionManagementFilter@f359e65, org.springframework.security.web.access.ExceptionTranslationFilter@6eac71db, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2afd8972]
+2023-03-14 15:10:43,256 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:10:43,257 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:10:43,257 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:10:43,257 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:10:43,478 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:10:43,493 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:10:43,500 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.701 seconds (JVM running for 3.962)
+2023-03-14 15:10:50,288 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:10:50,288 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:10:50,289 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-03-14 15:12:07,214 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:12:07,215 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:12:07,284 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:12:09,286 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:12:09,290 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5784 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:12:09,290 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:12:09,812 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:12:09,890 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 73 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:12:10,210 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:12:10,218 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:12:10,219 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:12:10,219 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:12:10,283 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:12:10,284 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 879 ms
+2023-03-14 15:12:10,370 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:12:10,389 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:12:10,452 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:12:10,493 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:12:10,701 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:12:10,707 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:12:11,102 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:12:11,106 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:12:11,782 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:12:12,231 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@66df2165, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@41cec7b0, org.springframework.security.web.context.SecurityContextPersistenceFilter@73864c16, org.springframework.security.web.header.HeaderWriterFilter@21a1554, org.springframework.web.filter.CorsFilter@62065d12, org.springframework.security.web.authentication.logout.LogoutFilter@2ee949d4, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@b7e53b1, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@5545c42, com.poly.datn.config.CustomAuthorizationFilter@5523f107, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@e10809f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@470c2a7a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ae836cf, org.springframework.security.web.session.SessionManagementFilter@5ea50a98, org.springframework.security.web.access.ExceptionTranslationFilter@48a32c4f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1633962a]
+2023-03-14 15:12:12,233 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:12:12,233 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:12:12,234 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:12:12,234 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:12:12,460 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:12:12,473 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:12:12,481 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.371 seconds (JVM running for 3.63)
+2023-03-14 15:12:30,715 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:12:30,715 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:12:30,716 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-03-14 15:13:45,859 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:13:45,860 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:13:45,932 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:13:48,009 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:13:48,013 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5805 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:13:48,013 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:13:48,548 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:13:48,628 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 75 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:13:48,957 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:13:48,964 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:13:48,964 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:13:48,964 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:13:49,029 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:13:49,030 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 905 ms
+2023-03-14 15:13:49,114 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:13:49,135 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:13:49,204 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:13:49,247 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:13:49,471 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:13:49,477 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:13:49,886 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:13:49,890 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:13:50,561 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:13:51,027 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5545c42, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2420e962, org.springframework.security.web.context.SecurityContextPersistenceFilter@48a32c4f, org.springframework.security.web.header.HeaderWriterFilter@44aaa987, org.springframework.web.filter.CorsFilter@1fc51af7, org.springframework.security.web.authentication.logout.LogoutFilter@13617139, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@2f19ab6, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@305230ea, com.poly.datn.config.CustomAuthorizationFilter@66df2165, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@21a1554, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f359e65, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@41cec7b0, org.springframework.security.web.session.SessionManagementFilter@7053b64b, org.springframework.security.web.access.ExceptionTranslationFilter@2dbfcbe4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@57cd77e1]
+2023-03-14 15:13:51,029 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:13:51,029 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:13:51,029 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:13:51,029 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:13:51,265 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:13:51,279 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:13:51,287 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.607 seconds (JVM running for 3.876)
+2023-03-14 15:13:54,168 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:13:54,168 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:13:54,169 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-03-14 15:14:12,318 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:14:12,322 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:14:12,391 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:14:21,199 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:14:21,202 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5812 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:14:21,203 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:14:21,726 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:14:21,801 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 70 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:14:22,115 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:14:22,124 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:14:22,124 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:14:22,124 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:14:22,188 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:14:22,188 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 870 ms
+2023-03-14 15:14:22,272 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:14:22,290 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:14:22,354 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:14:22,394 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:14:22,593 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:14:22,599 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:14:23,012 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:14:23,015 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:14:23,682 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:14:24,189 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2afd8972, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@33fefbbe, org.springframework.security.web.context.SecurityContextPersistenceFilter@72499396, org.springframework.security.web.header.HeaderWriterFilter@1cd93693, org.springframework.web.filter.CorsFilter@5784f6b9, org.springframework.security.web.authentication.logout.LogoutFilter@627f678d, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@57cd77e1, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@35f59dfe, com.poly.datn.config.CustomAuthorizationFilter@5d0ca8a5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@651bec9a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@76d4e1af, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b7c1c6f, org.springframework.security.web.session.SessionManagementFilter@7b0d88e0, org.springframework.security.web.access.ExceptionTranslationFilter@1f8e1096, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@15d18b61]
+2023-03-14 15:14:24,195 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:14:24,195 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:14:24,195 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:14:24,195 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:14:24,426 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:14:24,440 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:14:24,447 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.419 seconds (JVM running for 3.685)
+2023-03-14 15:14:32,209 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:14:32,209 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:14:32,210 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2023-03-14 15:15:49,505 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:15:49,506 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:15:49,583 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:15:53,409 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:15:53,413 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5838 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:15:53,413 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:15:53,939 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:15:54,012 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 69 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:15:54,323 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:15:54,331 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:15:54,332 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:15:54,332 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:15:54,394 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:15:54,394 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 864 ms
+2023-03-14 15:15:54,477 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:15:54,500 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:15:54,564 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:15:54,605 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:15:54,795 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:15:54,801 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:15:55,204 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:15:55,208 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:15:55,886 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:15:56,333 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@b7e53b1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5545c42, org.springframework.security.web.context.SecurityContextPersistenceFilter@7f5b0926, org.springframework.security.web.header.HeaderWriterFilter@2dbfcbe4, org.springframework.web.filter.CorsFilter@2420e962, org.springframework.security.web.authentication.logout.LogoutFilter@4dfe5727, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@56554e7, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@2f19ab6, com.poly.datn.config.CustomAuthorizationFilter@1fc51af7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48a32c4f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@25af2afe, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@66df2165, org.springframework.security.web.session.SessionManagementFilter@44aaa987, org.springframework.security.web.access.ExceptionTranslationFilter@2fedae96, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5f745970]
+2023-03-14 15:15:56,335 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:15:56,335 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:15:56,335 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:15:56,335 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:15:56,572 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:15:56,586 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:15:56,593 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.365 seconds (JVM running for 3.656)
+2023-03-14 15:16:00,231 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:16:00,231 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-3] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:16:00,232 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-3] Completed initialization in 0 ms
+2023-03-14 15:21:28,488 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:21:28,489 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:21:28,563 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:21:30,750 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:21:30,754 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5873 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:21:30,754 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:21:31,289 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:21:31,367 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 74 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:21:31,692 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:21:31,701 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:21:31,702 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:21:31,702 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:21:31,772 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:21:31,772 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 907 ms
+2023-03-14 15:21:31,855 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:21:31,874 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:21:31,941 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:21:31,981 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:21:32,200 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:21:32,206 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:21:32,624 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:21:32,628 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:21:33,287 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:21:33,807 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@5784f6b9, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5d0ca8a5, org.springframework.security.web.context.SecurityContextPersistenceFilter@724e483f, org.springframework.security.web.header.HeaderWriterFilter@1f8e1096, org.springframework.web.filter.CorsFilter@1b7c1c6f, org.springframework.security.web.authentication.logout.LogoutFilter@56d4481f, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@6b71fded, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@1633962a, com.poly.datn.config.CustomAuthorizationFilter@5f9b37b5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@72499396, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@65145fb7, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2f5a23c1, org.springframework.security.web.session.SessionManagementFilter@1cd93693, org.springframework.security.web.access.ExceptionTranslationFilter@17931cc0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7ae5f795]
+2023-03-14 15:21:33,811 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:21:33,811 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:21:33,811 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:21:33,811 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:21:34,039 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:21:34,053 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:21:34,060 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.662 seconds (JVM running for 3.927)
+2023-03-14 15:21:35,389 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:21:35,389 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:21:35,390 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2023-03-14 15:22:01,812 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:22:01,813 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:22:01,880 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:22:04,140 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:22:04,145 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5880 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:22:04,145 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:22:04,693 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:22:04,772 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 74 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:22:05,093 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:22:05,100 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:22:05,100 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:22:05,100 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:22:05,161 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:22:05,161 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 902 ms
+2023-03-14 15:22:05,247 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:22:05,270 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:22:05,337 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:22:05,379 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:22:05,578 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:22:05,584 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:22:06,018 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:22:06,022 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:22:06,724 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:22:07,232 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@b7e53b1, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5545c42, org.springframework.security.web.context.SecurityContextPersistenceFilter@48a32c4f, org.springframework.security.web.header.HeaderWriterFilter@44aaa987, org.springframework.web.filter.CorsFilter@2420e962, org.springframework.security.web.authentication.logout.LogoutFilter@13617139, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@56554e7, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@2f19ab6, com.poly.datn.config.CustomAuthorizationFilter@1fc51af7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@21a1554, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@f359e65, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@66df2165, org.springframework.security.web.session.SessionManagementFilter@7053b64b, org.springframework.security.web.access.ExceptionTranslationFilter@2dbfcbe4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5f745970]
+2023-03-14 15:22:07,235 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:22:07,236 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:22:07,236 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:22:07,236 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:22:07,465 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:22:07,480 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:22:07,488 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.535 seconds (JVM running for 3.809)
+2023-03-14 15:22:11,222 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:22:11,222 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:22:11,223 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-03-14 15:23:12,667 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:23:12,669 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:23:12,755 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:23:13,791 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:23:13,797 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5888 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:23:13,800 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:23:14,337 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:23:14,414 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 72 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:23:14,727 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:23:14,734 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:23:14,735 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:23:14,735 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:23:14,798 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:23:14,798 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 881 ms
+2023-03-14 15:23:14,881 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:23:14,901 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:23:14,965 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:23:15,003 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:23:15,197 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:23:15,205 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:23:15,627 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:23:15,631 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:23:16,306 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:23:16,776 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@1fc51af7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@66df2165, org.springframework.security.web.context.SecurityContextPersistenceFilter@f359e65, org.springframework.security.web.header.HeaderWriterFilter@7f5b0926, org.springframework.web.filter.CorsFilter@41cec7b0, org.springframework.security.web.authentication.logout.LogoutFilter@79690a0a, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@2493f9a8, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@b7e53b1, com.poly.datn.config.CustomAuthorizationFilter@62065d12, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2812368, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@50e336d9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5523f107, org.springframework.security.web.session.SessionManagementFilter@48a32c4f, org.springframework.security.web.access.ExceptionTranslationFilter@23e0b938, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6b71fded]
+2023-03-14 15:23:16,778 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:23:16,778 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:23:16,778 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:23:16,778 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:23:17,010 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:23:17,024 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:23:17,032 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.416 seconds (JVM running for 3.702)
+2023-03-14 15:23:18,024 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:23:18,024 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:23:18,025 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-03-14 15:24:26,044 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:24:26,046 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 15:24:26,108 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 15:24:28,182 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 15:24:28,186 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 5901 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 15:24:28,187 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 15:24:28,707 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 15:24:28,787 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 76 ms. Found 24 JPA repository interfaces.
+2023-03-14 15:24:29,107 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 15:24:29,115 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:24:29,116 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 15:24:29,116 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 15:24:29,176 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 15:24:29,176 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 879 ms
+2023-03-14 15:24:29,259 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 15:24:29,279 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 15:24:29,345 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 15:24:29,385 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 15:24:29,581 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 15:24:29,587 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 15:24:30,006 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 15:24:30,010 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 15:24:30,685 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 15:24:31,155 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@66df2165, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@41cec7b0, org.springframework.security.web.context.SecurityContextPersistenceFilter@5ea50a98, org.springframework.security.web.header.HeaderWriterFilter@6eac71db, org.springframework.web.filter.CorsFilter@62065d12, org.springframework.security.web.authentication.logout.LogoutFilter@619944a7, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@b7e53b1, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@5545c42, com.poly.datn.config.CustomAuthorizationFilter@5523f107, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@50e336d9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@73864c16, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4ae836cf, org.springframework.security.web.session.SessionManagementFilter@25af2afe, org.springframework.security.web.access.ExceptionTranslationFilter@7053b64b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1633962a]
+2023-03-14 15:24:31,157 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:24:31,157 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 15:24:31,157 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 15:24:31,157 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 15:24:31,372 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 15:24:31,387 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 15:24:31,395 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.554 seconds (JVM running for 3.812)
+2023-03-14 15:24:32,029 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 15:24:32,029 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 15:24:32,030 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 1 ms
+2023-03-14 16:31:10,951 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 16:31:10,953 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 16:31:11,011 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 16:31:13,284 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 16:31:13,288 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 7463 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 16:31:13,288 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 16:31:13,842 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 16:31:13,922 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 75 ms. Found 24 JPA repository interfaces.
+2023-03-14 16:31:14,271 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 16:31:14,282 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 16:31:14,282 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 16:31:14,283 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 16:31:14,346 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 16:31:14,346 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 941 ms
+2023-03-14 16:31:14,440 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 16:31:14,461 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 16:31:14,535 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 16:31:14,578 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 16:31:14,791 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 16:31:14,798 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 16:31:15,211 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 16:31:15,214 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 16:31:15,915 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 16:31:16,413 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@2d12a71f, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6773c073, org.springframework.security.web.context.SecurityContextPersistenceFilter@e10809f, org.springframework.security.web.header.HeaderWriterFilter@5ea50a98, org.springframework.web.filter.CorsFilter@6ca6cc1c, org.springframework.security.web.authentication.logout.LogoutFilter@2298d741, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@62065d12, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@5523f107, com.poly.datn.config.CustomAuthorizationFilter@75c8855e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@62b3871, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@8eda949, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4d5aeea7, org.springframework.security.web.session.SessionManagementFilter@50e336d9, org.springframework.security.web.access.ExceptionTranslationFilter@21a1554, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5f9b37b5]
+2023-03-14 16:31:16,415 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 16:31:16,415 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 16:31:16,416 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 16:31:16,416 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 16:31:16,634 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 16:31:16,648 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 16:31:16,655 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.692 seconds (JVM running for 3.96)
+2023-03-14 16:31:17,896 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 16:31:17,897 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet'
+2023-03-14 16:31:17,897 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-1] Completed initialization in 0 ms
+2023-03-14 16:31:17,934 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-1] Error logging in: The Token has expired on 2023-03-14T08:23:54Z.
+2023-03-14 16:31:18,859 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-3] Error logging in: The Token has expired on 2023-03-14T08:23:54Z.
+2023-03-14 16:41:42,824 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 16:41:42,826 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 16:41:42,899 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2023-03-14 16:44:33,864 INFO org.hibernate.validator.internal.util.Version [background-preinit] HV000001: Hibernate Validator 6.2.5.Final
+2023-03-14 16:44:33,868 INFO org.springframework.boot.StartupInfoLogger [main] Starting BackendApplication using Java 19.0.2 on Macbook-Long.local with PID 7736 (/Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend/target/classes started by mac in /Users/mac/Documents/DuAnTotNghiep/Backend/Bản sao sell_electronic_devices_backend)
+2023-03-14 16:44:33,868 INFO org.springframework.boot.SpringApplication [main] The following 1 profile is active: "testenv"
+2023-03-14 16:44:34,443 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-03-14 16:44:34,520 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 71 ms. Found 24 JPA repository interfaces.
+2023-03-14 16:44:34,849 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http)
+2023-03-14 16:44:34,860 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-8080"]
+2023-03-14 16:44:34,861 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2023-03-14 16:44:34,861 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.69]
+2023-03-14 16:44:34,921 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2023-03-14 16:44:34,921 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 932 ms
+2023-03-14 16:44:35,009 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-03-14 16:44:35,032 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.14.Final
+2023-03-14 16:44:35,108 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-03-14 16:44:35,152 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2023-03-14 16:44:35,359 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2023-03-14 16:44:35,368 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2023-03-14 16:44:35,805 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-03-14 16:44:35,809 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 16:44:36,532 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-03-14 16:44:36,994 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@33fefbbe, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5784f6b9, org.springframework.security.web.context.SecurityContextPersistenceFilter@7b0d88e0, org.springframework.security.web.header.HeaderWriterFilter@7a9e44ff, org.springframework.web.filter.CorsFilter@5d0ca8a5, org.springframework.security.web.authentication.logout.LogoutFilter@4283f29b, org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestRedirectFilter@35f59dfe, org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter@6b71fded, com.poly.datn.config.CustomAuthorizationFilter@1b7c1c6f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@27f6854b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@72499396, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5f9b37b5, org.springframework.security.web.session.SessionManagementFilter@13a35d3b, org.springframework.security.web.access.ExceptionTranslationFilter@6b9ce7a3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2fba15c5]
+2023-03-14 16:44:37,000 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/swagger-ui/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 16:44:37,000 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/swagger-ui/**']
+2023-03-14 16:44:37,000 WARN org.springframework.security.config.annotation.web.builders.WebSecurity [main] You are asking Spring Security to ignore Ant [pattern='/v3/api-docs/**']. This is not recommended -- please use permitAll via HttpSecurity#authorizeHttpRequests instead.
+2023-03-14 16:44:37,000 INFO org.springframework.security.web.DefaultSecurityFilterChain [main] Will not secure Ant [pattern='/v3/api-docs/**']
+2023-03-14 16:44:37,237 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-8080"]
+2023-03-14 16:44:37,251 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path ''
+2023-03-14 16:44:37,259 INFO org.springframework.boot.StartupInfoLogger [main] Started BackendApplication in 3.726 seconds (JVM running for 4.043)
+2023-03-14 16:45:39,222 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-03-14 16:45:39,222 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Initializing Servlet 'dispatcherServlet'
+2023-03-14 16:45:39,223 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-8080-exec-2] Completed initialization in 1 ms
+2023-03-14 16:55:10,607 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-5] Error logging in: The Token has expired on 2023-03-14T09:53:17Z.
+2023-03-14 16:55:10,610 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-8] Error logging in: The Token has expired on 2023-03-14T09:53:17Z.
+2023-03-14 16:55:27,359 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-9] Error logging in: The Token has expired on 2023-03-14T09:53:17Z.
+2023-03-14 16:55:27,359 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-6] Error logging in: The Token has expired on 2023-03-14T09:53:17Z.
+2023-03-14 17:55:47,148 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-1] Error logging in: The Token has expired on 2023-03-14T10:55:30Z.
+2023-03-14 17:55:47,671 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-2] Error logging in: The Token has expired on 2023-03-14T10:55:30Z.
+2023-03-14 17:55:48,328 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-10] Error logging in: The Token has expired on 2023-03-14T10:55:30Z.
+2023-03-14 18:18:24,177 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-7] Error logging in: The Token has expired on 2023-03-14T08:23:54Z.
+2023-03-14 19:04:48,001 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2023-03-14 19:04:49,905 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-9] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2023-03-14 19:04:50,822 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-7] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2023-03-14 19:04:59,627 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-3] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2023-03-14 19:05:37,072 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2023-03-14 20:00:19,141 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-8] Error logging in: The Token has expired on 2023-03-14T13:00:16Z.
+2023-03-14 20:00:21,512 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-9] Error logging in: The Token has expired on 2023-03-14T13:00:16Z.
+2023-03-14 20:00:22,587 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-2] Error logging in: The Token has expired on 2023-03-14T13:00:16Z.
+2023-03-14 20:00:23,991 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-7] Error logging in: The Token has expired on 2023-03-14T13:00:16Z.
+2023-03-14 20:00:24,876 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-4] Error logging in: The Token has expired on 2023-03-14T13:00:16Z.
+2023-03-14 20:00:25,669 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-5] Error logging in: The Token has expired on 2023-03-14T13:00:16Z.
+2023-03-14 20:00:25,669 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-10] Error logging in: The Token has expired on 2023-03-14T13:00:16Z.
+2023-03-14 20:00:25,671 INFO com.poly.datn.config.CustomAuthorizationFilter [http-nio-8080-exec-3] Error logging in: The Token has expired on 2023-03-14T13:00:16Z.
+2023-03-14 20:23:10,535 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-3] Error parsing HTTP request header
+ Note: further occurrences of HTTP request parsing errors will be logged at DEBUG level.
+java.lang.IllegalArgumentException: Invalid character found in the request target [/api/admin/?size=[object%20Object]&page=[object%20Object] ]. The valid characters are defined in RFC 7230 and RFC 3986
+	at org.apache.coyote.http11.Http11InputBuffer.parseRequestLine(Http11InputBuffer.java:494)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:271)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:891)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1784)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+2023-03-14 20:23:40,553 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-03-14 20:23:40,554 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2023-03-14 20:23:40,621 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

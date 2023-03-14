@@ -4,10 +4,13 @@ import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.poly.datn.entity.ProductVariant;
+
+import javax.transaction.Transactional;
 
 public interface ProductVariantRepository extends JpaRepository<ProductVariant, Integer> {
     @Query("select o from ProductVariant o where o.product.id=:productId " +
@@ -28,4 +31,9 @@ public interface ProductVariantRepository extends JpaRepository<ProductVariant, 
 
     @Query("select v.status from ProductVariant v where v.id =:id ")    
     boolean isStatusTrue(@Param("id") Integer id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE product_variant SET status = :isDeleted WHERE id = :id LIMIT 1",nativeQuery = true)
+    void delete(@Param("id") Integer id,@Param("isDeleted") Integer isDeleted);
 }

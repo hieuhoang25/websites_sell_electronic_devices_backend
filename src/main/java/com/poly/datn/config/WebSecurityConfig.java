@@ -84,6 +84,7 @@ public class WebSecurityConfig {
                 .and()
                 .successHandler(oAuth2AuthenticationSuccessHandler)
                 .failureHandler(oAuth2AuthenticationFailureHandler);
+
         http.httpBasic().disable();
         http.formLogin().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
