@@ -1,7 +1,6 @@
 package com.poly.datn.controller;
 
 
-import com.google.gson.Gson;
 import com.poly.datn.dto.request.ProductAttributeRequest;
 import com.poly.datn.service.ProductAttributeService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,7 +16,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT_ATTRIBUTE
 @RequestMapping(BASE+PRODUCT_ATTRIBUTE)
 @RequiredArgsConstructor
 @Tag(name = BASE+PRODUCT_ATTRIBUTE)
-public class ProductAttributeController {
+public class CURDProductAttributeController {
 
     private final ProductAttributeService productAttributeService;
 

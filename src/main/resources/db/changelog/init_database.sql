@@ -868,8 +868,6 @@ ALTER TABLE `rating`
 ALTER TABLE `wishlist`
     ADD CONSTRAINT `fk_wishlist_product_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   ADD CONSTRAINT `fk_wishlist_user_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
-
-ALTER TABLE `wishlist` ADD CONSTRAINT `uq_user_prod` UNIQUE KEY(`product_id`,`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -9,4 +9,6 @@ import java.util.List;
 public interface StorageRepository extends JpaRepository<Storage, Integer> {
     @Query("select o.storage from ProductVariant o where o.color.id=:colorId and o.product.id=:productId and o.status=true")
     List<Storage> findByColorAndProduct(Integer colorId, Integer productId);
+
+
 }

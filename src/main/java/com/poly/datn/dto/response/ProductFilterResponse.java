@@ -1,5 +1,6 @@
 package com.poly.datn.dto.response;
 
+import com.poly.datn.entity.Rating;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,15 @@ import java.util.Set;
 @AllArgsConstructor
 public class ProductFilterResponse implements Serializable {
     private Integer id;
-    private String product_name;
+    private String productName;
+    private String description;
+    private Instant create_date;
+    private Instant update_date;
+    private Integer category_id;
+    private Boolean is_delete;
+    private Integer brand_id;
     private Integer promotion_id;
     private String image;
-    private Double average_point;
-    private Instant expiration_date;
-    private Double price;
+    private Set<Rating> ratings;
+
 }

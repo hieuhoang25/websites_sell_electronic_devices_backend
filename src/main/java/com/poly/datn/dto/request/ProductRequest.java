@@ -21,7 +21,7 @@ public class ProductRequest implements Serializable {
     private Boolean is_delete;
     private Integer brand_id;
     private Integer promotion_id;
-//    private Instant create_date;
+    private Instant create_date;
 
     private String image;
 }

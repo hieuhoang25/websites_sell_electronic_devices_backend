@@ -21,4 +21,5 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
     @Modifying(flushAutomatically = true)
     @Procedure(procedureName = "sp_sumTotalInCart")
     Integer updateCartPriceSum(Integer cartId );
+
 }

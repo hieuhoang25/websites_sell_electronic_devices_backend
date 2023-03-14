@@ -6,7 +6,6 @@ import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.security.TokenProvider;
 import com.poly.datn.service.LoginService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,20 +24,20 @@ public class LoginServiceImpl implements LoginService {
     private final TokenProvider tokenProvider;
 
     @Override
-    public ResponseEntity<?> login(LoginRequest request) {
+    public Map<String, String> login(LoginRequest request) {
         Map<String, String> map = new HashMap<>();
         Account account = repository.findByUsername(request.getUserName());
         if (account == null) {
             map.put("error", "Tài hoặc mật khẩu không chính xác");
-            return ResponseEntity.badRequest().body(map);
+            return map;
         } else if (!passwordEncoder.matches(request.getPassword(),account.getPassword())) {
             map.put("error", "Tài hoặc mật khẩu không chính xác");
-            return ResponseEntity.badRequest().body(map);
+            return map;
         }
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);//xác minh người dùng
         String access_token = tokenProvider.createToken(authentication);
         map.put("access_token", access_token);
-        return ResponseEntity.ok(map);
+        return map;
     }
 }

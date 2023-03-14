@@ -62,11 +62,7 @@ public class WebSecurityConfig {
         http.cors();
         http.exceptionHandling().authenticationEntryPoint(new RestAuthenticationEntryPoint());
         http.authorizeRequests()
-                .antMatchers("/api/login", "/api/token/refresh",
-                        "/api/un/**", "/auth/**",
-                        "/oauth2/**", "/api/verification-otp/**",
-                        "/api/resend-otp/**", "/api/register",
-                        "/greeting/**", "/topic/server/**")
+                .antMatchers("/api/login", "/api/token/refresh", "/api/*","/auth/**", "/oauth2/**","/api/verification-otp/**","/api/resend-otp/**","/api/register")
                 .permitAll()
                 .antMatchers("/api/user/**")
                 .hasAnyAuthority("USER", "ADMIN", "SUPER_ADMIN")
@@ -88,6 +84,7 @@ public class WebSecurityConfig {
                 .and()
                 .successHandler(oAuth2AuthenticationSuccessHandler)
                 .failureHandler(oAuth2AuthenticationFailureHandler);
+
         http.httpBasic().disable();
         http.formLogin().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
@@ -97,6 +94,6 @@ public class WebSecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/swagger-ui/**", "/v3/api-docs/**");
+        return (web) -> web.ignoring().antMatchers("/swagger-ui/**","/v3/api-docs/**");
     }
 }

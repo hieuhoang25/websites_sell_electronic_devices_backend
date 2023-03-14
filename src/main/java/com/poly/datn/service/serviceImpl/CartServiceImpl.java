@@ -68,7 +68,7 @@ public class CartServiceImpl implements CartService {
             ex.printStackTrace();
         }
         // log.info("cart size: " +  get);
-        return findByUserId(getCurrentUser().getId());
+        return  modelConverter.map(getCartEntityByUserId(getCurrentUser().getId()), CartResponse.class);
 
     }
    

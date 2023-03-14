@@ -1,8 +1,7 @@
 package com.poly.datn.controller;
 
 
-import static com.poly.datn.controller.router.Router.CART_API.*;
-import static com.poly.datn.controller.router.Router.API.BASE;
+import static com.poly.datn.controller.router.Router.CART_API.BASE;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping(BASE + CART)
+@RequestMapping(BASE)
 @RequiredArgsConstructor
 @Slf4j
 @Tag(name = "CRUD for Cart (Cart Controller)")

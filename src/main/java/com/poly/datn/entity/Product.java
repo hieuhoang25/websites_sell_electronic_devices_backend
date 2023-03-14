@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
@@ -31,7 +32,6 @@ public class Product {
 //    @Column(name = "create_date")
     @Column(name= "create_date", nullable = false, updatable = false)
     @CreationTimestamp
-
     private Instant createDate;
 
 
@@ -73,115 +73,8 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<ProductVariant> productVariants = new LinkedHashSet<>();
 
-
-    public Double getPrice() {
-        if (!productVariants.isEmpty())
-            return productVariants.stream().mapToDouble(ProductVariant::getPrice).min().getAsDouble();
-        return 0.0;
-    }
-
-    public Double getAveragePoint() {
-        int size = ratings.size();
-        Double point = 0.0;
-        if (size != 0)
-            point = ratings.stream().mapToDouble(Rating::getPoint).sum() / size;
-        return point;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getProductName() {
-        return productName;
-    }
-
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Instant getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Instant createDate) {
-        this.createDate = createDate;
-    }
-
-    public Instant getUpdateDate() {
-        return updateDate;
-    }
-
-    public void setUpdateDate(Instant updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public Boolean getIsDelete() {
-        return isDelete;
-    }
-
-    public void setIsDelete(Boolean isDelete) {
-        this.isDelete = isDelete;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
-    }
-
-    public PromotionProduct getPromotion() {
-        return promotion;
-    }
-
-    public void setPromotion(PromotionProduct promotion) {
-        this.promotion = promotion;
-    }
-
-    public Integer getType() {
-        return type;
-    }
-
-    public void setType(Integer type) {
-        this.type = type;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public Set<Wishlist> getWishlists() {
-        return wishlists;
-    }
     @PostPersist
     private void postCreate(){
         this.image = "product-"+this.id+".png";
-
     }
 }

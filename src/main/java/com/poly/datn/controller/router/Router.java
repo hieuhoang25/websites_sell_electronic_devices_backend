@@ -3,7 +3,7 @@ package com.poly.datn.controller.router;
 public class Router {
     public static class API {
         // BASE API
-        public static final String BASE = "/api/un";
+        public static final String BASE = "/api";
 
         // API FOR PRODUCT
         public static final String PRODUCT = "/product";
@@ -26,7 +26,6 @@ public class Router {
         public static final String ORDER = "/order";
         public static final String TRACKING = "-tracking";
         public static final String INFO = "/info";
-        public static final String WISHLIST = "/wishlists";
     }
 
     public static class ADMIN_API {
@@ -54,14 +53,16 @@ public class Router {
 
         public static final String BRAND = "/brand";
 
-        public static final String STATISTIC = "/statistic";
+        public static final String COLOR = "/color";
+        public static final String STORAGE = "/storage";
+
     }
 
     public static final String FILE_API = "/api/files";
 
     public static class CART_API {
         public static final String CART_DETAIL_TAG_NAME = "Cart Detail Controller";
-        public static final String CART = "/cart";
+        public static final String BASE = "/api/cart";
 
         public static final String USER_CART = "/{userId}";
 

@@ -20,7 +20,7 @@ public class ProductVariantRequest  implements Serializable {
     private String sku_name;
     private Integer quantity;
     private Double price;
-    private Boolean status;
+//    private Boolean status;
     private Integer product_id ;
     private String image;
     private String display_name;

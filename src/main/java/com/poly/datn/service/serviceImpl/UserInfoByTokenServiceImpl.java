@@ -27,11 +27,4 @@ public class UserInfoByTokenServiceImpl implements UserInfoByTokenService {
         UserLoggedResponse response = converter.map(user,UserLoggedResponse.class);
         return response;
     }
-
-    @Override
-    public User getCurrentUser() {
-        String userName = SecurityContextHolder.getContext().getAuthentication().getName();
-        Account account = accountRepository.findByUsername(userName);
-        return  account == null? null : account.getUser();
-    }
 }

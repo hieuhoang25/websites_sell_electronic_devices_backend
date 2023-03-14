@@ -1,22 +1,22 @@
 package com.poly.datn.dto.response;
 
+import com.poly.datn.entity.Category;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Set;
 
 /**
  * A DTO for the {@link com.poly.datn.entity.Category} entity
  */
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class CategoryFindAllResponse implements Serializable {
-    private Integer key;
-    private String title;
-    private Set<CategoryFindAllResponse> children;
+    private Integer id;
+    @Size(max = 100)
+    private String category_name;
+    private Set<CategoryFindAllResponse> categories;
 }

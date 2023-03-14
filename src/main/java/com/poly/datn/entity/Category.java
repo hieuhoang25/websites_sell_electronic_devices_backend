@@ -95,15 +95,4 @@ public class Category {
         this.categories = categories;
     }
 
-    public Integer getKey() {
-        return id;
-    }
-
-    public String getTitle() {
-        return categoryName;
-    }
-
-    public Set<Category> getChildren() {
-        return categories;
-    }
 }

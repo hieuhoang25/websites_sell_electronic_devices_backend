@@ -4,6 +4,5 @@ public interface MailService {
 
     void sendOrderStatus(String id, String status, String mail);
     void sendEmailVerification(String code, String email);
-    void sendEmailThankLetter(String fullname, String email);
 
 }
