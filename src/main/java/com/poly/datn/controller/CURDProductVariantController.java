@@ -1,7 +1,6 @@
 package com.poly.datn.controller;
 
 import com.poly.datn.dto.request.ProductVariantRequest;
-import com.poly.datn.dto.response.ProductVariantResponse;
 import com.poly.datn.service.ProductVariantService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +17,8 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.PRODUCT_VARIANT;
 @RestController
 @RequestMapping(BASE + PRODUCT_VARIANT)
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:3000"})
 @Tag(name = BASE + PRODUCT_VARIANT)
-public class ProductVariantController {
+public class CURDProductVariantController {
     private final ProductVariantService productVariantService;
 
     @GetMapping("/{productId}")
@@ -32,13 +30,17 @@ public class ProductVariantController {
     }
     @PostMapping()
     public ResponseEntity<?> createProductVariant(@RequestBody ProductVariantRequest productVariantRequest){
-        productVariantRequest.setStatus(true);
         return ResponseEntity.ok(productVariantService.create(productVariantRequest));
     }
     @PutMapping()
     public ResponseEntity<?> updateProductVariant(@RequestBody ProductVariantRequest productVariantRequest){
-        productVariantRequest.setStatus(true);
         return ResponseEntity.ok(productVariantService.update(productVariantRequest));
+    }
+
+    @DeleteMapping("/{id}/{isDeleted}")
+    public ResponseEntity<?> deleteProductVariant(@PathVariable("id") Integer id,@PathVariable("isDeleted") Integer isDeleted){
+        productVariantService.delete(id,isDeleted);
+        return ResponseEntity.ok().build();
     }
 
 
