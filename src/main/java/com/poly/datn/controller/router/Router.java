@@ -62,13 +62,15 @@ public class Router {
         public static final String BRAND = "/brand";
 
         public static final String STATISTIC = "/statistic";
+        public static final String COLOR = "/color";
+        public static final String STORAGE = "/storage";
     }
 
     public static final String FILE_API = "/api/files";
 
     public static class CART_API {
         public static final String CART_DETAIL_TAG_NAME = "Cart Detail Controller";
-        public static final String BASE = "/api/cart";
+        public static final String CART = "/cart";
 
         public static final String USER_CART = "/{userId}";
 

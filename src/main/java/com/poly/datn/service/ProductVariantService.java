@@ -15,4 +15,6 @@ public interface ProductVariantService {
 
     ProductVariantResponse update(ProductVariantRequest productVariantRequest);
     ProductVariantResponse create(ProductVariantRequest productVariantRequest);
+
+    void delete(Integer id,Integer isDeleted);
 }

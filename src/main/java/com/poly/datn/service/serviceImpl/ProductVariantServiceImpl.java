@@ -49,4 +49,8 @@ public class ProductVariantServiceImpl implements ProductVariantService {
         ProductVariant productVariant = modelConverter.map(productVariantRequest,ProductVariant.class);
         return modelConverter.map(productVariantRepository.save(productVariant),ProductVariantResponse.class);
     }
+    @Override
+    public void delete(Integer id, Integer isDeleted) {
+        productVariantRepository.delete(id,isDeleted);
+    }
 }
