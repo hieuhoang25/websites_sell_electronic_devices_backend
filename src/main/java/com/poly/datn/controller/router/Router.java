@@ -7,7 +7,10 @@ public class Router {
 
         // API FOR PRODUCT
         public static final String PRODUCT = "/product";
-
+        public static final String PRODUCT_DETAIL = "/product-detail";
+        public static final String PRODUCT_COLOR = "/product-color";
+        //BRAND
+        public static final String BRAND = "/brand";
         // OPTIONS
         public static final String FIND_BY_ID = "/{id}";
         public static final String FILTER = "/filter";
@@ -18,6 +21,10 @@ public class Router {
         public static final String REGISTER = "/register";
         public static final String VERIFICATION_OTP = "/verification-otp/{username}/{code}";
         public static final String RESEND_OTP = "/resend-otp/{username}";
+
+        //STORAGE
+        public static final String STORAGE = "/storage";
+        public static final String PRODUCT_STORAGE = "/product-storage";
     }
 
     public static class USER_API{

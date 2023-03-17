@@ -26,4 +26,10 @@ public class ProductStorageServiceImpl implements ProductStorageService {
             throw new NotFoundException("storage not found");
         return converter.mapAllByIterator(storages, ProductStorageResponse.class);
     }
+
+    @Override
+    public List<ProductStorageResponse> getStorage() {
+        List<Storage> storages = repository.findAll();
+        return converter.mapAllByIterator(storages,ProductStorageResponse.class);
+    }
 }
