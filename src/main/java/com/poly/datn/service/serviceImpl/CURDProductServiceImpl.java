@@ -40,6 +40,7 @@ public class CURDProductServiceImpl implements CURDProductService {
     }
 
     @Override
+
     public Pagination<?> findAllByFilter(Pageable pageable, String keysearch) {
         Integer size = pageable.getPageSize();
         Integer totalPages= Math.ceil((float)productRepository.countProductByFilter(keysearch)/size)==0
@@ -67,6 +68,7 @@ public class CURDProductServiceImpl implements CURDProductService {
     }
 
     @Override
+
     public ProductResponse create(ProductRequest productRequest) {
 
         Product product = modelConverter.map(productRequest, Product.class);

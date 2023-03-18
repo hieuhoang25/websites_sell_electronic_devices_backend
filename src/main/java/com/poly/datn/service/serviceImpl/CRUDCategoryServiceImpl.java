@@ -20,8 +20,8 @@ public class CRUDCategoryServiceImpl implements CRUDCategoryService {
     private final ModelConverter modelConverter;
 
     @Override
-    public List<CategoryResponse> findAllParentAndChild() {
-        return modelConverter.mapAllByIterator(categoryRepository.findAllParentAndChild(), CategoryResponse.class);
+    public List<CategoryResponse> findAll() {
+        return modelConverter.mapAllByIterator(categoryRepository.findAll(), CategoryResponse.class);
     }
 
     @Override

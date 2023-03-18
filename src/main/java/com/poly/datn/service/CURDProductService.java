@@ -12,9 +12,11 @@ public interface CURDProductService {
     Pagination<?> findAll(Pageable pageable);
 
 
+
     Pagination<?> findAllByFilter(Pageable pageable,String keysearch);
     //
     Pagination<?> findAllByFilterWithDeleted(Pageable pageable,String keysearch,Integer isDeleted);
+
 
 
     ProductResponse create(ProductRequest productRequest);

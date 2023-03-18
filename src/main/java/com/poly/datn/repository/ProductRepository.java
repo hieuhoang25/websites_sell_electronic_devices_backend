@@ -21,7 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
     void deleteProduct(@Param("id") Integer id,@Param("isDeleted") Integer isDeleted);
 
     @Query(value = " select p.id, product_name,description,p.create_date,p.update_date," +
-            "category_id,is_delete,brand_id,promotion_id,type,p.image,brand_name, " +
+            "category_id,is_delete,brand_id,promotion_id,type,p.image,brand_name " +
             "category_name,pd.name as 'promotion_name' from product p left join brand b" +
             " on p.brand_id = b.id join category c on p.category_id = c.id " +
             "left join promotion_product pd on p.promotion_id = pd.id",nativeQuery = true)
@@ -32,7 +32,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 
     @Query(value = "select * from product where id = :id",nativeQuery = true)
     Product findByProductId(Integer id);
-
+    
     @Query(value = " select p.id, product_name,description,p.create_date,p.update_date," +
             "category_id,is_delete,brand_id,promotion_id,type,p.image,brand_name, " +
             "category_name,pd.name as 'promotion_name' from product p left join brand b" +
@@ -63,6 +63,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             "and is_delete = :isDeleted or category_name like :keysearch and is_delete = :isDeleted or product_name " +
             "like :keysearch and is_delete = :isDeleted or pd.name like :keysearch and is_delete = :isDeleted",nativeQuery = true)
     Integer countProductFilterWithDeleted(@Param("keysearch")String keysearch,@Param("isDeleted") Integer isDeleted);
+
 
 
 
