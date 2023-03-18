@@ -10,7 +10,7 @@ import java.util.List;
 * */
 public interface CRUDCategoryService {
 
-    List<CategoryResponse> findAllParentAndChild();
+    List<CategoryResponse> findAll();
 
     CategoryResponse findById(Integer id);
     CategoryResponse create(CategoryRequest categoryRequest);
