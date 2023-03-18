@@ -56,6 +56,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             "like :keysearch and is_delete = :isDeleted or pd.name like :keysearch and is_delete = :isDeleted ",nativeQuery = true)
     List<Product> findAllByFilterWithDeleted(Pageable pageable,@Param("keysearch")String keysearch,@Param("isDeleted") Integer isDeleted);
 
+
     @Query(value = "select count(*) from product p left join brand b " +
             "on p.brand_id = b.id join category c on p.category_id = c.id "+
             "left join promotion_product pd on p.promotion_id = pd.id  where brand_name like :keysearch " +

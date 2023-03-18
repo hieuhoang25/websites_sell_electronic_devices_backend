@@ -52,6 +52,7 @@ public class CURDProductServiceImpl implements CURDProductService {
         );
     }
 
+
     @Override
     public Pagination<?> findAllByFilterWithDeleted(Pageable pageable, String keysearch, Integer isDeleted) {
         Integer size = pageable.getPageSize();
