@@ -1,13 +1,10 @@
 package com.poly.datn.entity;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Data
 @Entity
 @Table(name = "product_variant")
 public class ProductVariant {
@@ -55,9 +52,100 @@ public class ProductVariant {
     @OneToMany(mappedBy = "productVariant")
     private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
 
-    @PostPersist
-    private void AfterCreater(){
-        this.image = "productVariant-" + this.id;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getSkuName() {
+        return skuName;
+    }
+
+    public void setSkuName(String skuName) {
+        this.skuName = skuName;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Storage getStorage() {
+        return storage;
+    }
+
+    public void setStorage(Storage storage) {
+        this.storage = storage;
+    }
+
+    public Set<CartDetail> getCartDetails() {
+        return cartDetails;
+    }
+
+    public void setCartDetails(Set<CartDetail> cartDetails) {
+        this.cartDetails = cartDetails;
+    }
+
+    public Set<OrderDetail> getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(Set<OrderDetail> orderDetails) {
+        this.orderDetails = orderDetails;
     }
 
 }
