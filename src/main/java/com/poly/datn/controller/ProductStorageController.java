@@ -15,17 +15,18 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-import static com.poly.datn.controller.router.Router.API.*;
+import static com.poly.datn.controller.router.Router.API.BASE;
+import static com.poly.datn.controller.router.Router.API.PRODUCT_STORAGE;
 
 @RestController
-@RequestMapping(BASE + PRODUCT)
+@RequestMapping(BASE + PRODUCT_STORAGE)
 @RequiredArgsConstructor
 @Validated
-@Tag(name = BASE + PRODUCT)
+@Tag(name = BASE + PRODUCT_STORAGE)
 public class ProductStorageController {
     private final ProductStorageService productStorageService;
 
-    @GetMapping("-storage/{productId}/{colorId}")
+    @GetMapping("/{productId}/{colorId}")
     public ResponseEntity<List<ProductStorageResponse>>
     getProductStorageService(@PathVariable @Valid @NotNull Integer productId,
                              @PathVariable @Valid @NotNull Integer colorId) {
