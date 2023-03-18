@@ -21,7 +21,8 @@ public class CRUDCategoryController {
 
     @GetMapping()
     public ResponseEntity<?> fetchData(){
-        return ResponseEntity.ok(cudCategoryService.findAll());
+        return ResponseEntity.ok(cudCategoryService.findAllParentAndChild());
+//        return ResponseEntity.ok(cudCategoryService.findAll());
     }
 
     @GetMapping ("/{id}")
