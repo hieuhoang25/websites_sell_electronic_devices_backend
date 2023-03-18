@@ -42,6 +42,37 @@ public class CURDProductController {
         );
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<?> fetchDataFilter(@RequestParam("size")Optional<Integer> size,
+            @RequestParam("page") Optional<Integer> page,
+                                       @RequestParam("search") Optional<String> search,
+                                       @RequestParam("isDelete") Optional<Integer> isDeleted) {
+
+        Pageable pageable = PageRequest.of(page.orElse(0),size.orElse(10));
+        if(isDeleted.get() != -1){
+
+            return ResponseEntity.ok(
+                    new ResponseBody<>(
+                            1,
+                            MessageResponse.MESSAGE_SUCCESS,
+                            curdProductService.findAllByFilterWithDeleted(pageable,"%"+search.get()+"%",isDeleted.get())
+                    )
+            );
+        }else {
+
+            return ResponseEntity.ok(
+                    new ResponseBody<>(
+                            1,
+                            MessageResponse.MESSAGE_SUCCESS,
+                            curdProductService.findAllByFilter(pageable,"%"+search.get()+"%")
+                    )
+            );
+
+        }
+
+    }
+
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findProductById(@PathVariable("id") Integer id){
         return ResponseEntity.ok(curdProductService.findById(id));

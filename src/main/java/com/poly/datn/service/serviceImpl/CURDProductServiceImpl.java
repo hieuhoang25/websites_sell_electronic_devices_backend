@@ -40,6 +40,35 @@ public class CURDProductServiceImpl implements CURDProductService {
     }
 
     @Override
+
+    public Pagination<?> findAllByFilter(Pageable pageable, String keysearch) {
+        Integer size = pageable.getPageSize();
+        Integer totalPages= Math.ceil((float)productRepository.countProductByFilter(keysearch)/size)==0
+                ? 1: (int) Math.ceil((float)productRepository.countProductByFilter(keysearch)/size);
+        return new Pagination<ProductResponse>(
+                pageable.getPageSize(),
+                pageable.getPageNumber(),
+                totalPages,
+                modelConverter.mapAllByIterator(productRepository.findAllByFilter(pageable,keysearch),ProductResponse.class)
+        );
+    }
+
+
+    @Override
+    public Pagination<?> findAllByFilterWithDeleted(Pageable pageable, String keysearch, Integer isDeleted) {
+        Integer size = pageable.getPageSize();
+        Integer totalPages= Math.ceil((float)productRepository.countProductFilterWithDeleted(keysearch,isDeleted)/size)==0
+                ? 1: (int) Math.ceil((float)productRepository.countProductFilterWithDeleted(keysearch,isDeleted)/size);
+        return new Pagination<ProductResponse>(
+                pageable.getPageSize(),
+                pageable.getPageNumber(),
+                totalPages,
+                modelConverter.mapAllByIterator(productRepository.findAllByFilterWithDeleted(pageable,keysearch,isDeleted),ProductResponse.class)
+        );
+    }
+
+    @Override
+
     public ProductResponse create(ProductRequest productRequest) {
 
         Product product = modelConverter.map(productRequest, Product.class);
