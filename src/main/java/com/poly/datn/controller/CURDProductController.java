@@ -41,6 +41,7 @@ public class CURDProductController {
                 )
         );
     }
+
     @GetMapping("/search")
     public ResponseEntity<?> fetchDataFilter(@RequestParam("size")Optional<Integer> size,
             @RequestParam("page") Optional<Integer> page,
@@ -70,6 +71,7 @@ public class CURDProductController {
         }
 
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> findProductById(@PathVariable("id") Integer id){

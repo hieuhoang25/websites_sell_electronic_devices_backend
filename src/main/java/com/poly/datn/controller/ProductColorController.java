@@ -16,17 +16,17 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 import static com.poly.datn.controller.router.Router.API.BASE;
-import static com.poly.datn.controller.router.Router.API.PRODUCT;
+import static com.poly.datn.controller.router.Router.API.PRODUCT_COLOR;
 
 @RestController
-@RequestMapping(BASE + PRODUCT)
+@RequestMapping(BASE + PRODUCT_COLOR)
 @RequiredArgsConstructor
 @Validated
-@Tag(name = BASE + PRODUCT)
+@Tag(name = BASE + PRODUCT_COLOR)
 public class ProductColorController {
     private final ProductColorService productColorService;
 
-    @GetMapping( "-color/{productId}")
+    @GetMapping( "/{productId}")
     public ResponseEntity<List<ProductColorResponse>>
     getProductColor(@PathVariable @Valid @NotNull Integer productId) {
         return ResponseEntity.ok(productColorService.getProductColor(productId));
