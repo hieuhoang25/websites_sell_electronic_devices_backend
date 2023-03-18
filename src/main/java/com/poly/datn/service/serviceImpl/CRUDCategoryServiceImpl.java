@@ -28,7 +28,9 @@ public class CRUDCategoryServiceImpl implements CRUDCategoryService {
     public CategoryResponse findById(Integer id) {
         return modelConverter.map(categoryRepository.findById(id).orElse(null), CategoryResponse.class);
     }
-
+    public List<CategoryResponse> findAllParentAndChild() {
+        return modelConverter.mapAllByIterator(categoryRepository.findAllParentAndChild(), CategoryResponse.class);
+    }
     @Override
     public CategoryResponse create(CategoryRequest categoryRequest) {
         Category category = modelConverter.map(categoryRequest, Category.class);
