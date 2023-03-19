@@ -7,9 +7,9 @@ import java.util.Map;
 
 @Data
 public class RevenueByWeekResponse {
-    @JsonProperty("last_week")
-    private Map<String, Object> lastWeek;
+    @JsonProperty("last_month")
+    private Map<String, Object> lastMonth;
 
-    @JsonProperty("this_week")
-    private Map<String, Object> thisWeek;
+    @JsonProperty("this_month")
+    private Map<String, Object> thisMonth;
 }
