@@ -27,24 +27,24 @@ public class StatisticalServiceImpl implements StatisticalService {
     @Override
     public RevenueByWeekResponse statisticRevenueByWeek() {
         RevenueByWeekResponse revenue = new RevenueByWeekResponse();
-        Map<String, Object> lastWeek =new HashMap<>();
-        lastWeek.put("Mon", orderDetailRepository.envennuByWeekdayOfLastWeek(2));
-        lastWeek.put("Tue", orderDetailRepository.envennuByWeekdayOfLastWeek(3));
-        lastWeek.put("Wed", orderDetailRepository.envennuByWeekdayOfLastWeek(4));
-        lastWeek.put("Thu", orderDetailRepository.envennuByWeekdayOfLastWeek(5));
-        lastWeek.put("Fri", orderDetailRepository.envennuByWeekdayOfLastWeek(6));
-        lastWeek.put("Sat", orderDetailRepository.envennuByWeekdayOfLastWeek(7));
-        lastWeek.put("Sun", orderDetailRepository.envennuByWeekdayOfLastWeek(1));
-        Map<String, Object> thisWeek =new HashMap<>();
-        lastWeek.put("Mon", orderDetailRepository.envennuByWeekdayOfThisWeek(2));
-        lastWeek.put("Tue", orderDetailRepository.envennuByWeekdayOfThisWeek(3));
-        lastWeek.put("Wed", orderDetailRepository.envennuByWeekdayOfThisWeek(4));
-        lastWeek.put("Thu", orderDetailRepository.envennuByWeekdayOfThisWeek(5));
-        lastWeek.put("Fri", orderDetailRepository.envennuByWeekdayOfThisWeek(6));
-        lastWeek.put("Sat", orderDetailRepository.envennuByWeekdayOfThisWeek(7));
-        lastWeek.put("Sun", orderDetailRepository.envennuByWeekdayOfThisWeek(1));
-        revenue.setLastWeek(lastWeek);
-        revenue.setThisWeek(thisWeek);
+        Map<String, Object> lastMonth =new HashMap<>();
+        lastMonth.put("Mon", orderDetailRepository.envennuByWeekdayOfLastMonth(0));
+        lastMonth.put("Tue", orderDetailRepository.envennuByWeekdayOfLastMonth(1));
+        lastMonth.put("Wed", orderDetailRepository.envennuByWeekdayOfLastMonth(2));
+        lastMonth.put("Thu", orderDetailRepository.envennuByWeekdayOfLastMonth(3));
+        lastMonth.put("Fri", orderDetailRepository.envennuByWeekdayOfLastMonth(4));
+        lastMonth.put("Sat", orderDetailRepository.envennuByWeekdayOfLastMonth(5));
+        lastMonth.put("Sun", orderDetailRepository.envennuByWeekdayOfLastMonth(6));
+        Map<String, Object> thisMonth =new HashMap<>();
+        thisMonth.put("Mon", orderDetailRepository.envennuByWeekdayOfThisMonth(0));
+        thisMonth.put("Tue", orderDetailRepository.envennuByWeekdayOfThisMonth(1));
+        thisMonth.put("Wed", orderDetailRepository.envennuByWeekdayOfThisMonth(2));
+        thisMonth.put("Thu", orderDetailRepository.envennuByWeekdayOfThisMonth(3));
+        thisMonth.put("Fri", orderDetailRepository.envennuByWeekdayOfThisMonth(4));
+        thisMonth.put("Sat", orderDetailRepository.envennuByWeekdayOfThisMonth(5));
+        thisMonth.put("Sun", orderDetailRepository.envennuByWeekdayOfThisMonth(6));
+        revenue.setLastMonth(lastMonth);
+        revenue.setThisMonth(thisMonth);
         return revenue;
     }
 

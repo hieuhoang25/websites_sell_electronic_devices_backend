@@ -26,9 +26,9 @@ public class FileController {
     @Autowired
     private MailService mailService;
 
-    //https://firebasestorage.googleapis.com/v0/b/image-cloud-98533.appspot.com/o/menu.png
+    //https://firebasestorage.googleapis.com/v0/b/bonik-f7b39.appspot.com/o/menu.png
     /*
-    * prefix: https://firebasestorage.googleapis.com/v0/b/image-cloud-98533.appspot.com/o/
+    * prefix: https://firebasestorage.googleapis.com/v0/b/bonik-f7b39.appspot.com/o/
     * image_name: your file name
     * sufix: ?alt=media
     * */
