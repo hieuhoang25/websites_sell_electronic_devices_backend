@@ -33,7 +33,7 @@ public class CURDProductController {
     public ResponseEntity<?> fetchData(@RequestParam("size")Optional<Integer> size,
             @RequestParam("page") Optional<Integer> page) {
         Pageable pageable = PageRequest.of(page.orElse(0),size.orElse(10));
-        return ResponseEntity.ok(
+        return ResponseEntity.ok     (
                 new ResponseBody<>(
                         1,
                         MessageResponse.MESSAGE_SUCCESS,

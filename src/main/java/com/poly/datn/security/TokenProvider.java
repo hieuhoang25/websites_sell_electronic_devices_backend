@@ -21,7 +21,7 @@ public class TokenProvider {
 //        Date expiryDate = new Date(now.getTime() + appProperties.getAuth().getTokenExpirationMsec());
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
         String access_token = JWT.create().withSubject(userPrincipal.getUsername())
-                .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 60 * 1000))
+                .withExpiresAt(new Date(System.currentTimeMillis() + 60 * 60 *24*365 * 1000))
                 .withClaim("roles",userPrincipal.getAuthorities()
                         .stream()
                         .map(GrantedAuthority::getAuthority)

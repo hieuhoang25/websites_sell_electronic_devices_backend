@@ -58,6 +58,7 @@ public class ProductVariant {
 
     @PostPersist
     private void afterCreate() {
+        this.status = true;
         this.image = "productVariant-" + this.id;
     }
 
