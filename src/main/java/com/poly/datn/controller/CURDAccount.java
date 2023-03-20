@@ -1,5 +1,7 @@
 package com.poly.datn.controller;
 
+import com.poly.datn.common.MessageResponse;
+import com.poly.datn.common.ResponseBody;
 import com.poly.datn.service.AuthorityService;
 import com.poly.datn.service.CURDAccountService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,5 +40,36 @@ public class CURDAccount {
        authorityService.setRole(roleId,accountId);
        return ResponseEntity.ok().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<?> fetchDataFilter(@RequestParam("size")Optional<Integer> size,
+                                             @RequestParam("page") Optional<Integer> page,
+                                             @RequestParam("search") Optional<String> search,
+                                             @RequestParam("roleId") Optional<Integer> roleId) {
+
+        Pageable pageable = PageRequest.of(page.orElse(0),size.orElse(10));
+        if(roleId.get() != -1){
+            System.out.println(curdAccountService.findAllByFilterWithDeleted(pageable,"%"+search.get()+"%",roleId.get()));
+            return ResponseEntity.ok(
+                    new ResponseBody<>(
+                            1,
+                            MessageResponse.MESSAGE_SUCCESS,
+                            curdAccountService.findAllByFilterWithDeleted(pageable,"%"+search.get()+"%",roleId.get())
+                    )
+            );
+        }else {
+
+            return ResponseEntity.ok(
+                    new ResponseBody<>(
+                            1,
+                            MessageResponse.MESSAGE_SUCCESS,
+                            curdAccountService.findAllByFilter(pageable,"%"+search.get()+"%")
+                    )
+            );
+
+        }
+
+    }
+
 
 }

@@ -11,5 +11,7 @@ public interface CURDAccountService {
 
     Pagination<?> findAll(Pageable pageable);
 
+    Pagination<?> findAllByFilter(Pageable pageable, String keysearch);
 
+    Pagination<?> findAllByFilterWithDeleted(Pageable pageable,String keysearch,Integer roleId);
 }
