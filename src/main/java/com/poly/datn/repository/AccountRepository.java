@@ -11,6 +11,8 @@ import java.util.List;
 public interface AccountRepository extends JpaRepository<Account, Integer> {
     Account findByUsername(String userName);
 
+    Boolean existsByUsername(String username);
+
     @Query(value = "Select * from account",nativeQuery = true)
     List<Account> findAllUserAndAuth(Pageable pageable);
 

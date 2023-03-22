@@ -6,6 +6,9 @@ import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.repository.AuthorityRepository;
 import com.poly.datn.service.CURDAccountService;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -56,6 +59,17 @@ public class CURDAccountServiceImpl implements CURDAccountService {
                 modelConverter.mapAllByIterator(accountRepository.findAllByFilterWithRole(pageable,keysearch,roleId),AccountResponse.class)
         );
     }
+
+@Override
+public AccountResponse findByUserName(String username) {
+        return modelConverter.map(accountRepository.findByUsername(username), AccountResponse.class) ;
+}
+
+// @Override
+// public List<?> findByUsername(String username) {
+       
+//         return modelConverter.mapAllByIterator(accountRepository.findByUsername(username), null)
+// }
 
 
 }

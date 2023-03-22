@@ -49,6 +49,9 @@ spring:
       org:
         hibernate: ERROR
   app:
+    jwtRefreshExpirationMs: 6000
+    jwtExpirationMs: 60000
+    jwtSecret: Bearer 
     cors:
       allowedOrigins: http://localhost:3000,http://localhost:3001,http://localhost:8080, http://longproxy.com, https://longproxy.com,http://14.225.210.86:3001,http://14.225.210.86:3000
     oauth2:

@@ -1,8 +1,11 @@
 package com.poly.datn.service.serviceImpl;
 
 import com.poly.datn.dto.request.LoginRequest;
+import com.poly.datn.dto.response.JwtResponse;
 import com.poly.datn.entity.Account;
+import com.poly.datn.entity.RefreshToken;
 import com.poly.datn.repository.AccountRepository;
+import com.poly.datn.security.RefreshTokenService;
 import com.poly.datn.security.TokenProvider;
 import com.poly.datn.service.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +26,7 @@ public class LoginServiceImpl implements LoginService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final TokenProvider tokenProvider;
+    private final RefreshTokenService refreshTokenService;
 
     @Override
     public ResponseEntity<?> login(LoginRequest request) {
@@ -35,10 +39,14 @@ public class LoginServiceImpl implements LoginService {
             map.put("error", "Tài hoặc mật khẩu không chính xác");
             return ResponseEntity.badRequest().body(map);
         }
+
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);//xác minh người dùng
         String access_token = tokenProvider.createToken(authentication);
-        map.put("access_token", access_token);
-        return ResponseEntity.ok(map);
+        RefreshToken refreshToken = refreshTokenService.createRefreshToken(account.getId());
+        refreshTokenService.deleteTokenByAccountIdLimit(account.getId());
+        return ResponseEntity.ok(new JwtResponse(access_token,refreshToken.getToken()));
+        // map.put("access_token", access_token);
+        // return ResponseEntity.ok(map);
     }
 }

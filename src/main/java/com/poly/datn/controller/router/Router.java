@@ -25,6 +25,10 @@ public class Router {
         //STORAGE
         public static final String STORAGE = "/storage";
         public static final String PRODUCT_STORAGE = "/product-storage";
+
+        public static final String REFRESH_TOKEN = "/refresh-token";
+
+        public static final String LOGOUT = "/logout";
     }
 
     public static class USER_API{
