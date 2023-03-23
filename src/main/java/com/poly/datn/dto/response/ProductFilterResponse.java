@@ -1,14 +1,14 @@
 package com.poly.datn.dto.response;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
-import java.time.Instant;
-import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductFilterResponse implements Serializable {
@@ -17,6 +17,6 @@ public class ProductFilterResponse implements Serializable {
     private Integer promotion_id;
     private String image;
     private Double average_point;
-    private Instant expiration_date;
     private Double price;
+
 }

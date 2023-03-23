@@ -12,7 +12,7 @@ import lombok.Setter;
 public class OrderDetailResponse {
     private Double price_sum;
     private Double productVariant_price;
-    private String productVariant_img;
+    private String productVariant_image;
     private String productVariant_displayName;
     private String productVariant_color_name;
     private Integer quantity;

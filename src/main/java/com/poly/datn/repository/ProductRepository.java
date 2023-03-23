@@ -1,8 +1,6 @@
 package com.poly.datn.repository;
 
 import com.poly.datn.entity.Product;
-
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -63,11 +61,5 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             "and is_delete = :isDeleted or category_name like :keysearch and is_delete = :isDeleted or product_name " +
             "like :keysearch and is_delete = :isDeleted or pd.name like :keysearch and is_delete = :isDeleted",nativeQuery = true)
     Integer countProductFilterWithDeleted(@Param("keysearch")String keysearch,@Param("isDeleted") Integer isDeleted);
-
-
-
-
-
-
 
 }

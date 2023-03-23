@@ -11,7 +11,6 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Data
 @Table(name = "product")
 public class Product {
     @Id
@@ -28,8 +27,8 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-//    @Column(name = "create_date")
-    @Column(name= "create_date", nullable = false, updatable = false)
+    //    @Column(name = "create_date")
+    @Column(name = "create_date", nullable = false, updatable = false)
     @CreationTimestamp
 
     private Instant createDate;
@@ -179,9 +178,45 @@ public class Product {
     public Set<Wishlist> getWishlists() {
         return wishlists;
     }
-    @PostPersist
-    private void postCreate(){
-        this.image = "product-"+this.id+".png";
 
+    public Boolean getDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(Boolean delete) {
+        isDelete = delete;
+    }
+
+    public void setWishlists(Set<Wishlist> wishlists) {
+        this.wishlists = wishlists;
+    }
+
+    public Set<ProductAttribute> getProductAttributes() {
+        return productAttributes;
+    }
+
+    public void setProductAttributes(Set<ProductAttribute> productAttributes) {
+        this.productAttributes = productAttributes;
+    }
+
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
+    }
+
+    public Set<ProductVariant> getProductVariants() {
+        return productVariants;
+    }
+
+    public void setProductVariants(Set<ProductVariant> productVariants) {
+        this.productVariants = productVariants;
+    }
+
+    @PostPersist
+    private void postCreate() {
+        this.image = "product-" + this.id + ".png";
     }
 }

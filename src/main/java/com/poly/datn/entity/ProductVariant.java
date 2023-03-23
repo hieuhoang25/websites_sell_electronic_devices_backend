@@ -1,13 +1,15 @@
 package com.poly.datn.entity;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "product_variant")
 public class ProductVariant {
@@ -54,7 +56,6 @@ public class ProductVariant {
 
     @OneToMany(mappedBy = "productVariant")
     private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
-
 
     @PostPersist
     private void afterCreate() {

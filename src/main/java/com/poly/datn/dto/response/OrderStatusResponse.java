@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class OrderStatusResponse {
     private Integer id;
     private String name;
+    private String title;
 }
