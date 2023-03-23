@@ -18,7 +18,7 @@ public class ModelConverter {
   public ModelConverter() {
     this.modelMapper = new ModelMapper();
     this.modelMapper.getConfiguration().setSourceNameTokenizer(NameTokenizers.UNDERSCORE)
-        .setDestinationNameTokenizer(NameTokenizers.UNDERSCORE).setSkipNullEnabled(true);
+        .setDestinationNameTokenizer(NameTokenizers.UNDERSCORE).setSkipNullEnabled(true).setAmbiguityIgnored(true);
   }
 
   /**

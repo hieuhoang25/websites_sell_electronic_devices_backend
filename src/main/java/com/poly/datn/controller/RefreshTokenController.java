@@ -7,12 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.datn.dto.response.AccessTokenResponse;
-import com.poly.datn.dto.response.JwtResponse;
-import com.poly.datn.dto.response.MessageResponse;
+ import com.poly.datn.dto.response.MessageResponse;
 import com.poly.datn.entity.RefreshToken;
 import com.poly.datn.exception.TokenRefreshException;
-import com.poly.datn.repository.AccountRepository;
-import com.poly.datn.security.RefreshTokenService;
+ import com.poly.datn.security.RefreshTokenService;
 import com.poly.datn.security.jwt.JwtUtils;
 
 import org.springframework.http.HttpHeaders;
@@ -29,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 @RequestMapping(BASE + REFRESH_TOKEN)
 @Tag(name = BASE+ REFRESH_TOKEN)
-class RefreshtokenController {
+class RefreshTokenController {
     private final RefreshTokenService refreshTokenService;
     private final JwtUtils jwtUtils;
     

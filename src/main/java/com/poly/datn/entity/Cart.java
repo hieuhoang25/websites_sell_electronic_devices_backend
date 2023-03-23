@@ -53,8 +53,6 @@ public class Cart {
     @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Set<CartDetail> cartDetails = new LinkedHashSet<>();
 
-
-
     public Integer getId() {
         return id;
     }

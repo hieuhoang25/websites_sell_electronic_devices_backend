@@ -1,11 +1,15 @@
 package com.poly.datn.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "order_status")
 public class OrderStatus {
     @Id
@@ -17,31 +21,10 @@ public class OrderStatus {
     @Column(name = "name", length = 55)
     private String name;
 
+    @Size(max = 100)
+    @Column(name = "title", length = 100)
+    private String title;
+
     @OneToMany(mappedBy = "status")
-    private Set<Order> orders = new LinkedHashSet<>();
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
+    private List<Order> orders;
 }
