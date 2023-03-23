@@ -3,24 +3,27 @@
  
  import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.poly.datn.dto.request.TokenRefreshRequest;
-import com.poly.datn.dto.response.TokenRefreshResponse;
+import com.poly.datn.dto.response.AccessTokenResponse;
+import com.poly.datn.dto.response.JwtResponse;
+import com.poly.datn.dto.response.MessageResponse;
 import com.poly.datn.entity.RefreshToken;
 import com.poly.datn.exception.TokenRefreshException;
 import com.poly.datn.repository.AccountRepository;
-import com.poly.datn.security.JwtUtils;
 import com.poly.datn.security.RefreshTokenService;
+import com.poly.datn.security.jwt.JwtUtils;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 
 import lombok.RequiredArgsConstructor;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import static com.poly.datn.controller.router.Router.API.*;
 
-import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
  
 @RestController
 @RequiredArgsConstructor
@@ -29,22 +32,27 @@ import javax.validation.Valid;
 class RefreshtokenController {
     private final RefreshTokenService refreshTokenService;
     private final JwtUtils jwtUtils;
-    private final AccountRepository repository;
     
 
 @PostMapping()
-  public ResponseEntity<?> refreshtoken(@Valid @RequestBody TokenRefreshRequest request) {
-    String requestRefreshToken = request.getRefresh_token();
+  public ResponseEntity<?> refreshtoken(HttpServletRequest request) {
+      String refreshToken = jwtUtils.getJwtRefreshFromCookies(request);
   
-    return refreshTokenService.findByToken(requestRefreshToken)
-        .map(refreshTokenService::verifyExpiration)
-        .map(RefreshToken::getAccount)
-        .map(account -> {
-        
-          String token = jwtUtils.generateTokenFromUsername(account.getUsername());
-          return ResponseEntity.ok(new TokenRefreshResponse(token, requestRefreshToken));
-        })
-        .orElseThrow(() -> new TokenRefreshException(requestRefreshToken,
-            "Refresh token is not in database!"));
+    if ((refreshToken != null) && (refreshToken.length() > 0)) {
+      return refreshTokenService.findByToken(refreshToken)
+          .map(refreshTokenService::verifyExpiration)
+          .map(RefreshToken::getAccount)
+          .map(account -> {
+            ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(account.getUsername());
+            
+            return ResponseEntity.ok()
+                .header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+                .body(new AccessTokenResponse(jwtCookie.getValue()));
+          })
+          .orElseThrow(() -> new TokenRefreshException(refreshToken,
+              "Refresh token is not in database!"));
+    }
+    
+    return ResponseEntity.badRequest().body(new MessageResponse("Refresh Token is empty!"));
   }
 }

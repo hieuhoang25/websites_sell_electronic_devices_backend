@@ -49,7 +49,7 @@ public class CURDAccount {
 
         Pageable pageable = PageRequest.of(page.orElse(0),size.orElse(10));
         if(roleId.get() != -1){
-            System.out.println(curdAccountService.findAllByFilterWithDeleted(pageable,"%"+search.get()+"%",roleId.get()));
+          
             return ResponseEntity.ok(
                     new ResponseBody<>(
                             1,

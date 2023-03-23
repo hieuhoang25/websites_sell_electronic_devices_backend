@@ -1,5 +1,6 @@
 package com.poly.datn.security;
 
+import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.Optional;
@@ -17,7 +18,8 @@ import com.poly.datn.repository.RefreshTokenRepository;
 public class RefreshTokenService {
   @Value("${spring.app.jwtRefreshExpirationMs}")
   private Long refreshTokenDurationMs;
-
+  @Value("${spring.app.jwtRefreshCookieName}")
+  private String jwtRefreshCookie;
   @Autowired
   private RefreshTokenRepository refreshTokenRepository;
 
@@ -35,10 +37,19 @@ public class RefreshTokenService {
     refreshToken.setExpiryDate(Instant.now().plusSeconds(60*60*24*365));
     refreshToken.setToken(UUID.randomUUID().toString());
     refreshToken = refreshTokenRepository.save(refreshToken);
-//    refreshTokenRepository.deleteTokenByAccountIdLimit(accountId);
+    refreshTokenRepository.deleteTokenByAccountIdLimit(accountId);
     return refreshToken;
   }
 
+  public ResponseCookie generateRefreshTokenCookie(Integer id) {
+    RefreshToken refreshToken = new RefreshToken();
+    refreshToken.setAccount(accountRepository.findById(id).get());
+    refreshToken.setExpiryDate(Instant.now().plusSeconds(60*60*24*30));
+    refreshToken.setToken(UUID.randomUUID().toString());
+    refreshToken = refreshTokenRepository.save(refreshToken);
+    ResponseCookie cookie = ResponseCookie.from(jwtRefreshCookie, refreshToken.getToken()).path("/api").maxAge(24 * 60 * 60 * 30).httpOnly(true).build();
+    return cookie;
+  }
   public RefreshToken verifyExpiration(RefreshToken token) {
     if (token.getExpiryDate().compareTo(Instant.now()) < 0) {
       refreshTokenRepository.delete(token);
@@ -47,7 +58,6 @@ public class RefreshTokenService {
 
     return token;
   }
-
   @Transactional
   public int deleteByUserId(Integer accountId) {
     return refreshTokenRepository.deleteByAccount(accountRepository.findById(accountId).get());

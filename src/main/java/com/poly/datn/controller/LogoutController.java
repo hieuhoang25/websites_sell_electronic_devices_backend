@@ -2,14 +2,13 @@ package com.poly.datn.controller;
 
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.response.MessageResponse;
-import com.poly.datn.security.RefreshTokenService;
-import com.poly.datn.security.UserPrincipal;
+import com.poly.datn.security.jwt.JwtUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseCookie;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.poly.datn.controller.router.Router.API.LOGOUT;
@@ -18,12 +17,13 @@ import static com.poly.datn.controller.router.Router.API.LOGOUT;
 @RequiredArgsConstructor
 @RequestMapping(Router.API.BASE + LOGOUT)
 public class LogoutController {
+    private final JwtUtils jwtUtils;
 
-
-    private  final RefreshTokenService refreshTokenService;
     @PostMapping()
-    public ResponseEntity<?> logoutUser(@RequestParam("token") String refresh_token) {
-        refreshTokenService.deleteByToken(refresh_token);
-        return ResponseEntity.ok(new MessageResponse("Logout successfully"));
+    public ResponseEntity<?> logoutUser() {
+        ResponseCookie cookie = jwtUtils.getCleanJwtCookie();
+        ResponseCookie refreshToken = jwtUtils.getCleanJwtRefreshCookie();
+        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, cookie.toString()).header(HttpHeaders.SET_COOKIE,refreshToken.toString())
+            .body(new MessageResponse("You've been signed out!"));
     }
 }

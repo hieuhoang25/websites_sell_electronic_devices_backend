@@ -45,4 +45,6 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
             "email like :keysearch and role_id = :role or full_name like :keysearch " +
             "and role_id = :role or phone like :keysearch and role_id = :role",nativeQuery = true)
     Integer countAccountByFiltersWithRole(@Param("keysearch")String keysearch,@Param("role") Integer role);
+
+
 }
