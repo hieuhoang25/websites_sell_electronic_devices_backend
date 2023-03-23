@@ -2,6 +2,8 @@ package com.poly.datn.entity;
 
 import javax.persistence.*;
 
+
+
 @Entity
 @Table(name = "authority")
 public class Authority {
@@ -10,11 +12,12 @@ public class Authority {
     @Column(name = "unique_id", nullable = false)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "role_id")
     private Role role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+   
+    @ManyToOne()
     @JoinColumn(name = "account_id")
     private Account account;
 

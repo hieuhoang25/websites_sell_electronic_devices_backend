@@ -2,6 +2,7 @@ package com.poly.datn.config;
 
 import com.poly.datn.security.CustomUserDetailsService;
 import com.poly.datn.security.RestAuthenticationEntryPoint;
+import com.poly.datn.security.jwt.AuthTokenFilter;
 import com.poly.datn.security.oauth2.CustomOAuth2UserService;
 import com.poly.datn.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.poly.datn.security.oauth2.OAuth2AuthenticationFailureHandler;
@@ -14,12 +15,14 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 @EnableWebSecurity
 @Configuration
@@ -38,9 +41,13 @@ public class WebSecurityConfig {
 
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
 
-
+    @Autowired
+    private RestAuthenticationEntryPoint unauthorizedHandler;
     private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
-
+    @Bean
+    public AuthTokenFilter authenticationJwtTokenFilter() {
+      return new AuthTokenFilter();
+    }
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http)
             throws Exception {
@@ -60,7 +67,8 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.cors();
-        http.exceptionHandling().authenticationEntryPoint(new RestAuthenticationEntryPoint());
+        http.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.authorizeRequests()
                 .antMatchers("/api/login", "/api/token/refresh",
                         "/api/un/**", "/auth/**",
@@ -71,7 +79,7 @@ public class WebSecurityConfig {
                 .antMatchers("/api/user/**")
                 .hasAnyAuthority("USER", "ADMIN", "SUPER_ADMIN")
                 .antMatchers("/api/admin/**")
-                .hasAnyAuthority("ADMIN", "SUPER_ADMIN")
+                .hasAnyAuthority("ADMIN", "SUPER_ADMIN","ROLE_ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -91,7 +99,7 @@ public class WebSecurityConfig {
         http.httpBasic().disable();
         http.formLogin().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

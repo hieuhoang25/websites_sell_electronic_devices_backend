@@ -5,6 +5,7 @@ import javax.validation.constraints.Size;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+
 @Entity
 @Table(name = "role")
 public class Role {
@@ -17,7 +18,7 @@ public class Role {
     @Column(name = "role_name")
     private String roleName;
 
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role",fetch = FetchType.EAGER)
     private Set<Authority> authorities = new LinkedHashSet<>();
 
     public Integer getId() {

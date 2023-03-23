@@ -16,4 +16,6 @@ public class AuthorityResponse implements Serializable {
     private Integer id;
     private Integer role_id;
     private Integer account_id;
+
+    private String role_name;
 }

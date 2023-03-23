@@ -29,7 +29,7 @@ public class ProductVariantServiceImpl implements ProductVariantService {
         Integer size = pageable.getPageSize();
         Integer totalPages= Math.ceil((float) productVariantRepository.findByProduct(id).stream().count()/size)==0
                 ? 1: (int) Math.ceil((float)productVariantRepository.findByProduct(id).stream().count()/size);
-        System.out.println(productVariantRepository.findByProduct(id).stream().count());
+       
         return new Pagination<ProductVariantResponse>(
                 pageable.getPageSize(),
                 pageable.getPageNumber(),
