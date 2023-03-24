@@ -30,7 +30,6 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "orders")
 @NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
 @Builder(setterPrefix = "with")
 public class Order {
