@@ -28,5 +28,8 @@ public class StatisticalController {
     public ResponseEntity<?> statisticSpecially(){
         return ResponseEntity.ok(statisticalService.statisticSpecially());
     }
-
+    @GetMapping("selling-top")
+    public ResponseEntity<?> statisticProductSellingTop(){
+        return ResponseEntity.ok(statisticalService.statisticProductSellingTop());
+    }
 }

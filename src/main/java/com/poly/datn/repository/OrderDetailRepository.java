@@ -11,8 +11,8 @@ import java.util.List;
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Integer> {
     List<OrderDetail> findByOrderId(Integer idOrder);
 
-    @Query(value = "select sum(d.priceSum*d.quantity - d.promotionValue) from OrderDetail  d where d.createDate >= ?1 and d.createDate < ?2")
-    Double revenue(LocalDateTime lastWeek, LocalDateTime thisWeek);
+    @Query(value = "select sum(d.priceSum - d.promotionValue) from OrderDetail  d")
+    Double revenue();
 
 
     @Query(value = "select count(d.quantity) from OrderDetail d")
