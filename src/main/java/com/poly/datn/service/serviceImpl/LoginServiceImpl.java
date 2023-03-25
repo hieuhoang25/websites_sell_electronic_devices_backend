@@ -42,7 +42,7 @@ public class LoginServiceImpl implements LoginService {
             return ResponseEntity.badRequest().body(map);
         } else if (!passwordEncoder.matches(request.getPassword(),account.getPassword())) {
             map.put("error", "Tài hoặc mật khẩu không chính xác");
-            return ResponseEntity.ok().body(map);
+            return ResponseEntity.badRequest().body(map);
         }
 
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword());

@@ -37,7 +37,7 @@ public class RefreshTokenService {
     refreshToken.setExpiryDate(Instant.now().plusSeconds(60*60*24*365));
     refreshToken.setToken(UUID.randomUUID().toString());
     refreshToken = refreshTokenRepository.save(refreshToken);
-    refreshTokenRepository.deleteTokenByAccountIdLimit(accountId);
+
     return refreshToken;
   }
 
@@ -47,6 +47,7 @@ public class RefreshTokenService {
     refreshToken.setExpiryDate(Instant.now().plusSeconds(60*60*24*30));
     refreshToken.setToken(UUID.randomUUID().toString());
     refreshToken = refreshTokenRepository.save(refreshToken);
+    refreshTokenRepository.deleteTokenByAccountIdLimit(id);
     ResponseCookie cookie = ResponseCookie.from(jwtRefreshCookie, refreshToken.getToken()).path("/api").maxAge(24 * 60 * 60 * 30).httpOnly(true).build();
     return cookie;
   }
