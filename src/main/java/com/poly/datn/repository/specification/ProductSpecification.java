@@ -1,19 +1,26 @@
 package com.poly.datn.repository.specification;
 
 import com.poly.datn.common.SearchCriteria;
+import com.poly.datn.common.constant.SearchOperation;
 import com.poly.datn.entity.Category;
 import com.poly.datn.entity.Product;
-
-import lombok.Data;
+import com.poly.datn.repository.ProductRepository;
+import lombok.Getter;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 
 import javax.persistence.criteria.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Data
+@Getter
+@Setter
 public class ProductSpecification implements Specification<Product> {
-
     private List<SearchCriteria> list = new ArrayList<>();
 
     public void add(SearchCriteria criteria) {
@@ -28,19 +35,26 @@ public class ProductSpecification implements Specification<Product> {
         Root<Category> subRoot1 = subquery1.from(Category.class);
         subquery1.select(subRoot1.get("id"))
                 .where(criteriaBuilder.or(
-                        criteriaBuilder.equal(subRoot1.get("id"),id),
-                        criteriaBuilder.equal(subRoot1.get("parent").get("id"),id),
-                        criteriaBuilder.equal(subRoot1.get("parent").get("parent").get("id"),id)
+                        criteriaBuilder.equal(subRoot1.get("id"), id),
+                        criteriaBuilder.equal(subRoot1.get("parent").get("id"), id),
+                        criteriaBuilder.equal(subRoot1.get("parent").get("parent").get("id"), id)
                 ));
         return criteriaBuilder.and(root.get("category").get("id").in(subquery1));
+    }
 
-
+    private Predicate findByMultipleBrand(Root<Product> root,
+                                          CriteriaQuery<?> query,
+                                          CriteriaBuilder criteriaBuilder,
+                                          List<String> values){
+        List<Integer> idBrand = values.stream().map(Integer::parseInt).collect(Collectors.toList());
+        return criteriaBuilder.in(root.get("brand").get("id")).value(idBrand);
     }
 
     @Override
     public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<>();
-
+        SearchCriteria isDeletedCriteria = new SearchCriteria("isDelete", false, SearchOperation.EQUAL);
+        add(isDeletedCriteria);
         for (SearchCriteria criteria : list) {
             switch (criteria.getOperation()) {
                 case GREATER_THAN:
@@ -72,8 +86,8 @@ public class ProductSpecification implements Specification<Product> {
                             criteriaBuilder.like(root.get(criteria.getKey()), criteria.getValue().toString() + "%"));
                     break;
                 case EQUAL:
-                    if(criteria.getKey().equals("category")){
-                        predicates.add(categoryAndSubCategory(root,query,criteriaBuilder,Integer.parseInt(criteria.getValue().toString())));
+                    if (criteria.getKey().equals("category")) {
+                        predicates.add(categoryAndSubCategory(root, query, criteriaBuilder, Integer.parseInt(criteria.getValue().toString())));
                         break;
                     }
                     predicates.add(criteriaBuilder.equal(root.get(criteria.getKey()), criteria.getValue()));
@@ -82,13 +96,18 @@ public class ProductSpecification implements Specification<Product> {
                     predicates.add(criteriaBuilder.notEqual(root.get(criteria.getKey()), criteria.getValue()));
                     break;
                 case IN:
-                    predicates.add(criteriaBuilder.in(root.get(criteria.getKey())).value(criteria.getValue()));
+                    List<String> values = Arrays.asList(criteria.getValue().toString().split(","));
+                    if(criteria.getKey().equals("brand"))
+                    predicates.add(findByMultipleBrand(root,query,criteriaBuilder,values));
+		    else	
+                    	predicates.add(root.get(criteria.getKey()).in(values));
                     break;
                 case NOT_IN:
                     predicates.add(criteriaBuilder.not(root.get(criteria.getKey())).in(criteria.getValue()));
                     break;
             }
         }
+
         return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
     }
 }
