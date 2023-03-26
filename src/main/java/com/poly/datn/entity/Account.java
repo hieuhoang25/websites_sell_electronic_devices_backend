@@ -115,4 +115,7 @@ public class Account {
         this.authorities = authorities;
     }
 
+    public Integer getUserId(){
+        return user.getId();
+    }
 }
