@@ -27,6 +27,7 @@ public class MailServiceImpl implements MailService {
 
     @Async
     @Override
+
     public void sendEmailVerification(String code, String email) {
         try {
             mailUtil.sendEmailVerification(code,email);
@@ -36,9 +37,20 @@ public class MailServiceImpl implements MailService {
     }
 
     @Override
+    @Async
     public void sendEmailThankLetter(String fullname, String email) {
         try {
             mailUtil.sendEmailThankLetter(fullname,email);
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    @Async
+    public void sendOrderStatusMail(String fullname, String email, String orderStatus) {
+        try {
+            mailUtil.sendOrderStatusMail(fullname,email, orderStatus);
         } catch (MessagingException e) {
             throw new RuntimeException(e);
         }

@@ -49,7 +49,7 @@ spring:
     jwtCookieName: bonik
     jwtRefreshCookieName: bonikRF
     cors:
-      allowedOrigins: http://localhost:3000,http://localhost:3001,http://localhost:8080, http://longproxy.com, https://longproxy.com, http://14.225.210.86:3001,http://14.225.210.86:3000
+      allowedOrigins: http://localhost:3000,http://14.225.210.86:3001,http://localhost:3001,http://localhost:8080, http://longproxy.com, https://longproxy.com, http://14.225.210.86:3001,http://14.225.210.86:3000
     oauth2:
       # After successfully authenticating with the OAuth2 Provider,
       # we'll be generating an auth token for the user and sending the token to the
