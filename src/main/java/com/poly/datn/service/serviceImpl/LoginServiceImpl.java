@@ -5,8 +5,6 @@ import com.poly.datn.dto.response.JwtResponse;
 import com.poly.datn.entity.Account;
 import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.security.RefreshTokenService;
-import com.poly.datn.security.TokenProvider;
-import com.poly.datn.security.UserPrincipal;
 import com.poly.datn.security.jwt.JwtUtils;
 import com.poly.datn.service.LoginService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +27,6 @@ public class LoginServiceImpl implements LoginService {
     private final AccountRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-    private final TokenProvider tokenProvider;
     private final RefreshTokenService refreshTokenService;
     private final JwtUtils jwtUtils;
 
@@ -40,19 +37,21 @@ public class LoginServiceImpl implements LoginService {
         if (account == null) {
             map.put("error", "Tài hoặc mật khẩu không chính xác");
             return ResponseEntity.badRequest().body(map);
-        } else if (!passwordEncoder.matches(request.getPassword(),account.getPassword())) {
+        } else if (!passwordEncoder.matches(request.getPassword(), account.getPassword())) {
             map.put("error", "Tài hoặc mật khẩu không chính xác");
-            return ResponseEntity.ok().body(map);
+            return ResponseEntity.badRequest().body(map);
         }
+        UsernamePasswordAuthenticationToken authenticationToken =
+                new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword());
+        Authentication authentication = authenticationManager.authenticate(authenticationToken);//xác minh người dùng
 
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword());
-        Authentication authentication = authenticationManager.authenticate(authenticationToken);//xác mxinh người dùng
-
-        refreshTokenService.deleteTokenByAccountIdLimit(account.getId());
-        UserPrincipal userDetails = (UserPrincipal) authentication.getPrincipal();
-        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(account.getUsername());
-        ResponseCookie refreshCookie = refreshTokenService.generateRefreshTokenCookie(account.getId());
-        return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString()).header(HttpHeaders.SET_COOKIE,refreshCookie.toString()).
-        body(new JwtResponse(jwtCookie.getValue(),userDetails.getAuthorities()));
+        refreshTokenService.deleteTokenByUserIdLimit(account.getUserId());
+        //create access_token and set to httponly cookie
+        ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(authentication);
+        String refresh_token = jwtUtils.createRefreshToken(account.getUsername());//create refresh_token
+        ResponseCookie refreshCookie = refreshTokenService.generateRefreshTokenCookie(account.getUser(), refresh_token);
+        return ResponseEntity.ok().
+                header(HttpHeaders.SET_COOKIE, jwtCookie.toString(), refreshCookie.toString())
+                .body(new JwtResponse(jwtCookie.getValue(), authentication.getAuthorities()));
     }
 }
