@@ -17,21 +17,19 @@ import org.springframework.transaction.annotation.Transactional;
 public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Long> {
   Optional<RefreshToken> findByToken(String token);
 
-  @Modifying
-  int deleteByAccount(Account account);
+//  @Modifying
+//  int deleteByAccount(Account account);
+//
+//  @Modifying
+//  int deleteByToken(String token);
 
-  @Modifying
-  int deleteByToken(String token);
-
-  @Transactional
-  @Modifying
-  @Query(value = "delete from  refreshtoken where account_id = :accountId",nativeQuery = true)
-  int deleteAllTokenByAccountId(@Param("accountId") Integer accountId);
-
-
+//  @Transactional
+//  @Modifying
+//  @Query(value = "delete from  refreshtoken where account_id = :accountId",nativeQuery = true)
+//  int deleteAllTokenByAccountId(@Param("accountId") Integer accountId);
 
   @Modifying
   @Transactional
-  @Query(value = "CALL deleteAllTokenByAccountId(:accountId)", nativeQuery = true)
-  void deleteTokenByAccountIdLimit(@Param("accountId") Integer accountId);
+  @Query(value = "CALL deleteAllTokenByUserId(:userId)", nativeQuery = true)
+  void deleteTokenByUserIdLimit(@Param("userId") Integer userId);
 }
