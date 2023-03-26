@@ -20,4 +20,9 @@ public interface WishlistRepository extends JpaRepository<Wishlist, Integer> {
     @Modifying(flushAutomatically = true)
     @Query("delete from Wishlist w where  w.user =:user and w.product.id in :productIds ")
     Integer deleteAllByProductIds(@Param("productIds") List<Integer> productIds, @Param("user") User user);
+    @Query("select case " +
+            " when o.product.id=:productId" +
+            " then true else false end" +
+            " from Wishlist o where o.user.id=:userId and o.product=:productId")
+    Boolean findByProductIdAndUserId(Integer productId, Integer userId);
 }
