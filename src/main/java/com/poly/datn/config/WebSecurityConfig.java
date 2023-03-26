@@ -15,14 +15,11 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 @EnableWebSecurity
 @Configuration
@@ -41,13 +38,13 @@ public class WebSecurityConfig {
 
     private final OAuth2AuthenticationFailureHandler oAuth2AuthenticationFailureHandler;
 
-    @Autowired
-    private RestAuthenticationEntryPoint unauthorizedHandler;
-    private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
+    private final RestAuthenticationEntryPoint unauthorizedHandler;
+
     @Bean
     public AuthTokenFilter authenticationJwtTokenFilter() {
-      return new AuthTokenFilter();
+        return new AuthTokenFilter();
     }
+
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http)
             throws Exception {
@@ -63,12 +60,11 @@ public class WebSecurityConfig {
         return new HttpCookieOAuth2AuthorizationRequestRepository();
     }
 
-    @Bean //phan quyen
+    @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.cors();
-        http.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.exceptionHandling().authenticationEntryPoint(unauthorizedHandler);
         http.authorizeRequests()
                 .antMatchers("/api/login", "/api/token/refresh",
                         "/api/un/**", "/auth/**",
@@ -79,7 +75,7 @@ public class WebSecurityConfig {
                 .antMatchers("/api/user/**")
                 .hasAnyAuthority("USER", "ADMIN", "SUPER_ADMIN")
                 .antMatchers("/api/admin/**")
-                .hasAnyAuthority("ADMIN", "SUPER_ADMIN","ROLE_ADMIN")
+                .hasAnyAuthority("ADMIN", "SUPER_ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -105,6 +101,7 @@ public class WebSecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return (web) -> web.ignoring().antMatchers("/swagger-ui/**", "/v3/api-docs/**");
+        return (web) -> web.ignoring()
+                .antMatchers("/swagger-ui/**", "/v3/api-docs/**");
     }
 }
