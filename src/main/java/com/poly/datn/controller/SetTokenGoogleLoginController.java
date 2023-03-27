@@ -42,7 +42,7 @@ public class SetTokenGoogleLoginController {
                 .path("/api").maxAge(24 * 60 * 60 * 30)
                 .httpOnly(true).sameSite("None").secure(true).build();
         ResponseCookie refreshTokenCookie = ResponseCookie.from(jwtRefreshCookie, refreshToken)
-                .path("/api").maxAge(24 * 60 * 60 * 30)
+                .path("/api").maxAge(24 * 60 * 60 * 30).
                 httpOnly(true).sameSite("None").secure(true).build();
         List<String> roles = Arrays.asList("USER");
         return ResponseEntity.ok().
