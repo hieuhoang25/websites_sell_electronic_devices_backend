@@ -72,7 +72,7 @@ public class JwtUtils {
         String access_token = createToken(authentication);
         ResponseCookie cookie = ResponseCookie.from(jwtCookie, access_token)
                 .path("/api").maxAge(24 * 60 * 60 * 30)
-                .httpOnly(true).sameSite("None").secure(false).build();
+                .httpOnly(true).sameSite("None").secure(true).build();
         return cookie;
     }
 
@@ -84,7 +84,7 @@ public class JwtUtils {
                 .sign(algorithm);
         ResponseCookie cookie = ResponseCookie.from(jwtCookie, access_token)
                 .path("/api").maxAge(24 * 60 * 60 * 30)
-                .sameSite("None").httpOnly(true).secure(false).build();
+                .httpOnly(true).sameSite("None").secure(false).build();
         return cookie;
     }
 
