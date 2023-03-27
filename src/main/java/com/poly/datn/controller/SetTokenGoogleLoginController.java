@@ -40,10 +40,10 @@ public class SetTokenGoogleLoginController {
             @RequestParam @Valid @NotBlank @NotNull String refreshToken) {
         ResponseCookie accessTokenCookie = ResponseCookie.from(jwtCookie, accessToken)
                 .path("/api").maxAge(24 * 60 * 60 * 30)
-                .sameSite("None").httpOnly(true).secure(false).build();
+                .httpOnly(true).sameSite("None").secure(true).build();
         ResponseCookie refreshTokenCookie = ResponseCookie.from(jwtRefreshCookie, refreshToken)
                 .path("/api").maxAge(24 * 60 * 60 * 30)
-                .sameSite("None").httpOnly(true).secure(false).build();
+                httpOnly(true).sameSite("None").secure(true).build();
         List<String> roles = Arrays.asList("USER");
         return ResponseEntity.ok().
                 header(HttpHeaders.SET_COOKIE, accessTokenCookie.toString(), refreshTokenCookie.toString())
