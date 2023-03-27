@@ -14,12 +14,12 @@
     </style>
 </head>
 <body>
-<p th:text="${'Hello Dear ' + name}"></p>
-<p th:if="${name.length() > 5}">
-  Wow! You've got a long name (more than 5 chars)!
+<p th:text="${'Chào ' + fullname}"></p>
+<p >
+  Trạng thái đơn hàng của bạn : <b th:text="${orderStatus}"/>
 </p>
 <p>
-  You have been successfully subscribed to the <b>Fake newsletter</b> on
+  Cám ơn bạn đã mua hàng của chúng tôi
   <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></span>
 </p>
 

@@ -10,6 +10,7 @@ import com.poly.datn.repository.UserRepository;
 import com.poly.datn.service.StatisticalService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -53,13 +54,13 @@ public class StatisticalServiceImpl implements StatisticalService {
         SpeciallyStatisticalResponse response = new SpeciallyStatisticalResponse();
         response.setNumberOfUser(userRepository.findAll().size());
         response.setProductSelled(orderDetailRepository.countSelled());
-        response.setWeekEnvenue(orderDetailRepository.revenue(LocalDateTime.now().minusWeeks(1),LocalDateTime.now()));
+        response.setWeekEnvenue(orderDetailRepository.revenue());
         response.setOrderYetApproved(orderRepository.countOrderYetApprove());
         return response;
     }
 
     @Override
-    public List<ProductSellingTop> statisticProductSellingTop() {
-        return null;
+    public List<LinkedCaseInsensitiveMap<String>>  statisticProductSellingTop() {
+        return productVariantRepository.productSellingTops();
     }
 }

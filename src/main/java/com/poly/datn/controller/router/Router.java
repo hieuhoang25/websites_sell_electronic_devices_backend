@@ -71,6 +71,7 @@ public class Router {
         public static final String COLOR = "/color";
         public static final String STORAGE = "/storage";
         public static final String ACCOUNT = "/account";
+        public static final String ORDER_STATUS_CHANGE = "/status-change";
     }
 
     public static final String FILE_API = "/api/files";
