@@ -10,7 +10,6 @@ import javax.transaction.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.MappingIterator;
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.WishlistRequest;
 import com.poly.datn.dto.response.WishlistResponse;
@@ -78,6 +77,14 @@ public class WishlistServiceImpl implements WishlistService {
       ex.printStackTrace();
       return null;
     }
+  }
+
+  @Override
+  public Boolean findWishlistOfUserByProductId(Integer productId) {
+    Boolean isExists = wishlistRepository.findByProductIdAndUserId(productId,userService.getCurrentUser().getId());
+    if(isExists == null)
+      return false;
+    return isExists;
   }
 
   public User getCurrentUser() {

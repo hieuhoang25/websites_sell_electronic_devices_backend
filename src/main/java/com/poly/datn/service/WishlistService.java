@@ -14,5 +14,6 @@ public interface WishlistService {
     public List<WishlistResponse> deleteProductFromWishlist(List<WishlistRequest> productId);
 
     public List<WishlistResponse> getWishlistOfCurrentUser();
-    
+
+    Boolean findWishlistOfUserByProductId(Integer productId);
 }

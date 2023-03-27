@@ -1,20 +1,22 @@
 package com.poly.datn.entity;
-import java.time.Instant;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.Instant;
 
-import lombok.Data;
-
-@Data
+@Getter
+@Setter
 @Entity(name = "refreshtoken")
 public class RefreshToken {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
 
-  @OneToOne
-  @JoinColumn(name = "account_id", referencedColumnName = "unique_id")
-  private Account account;
+  @ManyToOne
+  @JoinColumn(name = "user_id", referencedColumnName = "id")
+  private User user;
 
   @Column(nullable = false, unique = true)
   private String token;
@@ -22,12 +24,5 @@ public class RefreshToken {
   @Column(nullable = false)
   private Instant expiryDate;
 
-  public Account getAccount() {
-    return account;
-  }
-
-  public void setAccount(Account account) {
-    this.account = account;
-  }
 
 }

@@ -4,7 +4,6 @@ import com.poly.datn.common.SearchCriteria;
 import com.poly.datn.common.SearchResult;
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.response.ProductFilterResponse;
-import com.poly.datn.entity.Product;
 import com.poly.datn.repository.ProductRepository;
 import com.poly.datn.repository.specification.ProductSpecification;
 import com.poly.datn.service.ProductFindByMultiField;
@@ -29,7 +28,7 @@ public class ProductFindByMultiFieldImpl implements ProductFindByMultiField {
     public SearchResult<ProductFilterResponse> findByMultiField(List<SearchCriteria> criteria, Pageable pageable) {
         ProductSpecification specification = new ProductSpecification();
         specification.setList(criteria);
-        Page<ProductFilterResponse> filterResponses = productRepository.findAll(specification, pageable);
+        Page<ProductFilterResponse> filterResponses = productRepository.findAll(specification,pageable);
         return new SearchResult(
                 filterResponses.getSize(),
                 filterResponses.getNumber(),
