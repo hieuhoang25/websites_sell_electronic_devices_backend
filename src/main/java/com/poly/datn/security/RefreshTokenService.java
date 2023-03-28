@@ -41,7 +41,7 @@ public class RefreshTokenService {
         refreshToken = refreshTokenRepository.save(refreshToken);
         ResponseCookie cookie = ResponseCookie.from
                         (jwtRefreshCookie, refreshToken.getToken()).path("/api").
-                maxAge(24 * 60 * 60 * 30).httpOnly(true).build();
+                maxAge(24 * 60 * 60 * 30).httpOnly(true).sameSite("None").secure(true).build();
         return cookie;
     }
 
