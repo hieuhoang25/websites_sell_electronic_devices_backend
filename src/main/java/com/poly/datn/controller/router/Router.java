@@ -36,10 +36,11 @@ public class Router {
         // BASE API
         public static final String BASE = "/api/user";
         public static final String ORDER = "/order";
-        public static final String ORDER_TRACKING = "order-tracking";
+        public static final String ORDER_TRACKING = "/order-tracking";
         public static final String INFO = "/info";
         public static final String WISHLIST = "/wishlists";
         public static final String IS_RATING = "/is-rating";
+        public static final String RATING = "/rating";
     }
 
     public static class ADMIN_API {

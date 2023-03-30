@@ -14,5 +14,7 @@ import java.util.Set;
 public class OrderTrackingResponse {
     private Integer id;
     private String status_name;
+    private Integer status_id;
+    private String status_title;
     Set<OrderDetailResponse> orderDetails;
 }

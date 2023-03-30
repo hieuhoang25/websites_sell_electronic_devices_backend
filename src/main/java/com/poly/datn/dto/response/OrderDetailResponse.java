@@ -10,6 +10,8 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderDetailResponse {
+    private Integer id;
+    private Integer product_id;
     private Double price_sum;
     private Double productVariant_price;
     private String productVariant_image;
