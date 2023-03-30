@@ -79,7 +79,7 @@ public class JwtUtils {
     public ResponseCookie generateJwtCookieFromName(String name, List<String> roles) {
         Algorithm algorithm = Algorithm.HMAC256(jwtSecret.getBytes());
         String access_token = JWT.create().withSubject(name)
-                .withExpiresAt(Instant.now().plusSeconds(120))
+                .withExpiresAt(Instant.now().plusSeconds(5))
                 .withClaim("roles", roles)
                 .sign(algorithm);
         ResponseCookie cookie = ResponseCookie.from(jwtCookie, access_token)
@@ -111,15 +111,15 @@ public class JwtUtils {
         }
     }
 
-//    public String getUserNameFromJwtToken(String token) {
-//        return Jwts.parserBuilder().setSigningKey(jwtSecret.getBytes()).build().parseClaimsJws(token).getBody().getSubject();
-//    }
+   public String getUserNameFromJwtToken(String token) {
+       return Jwts.parserBuilder().setSigningKey(jwtSecret.getBytes()).build().parseClaimsJws(token).getBody().getSubject();
+   }
 
     public String createToken(Authentication authentication) {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC256(jwtSecret.getBytes());
         String access_token = JWT.create().withSubject(userPrincipal.getUsername())
-                .withExpiresAt(Instant.now().plusSeconds(120))
+                .withExpiresAt(Instant.now().plusSeconds(5))
                 .withClaim("roles", userPrincipal.getAuthorities()
                         .stream()
                         .map(GrantedAuthority::getAuthority)

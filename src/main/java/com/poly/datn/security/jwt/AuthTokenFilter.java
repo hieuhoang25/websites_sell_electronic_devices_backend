@@ -2,10 +2,16 @@ package com.poly.datn.security.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poly.datn.dto.response.DecodeJWTResponse;
+import com.poly.datn.security.CustomUserDetailsService;
+import com.poly.datn.security.UserPrincipal;
+import com.poly.datn.service.UserService;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -18,7 +24,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.springframework.http.HttpStatus.FORBIDDEN;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Slf4j
@@ -26,7 +32,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtUtils jwtUtils;
     private final RequestMatcher unSecurityApi = new AntPathRequestMatcher("/api/un/**");
-
+    @Autowired
+    private CustomUserDetailsService userDetailsService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
@@ -37,15 +44,18 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             if (jwt != null) {
                 try {
                     DecodeJWTResponse token = jwtUtils.decodeJWT(jwt);
+                    String username = jwtUtils.getUserNameFromJwtToken(jwt);  
+                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
                     UsernamePasswordAuthenticationToken authentication =
-                            new UsernamePasswordAuthenticationToken(token.getUserName(),
+                            new UsernamePasswordAuthenticationToken(userDetails,
                                     null, token.getRoles());
+                      authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                     filterChain.doFilter(request, response);
                 } catch (Exception e) {
                     log.info("Error logging in: {}", e.getMessage());
                     response.setHeader("error", e.getMessage());
-                    response.setStatus(FORBIDDEN.value());
+                    response.setStatus(UNAUTHORIZED.value());
                     Map<String, String> error = new HashMap<>();
                     error.put("error_message", e.getMessage());
                     response.setContentType(APPLICATION_JSON_VALUE);
