@@ -3,9 +3,7 @@ package com.poly.datn.security.jwt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.poly.datn.dto.response.DecodeJWTResponse;
 import com.poly.datn.security.CustomUserDetailsService;
-import com.poly.datn.security.UserPrincipal;
-import com.poly.datn.service.UserService;
-
+import com.poly.datn.utils.MailUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -34,6 +32,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
     private final RequestMatcher unSecurityApi = new AntPathRequestMatcher("/api/un/**");
     @Autowired
     private CustomUserDetailsService userDetailsService;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
@@ -43,12 +42,17 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             String jwt = parseJwt(request);
             if (jwt != null) {
                 try {
-                    String username = jwtUtils.getUserNameFromJwtToken(jwt);  
-                    UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-                    UsernamePasswordAuthenticationToken authentication =
-                            new UsernamePasswordAuthenticationToken(userDetails,
-                                    null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    DecodeJWTResponse token = jwtUtils.decodeJWT(jwt);//throws ex if token expired or invalid
+                    UsernamePasswordAuthenticationToken authentication;
+                    if (MailUtil.validateEmail(token.getUserName())) {
+                        authentication = new UsernamePasswordAuthenticationToken(token.getUserName(),
+                                null, token.getRoles());
+                    } else {
+                        UserDetails userDetails = userDetailsService.loadUserByUsername(token.getUserName());
+                        authentication = new UsernamePasswordAuthenticationToken(userDetails,
+                                null, userDetails.getAuthorities());
+                        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                    }
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                     filterChain.doFilter(request, response);
                 } catch (Exception e) {
