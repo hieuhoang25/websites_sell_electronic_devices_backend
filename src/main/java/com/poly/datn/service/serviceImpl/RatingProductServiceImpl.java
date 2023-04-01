@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(rollbackFor = {Exception.class})
@@ -20,10 +22,13 @@ public class RatingProductServiceImpl implements RatingProductService {
     private final UserInfoByTokenService userInfoByTokenService;
 
     @Override
-    public ProductRatingResponse rateProduct(RatingProductRequest request) {
-        Rating rating = converter.map(request, Rating.class);
-        rating.setUser(userInfoByTokenService.getCurrentUser());
-        ProductRatingResponse ratingResponse = converter.map(repository.save(rating), ProductRatingResponse.class);
+    public List<ProductRatingResponse> rateProduct(List<RatingProductRequest> request) {
+        List<Rating> rating = converter.mapAllByIterator(request, Rating.class);
+        rating.stream().forEach(rt -> {
+            rt.setUser(userInfoByTokenService.getCurrentUser());
+        });
+        List<ProductRatingResponse> ratingResponse =
+                converter.mapAllByIterator(repository.saveAll(rating), ProductRatingResponse.class);
         return ratingResponse;
     }
 

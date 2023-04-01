@@ -24,4 +24,6 @@ public class RatingProductRequest {
     @NotBlank
     @NotNull
     private String content;
+    @NotNull
+    private Integer orderDetail_id;
 }
