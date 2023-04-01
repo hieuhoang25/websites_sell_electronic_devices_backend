@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+
+  backend:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    # restart: always
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://14.225.210.86:3306/electronic_db
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=rootpw12345
+    image: backend
+    container_name: backend-container
+    stdin_open: true
+    tty: true
+
