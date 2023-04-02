@@ -10,9 +10,10 @@ services:
       - 8080:8080
     # restart: always
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://14.225.210.86:3306/electronic_db
+      - SPRING_DATASOURCE_URL=jdbc:mysql://103.77.173.211/electronic_db
       - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=rootpw12345
+      - SPRING_DATASOURCE_PASSWORD=Bello1308
+      - SPRING_PROFILES_active=
     image: backend
     container_name: backend-container
     stdin_open: true
