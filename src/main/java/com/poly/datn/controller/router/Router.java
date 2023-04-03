@@ -90,7 +90,7 @@ public class Router {
     }
 
     public static class CHECK_OUT_API {
-        public static final String BASE = "/api/checkout";
+        public static final String CHECKOUT = "/checkout";
         public static final String AUTH_VAR = "/{userId}";
         public static final String CHECKED_OUT_RERIRECT_API = "/order";
     }
