@@ -144,7 +144,7 @@ public class CheckOutServiceImpl implements CheckOutService {
     public OrderDetail checkoutMapCartDetailToOrderDetail(CartDetail cartDetail) {
         try {
             OrderDetail order = modelConverter.getTypeMap(CartDetail.class, OrderDetail.class).addMappings(mapper -> {
-                mapper.skip(OrderDetail::setRatings);
+                mapper.skip(OrderDetail::setRating);
                 mapper.skip(OrderDetail::setId);
                 mapper.map(CartDetail::getQuantity, OrderDetail::setQuantity);
                 mapper.map(CartDetail::getProductVariant, OrderDetail::setProductVariant);
