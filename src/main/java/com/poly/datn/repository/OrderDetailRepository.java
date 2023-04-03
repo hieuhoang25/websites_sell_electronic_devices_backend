@@ -29,4 +29,5 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
             "WHERE MONTH(create_date) = MONTH(CURDATE()) AND YEAR(create_date) = YEAR(CURDATE()) and DAYOFWEEK(create_date) = :day " +
             "GROUP BY DAYOFWEEK(create_date)", nativeQuery = true)
     Double envennuByWeekdayOfThisMonth(@Param("day") Integer day);
+
 }
