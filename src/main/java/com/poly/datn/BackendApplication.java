@@ -20,13 +20,12 @@ import java.io.IOException;
 
 //Swagger url: http://localhost:8080/swagger-ui/index.html
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "API for project", version = "v1.0.0"), security = {
-        @SecurityRequirement(name = "bearerAuth")},
+@OpenAPIDefinition(info = @Info(title = "API for project", version = "v1.0.0"),
         servers = {
                 @Server(url = "http://localhost:8080", description = "Default Server URL"),
                 @Server(url = "https://api.bonikphone.shop"),
         })
-@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
+//@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 @EnableScheduling
 public class BackendApplication {
     public static void main(String[] args) throws IOException {
