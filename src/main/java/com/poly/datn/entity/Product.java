@@ -1,18 +1,18 @@
 package com.poly.datn.entity;
 
-import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
 @Table(name = "product")
-public class Product {
+public class Product implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -71,20 +71,29 @@ public class Product {
 
     @OneToMany(mappedBy = "product")
     private Set<ProductVariant> productVariants = new LinkedHashSet<>();
-
-
+    private @Transient Double price;
+    private @Transient Double averagePoint;
     public Double getPrice() {
+        price = 0.0;
         if (!productVariants.isEmpty())
-            return productVariants.stream().mapToDouble(ProductVariant::getPrice).min().getAsDouble();
-        return 0.0;
+            price = productVariants.stream().mapToDouble(ProductVariant::getPrice).min().getAsDouble();
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Double getAveragePoint() {
         int size = ratings.size();
-        Double point = 0.0;
+        averagePoint = 0.0;
         if (size != 0)
-            point = ratings.stream().mapToDouble(Rating::getPoint).sum() / size;
-        return point;
+            averagePoint = ratings.stream().mapToDouble(Rating::getPoint).sum() / size;
+        return averagePoint;
+    }
+
+    public void setAveragePoint(Double averagePoint) {
+        this.averagePoint = averagePoint;
     }
 
     public Integer getId() {
