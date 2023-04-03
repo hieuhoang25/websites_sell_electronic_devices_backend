@@ -19,7 +19,7 @@ public class OrderFindByStatusServiceImpl implements OrderFindByStatusService {
     @Override
     public List<OrderManagerResponse> getOrder(Integer idStatus) {
         List<Order> order = repository.findByStatusId(idStatus);
-        List<OrderManagerResponse> orderManagerRespons = converter.mapAllByIterator(order, OrderManagerResponse.class);
-        return orderManagerRespons;
+        List<OrderManagerResponse> orderManagerResponse = converter.mapAllByIterator(order, OrderManagerResponse.class);
+        return orderManagerResponse;
     }
 }

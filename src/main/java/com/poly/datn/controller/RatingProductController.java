@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+import java.util.List;
+
 import static com.poly.datn.controller.router.Router.USER_API.IS_RATING;
+import static com.poly.datn.controller.router.Router.USER_API.RATING;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,8 +23,9 @@ import static com.poly.datn.controller.router.Router.USER_API.IS_RATING;
 @Validated
 public class RatingProductController {
     private final RatingProductService service;
-    @PostMapping
-    public ResponseEntity<ProductRatingResponse> rateProduct(@RequestBody @Valid RatingProductRequest request){
+    @PostMapping(RATING)
+    public ResponseEntity<List<ProductRatingResponse>> rateProduct(
+            @RequestBody  List<@Valid RatingProductRequest> request){
         return ResponseEntity.ok(service.rateProduct(request));
     }
 

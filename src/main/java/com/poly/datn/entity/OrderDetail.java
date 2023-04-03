@@ -122,4 +122,8 @@ public class OrderDetail {
         this.ratings = ratings;
     }
 
+    public Integer getProductId(){
+        return productVariant.getProduct().getId();
+    }
+
 }
