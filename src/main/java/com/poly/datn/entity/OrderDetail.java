@@ -1,27 +1,13 @@
 package com.poly.datn.entity;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.CreationTimestamp;
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "order_detail")
@@ -55,8 +41,8 @@ public class OrderDetail {
     @Column(name = "quantity")
     private Integer quantity;
 
-    @OneToMany(mappedBy = "orderDetail")
-    private Set<Rating> ratings = new LinkedHashSet<>();
+    @OneToOne(mappedBy = "orderDetail")
+    private Rating rating;
 
     public Integer getId() {
         return id;
@@ -114,15 +100,15 @@ public class OrderDetail {
         this.quantity = quantity;
     }
 
-    public Set<Rating> getRatings() {
-        return ratings;
+    public Rating getRating() {
+        return rating;
     }
 
-    public void setRatings(Set<Rating> ratings) {
-        this.ratings = ratings;
+    public void setRating(Rating rating) {
+        this.rating = rating;
     }
 
-    public Integer getProductId(){
+    public Integer getProductId() {
         return productVariant.getProduct().getId();
     }
 
