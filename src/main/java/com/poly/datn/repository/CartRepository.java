@@ -18,7 +18,7 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
 
     boolean existsById(Integer id);
 
-    @Modifying(flushAutomatically = true)
+    @Modifying(flushAutomatically = true,clearAutomatically = true)
     @Procedure(procedureName = "sp_sumTotalInCart")
     Integer updateCartPriceSum(Integer cartId );
 }

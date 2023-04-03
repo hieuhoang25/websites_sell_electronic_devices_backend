@@ -1,5 +1,6 @@
 package com.poly.datn.service.serviceImpl;
 
+import java.time.Instant;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -73,8 +74,11 @@ public class CartDetailServiceImpl implements CartDetailService {
             // log.info(" entity " + entity.getId() + " " + entity.getCart().getId() + " " + entity.getQuantity() + " "
             //         + entity.getProductVariant().getId() + " " + entity.getProductVariant().getStatus());
             
-            CartDetail newEntity =  catDetailRepo.save(entity);
-            log.info("saved C:" + request.getCart_id() + "V: " + request.getProduct_variant_id() + " Q: " +request.getQuantity());
+            // entity.setCreateDate(Instant.now());
+            CartDetail newEntity =  catDetailRepo.saveAndFlush(entity);
+            catDetailRepo.refresh(newEntity);
+    
+            log.info("saved C:" + request.getCart_id() + "V: " + request.getProduct_variant_id() + " Q: " +request.getQuantity() + "pridce_d: " + newEntity.getPrice_Detail());
 
             // ? how to call after update child
             cartService.updatedPriceSum(cartId);        
@@ -117,10 +121,16 @@ public class CartDetailServiceImpl implements CartDetailService {
     public CartDetailResponse update(CartDetailRequest request) {
         CartDetail detail = modelConverter.map(request, CartDetail.class);
         validateCartIdAndItemId(detail);
+        CartDetail savedEntity = null;
         request.setQuantity(resolveQuantity(request.getQuantity()));
         try {
             validateVariantStatus(request.getProduct_variant_id());
-            catDetailRepo.save(detail);
+            
+            // ! fix createdDate null when map from request
+            detail.setCreateDate(catDetailRepo.findById(request.getId()).get().getCreateDate());
+            
+            savedEntity = catDetailRepo.saveAndFlush(detail);
+            catDetailRepo.refresh(savedEntity);
         }catch(Exception ex) {
             
             if(ex instanceof VariantUnavailable) {
@@ -138,7 +148,8 @@ public class CartDetailServiceImpl implements CartDetailService {
             }
         }
         log.info("finished updating cart!!!");
-        return modelConverter.map(detail, CartDetailResponse.class);
+        // catDetailRepo.refresh(detail);
+        return modelConverter.map(savedEntity, CartDetailResponse.class);
     }
 
     @Override
@@ -147,6 +158,7 @@ public class CartDetailServiceImpl implements CartDetailService {
         // log.info("call delete on " + request.getId() + " V: " + request.getProduct_variant_id());
         validateCartIdAndItemId(entity);
         catDetailRepo.deleteById(request.getId());
+        cartService.updatedPriceSum(request.getCart_id());   
         log.info("finish removed");
     }
 
