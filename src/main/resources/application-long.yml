@@ -4,9 +4,9 @@ spring:
       max-file-size: 10MB
       max-request-size: 10MB
   datasource:
-    url: jdbc:mysql://14.225.210.86:3306/electronic_db
+    url: jdbc:mysql://localhost:3306/electronic_db?autoReconnect=true&useSSL=false
     username: root
-    password: rootpw12345
+    password: Bello1308
   jpa:
     show-sql: true
     properties:

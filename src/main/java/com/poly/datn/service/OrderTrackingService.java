@@ -1,9 +1,9 @@
 package com.poly.datn.service;
 
 import com.poly.datn.dto.response.OrderTrackingResponse;
-
-import java.util.List;
+import com.poly.datn.dto.response.PaginationOrderTracking;
+import org.springframework.data.domain.Pageable;
 
 public interface OrderTrackingService {
-    List<OrderTrackingResponse> getUserOrdered(Integer statusId);
+    PaginationOrderTracking<OrderTrackingResponse> getUserOrdered(Integer statusId, Pageable pageable);
 }
