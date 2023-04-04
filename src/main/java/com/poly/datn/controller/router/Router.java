@@ -40,7 +40,11 @@ public class Router {
         public static final String INFO = "/info";
         public static final String WISHLIST = "/wishlists";
         public static final String IS_RATING = "/is-rating";
+
+        public static final String CHANGE_PASSWORD = "/change-password";
+
         public static final String RATING = "/rating";
+
     }
 
     public static class ADMIN_API {
