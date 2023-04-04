@@ -12,7 +12,6 @@ import com.poly.datn.repository.ProductRepository;
 import com.poly.datn.repository.ProductVariantRepository;
 import com.poly.datn.service.ProductVariantService;
 import lombok.RequiredArgsConstructor;
-import lombok.var;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

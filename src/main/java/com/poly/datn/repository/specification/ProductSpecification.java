@@ -4,6 +4,7 @@ import com.poly.datn.common.SearchCriteria;
 import com.poly.datn.common.constant.SearchOperation;
 import com.poly.datn.entity.Category;
 import com.poly.datn.entity.Product;
+import com.poly.datn.entity.ProductVariant;
 import com.poly.datn.repository.ProductRepository;
 import lombok.Getter;
 import lombok.Setter;
@@ -42,12 +43,22 @@ public class ProductSpecification implements Specification<Product> {
         return criteriaBuilder.and(root.get("category").get("id").in(subquery1));
     }
 
+    private Predicate findByMultipleStorage(Root<Product> root,
+                                            CriteriaQuery<?> query,
+                                            CriteriaBuilder criteriaBuilder,
+                                            List<String> values) {
+        Join<Product, ProductVariant> productVariantJoin = root.join("productVariants");
+        List<Integer> storageIds = values.stream().map(Integer::parseInt).collect(Collectors.toList());
+        query.select(productVariantJoin.get("storage").get("id")).distinct(true);
+        return criteriaBuilder.in(productVariantJoin.get("storage").get("id")).value(storageIds);
+    }
+
     private Predicate findByMultipleBrand(Root<Product> root,
-                                          CriteriaQuery<?> query,
-                                          CriteriaBuilder criteriaBuilder,
-                                          List<String> values){
-        List<Integer> idBrand = values.stream().map(Integer::parseInt).collect(Collectors.toList());
-        return criteriaBuilder.in(root.get("brand").get("id")).value(idBrand);
+                                            CriteriaQuery<?> query,
+                                            CriteriaBuilder criteriaBuilder,
+                                            List<String> values) {
+        List<Integer> brandIds = values.stream().map(Integer::parseInt).collect(Collectors.toList());
+        return criteriaBuilder.in(root.get("brand").get("id")).value(brandIds);
     }
 
     @Override
@@ -97,10 +108,12 @@ public class ProductSpecification implements Specification<Product> {
                     break;
                 case IN:
                     List<String> values = Arrays.asList(criteria.getValue().toString().split(","));
-                    if(criteria.getKey().equals("brand"))
-                    predicates.add(findByMultipleBrand(root,query,criteriaBuilder,values));
-		    else	
-                    	predicates.add(root.get(criteria.getKey()).in(values));
+                    if (criteria.getKey().equals("brand"))
+                        predicates.add(findByMultipleBrand(root, query, criteriaBuilder, values));
+                    else if (criteria.getKey().equals("storage"))
+                        predicates.add(findByMultipleStorage(root, query, criteriaBuilder, values));
+                    else
+                        predicates.add(root.get(criteria.getKey()).in(values));
                     break;
                 case NOT_IN:
                     predicates.add(criteriaBuilder.not(root.get(criteria.getKey())).in(criteria.getValue()));
