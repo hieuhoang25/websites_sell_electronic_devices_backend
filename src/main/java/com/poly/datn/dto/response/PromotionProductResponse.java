@@ -26,4 +26,8 @@ public class PromotionProductResponse implements Serializable {
 
     private Instant updated_date;
 
+    private Double discount_amount;
+
+    private Boolean is_percent;
+
 }

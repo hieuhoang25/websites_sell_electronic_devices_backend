@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.poly.datn.entity.CartDetail;
 
-public interface CartDetailRepository extends JpaRepository<CartDetail, Integer> {
+public interface CartDetailRepository extends JpaRepository<CartDetail, Integer>, CartDetailCustomRepository{
    
     CartDetail findByProductVariantId(Integer variantId);
 
@@ -20,11 +20,13 @@ public interface CartDetailRepository extends JpaRepository<CartDetail, Integer>
 
    Optional<List<CartDetail>> findAllByCartId(Integer cartId);
 
+   Optional<List<CartDetail>> findAllByCartIdOrderByCreateDateDesc(Integer cartId);
+
    @Query(value = "select quantity from cart_detail where cart_id =:cartId and product_variant_id =:variantId", nativeQuery = true)
    Optional<Integer> countVariantQuantityInCart(@Param("cartId") Integer cartId, @Param("variantId") Integer variantId );
 
 
-   @Modifying(flushAutomatically = true)
+   @Modifying(flushAutomatically = true, clearAutomatically = true)
    @Query(value = "delete from cart_detail where cart_id =:cartId", nativeQuery = true)
    Integer deleteAllByCartId(@Param("cartId") Integer cartId);
 

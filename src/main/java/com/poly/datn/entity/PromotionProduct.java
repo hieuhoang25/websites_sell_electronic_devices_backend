@@ -41,6 +41,10 @@ public class PromotionProduct {
     @OneToMany(mappedBy = "promotion")
     private Set<Product> products = new LinkedHashSet<>();
 
+    private Double discountAmount;
+
+    private Boolean isPercent;
+
     public Integer getId() {
         return id;
     }
@@ -104,5 +108,23 @@ public class PromotionProduct {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
+
+    public Double getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(Double discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    public Boolean getIsPercent() {
+        return isPercent;
+    }
+
+    public void setIsPercent(Boolean isPercent) {
+        this.isPercent = isPercent;
+    }
+
+    
 
 }

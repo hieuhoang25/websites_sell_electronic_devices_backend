@@ -18,7 +18,11 @@ public class ProductVariantResponse implements Serializable {
     private Integer quantity;
     private Double price;
     private Boolean status;
+
     private Integer product_id;
+    private String product_name;
+    private  PromotionProductResponse product_promotion;
+
     private String image;
     private String display_name;
 
