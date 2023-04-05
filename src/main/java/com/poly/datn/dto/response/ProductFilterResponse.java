@@ -15,8 +15,10 @@ public class ProductFilterResponse implements Serializable {
     private Integer id;
     private String product_name;
     private Integer promotion_id;
+    private Double discount;
     private String image;
     private Double average_point;
     private Double price;
-
+    private Double discount_price;
+//    private Boolean promotion_isPercent;
 }

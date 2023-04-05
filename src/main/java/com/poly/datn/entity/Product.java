@@ -5,14 +5,14 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "product")
-public class Product implements Serializable {
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -27,7 +27,6 @@ public class Product implements Serializable {
     @Column(name = "description")
     private String description;
 
-    //    @Column(name = "create_date")
     @Column(name = "create_date", nullable = false, updatable = false)
     @CreationTimestamp
 
@@ -64,7 +63,7 @@ public class Product implements Serializable {
     private Set<Wishlist> wishlists = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "product")
-    private Set<ProductAttribute> productAttributes = new LinkedHashSet<>();
+    private List<ProductAttribute> productAttributes;
 
     @OneToMany(mappedBy = "product")
     private Set<Rating> ratings = new LinkedHashSet<>();
@@ -73,6 +72,35 @@ public class Product implements Serializable {
     private Set<ProductVariant> productVariants = new LinkedHashSet<>();
     private @Transient Double price;
     private @Transient Double averagePoint;
+    private @Transient Double discount;
+    private @Transient Double discountPrice;
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public Double getDiscount() {
+        discount = promotion.getDiscount();
+        return discount;
+    }
+
+    public Boolean getIsPercent(){
+        return promotion.getIsPercent();
+    }
+
+    public Double getDiscountPrice() {
+        if(promotion.getIsPercent()){
+            discountPrice = getPrice() - getPrice() * (getDiscount() / 100);
+        }else{
+            discountPrice = getPrice() - getDiscount();
+        }
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(Double discountPrice) {
+        this.discountPrice = discountPrice;
+    }
+
     public Double getPrice() {
         price = 0.0;
         if (!productVariants.isEmpty())
@@ -200,11 +228,11 @@ public class Product implements Serializable {
         this.wishlists = wishlists;
     }
 
-    public Set<ProductAttribute> getProductAttributes() {
+    public List<ProductAttribute> getProductAttributes() {
         return productAttributes;
     }
 
-    public void setProductAttributes(Set<ProductAttribute> productAttributes) {
+    public void setProductAttributes(List<ProductAttribute> productAttributes) {
         this.productAttributes = productAttributes;
     }
 

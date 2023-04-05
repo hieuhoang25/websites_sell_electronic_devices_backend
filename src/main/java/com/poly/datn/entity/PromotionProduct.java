@@ -44,6 +44,24 @@ public class PromotionProduct {
     private Double discountAmount;
 
     private Boolean isPercent;
+    @Column(name = "discount")
+    private Double discount;
+
+    public Boolean getPercent() {
+        return isPercent;
+    }
+
+    public void setPercent(Boolean percent) {
+        isPercent = percent;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
 
     public Integer getId() {
         return id;
@@ -125,6 +143,5 @@ public class PromotionProduct {
         this.isPercent = isPercent;
     }
 
-    
 
 }
