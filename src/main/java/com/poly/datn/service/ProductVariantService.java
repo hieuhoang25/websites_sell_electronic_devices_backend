@@ -17,4 +17,6 @@ public interface ProductVariantService {
     ProductVariantResponse create(ProductVariantRequest productVariantRequest);
 
     void delete(Integer id,Integer isDeleted);
+
+    ProductVariantResponse findById(Integer id);
 }

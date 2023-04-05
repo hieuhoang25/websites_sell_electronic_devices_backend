@@ -22,4 +22,8 @@ public class PromotionProductRequest implements Serializable {
 
     private Boolean activate;
 
+    private Double discount_amount;
+
+    private Boolean is_percent;
+
 }

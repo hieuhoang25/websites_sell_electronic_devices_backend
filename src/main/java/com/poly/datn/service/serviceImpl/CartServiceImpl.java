@@ -1,29 +1,36 @@
 package com.poly.datn.service.serviceImpl;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.springframework.data.domain.Sort;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.CartDetailRequest;
+import com.poly.datn.dto.request.CartItemRequest;
 import com.poly.datn.dto.response.CartDetailResponse;
 import com.poly.datn.dto.response.CartResponse;
+import com.poly.datn.entity.Account;
 import com.poly.datn.entity.Cart;
 import com.poly.datn.entity.CartDetail;
+import com.poly.datn.entity.User;
 import com.poly.datn.exception.cart.CartException;
+import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.repository.CartDetailRepository;
 import com.poly.datn.repository.CartRepository;
-import com.poly.datn.service.CartService;
-import com.poly.datn.dto.request.CartItemRequest;
-import com.poly.datn.entity.Account;
-import com.poly.datn.entity.User;
-import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.service.CartDetailService;
-import org.springframework.security.core.context.SecurityContextHolder;
+import com.poly.datn.service.CartService;
+import com.poly.datn.service.UserInfoByTokenService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,10 +46,12 @@ public class CartServiceImpl implements CartService {
     private final CartDetailRepository cartDetail;
     private final AccountRepository accountRepository;
     private final CartDetailService cartDetailService;
+    private final UserInfoByTokenService userInfoService;;
 
     @Override
     public CartResponse findByUserId(Integer userId) {
-        return modelConverter.map(getCartEntityByUserId(userId), CartResponse.class);
+        CartResponse response = modelConverter.map(getCartEntityByUserId(userId), CartResponse.class);
+        return  response.sortCartDetailsByCreateDateDesc();
     }
 
     @Override
@@ -74,11 +83,17 @@ public class CartServiceImpl implements CartService {
    
     @Override
     public List<CartDetailResponse> findAllItemsInCart(Integer cartId){
-        Set<CartDetail> items = getCartEntityByCartId(cartId).getCartDetails();
+        // !replace
+        // Set<CartDetail> items = getCartEntityByCartId(cartId).getCartDetails();
+        // return modelConverter.mapAllByIterator(items, CartDetailResponse.class);
+        log.info("ordered ....");
+        List<CartDetail> items = cartDetail.findAllByCartIdOrderByCreateDateDesc(cartId).orElseGet(ArrayList::new);
         return modelConverter.mapAllByIterator(items, CartDetailResponse.class);
+
     }
 
     private Cart getCartEntityByUserId(Integer userId) {
+
         return cartRepo.findCartByUserId(userId).orElseThrow(() -> new EntityNotFoundException("Cart not found"));
     }
 
@@ -122,6 +137,7 @@ public class CartServiceImpl implements CartService {
         try {
             boolean isEmpty = isCartEmpty(cartId);
             Integer deleted  =  cartDetail.deleteAllByCartId(cartId);
+            cartRepo.findById(cartId);
             return (isEmpty && deleted == 0)? false : true;
         }catch(Exception ex) {
             ex.printStackTrace();
@@ -131,6 +147,7 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartResponse findCartOfCurrentUser() {
+
             return findByUserId(getCurrentUser().getId());
     
     }
@@ -138,6 +155,9 @@ public class CartServiceImpl implements CartService {
     public User getCurrentUser() {
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Account account = accountRepository.findByUsername(name);
+        User user = userInfoService.getCurrentUser();
+
+        log.info("get Current user : " + user.getEmail());
         return  account.getUser();
     }
 

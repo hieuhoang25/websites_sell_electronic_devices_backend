@@ -2,6 +2,7 @@ package com.poly.datn.controller;
 
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.request.RatingProductRequest;
+import com.poly.datn.dto.response.OrderDetailResponse;
 import com.poly.datn.dto.response.ProductRatingResponse;
 import com.poly.datn.service.RatingProductService;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +11,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-
 import java.util.List;
 
 import static com.poly.datn.controller.router.Router.USER_API.IS_RATING;
@@ -30,8 +29,8 @@ public class RatingProductController {
     }
 
     @GetMapping(IS_RATING)
-    public ResponseEntity<Boolean> isRating(@RequestParam @Valid @NotNull Integer productId,
-                                            @RequestParam @Valid @NotNull Integer orderDetailId){
-        return ResponseEntity.ok(service.isRating(productId,orderDetailId));
+    public ResponseEntity<List<OrderDetailResponse>> isRating(
+            @RequestParam Integer orderId){
+        return ResponseEntity.ok(service.isRating(orderId));
     }
 }

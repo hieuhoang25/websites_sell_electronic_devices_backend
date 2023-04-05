@@ -7,13 +7,16 @@ import com.poly.datn.dto.response.Pagination;
 import com.poly.datn.dto.response.ProductResponse;
 import com.poly.datn.dto.response.ProductVariantResponse;
 import com.poly.datn.entity.ProductVariant;
+import com.poly.datn.exception.cart.VariantUnavailable;
 import com.poly.datn.repository.ProductRepository;
 import com.poly.datn.repository.ProductVariantRepository;
 import com.poly.datn.service.ProductVariantService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -52,5 +55,14 @@ public class ProductVariantServiceImpl implements ProductVariantService {
     @Override
     public void delete(Integer id, Integer isDeleted) {
         productVariantRepository.delete(id,isDeleted);
+    }
+
+    @Override
+    public ProductVariantResponse findById(Integer id) {
+
+        ProductVariant variant = productVariantRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Variant with Id" + id + " not found"));
+        if(!variant.getStatus()) throw new VariantUnavailable("Unavailable request");
+        
+        return modelConverter.map(variant, ProductVariantResponse.class);
     }
 }
