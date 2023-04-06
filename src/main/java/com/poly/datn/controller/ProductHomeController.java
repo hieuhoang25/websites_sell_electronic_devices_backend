@@ -23,7 +23,7 @@ public class ProductHomeController {
 
     @GetMapping(PRODUCT_BIG_DISCOUNT)
     @Tag(name = Router.API.BASE + PRODUCT_BIG_DISCOUNT)
-    public ResponseEntity<List<ProductFilterResponse>> topSales(){
+    public ResponseEntity<List<ProductFilterResponse>> bigDiscount(){
         return ResponseEntity.ok(service.bigDiscount());
     }
 
@@ -31,5 +31,11 @@ public class ProductHomeController {
     @Tag(name = Router.API.BASE + PRODUCT_ARRIVAL)
     public ResponseEntity<List<ProductFilterResponse>> productArrival(){
         return ResponseEntity.ok(service.newArrival());
+    }
+
+    @GetMapping(PRODUCT_TOP_SALES)
+    @Tag(name = Router.API.BASE + PRODUCT_TOP_SALES)
+    public ResponseEntity<List<ProductFilterResponse>> topSales(){
+        return ResponseEntity.ok(service.topSales());
     }
 }

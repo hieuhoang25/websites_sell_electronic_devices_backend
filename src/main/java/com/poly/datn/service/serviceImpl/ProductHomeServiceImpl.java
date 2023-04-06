@@ -35,4 +35,14 @@ public class ProductHomeServiceImpl implements ProductHomeService {
         productFilterResponses = converter.mapAllByIterator(products, ProductFilterResponse.class);
         return productFilterResponses;
     }
+
+    @Override
+    public List<ProductFilterResponse> topSales(){
+        List<Product> products = repository.findByTopSales();
+        List<ProductFilterResponse> productFilterResponses = new ArrayList<>();
+        if(products.isEmpty())
+            return  productFilterResponses;
+        productFilterResponses = converter.mapAllByIterator(products, ProductFilterResponse.class);
+        return productFilterResponses;
+    }
 }

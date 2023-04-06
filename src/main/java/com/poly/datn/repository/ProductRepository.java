@@ -72,6 +72,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             " p.update_date, p.is_delete, p.type  from product p " +
             "where p.is_delete = false order by p.create_date desc limit 10", nativeQuery = true)
     List<Product> findByNewArrival();
-    @Query()
+    @Query(value = "SELECT p.id, p.product_name,p.description, " +
+            " p.category_id, p.brand_id, p.promotion_id, p.image, p.create_date, " +
+            " p.update_date, p.is_delete, p.type " +
+            "FROM order_detail od join product_variant pr on pr.id = od.product_variant_id " +
+            "join product p on p.id = pr.product_id " +
+            "WHERE p.is_delete = false " +
+            "GROUP BY p.id " +
+            "ORDER BY COUNT(pr.product_id) desc limit 10", nativeQuery = true)
     List<Product> findByTopSales();
 }
