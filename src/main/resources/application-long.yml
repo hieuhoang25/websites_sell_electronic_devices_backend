@@ -8,7 +8,7 @@ spring:
     username: root
     password: Bello1308
   jpa:
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -56,6 +56,7 @@ spring:
       # redirectUri mentioned by the client in the /oauth2/authorize request.
       authorizedRedirectUris:
         - http://localhost:3000/oauth2/redirect
+        - https://user.longproxy.com/oauth2/redirect
   security:
     oauth2:
       client:
