@@ -30,9 +30,12 @@ public class Router {
 
         public static final String LOGOUT = "/logout";
         public static final String TOKEN_LOGIN_GOOGLE = "/token-login-google";
+        public static final String PRODUCT_TOP_SALES = "/product-top-sales";
+        public static final String PRODUCT_ARRIVAL = "/product-arrival";
+        public static final String PRODUCT_BIG_DISCOUNT = "/product-big-discount";
     }
 
-    public static class USER_API{
+    public static class USER_API {
         // BASE API
         public static final String BASE = "/api/user";
         public static final String ORDER = "/order";

@@ -61,5 +61,24 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             "and is_delete = :isDeleted or category_name like :keysearch and is_delete = :isDeleted or product_name " +
             "like :keysearch and is_delete = :isDeleted or pd.name like :keysearch and is_delete = :isDeleted",nativeQuery = true)
     Integer countProductFilterWithDeleted(@Param("keysearch")String keysearch,@Param("isDeleted") Integer isDeleted);
-
+    @Query(value = "select p.id, p.product_name,p.description, " +
+            "p.category_id, p.brand_id, p.promotion_id, p.image, p.create_date," +
+            " p.update_date, p.is_delete, p.type " +
+            "from product p left JOIN promotion_product pm on p.promotion_id = pm.id " +
+            " where p.is_delete = false ORDER BY pm.discount desc LIMIT 10",nativeQuery = true)
+    List<Product> findByBigDiscount();
+    @Query(value = "select p.id, p.product_name,p.description, " +
+            " p.category_id, p.brand_id, p.promotion_id, p.image, p.create_date," +
+            " p.update_date, p.is_delete, p.type  from product p " +
+            "where p.is_delete = false order by p.create_date desc limit 10", nativeQuery = true)
+    List<Product> findByNewArrival();
+    @Query(value = "SELECT p.id, p.product_name,p.description, " +
+            " p.category_id, p.brand_id, p.promotion_id, p.image, p.create_date, " +
+            " p.update_date, p.is_delete, p.type " +
+            "FROM order_detail od join product_variant pr on pr.id = od.product_variant_id " +
+            "join product p on p.id = pr.product_id " +
+            "WHERE p.is_delete = false " +
+            "GROUP BY p.id " +
+            "ORDER BY COUNT(pr.product_id) desc limit 10", nativeQuery = true)
+    List<Product> findByTopSales();
 }
