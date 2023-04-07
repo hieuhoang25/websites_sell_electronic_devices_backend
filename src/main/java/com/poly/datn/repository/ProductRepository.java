@@ -69,10 +69,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             " where p.is_delete = false ORDER BY pm.discount desc", nativeQuery = true)
     List<Product> findByBigDiscount();
 
-    @Query(value = "SELECT p.id, p.product_name,p.description, " +
+    @Query(value = "select p.id, p.product_name,p.description, " +
             " p.category_id, p.brand_id, p.promotion_id, p.image, p.create_date," +
-            " p.update_date, p.is_delete, p.type FROM product p " +
-            "WHERE p.is_delete = false GROUP BY p.create_date desc", nativeQuery = true)
+            " p.update_date, p.is_delete, p.type  from product p " +
+            "where p.is_delete = false order by p.create_date desc", nativeQuery = true)
     List<Product> findByNewArrival();
 
     @Query(value = "SELECT p.id, p.product_name,p.description, " +
