@@ -45,11 +45,12 @@ public class LoginServiceImpl implements LoginService {
                 new UsernamePasswordAuthenticationToken(request.getUserName(), request.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);//xác minh người dùng
 
-        refreshTokenService.deleteTokenByUserIdLimit(account.getUserId());
+       
         //create access_token and set to httponly cookie
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(authentication);
         String refresh_token = jwtUtils.createRefreshToken(account.getUsername());//create refresh_token
         ResponseCookie refreshCookie = refreshTokenService.generateRefreshTokenCookie(account.getUser(), refresh_token);
+        refreshTokenService.deleteTokenByUserIdLimit(account.getUserId());
         return ResponseEntity.ok().
                 header(HttpHeaders.SET_COOKIE, jwtCookie.toString(), refreshCookie.toString())
                 .body(new JwtResponse(jwtCookie.getValue(), authentication.getAuthorities()));
