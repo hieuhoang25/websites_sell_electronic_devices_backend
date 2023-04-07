@@ -1,6 +1,5 @@
 package com.poly.datn.service.serviceImpl;
 
-import com.poly.datn.common.SearchResult;
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.ProductRequest;
 import com.poly.datn.dto.response.Pagination;
