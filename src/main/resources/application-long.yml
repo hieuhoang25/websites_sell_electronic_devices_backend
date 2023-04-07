@@ -63,7 +63,7 @@ spring:
           google:
             client-id: 496256023815-gfnv445ste0ep1o56qqr2j7ffggbd17s.apps.googleusercontent.com
             client-secret: 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
-            redirect-uri: "{baseUrl}/oauth2/callback"
+            redirect-uri: "http://localhost:8080/oauth2/callback","https://api.bonikphone.shop/oauth2/callback","https://api.longproxy.com/oauth2/callback"
             scope:
               - email
               - profile
