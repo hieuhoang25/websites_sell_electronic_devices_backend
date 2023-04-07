@@ -1,12 +1,12 @@
 package com.poly.datn.service;
 
-import com.poly.datn.dto.response.ProductFilterResponse;
-
-import java.util.List;
+import com.poly.datn.dto.response.Pagination;
+import org.springframework.data.domain.Pageable;
 
 public interface ProductHomeService {
-    List<ProductFilterResponse> bigDiscount();
-    List<ProductFilterResponse> newArrival();
+    Pagination bigDiscount(Pageable pageable);
 
-    List<ProductFilterResponse> topSales();
+    Pagination newArrival(Pageable pageable);
+
+    Pagination topSales(Pageable pageable);
 }

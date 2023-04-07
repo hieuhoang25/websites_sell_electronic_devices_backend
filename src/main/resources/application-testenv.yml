@@ -55,7 +55,8 @@ spring:
       # we'll be generating an auth token for the user and sending the token to the
       # redirectUri mentioned by the client in the /oauth2/authorize request.
       authorizedRedirectUris:
-        - http://localhost:3000/oauth2/redirect
+        - http://localhost:3000/
+        - https://bonikphone.shop/
   security:
     oauth2:
       client:
