@@ -8,7 +8,7 @@ spring:
     username: root
     password: Bello1308
   jpa:
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
