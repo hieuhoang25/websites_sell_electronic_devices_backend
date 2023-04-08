@@ -61,7 +61,7 @@ public class CartDetail {
                 Integer per = promotionProduct.getDiscountAmount().intValue();
                 return price * (per * 0.01);
             } else {
-                return price - promotionProduct.getDiscountAmount();
+                return  promotionProduct.getDiscountAmount();
             }
 
         } catch (Exception e) {
