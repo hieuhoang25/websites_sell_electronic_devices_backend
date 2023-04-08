@@ -80,19 +80,20 @@ public class Product {
     }
 
     public Double getDiscount() {
-        discount = promotion.getDiscount();
+        discount = 0.0d;
+        if (promotion != null)
+            discount = promotion.getDiscount();
         return discount;
     }
 
-    public Boolean getIsPercent(){
-        return promotion.getIsPercent();
-    }
+//    public Boolean getIsPercent(){
+//        return promotion.getIsPercent();
+//    }
 
     public Double getDiscountPrice() {
-        if(promotion.getIsPercent()){
+        discountPrice = 0.0d;
+        if (discount != 0) {
             discountPrice = getPrice() - getPrice() * (getDiscount() / 100);
-        }else{
-            discountPrice = getPrice() - getDiscount();
         }
         return discountPrice;
     }
