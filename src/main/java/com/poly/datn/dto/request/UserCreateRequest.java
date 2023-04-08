@@ -1,13 +1,16 @@
 package com.poly.datn.dto.request;
 
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public class UserCreateRequest implements Serializable {
     @Size(max = 255)
@@ -19,4 +22,9 @@ public class UserCreateRequest implements Serializable {
     @Size(max = 13)
     @NotBlank
     private String phone;
+
+    public void UserCreateRequest(String email,String full_name){
+        this.email = email;
+        this.full_name = full_name;
+    }
 }

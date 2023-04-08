@@ -27,7 +27,6 @@ public class MailServiceImpl implements MailService {
 
     @Async
     @Override
-
     public void sendEmailVerification(String code, String email) {
         try {
             mailUtil.sendEmailVerification(code,email);
