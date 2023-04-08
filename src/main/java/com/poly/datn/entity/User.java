@@ -151,6 +151,10 @@ public class User {
         }   
     }
 
+    public boolean existsAccount(){
+        return account != null;
+    }
+
     public Set<Order> getOrders() {
         return orders;
     }
