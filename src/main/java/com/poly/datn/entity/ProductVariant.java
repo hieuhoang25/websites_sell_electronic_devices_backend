@@ -57,20 +57,21 @@ public class ProductVariant {
     @OneToMany(mappedBy = "productVariant")
     private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
     private @Transient Double discountPrice;
-    public Double getDiscount(){
+
+    public Double getDiscount() {
         return product.getDiscount();
     }
-    public Boolean isPercent(){
-        return product.getIsPercent();
-    }
+
+    //    public Boolean isPercent(){
+//        return product.getIsPercent();
+//    }
     public Double getDiscountPrice() {
-        if(product.getIsPercent()){
+        discountPrice = 0.0d;
+        if (getDiscount() != 0)
             discountPrice = price - price * (getDiscount() / 100);
-        }else{
-            discountPrice = price - getDiscount();
-        }
         return discountPrice;
     }
+
     @PostPersist
     private void afterCreate() {
         this.status = true;
