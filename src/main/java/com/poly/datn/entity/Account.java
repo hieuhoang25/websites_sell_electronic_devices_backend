@@ -33,7 +33,8 @@ public class Account {
     @Column(name = "active")
     private Boolean active;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "last_access")
