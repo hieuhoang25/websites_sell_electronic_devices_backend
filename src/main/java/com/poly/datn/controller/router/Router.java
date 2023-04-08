@@ -71,7 +71,7 @@ public class Router {
 
         public static final String USER = "/user";
         public static final String ORDER = "/order";
-
+        public static final String NOTIFICATION = "/notification";
         public static final String ORDER_DETAIL = "/order-detail";
 
         public static final String BRAND = "/brand";
