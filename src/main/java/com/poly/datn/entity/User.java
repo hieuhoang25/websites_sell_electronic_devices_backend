@@ -39,8 +39,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Wishlist> wishlists = new LinkedHashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "unique_id")
+    @OneToOne(mappedBy = "user")
     private Account account;
 
     @OneToMany(mappedBy = "user")
