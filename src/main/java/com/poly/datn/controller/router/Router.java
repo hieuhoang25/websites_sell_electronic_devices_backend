@@ -34,6 +34,8 @@ public class Router {
         public static final String PRODUCT_BIG_DISCOUNT = "/product-big-discount";
         public static final String LOGIN_FACEBOOK = "/login-facebook";
 
+
+        public static final String PAY_METHOD = "/paymethod";
     }
 
     public static class USER_API {
