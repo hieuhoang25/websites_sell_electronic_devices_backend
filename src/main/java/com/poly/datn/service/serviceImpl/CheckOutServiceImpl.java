@@ -3,6 +3,7 @@ package com.poly.datn.service.serviceImpl;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -15,6 +16,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.CheckOutRequest;
+import com.poly.datn.dto.response.PaymentMethodResponse;
+import com.poly.datn.entity.Account;
+import com.poly.datn.entity.Cart;
+import com.poly.datn.entity.CartDetail;
+import com.poly.datn.entity.Order;
 import com.poly.datn.entity.Order.OrderBuilder;
 import com.poly.datn.exception.cart.CartException;
 import com.poly.datn.security.UserPrincipal;
@@ -44,6 +50,9 @@ public class CheckOutServiceImpl implements CheckOutService {
     final MailService mailService;
     final UserInfoByTokenService userInfoService;
     final NotificationRepository notificationRepository;
+    final PaymentMethodRepository paymentMethodRepository;
+
+
     @Override
     public Integer checkout(Integer userId, CheckOutRequest request) {
         int saved = -1;
@@ -97,7 +106,15 @@ public class CheckOutServiceImpl implements CheckOutService {
             OrderBuilder builder = Order.builder();
 
             User user = cart.getUser();
+            log.info("get payment_id: " + request.getPayment_method_id());
             PaymentMethod paymentMethod = paymentRepo.findById(request.getPayment_method_id()).get();
+            boolean isPay = false;
+
+            String MOMO = "momo", VISA_CARD = "VISA_CARD";
+            if(paymentMethod.getMethod().equalsIgnoreCase(MOMO) || paymentMethod.getMethod().equalsIgnoreCase(VISA_CARD)) {
+                isPay = true;
+            }
+            log.info("GET METHOD: " +  paymentMethod.getMethod());
             PromotionUser promotion = promtionUserRepo.findById(request.getPromotionUser_id()).orElse(null);
             // Data not available
             OrderStatus orderStatus = orderStatusRepo.findById(1).get();
@@ -110,6 +127,7 @@ public class CheckOutServiceImpl implements CheckOutService {
                     .withPayment(paymentMethod)
                     .withPromotion(promotion)
                     .withStatus(orderStatus)
+                    .withIsPay(isPay)
                     .withUser(user).build();
         } catch (Exception ex) {
             log.info("buildOrder error");
@@ -146,6 +164,7 @@ public class CheckOutServiceImpl implements CheckOutService {
                 mapper.map(CartDetail::getQuantity, OrderDetail::setQuantity);
                 mapper.map(CartDetail::getProductVariant, OrderDetail::setProductVariant);
                 mapper.map(CartDetail::getPrice_Detail, OrderDetail::setPriceSum);
+                mapper.map(CartDetail::getDiscount_Amount, OrderDetail::setPromotionValue);
             }).map(cartDetail);
             // ? debug clean later
             // log.info("order: " + order.getPriceSum() + " -  " + order.getProductVariant().getId() + " - "
@@ -158,4 +177,11 @@ public class CheckOutServiceImpl implements CheckOutService {
         }
 
     }
+
+    @Override
+    public List<PaymentMethodResponse> getPaymentMethod() {
+       return  modelConverter.mapAllByIterator( paymentMethodRepository.findAll(), PaymentMethodResponse.class);
+    }
+
+    
 }
