@@ -105,4 +105,18 @@ public class Router {
         public static final String AUTH_VAR = "/{userId}";
         public static final String CHECKED_OUT_RERIRECT_API = "/order";
     }
+
+    public static class FLASH_DEAL{
+
+        public static final String FLASH_DEAL = "/deal";
+        public static final String PROMO_USER = "/promo-user";
+        public static final String PROMO_CURRENT_USER = "/promo-code";
+
+        public static final String CURRENT = "/current";
+
+        public static final String TODAY = "/today";
+        public static final String SPECIFIC_DATE = "/${date}";
+        public static final String SPECIFIC_TIME = "/${time}";
+        public static final String SPECIFIC_DATETIME = "/${datetime}";
+    }
 }

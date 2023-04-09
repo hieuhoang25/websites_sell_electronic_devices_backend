@@ -17,6 +17,8 @@ public interface CartDetailService {
 
     CartDetailResponse update(CartDetailRequest request);
 
+    CartDetailResponse updateGuestCartDetail(CartDetailRequest request);
+
     CartDetailResponse update(Integer cartId,CartDetailRequest request);
 
     CartDetailResponse add(CartItemRequest request);

@@ -57,8 +57,7 @@ public class CartDetailController {
     public ResponseEntity<CartDetailResponse> getOndeCartDetail(@PathVariable("cartId") Integer cartId, @PathVariable Integer itemId) {
         return ResponseEntity.ok(detailService.findByCartId(cartId, itemId));
     }
-
-
+    
     @Operation(summary = "Find all items in cart of current user")
     @GetMapping(CART_ITEMS)
     public ResponseEntity<?> getCartItemsOfCurrentUser() {

@@ -28,8 +28,8 @@ public class PromotionProduct {
     @Column(name = "name")
     private String name;
 
+    // start day
     @Column(name = "updated_date")
-    @UpdateTimestamp
     private Instant updatedDate;
 
     @Column(name = "maximum_price")

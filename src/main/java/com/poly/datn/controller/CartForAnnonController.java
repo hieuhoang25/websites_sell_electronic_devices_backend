@@ -6,26 +6,24 @@ import static com.poly.datn.controller.router.Router.CART_API.CART_ITEMS;
 import static com.poly.datn.dto.response.CartDetailResponse.withCartPrice_Detail;
 import static com.poly.datn.dto.response.CartDetailResponse.withVariantDiscount_amount;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.datn.dto.request.CartDetailAnnonRequest;
+import com.poly.datn.dto.request.CartDetailRequest;
 import com.poly.datn.dto.response.CartDetailResponse;
 import com.poly.datn.dto.response.CartDetailResponse.CartDetailResponseBuilder;
 import com.poly.datn.dto.response.CartResponse;
@@ -56,8 +54,8 @@ public class CartForAnnonController {
     final ProductVariantService variantService;
 
     @Operation(summary = "get cart item for guest cart")
-   @PostMapping(CART_ITEMS)
-   public ResponseEntity<?> getCartDetailInfo(@Valid @RequestBody CartDetailAnnonRequest request) {
+    @PostMapping(CART_ITEMS)
+    public ResponseEntity<?> getCartDetailInfo(@Valid @RequestBody CartDetailAnnonRequest request) {
         Integer cartDetailId = 101;
         Integer quantity = request.getQuantity();
         CartDetailResponseBuilder respone = CartDetailResponse.getPlainCartDetailResponeBuilder(cartDetailId);
@@ -90,5 +88,21 @@ public class CartForAnnonController {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @GetMapping("/update")
+    public ResponseEntity<?> updateGuestCart(@RequestBody CartResponse request) {
+
+        Integer cartId = request.getId();
+        List<CartDetailResponse> list = request.getCartDetails();
+        
+        List<CartDetailRequest> requestList = list.stream().map(item -> item.getRequestFromGuestCartDetail(cartId)).collect(Collectors.toList());
+        
+        requestList.removeIf(t -> t == null);
+
+        cartService.updateGuestCart(cartId, requestList);
+
+      
+        return ResponseEntity.ok(request);
     }
 }
