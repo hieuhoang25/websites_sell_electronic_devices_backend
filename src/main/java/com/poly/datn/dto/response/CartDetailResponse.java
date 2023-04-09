@@ -2,9 +2,11 @@ package com.poly.datn.dto.response;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.concurrent.ThreadLocalRandom;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.firebase.database.annotations.NotNull;
+import com.poly.datn.dto.request.CartDetailRequest;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -37,6 +39,7 @@ public class CartDetailResponse implements Serializable {
         rp.setId(-1);
         return rp;
     }
+
 
 
     public static CartDetailResponseBuilder getPlainCartDetailResponeBuilder(Integer id) {
@@ -81,25 +84,21 @@ public class CartDetailResponse implements Serializable {
 
     }
 
-    // private Integer total;
+    public CartDetailRequest getRequestFromGuestCartDetail( Integer cartId) {
 
-    // private PromotionProductResponse promotion;
+        Integer id = this.getId();
+        Integer qty = this.getQuantity();
+        Integer variantId = this.getProductVariant().getId();
+        
+        if(variantId == null) return null;
 
-    // private String category_name;
+        if(id == null) {
+            id = ThreadLocalRandom.current().nextInt(1, (Integer.MAX_VALUE - 1));
+        }else if(qty == null || qty == 0) qty = 1;
 
-    // private String product_name;
 
-    // private String sku_name;
+        return new CartDetailRequest(id, cartId, qty,variantId);
+    }
 
-    // @NotNull
-    // private Integer productVariant_id;
-
-    // private String productVairant_name;
-
-    // private String color_name;
-
-    // private String storage_name;
-
-    // private String display_name;
 
 }

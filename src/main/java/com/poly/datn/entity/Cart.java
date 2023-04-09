@@ -24,6 +24,8 @@ import javax.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Formula;
 
+import lombok.AllArgsConstructor;
+
 @Entity
 @Table(name = "cart")
 @NamedStoredProcedureQueries({
@@ -32,6 +34,7 @@ import org.hibernate.annotations.Formula;
                 @StoredProcedureParameter(mode = ParameterMode.OUT, name = "updated", type = Integer.class),
         })
 })
+@AllArgsConstructor
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,11 +50,20 @@ public class Cart {
     private Instant createDate;
 
     @Column(name = "price_sum")
-    private Double priceSum;
+    private Double priceSum = 0.0;
 
   
     @OneToMany(mappedBy = "cart", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     private Set<CartDetail> cartDetails = new LinkedHashSet<>();
+
+    public Cart() {
+        
+    }
+    public Cart(Integer id) {
+        this.id = id;
+        this.priceSum = 0.0;
+    }
+
 
     public Integer getId() {
         return id;
@@ -66,7 +78,11 @@ public class Cart {
     }
 
     public void setUser(User user) {
-        this.user = user;
+        if(user != null) {
+            // user.setCarts(this);
+            this.user = user;
+        }
+        
     }
 
     public Instant getCreateDate() {

@@ -21,7 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.request.CartItemRequest;
+import com.poly.datn.dto.response.CartResponse;
 import com.poly.datn.service.CartService;
+import com.poly.datn.service.UserInfoByTokenService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,10 +40,22 @@ public class CartController {
 
     final CartService service;
     
+    
     @Operation(summary = "Cart's of auth-user")
     @GetMapping()
     public ResponseEntity<?> getCartOfCurrentUser() {
-        return ResponseEntity.ok(service.findCartOfCurrentUser());
+        try {
+            CartResponse response = service.findCartOfCurrentUser();
+            
+            if(response == null) 
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Can't get cart something went wrong") ;
+            
+            return ResponseEntity.ok(response);
+
+        }catch(Exception ex) {
+            log.info("getCartOfCurrentUser() error: " + ex.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
+        }
     }
 
     @Operation(summary = "add list of items to auth-user's")
