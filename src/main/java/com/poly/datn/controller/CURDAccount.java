@@ -48,8 +48,8 @@ public class CURDAccount {
                                              @RequestParam("roleId") Optional<Integer> roleId) {
 
         Pageable pageable = PageRequest.of(page.orElse(0),size.orElse(10));
+    
         if(roleId.get() != -1){
-          
             return ResponseEntity.ok(
                     new ResponseBody<>(
                             1,
@@ -58,7 +58,7 @@ public class CURDAccount {
                     )
             );
         }else {
-
+           
             return ResponseEntity.ok(
                     new ResponseBody<>(
                             1,
