@@ -12,7 +12,6 @@ import com.poly.datn.dto.response.CartDetailResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.experimental.var;
 
 @Data
 @NoArgsConstructor
