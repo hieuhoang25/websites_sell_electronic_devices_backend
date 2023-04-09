@@ -43,7 +43,6 @@ public class FlashDealController {
 
     @GetMapping(TODAY)
     public ResponseEntity<?> getTodayPromoList() {
-
         try {
             LocalDateTime start = LocalDate.now().atStartOfDay();
             LocalDateTime end = LocalDate.now().atTime(LocalTime.MAX);

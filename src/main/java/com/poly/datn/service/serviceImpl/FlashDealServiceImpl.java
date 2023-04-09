@@ -43,20 +43,18 @@ public class FlashDealServiceImpl implements FlashDealService {
                 .findByUpdatedDateBetweenOrderByUpdatedDateAsc(from, to);
 
         log.info("remove expire promo");
-        promos.removeIf(p -> p.getExpirationDate().isBefore(from)); 
+        excludeExpiration(promos, start);
 
         return  buildResponse(promos);
-        // return  buildResponse(promos);
     }
 
     @Override
     public List<FlashDealResponse> getTodayFlashDeal() {
         try {
-       
             LocalDateTime start = LocalDate.now().atStartOfDay();
             LocalDateTime end = LocalDate.now().atTime(LocalTime.MAX);
             List<PromotionProduct> promos = promotionProductRepository
-                    .findByUpdatedDateBetweenOrderByUpdatedDateAsc(convertToInstant(start) , convertToInstant(end));
+                    .findByUpdatedDateBetweenOrderByUpdatedDateAsc(convertToInstant(start), convertToInstant(end));
         
              return buildResponse(promos);       
         } catch (Exception e) {
@@ -66,10 +64,9 @@ public class FlashDealServiceImpl implements FlashDealService {
     }
 
     public List<FlashDealResponse> buildResponse(List<PromotionProduct> promos) {
+        if(promos == null) return new ArrayList<FlashDealResponse>();
         try {
             FlashDealResponseBuilder builder = FlashDealResponse.builder();
-            FlashDealResponse response = new FlashDealResponse();
-            response.setProducts(null);
             // .FlashDealResponseBuilder;
             List<FlashDealResponse> dealList = promos.stream().map(item -> builder
                     .withActivate(item.getActivate())
@@ -93,9 +90,11 @@ public class FlashDealServiceImpl implements FlashDealService {
        
         Instant from = convertToInstant(start);
         Instant to = convertToInstant(end);
-        List<PromotionProduct> promos =  promotionProductRepository.findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(from,to,true);
-      return  buildResponse(promos);
+        List<PromotionProduct> promos =  promotionProductRepository.findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(from,to,true);        
+        return  buildResponse(promos);
     }
+
+
 
     public Instant convertToInstant(LocalDateTime time) {
         ZoneOffset offset = OffsetDateTime.now().getOffset();
@@ -114,7 +113,6 @@ public class FlashDealServiceImpl implements FlashDealService {
             LocalDateTime end = LocalDate.now().atTime(LocalTime.MAX);
             List<PromotionProduct> promos = promotionProductRepository
                     .findByUpdatedDateBetweenOrderByUpdatedDateAsc(convertToInstant(start) , convertToInstant(end));
-            
                     promos.removeIf(p -> p.getExpirationDate().isBefore(convertToInstant(start))); 
                     return buildResponse(promos);
         }catch(Exception e) {
@@ -123,6 +121,24 @@ public class FlashDealServiceImpl implements FlashDealService {
         return null;
        
   
+    }
+
+    @Override
+    public List<FlashDealResponse> getFlashDealFromExcludedExpire(LocalDateTime start, LocalDateTime end) {
+        Instant from = convertToInstant(start);
+        Instant to = convertToInstant(end);
+        List<PromotionProduct> promos =  promotionProductRepository.findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(from,to,true);
+        
+        // remove expired one 
+        excludeExpiration(promos, start);
+       
+        return buildResponse(promos);
+    }
+
+    public List<PromotionProduct> excludeExpiration(List<PromotionProduct> promos, LocalDateTime start) {
+        if(promos == null) return null;
+        promos.removeIf(p -> p.getExpirationDate().isBefore(convertToInstant(start)));
+        return promos;
     }
 
 

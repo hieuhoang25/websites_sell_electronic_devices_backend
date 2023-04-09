@@ -15,5 +15,7 @@ public interface FlashDealService {
 
     public List<FlashDealResponse> getFlashDealFrom(LocalDateTime start, LocalDateTime end);
 
+    public List<FlashDealResponse> getFlashDealFromExcludedExpire(LocalDateTime start, LocalDateTime end);
+
 
 }
