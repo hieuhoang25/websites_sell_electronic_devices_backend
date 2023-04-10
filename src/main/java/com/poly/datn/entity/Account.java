@@ -2,6 +2,8 @@ package com.poly.datn.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+
+
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -31,13 +33,15 @@ public class Account {
     @Column(name = "active")
     private Boolean active;
 
-    @OneToOne(mappedBy = "account")
+    @OneToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "last_access")
     private Instant lastAccess;
 
-    @OneToMany(mappedBy = "account")
+
+    @OneToMany(mappedBy = "account",fetch =  FetchType.EAGER)
     private Set<Authority> authorities = new LinkedHashSet<>();
 
     public Integer getId() {
@@ -112,4 +116,7 @@ public class Account {
         this.authorities = authorities;
     }
 
+    public Integer getUserId(){
+        return user.getId();
+    }
 }

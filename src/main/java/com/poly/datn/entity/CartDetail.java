@@ -10,7 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PostPersist;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Formula;
@@ -38,15 +40,40 @@ public class CartDetail {
     @JoinColumn(name = "product_variant_id")
     private ProductVariant productVariant;
 
-    // @Formula("(select sum(d.quantity * v.price) from cart_detail d join cart c on d.cart_id = c.id join product_variant v on v.id = d.product_variant_id where d.cart_id = id )")
+    // @Formula("(select sum(d.quantity * v.price) from cart_detail d join cart c on
+    // d.cart_id = c.id join product_variant v on v.id = d.product_variant_id where
+    // d.cart_id = id )")
 
     @Formula("(select sum(quantity * v.price) from cart_detail d join product_variant v on v.id = d.product_variant_id  where v.id = product_variant_id)")
     private Double price_detail;
 
+    @Transient
+    private Double discount_amount;
+
+    public Double getDiscount_Amount() {
+        try {
+            Double price = productVariant.getPrice();
+            PromotionProduct promotionProduct = productVariant.getProduct().getPromotion();
+            if (promotionProduct == null)
+                return 0.0;
+
+            if (promotionProduct.getIsPercent()) {
+                Integer per = promotionProduct.getDiscountAmount().intValue();
+                return price * (per * 0.01);
+            } else {
+                return  promotionProduct.getDiscountAmount();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public Double getPrice_Detail() {
-        return price_detail == null ? 0.0 : price_detail;
+        return price_detail;
     }
+
     public Integer getId() {
         return id;
     }

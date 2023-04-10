@@ -1,5 +1,6 @@
 package com.poly.datn.dto.request;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,7 +10,7 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@NoArgsConstructor
+@Builder
 public class LoginRequest {
     @NotBlank
     @NotNull

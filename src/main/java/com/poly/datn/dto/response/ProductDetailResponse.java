@@ -16,6 +16,9 @@ public class ProductDetailResponse implements Serializable {
     private String image;
     private String display_name;
     private List<ProductRatingResponse> rating;
+    private Double discount;
+    private Double discount_price;
+    private Boolean is_percent;
     private Double product_averagePoint;
     private String product_description;
     private List<ProductAttributeResponse> product_productAttributes;

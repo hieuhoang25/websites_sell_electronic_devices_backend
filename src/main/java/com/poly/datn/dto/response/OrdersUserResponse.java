@@ -17,6 +17,7 @@ public class OrdersUserResponse {
     private Boolean is_pay;
     private String payment_method;
     private String status_name;
+    private Double sum;
     private Set<OrderDetailResponse> orderDetails;
 }
 

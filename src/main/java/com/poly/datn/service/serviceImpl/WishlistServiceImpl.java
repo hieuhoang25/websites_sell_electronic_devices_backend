@@ -8,9 +8,11 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.MappingIterator;
+import com.poly.datn.common.SearchResult;
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.WishlistRequest;
 import com.poly.datn.dto.response.WishlistResponse;
@@ -80,6 +82,14 @@ public class WishlistServiceImpl implements WishlistService {
     }
   }
 
+  @Override
+  public Boolean findWishlistOfUserByProductId(Integer productId) {
+    Boolean isExists = wishlistRepository.findByProductIdAndUserId(productId,userService.getCurrentUser().getId());
+    if(isExists == null)
+      return false;
+    return isExists;
+  }
+
   public User getCurrentUser() {
     User user = userService.getCurrentUser();
     if (user == null)
@@ -110,6 +120,14 @@ public class WishlistServiceImpl implements WishlistService {
     return productRepository.findById(productId)
         .orElseThrow(() -> new EntityNotFoundException("Product id " + productId + " not found "));
 
+  }
+
+  @Override
+  public SearchResult<WishlistResponse> getWishlistOfCurrentUser(Pageable page) {
+    Page<Wishlist> wishlists =  wishlistRepository.findAllByUserOrderByUpdateDateDesc(getCurrentUser(),page);
+    return new SearchResult(wishlists.getSize(),
+    wishlists.getNumber(),wishlists.getTotalPages(),
+converter.mapAllByIterator(wishlists.getContent(), WishlistResponse.class));
   }
 
   // public WishlistResponse mapping(Wishlist source) {

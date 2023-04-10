@@ -1,9 +1,13 @@
 package com.poly.datn.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,18 +29,17 @@ public class User {
     @Size(max = 13)
     @Column(name = "phone", length = 13)
     private String phone;
-
-    @Column(name = "create_date")
+    @CreationTimestamp
+    @Column(name = "create_date", updatable = false)
     private Instant createDate;
-
+    @UpdateTimestamp
     @Column(name = "update_date")
     private Instant updateDate;
 
     @OneToMany(mappedBy = "user")
     private Set<Wishlist> wishlists = new LinkedHashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "unique_id")
+    @OneToOne(mappedBy = "user")
     private Account account;
 
     @OneToMany(mappedBy = "user")
@@ -51,8 +54,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Order> orders = new LinkedHashSet<>();
 
-    @OneToOne(mappedBy ="user")
+    @OneToOne(mappedBy ="user",cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart carts;
+
+    @OneToMany(mappedBy = "user")
+    private List<RefreshToken> refreshTokens;
 
     public Integer getId() {
         return id;
@@ -143,6 +149,10 @@ public class User {
             this.carts = carts;
             carts.setUser(this);
         }   
+    }
+
+    public boolean existsAccount(){
+        return account != null;
     }
 
     public Set<Order> getOrders() {

@@ -2,7 +2,9 @@ package com.poly.datn.service.serviceImpl;
 
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.RatingProductRequest;
+import com.poly.datn.dto.response.OrderDetailResponse;
 import com.poly.datn.dto.response.ProductRatingResponse;
+import com.poly.datn.entity.OrderDetail;
 import com.poly.datn.entity.Rating;
 import com.poly.datn.repository.RatingRepository;
 import com.poly.datn.service.RatingProductService;
@@ -10,6 +12,9 @@ import com.poly.datn.service.UserInfoByTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -20,18 +25,24 @@ public class RatingProductServiceImpl implements RatingProductService {
     private final UserInfoByTokenService userInfoByTokenService;
 
     @Override
-    public ProductRatingResponse rateProduct(RatingProductRequest request) {
-        Rating rating = converter.map(request, Rating.class);
-        rating.setUser(userInfoByTokenService.getCurrentUser());
-        ProductRatingResponse ratingResponse = converter.map(repository.save(rating), ProductRatingResponse.class);
+    public List<ProductRatingResponse> rateProduct(List<RatingProductRequest> request) {
+        List<Rating> rating = converter.mapAllByIterator(request, Rating.class);
+        rating.stream().forEach(rt -> {
+            rt.setUser(userInfoByTokenService.getCurrentUser());
+        });
+        List<ProductRatingResponse> ratingResponse =
+                converter.mapAllByIterator(repository.saveAll(rating), ProductRatingResponse.class);
         return ratingResponse;
     }
 
     @Override
-    public Boolean isRating(Integer productId, Integer orderDetailId) {
-        Boolean check = repository.isRating(productId, userInfoByTokenService.getCurrentUser().getId(), orderDetailId);
-        if (check == null)
-            return false;
-        return check;
+    public List<OrderDetailResponse> isRating(Integer orderId) {
+        List<OrderDetail> orderDetails =
+                repository.isRating(orderId,userInfoByTokenService.getCurrentUser().getId());
+        List<OrderDetailResponse> orderDetailResponses = new ArrayList<>();
+        if (orderDetails.isEmpty())
+            return orderDetailResponses;
+        orderDetailResponses = converter.mapAllByIterator(orderDetails, OrderDetailResponse.class);
+        return orderDetailResponses;
     }
 }

@@ -1,36 +1,38 @@
 package com.poly.datn.dto.response;
 
 import java.io.Serializable;
-import java.util.List;
+import java.time.Instant;
+import java.util.concurrent.ThreadLocalRandom;
 
-import org.modelmapper.Converters.Converter;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.firebase.database.annotations.NotNull;
-import com.poly.datn.entity.CartDetail;
-import com.poly.datn.entity.ProductVariant;
+import com.poly.datn.dto.request.CartDetailRequest;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
 @NoArgsConstructor
-public class CartDetailResponse implements Serializable{
-    
+@AllArgsConstructor
+@Builder(setterPrefix = "with")
+public class CartDetailResponse implements Serializable {
 
     @NotNull
     private Integer id;
 
-    
     private ProductVariantResponse productVariant;
-
 
     private Double price_detail;
 
-
+    private Double discount_amount;
 
     @NotNull
     private Integer quantity;
+
+    @JsonIgnore
+    private Instant create_date;
 
     public static CartDetailResponse getDeletedDetailResponse() {
         CartDetailResponse rp = new CartDetailResponse();
@@ -38,27 +40,65 @@ public class CartDetailResponse implements Serializable{
         return rp;
     }
 
-    // private Integer total;
 
-    // private PromotionProductResponse promotion;
 
-    // private String category_name;
+    public static CartDetailResponseBuilder getPlainCartDetailResponeBuilder(Integer id) {
+        CartDetailResponseBuilder builder = new CartDetailResponseBuilder();
+        builder.withId(id);
+        return builder;
+    }
 
-    // private String product_name;
-    
-    // private String sku_name;
+    public static CartDetailResponseBuilder withCartPrice_Detail(CartDetailResponseBuilder builder) {
 
-    // @NotNull
-    // private Integer productVariant_id;
+        Integer quantity = (builder.quantity == null) || (builder.quantity == 0)? 1 : builder.quantity;
+        Double price_detail = builder.productVariant.getPrice() * quantity;
+        return builder.withPrice_detail(price_detail);
+    }
+    public static CartDetailResponseBuilder withVariantDiscount_amount(CartDetailResponseBuilder builder) {
+        ProductVariantResponse productVariant =  builder.productVariant;
+        if (productVariant == null) {
+           
+            return builder.withDiscount_amount(0.0);
+        }
+        try {
+           
+            Double price = productVariant.getPrice();
+            PromotionProductResponse promotionProduct = productVariant.getProduct_promotion();
+            if (promotionProduct == null) {
 
-    // private String productVairant_name;
+                return builder.withDiscount_amount(0.0);
+            }
 
-    // private String color_name;
+            if (promotionProduct.getIs_percent()) {
+                Integer per = promotionProduct.getDiscount_amount().intValue();
+                return builder.withDiscount_amount(price * (per * 0.01));
 
-    // private String storage_name;
+            } else {
+                return builder.withDiscount_amount(price - promotionProduct.getDiscount_amount());
+            }
 
-    // private String display_name;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
 
-  
+    }
+
+    public CartDetailRequest getRequestFromGuestCartDetail( Integer cartId) {
+
+        Integer id = this.getId();
+        Integer qty = this.getQuantity();
+        Integer variantId = this.getProductVariant().getId();
+        
+        if(variantId == null) return null;
+
+        if(id == null) {
+            id = ThreadLocalRandom.current().nextInt(1, (Integer.MAX_VALUE - 1));
+        }else if(qty == null || qty == 0) qty = 1;
+
+
+        return new CartDetailRequest(id, cartId, qty,variantId);
+    }
+
 
 }

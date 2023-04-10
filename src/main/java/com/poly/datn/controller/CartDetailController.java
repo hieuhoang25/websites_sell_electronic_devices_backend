@@ -1,7 +1,6 @@
 package com.poly.datn.controller;
 
-import static com.poly.datn.controller.router.Router.CART_API.*;
-import static com.poly.datn.controller.router.Router.API.BASE;
+import static com.poly.datn.controller.router.Router.CART_API.CART;
 import static com.poly.datn.controller.router.Router.CART_API.CART_DETAIL;
 import static com.poly.datn.controller.router.Router.CART_API.CART_DETAIL_TAG_NAME;
 import static com.poly.datn.controller.router.Router.CART_API.CART_ID_VAR;
@@ -19,12 +18,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.webjars.NotFoundException;
 
+import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.request.CartDetailRequest;
 import com.poly.datn.dto.request.CartItemRequest;
 import com.poly.datn.dto.response.CartDetailResponse;
+import com.poly.datn.entity.User;
 import com.poly.datn.service.CartDetailService;
 import com.poly.datn.service.CartService;
+import com.poly.datn.service.UserInfoByTokenService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -33,13 +36,15 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(BASE + CART)
+// @RequestMapping(BASE + CART)
+@RequestMapping(Router.USER_API.BASE + CART)
 @RequiredArgsConstructor
 @Tag(name = CART_DETAIL_TAG_NAME, description = "CRUD FOR CartDetail")
 public class CartDetailController {
 
     final CartDetailService detailService;
     final CartService cartService;
+    final UserInfoByTokenService userInfoService;
     
     @Operation(summary ="Find all items in cart", description = "Find all CartDetail by Cart_Id")
     @GetMapping(CART_ID_VAR + CART_ITEMS)
@@ -52,12 +57,20 @@ public class CartDetailController {
     public ResponseEntity<CartDetailResponse> getOndeCartDetail(@PathVariable("cartId") Integer cartId, @PathVariable Integer itemId) {
         return ResponseEntity.ok(detailService.findByCartId(cartId, itemId));
     }
-
-
+    
     @Operation(summary = "Find all items in cart of current user")
     @GetMapping(CART_ITEMS)
     public ResponseEntity<?> getCartItemsOfCurrentUser() {
-        return getCartItemsByCartId(cartService.getCurrentUser().getCarts().getId());
+        try {
+            User user = userInfoService.getCurrentUser();
+            return getCartItemsByCartId(user.getCarts().getId());
+        }catch(Exception e) {
+            if(e instanceof NotFoundException) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Full access request" + e.getMessage());
+            }
+        }
+
+       return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("System error");
     }
 
    

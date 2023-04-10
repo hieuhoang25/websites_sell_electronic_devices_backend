@@ -21,7 +21,6 @@ import static com.poly.datn.controller.router.Router.API.LOGIN;
 @Tag(name = Router.API.BASE + LOGIN)
 public class LoginController {
     private final LoginService service;
-
     @PostMapping
     public ResponseEntity<?> login(@RequestBody @Valid LoginRequest request){
         return service.login(request);

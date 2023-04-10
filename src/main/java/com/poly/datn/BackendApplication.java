@@ -9,27 +9,23 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
-import lombok.Setter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.filter.ForwardedHeaderFilter;
 
 import java.io.IOException;
 
 //Swagger url: http://localhost:8080/swagger-ui/index.html
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "API for project", version = "v1.0.0"), security = {
-        @SecurityRequirement(name = "bearerAuth")},
+@OpenAPIDefinition(info = @Info(title = "API for project", version = "v1.0.0"),
         servers = {
                 @Server(url = "http://localhost:8080", description = "Default Server URL"),
-                @Server(url = "https://vongtayyeuthuong.shop"),
-                @Server(url = "http://vongtayyeuthuong.shop")
+                @Server(url = "https://api.bonikphone.shop"),
         })
-@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
+//@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 @EnableScheduling
 public class BackendApplication {
     public static void main(String[] args) throws IOException {

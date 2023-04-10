@@ -32,7 +32,7 @@ public class CURDProductAttributeController {
 //    produces = {"application/json"}
     @PostMapping()
     public ResponseEntity<?> createProductAttribute(@RequestBody ProductAttributeRequest productAttributeRequestList){
-        System.out.println(productAttributeRequestList);
+
         return ResponseEntity.ok(productAttributeService.create(productAttributeRequestList));
     }
 

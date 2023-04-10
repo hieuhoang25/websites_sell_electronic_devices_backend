@@ -1,6 +1,5 @@
 package com.poly.datn.entity;
 
-import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -8,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -27,7 +27,6 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    //    @Column(name = "create_date")
     @Column(name = "create_date", nullable = false, updatable = false)
     @CreationTimestamp
 
@@ -64,27 +63,66 @@ public class Product {
     private Set<Wishlist> wishlists = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "product")
-    private Set<ProductAttribute> productAttributes = new LinkedHashSet<>();
+    private List<ProductAttribute> productAttributes;
 
     @OneToMany(mappedBy = "product")
     private Set<Rating> ratings = new LinkedHashSet<>();
 
     @OneToMany(mappedBy = "product")
     private Set<ProductVariant> productVariants = new LinkedHashSet<>();
+    private @Transient Double price;
+    private @Transient Double averagePoint;
+    private @Transient Double discount;
+    private @Transient Double discountPrice;
 
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public Double getDiscount() {
+        discount = 0.0d;
+        if (promotion != null)
+            discount = promotion.getDiscount();
+        return discount;
+    }
+
+//    public Boolean getIsPercent(){
+//        return promotion.getIsPercent();
+//    }
+
+    public Double getDiscountPrice() {
+        discountPrice = 0.0d;
+        if (discount != 0) {
+            discountPrice = getPrice() - getPrice() * (getDiscount() / 100);
+        }
+        return discountPrice;
+    }
+
+    public void setDiscountPrice(Double discountPrice) {
+        this.discountPrice = discountPrice;
+    }
 
     public Double getPrice() {
+        price = 0.0;
         if (!productVariants.isEmpty())
-            return productVariants.stream().mapToDouble(ProductVariant::getPrice).min().getAsDouble();
-        return 0.0;
+            price = productVariants.stream().mapToDouble(ProductVariant::getPrice).min().getAsDouble();
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Double getAveragePoint() {
         int size = ratings.size();
-        Double point = 0.0;
+        averagePoint = 0.0;
         if (size != 0)
-            point = ratings.stream().mapToDouble(Rating::getPoint).sum() / size;
-        return point;
+            averagePoint = ratings.stream().mapToDouble(Rating::getPoint).sum() / size;
+        return averagePoint;
+    }
+
+    public void setAveragePoint(Double averagePoint) {
+        this.averagePoint = averagePoint;
     }
 
     public Integer getId() {
@@ -191,11 +229,11 @@ public class Product {
         this.wishlists = wishlists;
     }
 
-    public Set<ProductAttribute> getProductAttributes() {
+    public List<ProductAttribute> getProductAttributes() {
         return productAttributes;
     }
 
-    public void setProductAttributes(Set<ProductAttribute> productAttributes) {
+    public void setProductAttributes(List<ProductAttribute> productAttributes) {
         this.productAttributes = productAttributes;
     }
 

@@ -15,6 +15,9 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.net.URLEncoder;
+import java.nio.ByteBuffer;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 
 @Service
@@ -44,7 +47,12 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         }
 
         Optional<User> userOptional = userRepository.findByEmail(oAuth2UserInfo.getEmail());
-
+        if(userOptional.get().existsAccount()){
+            String rawString = "Email này đã được sử dụng bởi một tài khoản khác";
+            ByteBuffer buffer = StandardCharsets.UTF_8.encode(rawString);
+            String utf8EncodedString = StandardCharsets.UTF_8.decode(buffer).toString();
+            throw new OAuth2AuthenticationProcessingException(utf8EncodedString);
+        }
         User user;
         if (userOptional.isPresent()) {
             user = userOptional.get();

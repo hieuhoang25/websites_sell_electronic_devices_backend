@@ -1,7 +1,7 @@
 package com.poly.datn.controller;
 
-import static com.poly.datn.controller.router.Router.CHECK_OUT_API.AUTH_VAR;
-import static com.poly.datn.controller.router.Router.CHECK_OUT_API.BASE;
+import static com.poly.datn.controller.router.Router.CHECK_OUT_API.CHECKOUT;
+import static com.poly.datn.controller.router.Router.USER_API.BASE;
 
 import javax.validation.Valid;
 
@@ -15,15 +15,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.datn.dto.request.CheckOutRequest;
 import com.poly.datn.entity.Account;
+import com.poly.datn.entity.User;
 import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.service.CheckOutService;
+import com.poly.datn.service.UserInfoByTokenService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
-@RequestMapping(BASE)
+@RequestMapping(BASE + CHECKOUT)
 @RequiredArgsConstructor
 public class CheckoutController {
 
@@ -32,6 +34,7 @@ public class CheckoutController {
     final  OrderTrackingByIdController orderService;
 
     final AccountRepository accountRepository;
+    final UserInfoByTokenService userInfoService;
 
    
     public ResponseEntity<?>checkoutByUserId(@PathVariable Integer userId, @Valid @RequestBody CheckOutRequest request) {
@@ -47,7 +50,8 @@ public class CheckoutController {
 
         String name = SecurityContextHolder.getContext().getAuthentication().getName();
         Account account = accountRepository.findByUsername(name);
-        return checkoutByUserId(account.getId(), request);
+        User user = userInfoService.getCurrentUser();
+        return checkoutByUserId(user.getId(), request);
 
     }
     

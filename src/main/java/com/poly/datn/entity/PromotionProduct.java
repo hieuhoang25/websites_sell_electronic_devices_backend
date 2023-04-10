@@ -28,8 +28,8 @@ public class PromotionProduct {
     @Column(name = "name")
     private String name;
 
+    // start day
     @Column(name = "updated_date")
-    @UpdateTimestamp
     private Instant updatedDate;
 
     @Column(name = "maximum_price")
@@ -40,6 +40,28 @@ public class PromotionProduct {
 
     @OneToMany(mappedBy = "promotion")
     private Set<Product> products = new LinkedHashSet<>();
+
+    private Double discountAmount;
+
+    private Boolean isPercent;
+    @Column(name = "discount")
+    private Double discount;
+
+    public Boolean getPercent() {
+        return isPercent;
+    }
+
+    public void setPercent(Boolean percent) {
+        isPercent = percent;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
 
     public Integer getId() {
         return id;
@@ -104,5 +126,22 @@ public class PromotionProduct {
     public void setProducts(Set<Product> products) {
         this.products = products;
     }
+
+    public Double getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(Double discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    public Boolean getIsPercent() {
+        return isPercent;
+    }
+
+    public void setIsPercent(Boolean isPercent) {
+        this.isPercent = isPercent;
+    }
+
 
 }

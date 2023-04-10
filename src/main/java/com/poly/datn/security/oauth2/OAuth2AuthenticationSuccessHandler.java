@@ -1,10 +1,14 @@
 package com.poly.datn.security.oauth2;
 
 import com.poly.datn.config.AppProperties;
+import com.poly.datn.entity.User;
 import com.poly.datn.exception.BadRequestException;
-import com.poly.datn.security.TokenProvider;
+import com.poly.datn.repository.UserRepository;
+import com.poly.datn.security.RefreshTokenService;
+import com.poly.datn.security.jwt.JwtUtils;
 import com.poly.datn.utils.CookieUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseCookie;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -21,22 +25,15 @@ import java.util.Optional;
 import static com.poly.datn.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
 @Component
+@RequiredArgsConstructor
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
+    private final AppProperties appProperties;
 
-    private TokenProvider tokenProvider;
+    private final HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
+    private final JwtUtils jwtUtils;
 
-    private AppProperties appProperties;
-
-    private HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository;
-
-
-    @Autowired
-    OAuth2AuthenticationSuccessHandler(TokenProvider tokenProvider, AppProperties appProperties,
-                                       HttpCookieOAuth2AuthorizationRequestRepository httpCookieOAuth2AuthorizationRequestRepository) {
-        this.tokenProvider = tokenProvider;
-        this.appProperties = appProperties;
-        this.httpCookieOAuth2AuthorizationRequestRepository = httpCookieOAuth2AuthorizationRequestRepository;
-    }
+    private final RefreshTokenService refreshTokenService;
+    private final UserRepository userRepository;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
@@ -56,9 +53,13 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
             throw new BadRequestException("Sorry! We've got an Unauthorized Redirect URI and can't proceed with the authentication");
         }
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
-        String token = tokenProvider.createToken(authentication);
+        ResponseCookie access_token = jwtUtils.generateJwtCookie(authentication);
+        User user = userRepository.findByEmail(authentication.getName()).get();
+        String refresh_token = jwtUtils.createRefreshToken(user.getEmail());
+        ResponseCookie refreshCookie = refreshTokenService.generateRefreshTokenCookie(user, refresh_token);
         return UriComponentsBuilder.fromUriString(targetUrl)
-                .queryParam("token", token)
+                .queryParam("access_token",access_token.getValue())
+                .queryParam("refresh_token",refreshCookie.getValue())
                 .build().toUriString();
     }
 

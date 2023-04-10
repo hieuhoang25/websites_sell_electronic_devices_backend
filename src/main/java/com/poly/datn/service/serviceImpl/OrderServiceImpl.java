@@ -1,6 +1,7 @@
 package com.poly.datn.service.serviceImpl;
 
 import com.poly.datn.common.mapper.ModelConverter;
+import com.poly.datn.dto.response.OrderDetailResponse;
 import com.poly.datn.dto.response.OrdersUserResponse;
 import com.poly.datn.dto.response.ProductVariantResponse;
 import com.poly.datn.entity.Order;
@@ -8,6 +9,7 @@ import com.poly.datn.repository.OrderDetailRepository;
 import com.poly.datn.repository.OrderRepository;
 import com.poly.datn.service.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,8 +27,17 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrdersUserResponse> findAll() {
-
-        List<OrdersUserResponse> list= modelConverter.mapAllByIterator(orderRepository.findAll(), OrdersUserResponse.class);
+        List<OrdersUserResponse> list= modelConverter.mapAllByIterator(orderRepository.findAll(Sort.by("status.id").ascending()), OrdersUserResponse.class);
+        list.stream()
+                .forEach(o -> {
+                    double sum = 0;
+                    for (OrderDetailResponse od:
+                         o.getOrderDetails()) {
+                        double pv = od.getPromotion_value() == null ? 0 : od.getPromotion_value();
+                        sum+= od.getPrice_sum() - pv;
+                    }
+                    o.setSum(sum);
+                });
         return list;
 
     }
