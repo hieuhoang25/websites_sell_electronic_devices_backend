@@ -62,26 +62,18 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             "like :keysearch and is_delete = :isDeleted or pd.name like :keysearch and is_delete = :isDeleted", nativeQuery = true)
     Integer countProductFilterWithDeleted(@Param("keysearch") String keysearch, @Param("isDeleted") Integer isDeleted);
 
-    @Query(value = "select p.id, p.product_name,p.description, " +
-            "p.category_id, p.brand_id, p.promotion_id, p.image, p.create_date," +
-            " p.update_date, p.is_delete, p.type " +
-            "from product p left JOIN promotion_product pm on p.promotion_id = pm.id " +
-            " where p.is_delete = false ORDER BY pm.discount desc", nativeQuery = true)
+    @Query("SELECT p FROM Product p LEFT JOIN p.promotion pm WHERE p.isDelete = false ORDER BY pm.discountAmount DESC")
     List<Product> findByBigDiscount();
 
-    @Query(value = "select p.id, p.product_name,p.description, " +
-            " p.category_id, p.brand_id, p.promotion_id, p.image, p.create_date," +
-            " p.update_date, p.is_delete, p.type  from product p " +
-            "where p.is_delete = false order by p.create_date desc", nativeQuery = true)
+    @Query("SELECT p FROM Product p WHERE p.isDelete = false ORDER BY p.createDate DESC")
     List<Product> findByNewArrival();
 
-    @Query(value = "SELECT p.id, p.product_name,p.description, " +
-            " p.category_id, p.brand_id, p.promotion_id, p.image, p.create_date, " +
-            " p.update_date, p.is_delete, p.type " +
-            "FROM order_detail od join product_variant pr on pr.id = od.product_variant_id " +
-            "join product p on p.id = pr.product_id " +
-            "WHERE p.is_delete = false " +
+    @Query("SELECT p " +
+            "FROM OrderDetail od " +
+            "JOIN od.productVariant pr " +
+            "JOIN pr.product p " +
+            "WHERE p.isDelete = false " +
             "GROUP BY p.id " +
-            "ORDER BY COUNT(pr.product_id) desc", nativeQuery = true)
+            "ORDER BY COUNT(pr.product.id) DESC ")
     List<Product> findByTopSales();
 }
