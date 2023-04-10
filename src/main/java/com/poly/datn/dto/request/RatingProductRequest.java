@@ -21,8 +21,6 @@ public class RatingProductRequest {
     private Integer point;
     @NotNull
     private Integer product_id;
-    @NotBlank
-    @NotNull
     private String content;
     @NotNull
     private Integer orderDetail_id;
