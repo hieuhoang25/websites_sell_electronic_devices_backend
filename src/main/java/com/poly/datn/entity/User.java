@@ -129,6 +129,10 @@ public class User {
     }
 
     public void setAddresses(Set<Address> addresses) {
+        // if(addresses != null) {
+        //     this.addresses = addresses;
+        //     addresses.forEach(a -> a.setUser(this));
+        // }
         this.addresses = addresses;
     }
 

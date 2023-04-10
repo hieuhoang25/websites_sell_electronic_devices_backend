@@ -51,6 +51,8 @@ public class Router {
 
         public static final String RATING = "/rating";
 
+        public static final String ADDRESS = "/addresss";
+
     }
 
     public static class ADMIN_API {
