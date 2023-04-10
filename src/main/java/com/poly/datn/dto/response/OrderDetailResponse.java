@@ -5,11 +5,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderDetailResponse {
+public class OrderDetailResponse implements Serializable {
     private Integer id;
     private Integer product_id;
     private Double price_sum;
@@ -19,4 +21,5 @@ public class OrderDetailResponse {
     private String productVariant_color_name;
     private Integer quantity;
     private Double promotion_value;
+    private Double discount;
 }
