@@ -1,5 +1,7 @@
 package com.poly.datn.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
@@ -16,6 +18,7 @@ public class Rating {
     private Integer point;
 
     @Column(name = "created_date")
+    @CreationTimestamp
     private Instant createdDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
