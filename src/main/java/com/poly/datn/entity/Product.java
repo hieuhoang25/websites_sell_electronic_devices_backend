@@ -81,8 +81,8 @@ public class Product {
 
     public Double getDiscount() {
         discount = 0.0d;
-        if (promotion != null)
-            discount = promotion.getDiscount();
+        if (promotion != null && promotion.getActivate())
+            discount = promotion.getDiscountAmount();
         return discount;
     }
 
