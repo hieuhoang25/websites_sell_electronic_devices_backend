@@ -44,6 +44,17 @@ public class OrderDetail {
     @OneToOne(mappedBy = "orderDetail")
     private Rating rating;
 
+    private @Transient Double discount;
+
+    public Double getDiscount() {
+        discount = productVariant.getDiscount();
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
     public Integer getId() {
         return id;
     }
