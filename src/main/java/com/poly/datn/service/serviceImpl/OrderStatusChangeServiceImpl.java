@@ -13,6 +13,7 @@ import com.poly.datn.service.OrderStatusChangeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -20,6 +21,7 @@ import javax.persistence.EntityNotFoundException;
 @Service
 @AllArgsConstructor
 @Slf4j
+@Transactional(rollbackFor = {Exception.class})
 public class OrderStatusChangeServiceImpl implements OrderStatusChangeService {
     private  OrderRepository orderRepository;
     private  OrderStatusRepository orderStatusRepository;

@@ -2,11 +2,13 @@ package com.poly.datn.dto.response;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderManagerResponse {
+public class OrderManagerResponse implements Serializable {
     private Integer id;
     private String user_fullName;
     private String status_name;
