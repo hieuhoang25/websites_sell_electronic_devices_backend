@@ -18,7 +18,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
 
     @Query(value = "select * from account a join user u on " +
-            "a.unique_id = u.id left join address adr on " +
+            "a.user_id = u.id left join address adr on " +
             "adr.user_id = u.id where  username like :keysearch or " +
             "email like :keysearch or full_name like :keysearch or phone like :keysearch",nativeQuery = true)
     List<Account> findAllByFilters(Pageable pageable,@Param("keysearch")String keysearch);
@@ -30,7 +30,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
     Integer countAccountByFilters(@Param("keysearch")String keysearch);
 
     @Query(value = "select * from account a join user u on " +
-            "a.unique_id = u.id left join address adr on " +
+            "a.user_id = u.id left join address adr on " +
             "adr.user_id = u.id join authority auth on " +
             "auth.account_id = a.unique_id  where  username like :keysearch and role_id = :role or " +
             "email like :keysearch and role_id = :role or full_name like :keysearch " +
@@ -39,7 +39,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
      @Param("keysearch")String keysearch,@Param("role") Integer role);
 
     @Query(value = "select count(*) from account a join user u on " +
-            "a.unique_id = u.id left join address adr on " +
+            "a.user_id = u.id left join address adr on " +
             "adr.user_id = u.id join authority auth on " +
             "auth.account_id = a.unique_id  where  username like :keysearch and role_id = :role or " +
             "email like :keysearch and role_id = :role or full_name like :keysearch " +

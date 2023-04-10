@@ -63,7 +63,6 @@ public class CartDetailServiceImpl implements CartDetailService {
 
     }
 
-
     @Override
     public CartDetailResponse add(CartItemRequest request) {
         try {
@@ -114,7 +113,6 @@ public class CartDetailServiceImpl implements CartDetailService {
         // map cartId when logged in
         request.setCart_id(cartId);
         return update(request);
-
     }
 
     @Override
@@ -217,6 +215,12 @@ public class CartDetailServiceImpl implements CartDetailService {
         boolean status = getStatusOfVariant(vairantId);
         // log.info("validateVariantStatus status: " + status);
         if(!status)  throw new VariantUnavailable("Product's Variant Id is "+ vairantId +" unvailable");
+    }
+
+    @Override
+    public CartDetailResponse updateGuestCartDetail(CartDetailRequest request) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateGuestCartDetail'");
     }
 
 }

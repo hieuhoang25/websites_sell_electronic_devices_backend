@@ -4,12 +4,10 @@ spring:
     multipart:
       max-file-size : 10MB
       max-request-size: 10MB
-  profiles:
-    active: testenv
   datasource:
-    url: jdbc:mysql://localhost:3306/electronic_db
+    url: jdbc:mysql://14.225.210.86:3306/electronic_db
     username: root
-    password: 
+    password: rootpw12345
   jpa:
     show-sql: true
     properties:
@@ -27,8 +25,8 @@ spring:
   mail:
     default-encoding: UTF-8
     host: smtp.gmail.com
-    username: ebonikshop@gmail.com
-    password: aibzzxjrffupjjrf
+    username: ebonik.mobile@gmail.com
+    password: ezfjrofaozuvuvwt
     port: 587
     properties:
       mail:
@@ -55,12 +53,13 @@ spring:
     jwtCookieName: bonik
     jwtRefreshCookieName: bonikRF
     cors:
-      allowedOrigins: http://localhost:3000,http://localhost:3001,http://localhost:8080,https://bonikphone.shop/swagger-ui/index.html,https://bonikphone.shop/,https://admin.bonikphone.shop/,https://api.bonikphone.shop/,https://user.longproxy.com,https://admin.longproxy.com
+      allowedOrigins: http://localhost:3000,http://localhost:3001,http://localhost:8080,https://bonikphone.shop/swagger-ui/index.html,https://bonikphone.shop,https://admin.bonikphone.shop/,https://api.bonikphone.shop/,https://user.longproxy.com,https://admin.longproxy.com
       # After successfully authenticating with the OAuth2 Provider,
       # we'll be generating an auth token for the user and sending the token to the
       # redirectUri mentioned by the client in the /oauth2/authorize request.
+    oauth2:
       authorizedRedirectUris:
-        - http://localhost:3000/oauth2/redirect
+        - http://localhost:3000/
   security:
     oauth2:
       client:

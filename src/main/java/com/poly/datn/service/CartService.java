@@ -46,4 +46,6 @@ public interface CartService {
     CartResponse addProductToCart(List<CartDetailRequest> itmes);
 
     CartResponse updateCart(List<CartDetailRequest> items);
+
+    CartResponse updateGuestCart(Integer cartId, List<CartDetailRequest> items);
 }

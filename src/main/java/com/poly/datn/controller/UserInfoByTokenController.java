@@ -23,7 +23,7 @@ public class UserInfoByTokenController {
         return ResponseEntity.ok(service.getUserInfo());
     }
 
-    @PostMapping
+    @PutMapping
     public ResponseEntity<UserLoggedResponse> updateUserInformation(@RequestBody @Valid UserInfoRequest request){
         try{
             return ResponseEntity.ok(service.updateUserInformation(request));

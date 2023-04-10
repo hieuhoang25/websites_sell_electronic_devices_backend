@@ -7,6 +7,7 @@ import com.poly.datn.service.OrderTrackingService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
+
 
 import static com.poly.datn.controller.router.Router.USER_API.ORDER_TRACKING;
 
@@ -30,7 +32,7 @@ public class OrderTrackingController {
             @PathVariable @Valid @NotNull(message = "Order status can not be null") Integer statusId,
             @RequestParam Optional<Integer> size,
             @RequestParam Optional<Integer> page) {
-        PageRequest pageRequest = PageRequest.of(page.orElse(0),size.orElse(5));
+        PageRequest pageRequest = PageRequest.of(page.orElse(0),size.orElse(5), Sort.by("createdDate"));
         PaginationOrderTracking<OrderTrackingResponse> orderTrackingResponses =
                 service.getUserOrdered(statusId, pageRequest);
         return ResponseEntity.ok(orderTrackingResponses);

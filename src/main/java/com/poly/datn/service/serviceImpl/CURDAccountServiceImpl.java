@@ -7,7 +7,6 @@ import com.poly.datn.repository.AuthorityRepository;
 import com.poly.datn.service.CURDAccountService;
 import lombok.RequiredArgsConstructor;
 
-import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -19,13 +18,13 @@ public class CURDAccountServiceImpl implements CURDAccountService {
     private  final ModelConverter modelConverter;
     private  final AccountRepository accountRepository;
 
-    private final AuthorityRepository authorityRepository;
 
     @Override
     public Pagination<?> findAll(Pageable pageable) {
         Integer size = pageable.getPageSize();
         Integer totalPages= Math.ceil((float)accountRepository.findAll().stream().count()/size)==0
                 ? 1: (int) Math.ceil((float)accountRepository.findAll().stream().count()/size);
+        
         return new Pagination<AccountResponse>(
                 pageable.getPageSize(),
                 pageable.getPageNumber(),
@@ -52,6 +51,7 @@ public class CURDAccountServiceImpl implements CURDAccountService {
         Integer size = pageable.getPageSize();
         Integer totalPages= Math.ceil((float)accountRepository.countAccountByFiltersWithRole(keysearch,roleId)/size)==0
                 ? 1: (int) Math.ceil((float)accountRepository.countAccountByFiltersWithRole(keysearch,roleId)/size);
+        System.out.println(totalPages);
         return new Pagination<AccountResponse>(
                 pageable.getPageSize(),
                 pageable.getPageNumber(),

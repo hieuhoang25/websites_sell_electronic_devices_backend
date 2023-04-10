@@ -6,26 +6,24 @@ import static com.poly.datn.controller.router.Router.CART_API.CART_ITEMS;
 import static com.poly.datn.dto.response.CartDetailResponse.withCartPrice_Detail;
 import static com.poly.datn.dto.response.CartDetailResponse.withVariantDiscount_amount;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.datn.dto.request.CartDetailAnnonRequest;
+import com.poly.datn.dto.request.CartDetailRequest;
 import com.poly.datn.dto.response.CartDetailResponse;
 import com.poly.datn.dto.response.CartDetailResponse.CartDetailResponseBuilder;
 import com.poly.datn.dto.response.CartResponse;
@@ -55,38 +53,12 @@ public class CartForAnnonController {
     final UserInfoByTokenService userInfoService;
     final ProductVariantService variantService;
 
-    @Operation(summary = "get detail by variant id")
-    @GetMapping(CART_ITEMS + "/{variantId}")
-    public ResponseEntity<?> getCartDetailInfo(@PathVariable Integer variantId, @Max(value = 5, message = "Số lượng không quá 5 sản phẩm") @Min(value = 1)  @RequestParam(name="qty",required = false) Integer qty) {
-
-        Integer cartDetailId = 201;
-        Integer quantity = qty;
-        CartDetailResponseBuilder respone = CartDetailResponse.getPlainCartDetailResponeBuilder(cartDetailId);
-
-        try {
-            ProductVariantResponse variant = variantService.findById(variantId);
-            respone.withProductVariant(variant).withQuantity(quantity) ;
-            withVariantDiscount_amount(respone);
-            withCartPrice_Detail(respone);
-            return ResponseEntity.ok().body(respone.build());
-        } catch (Exception e) {
-            e.printStackTrace();
-            if (e instanceof EntityNotFoundException) {
-                return ResponseEntity.badRequest().body("Can't found variant");
-            }else if(e instanceof VariantUnavailable) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Variant is Unavailable ");
-            }
-        }
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("something went wrong");
-    }
-
-   @PostMapping(CART_ITEMS)
-   public ResponseEntity<?> getCartDetailInfo(@Valid @RequestBody CartDetailAnnonRequest request) {
-
+    @Operation(summary = "get cart item for guest cart")
+    @PostMapping(CART_ITEMS)
+    public ResponseEntity<?> getCartDetailInfo(@Valid @RequestBody CartDetailAnnonRequest request) {
         Integer cartDetailId = 101;
         Integer quantity = request.getQuantity();
         CartDetailResponseBuilder respone = CartDetailResponse.getPlainCartDetailResponeBuilder(cartDetailId);
-
         try {
             ProductVariantResponse variant = variantService.findById(request.getVariant_id());
             respone.withProductVariant(variant).withQuantity(quantity) ;
@@ -105,12 +77,10 @@ public class CartForAnnonController {
    }
 
     @Operation(summary = "get new cart response for guest")
-    @GetMapping({ "/{cartId}", "" })
-    public ResponseEntity<?> getNewAnnonCart(
-            @PathVariable(required = false, name = "cartId") Optional<Integer> cartId) {
-
+    @GetMapping({ "" })
+    public ResponseEntity<?> getNewAnnonCart() {
         try {
-            Integer id = cartId.orElse(ThreadLocalRandom.current().nextInt(1, (Integer.MAX_VALUE - 1)));
+            Integer id = ThreadLocalRandom.current().nextInt(1, (Integer.MAX_VALUE - 1));
             log.info("random id for guest'cart: " + id);
             CartResponseBuilder cartBuilder = CartResponse.getAnnonCartResponseBuilder(id);
             return ResponseEntity.ok().body(cartBuilder.build());
@@ -120,4 +90,19 @@ public class CartForAnnonController {
         return null;
     }
 
+    @GetMapping("/update")
+    public ResponseEntity<?> updateGuestCart(@RequestBody CartResponse request) {
+
+        Integer cartId = request.getId();
+        List<CartDetailResponse> list = request.getCartDetails();
+        
+        List<CartDetailRequest> requestList = list.stream().map(item -> item.getRequestFromGuestCartDetail(cartId)).collect(Collectors.toList());
+        
+        requestList.removeIf(t -> t == null);
+
+        cartService.updateGuestCart(cartId, requestList);
+
+      
+        return ResponseEntity.ok(request);
+    }
 }

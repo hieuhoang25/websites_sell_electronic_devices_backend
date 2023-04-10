@@ -7,6 +7,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import com.google.auto.value.AutoValue.Builder;
+import com.poly.datn.dto.response.CartDetailResponse;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,6 +33,12 @@ public class CartDetailRequest  implements Serializable {
     protected Integer product_variant_id;
 
    
+    // public static CartDetailRequest getRequestFromGuestCartDetail(CartDetailResponse response, Integer cartId) {
 
+    //     Integer id = response.getId();
+    //     Integer qty = response.getQuantity();
+    //     Integer variantId = response.getProductVariant().getId();
+    //     return new CartDetailRequest(id, cartId,qty,variantId);
+    // }
     
 }

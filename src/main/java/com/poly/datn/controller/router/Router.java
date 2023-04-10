@@ -27,12 +27,18 @@ public class Router {
         public static final String STORAGE = "/storage";
         public static final String PRODUCT_STORAGE = "/product-storage";
         public static final String REFRESH_TOKEN = "/refresh-token";
-
         public static final String LOGOUT = "/logout";
         public static final String TOKEN_LOGIN_GOOGLE = "/token-login-google";
+        public static final String PRODUCT_TOP_SALES = "/product-top-sales";
+        public static final String PRODUCT_ARRIVAL = "/product-arrival";
+        public static final String PRODUCT_BIG_DISCOUNT = "/product-big-discount";
+        public static final String LOGIN_FACEBOOK = "/login-facebook";
+
+
+        public static final String PAY_METHOD = "/paymethod";
     }
 
-    public static class USER_API{
+    public static class USER_API {
         // BASE API
         public static final String BASE = "/api/user";
         public static final String ORDER = "/order";
@@ -67,7 +73,7 @@ public class Router {
 
         public static final String USER = "/user";
         public static final String ORDER = "/order";
-
+        public static final String NOTIFICATION = "/notification";
         public static final String ORDER_DETAIL = "/order-detail";
 
         public static final String BRAND = "/brand";
@@ -98,5 +104,19 @@ public class Router {
         public static final String CHECKOUT = "/checkout";
         public static final String AUTH_VAR = "/{userId}";
         public static final String CHECKED_OUT_RERIRECT_API = "/order";
+    }
+
+    public static class FLASH_DEAL{
+
+        public static final String FLASH_DEAL = "/deal";
+        public static final String PROMO_USER = "/promo-user";
+        public static final String PROMO_CURRENT_USER = "/promo-code";
+
+        public static final String CURRENT = "/current";
+
+        public static final String TODAY = "/today";
+        public static final String SPECIFIC_DATE = "/${date}";
+        public static final String SPECIFIC_TIME = "/${time}";
+        public static final String SPECIFIC_DATETIME = "/${datetime}";
     }
 }

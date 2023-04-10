@@ -3,18 +3,9 @@ package com.poly.datn.entity;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -34,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @Builder(setterPrefix = "with")
 public class Order {
 
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -88,6 +79,36 @@ public class Order {
 
     @OneToMany(mappedBy = "order",  cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
+
+    private @Transient Double total;
+
+
+    public Boolean getPay() {
+        return isPay;
+    }
+
+    public void setPay(Boolean pay) {
+        isPay = pay;
+    }
+
+    public Boolean getCancelled() {
+        return isCancelled;
+    }
+
+    public void setCancelled(Boolean cancelled) {
+        isCancelled = cancelled;
+    }
+
+    public Double getTotal() {
+        total = 0.0d;
+        if(!orderDetails.isEmpty())
+            total = orderDetails.stream().mapToDouble(OrderDetail::getPriceSum).sum();
+        return total;
+    }
+
+    public void setTotal(Double priceSum) {
+        this.total = priceSum;
+    }
 
     public String getAddress(){
         return addressLine + " " + district +" "+ province;

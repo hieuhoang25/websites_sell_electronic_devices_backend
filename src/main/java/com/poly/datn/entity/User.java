@@ -39,8 +39,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Wishlist> wishlists = new LinkedHashSet<>();
 
-    @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "unique_id")
+    @OneToOne(mappedBy = "user")
     private Account account;
 
     @OneToMany(mappedBy = "user")
@@ -55,7 +54,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private Set<Order> orders = new LinkedHashSet<>();
 
-    @OneToOne(mappedBy ="user")
+    @OneToOne(mappedBy ="user",cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart carts;
 
     @OneToMany(mappedBy = "user")
@@ -150,6 +149,10 @@ public class User {
             this.carts = carts;
             carts.setUser(this);
         }   
+    }
+
+    public boolean existsAccount(){
+        return account != null;
     }
 
     public Set<Order> getOrders() {

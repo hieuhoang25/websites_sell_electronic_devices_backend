@@ -1,5 +1,6 @@
 package com.poly.datn.utils;
 
+import com.poly.datn.dto.response.OrderDetailResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -13,6 +14,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Component
@@ -22,7 +24,7 @@ public class MailUtil {
     private final JavaMailSender emailSender;
 
 
-   public void sendOrderStatus(String id, String status, String mail) throws MessagingException {
+   public void sendOrderStatus(String fullname, String status, String mail, List<OrderDetailResponse> orderDetails) throws MessagingException {
         MimeMessage message = emailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(
                 message,
@@ -35,9 +37,9 @@ public class MailUtil {
         // Context: to input properties to parameter be written into a file
         Context context = new Context();// the context is a class of thymeleaf package
         Map<String, Object> map = new HashMap<>();
-        map.put("id", id);
         map.put("status",status);
-        map.put("name","Trương Hoàng Long");
+        map.put("fullname",fullname);
+        map.put("orderDetails",orderDetails);
         context.setVariables(map);
         String html = templateEngine.process("order-status-templates", context);
         helper.setTo(mail);
