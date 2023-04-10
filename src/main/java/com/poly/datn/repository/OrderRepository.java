@@ -19,7 +19,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer>, JpaSpeci
     void updateStatusToReceive(Integer idOrder);
 
     @Modifying(flushAutomatically = true)
-    @Query("update Order o set o.status.id=3 where o.id=:idOrder")
+    @Query("update Order o set o.status.id=3,o.isPay = true where o.id=:idOrder")
     void updateStatusToCompleted(Integer idOrder);
 
     @Query(value = "select count(o) from Order o where o.status.id = 1")

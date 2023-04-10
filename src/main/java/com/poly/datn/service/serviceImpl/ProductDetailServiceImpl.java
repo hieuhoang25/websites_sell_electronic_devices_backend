@@ -5,6 +5,7 @@ import com.poly.datn.dto.request.ProductDetailRequest;
 import com.poly.datn.dto.response.ProductDetailResponse;
 import com.poly.datn.dto.response.ProductRatingResponse;
 import com.poly.datn.entity.ProductVariant;
+import com.poly.datn.entity.Rating;
 import com.poly.datn.repository.ProductVariantRepository;
 import com.poly.datn.repository.RatingRepository;
 import com.poly.datn.service.ProductDetailService;
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.webjars.NotFoundException;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -37,7 +40,9 @@ public class ProductDetailServiceImpl implements ProductDetailService {
         ProductDetailResponse productDetail = modelConverter.map(productVariant, ProductDetailResponse.class);
         //get list rating of product
         List<ProductRatingResponse> productRating = modelConverter.mapAllByIterator(
-                ratingRepository.findByProductId(productDetailRequest.getProductId()),
+                ratingRepository.findByProductId(productDetailRequest.getProductId())
+                        .stream().sorted(Comparator.comparing(Rating::getCreatedDate,Comparator.reverseOrder()))
+                        .collect(Collectors.toList()),
                 ProductRatingResponse.class
         );
         productDetail.setRating(productRating);

@@ -2,12 +2,13 @@ package com.poly.datn.dto.response;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 
 @Data
-public class OrdersUserResponse {
+public class OrdersUserResponse implements Serializable {
 
     private Integer id;
     private String user_email;
