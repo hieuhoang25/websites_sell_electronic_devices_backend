@@ -119,7 +119,7 @@ public class JwtUtils {
         UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
         Algorithm algorithm = Algorithm.HMAC256(jwtSecret.getBytes());
         String access_token = JWT.create().withSubject(userPrincipal.getUsername())
-                .withExpiresAt(Instant.now().plusSeconds(24 * 60 * 60 * 60))
+                .withExpiresAt(Instant.now().plusSeconds(120))
                 .withClaim("roles", userPrincipal.getAuthorities()
                         .stream()
                         .map(GrantedAuthority::getAuthority)
