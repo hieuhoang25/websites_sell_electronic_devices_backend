@@ -1,6 +1,7 @@
 package com.poly.datn.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
@@ -22,18 +23,17 @@ public class PromotionUser {
     private String namePromotionUser;
 
     @Column(name = "discount_value")
-    private Integer discountValue;
+    private Double discountValue;
 
     @Column(name = "is_used")
-    private Integer isUsed;
+    private Boolean isUsed;
 
     @Column(name = "create_date")
     @CreationTimestamp
     private Instant createDate;
 
-    @Column(name = "update_date")
-    @UpdateTimestamp
-    private Instant updateDate;
+    @Column(name = "start_date")
+    private Instant startDate;
 
     @Column(name = "expiration_date")
     private Instant expirationDate;
@@ -41,6 +41,13 @@ public class PromotionUser {
     @Size(max = 255)
     @Column(name = "promotion_code")
     private String promotionCode;
+
+
+    @Column(name = "is_percent")
+    private Boolean isPercent;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "promotion_type")
@@ -69,19 +76,35 @@ public class PromotionUser {
         this.namePromotionUser = namePromotionUser;
     }
 
-    public Integer getDiscountValue() {
+    public Double getDiscountValue() {
         return discountValue;
     }
 
-    public void setDiscountValue(Integer discountValue) {
+    public void setDiscountValue(Double discountValue) {
         this.discountValue = discountValue;
     }
 
-    public Integer getIsUsed() {
+    public Boolean getIsPercent() {
+        return isPercent;
+    }
+
+    public void setIsPercent(Boolean isPercent) {
+        this.isPercent = isPercent;
+    }
+
+    public Boolean getIsDeleted() {
+        return isDeleted;
+    }
+
+    public void setIsDeleted(Boolean isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public Boolean getIsUsed() {
         return isUsed;
     }
 
-    public void setIsUsed(Integer isUsed) {
+    public void setIsUsed(Boolean isUsed) {
         this.isUsed = isUsed;
     }
 
@@ -93,12 +116,13 @@ public class PromotionUser {
         this.createDate = createDate;
     }
 
-    public Instant getUpdateDate() {
-        return updateDate;
+
+    public Instant getStartDate() {
+        return startDate;
     }
 
-    public void setUpdateDate(Instant updateDate) {
-        this.updateDate = updateDate;
+    public void setStartDate(Instant startDate) {
+        this.startDate = startDate;
     }
 
     public Instant getExpirationDate() {
@@ -140,5 +164,9 @@ public class PromotionUser {
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
     }
+
+ 
+
+
 
 }
