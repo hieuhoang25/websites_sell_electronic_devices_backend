@@ -64,10 +64,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 
     @Query("SELECT p FROM Product p LEFT JOIN p.promotion pm " +
             "WHERE p.isDelete = false and p.promotion is not null and p.promotion.expirationDate is null " +
+            "AND p.id IN (SELECT vr.product.id FROM ProductVariant vr)" +
             "ORDER BY pm.discountAmount DESC")
     List<Product> findByBigDiscount();
 
-    @Query("SELECT p FROM Product p WHERE p.isDelete = false ORDER BY p.createDate DESC")
+    @Query("SELECT p FROM Product p WHERE p.isDelete = false " +
+            "AND p.id IN (SELECT vr.product.id FROM ProductVariant vr)" +
+            "ORDER BY p.createDate DESC")
     List<Product> findByNewArrival();
 
     @Query("SELECT p " +
@@ -75,6 +78,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             "JOIN od.productVariant pr " +
             "JOIN pr.product p " +
             "WHERE p.isDelete = false " +
+            "AND p.id IN (SELECT vr.product.id FROM ProductVariant vr)" +
             "GROUP BY p.id " +
             "ORDER BY COUNT(pr.product.id) DESC ")
     List<Product> findByTopSales();

@@ -30,6 +30,7 @@ public class UserInfoByTokenServiceImpl implements UserInfoByTokenService {
     private final ModelConverter converter;
     private final UserRepository userRepository;
     private final AddressRepository addressRepository;
+
     @Override
     public UserLoggedResponse getUserInfo() {
         UserLoggedResponse response = converter.map(getCurrentUser(), UserLoggedResponse.class);
@@ -53,20 +54,18 @@ public class UserInfoByTokenServiceImpl implements UserInfoByTokenService {
 
     @Override
     public UserLoggedResponse updateUserInformation(UserInfoRequest request) {
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        Account account = accountRepository.findByUsername(name);
-        User user = account.getUser();
+        User user = getCurrentUser();
         // exception
 //        assert user !=null : "User not found";
         user.setPhone(request.getPhone());
         user.setFullName(request.getFull_name());
-        log.info("{}",isGoogleEmail(request.getEmail()));
-        if (isGoogleEmail(request.getEmail())){
-            User user1 = userRepository.findByEmail(request.getEmail()).orElse(null);
-            if (user1==null)  user.setEmail(request.getEmail());
-            else{
-                if (!user1.getId().equals(user.getId())){
-                    throw new RuntimeException(String.format("Email %s đã được sử dụng",user1.getEmail()));
+//        log.info("{}", isGoogleEmail(request.getEmail()));
+        if (isGoogleEmail(request.getEmail())) {
+            User existsEmail = userRepository.findByEmail(request.getEmail()).orElse(null);
+            if (existsEmail == null) user.setEmail(request.getEmail());
+            else {
+                if (!existsEmail.getId().equals(user.getId())) {
+                    throw new RuntimeException(String.format("Email %s đã được sử dụng", existsEmail.getEmail()));
                 }
             }
         }
@@ -74,6 +73,7 @@ public class UserInfoByTokenServiceImpl implements UserInfoByTokenService {
         UserLoggedResponse response = converter.map(user, UserLoggedResponse.class);
         return response;
     }
+
     public boolean isGoogleEmail(String email) {
         boolean isGoogleEmail = false;
         try {

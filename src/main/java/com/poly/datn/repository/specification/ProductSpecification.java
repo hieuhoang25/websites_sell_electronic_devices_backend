@@ -61,11 +61,23 @@ public class ProductSpecification implements Specification<Product> {
         return criteriaBuilder.in(root.get("brand").get("id")).value(brandIds);
     }
 
+    private Predicate hasVariant(Root<Product> root,
+                                          CriteriaQuery<?> query,
+                                          CriteriaBuilder criteriaBuilder) {
+        Subquery<Integer> subquery = query.subquery(Integer.class);
+        Root<ProductVariant> variant = subquery.from(ProductVariant.class);
+        subquery.select(variant.get("product").get("id"));
+        Predicate variantExists = criteriaBuilder.equal(variant.get("product"), root);
+        subquery.where(variantExists);
+        return criteriaBuilder.in(root.get("id")).value(subquery);
+    }
+
     @Override
     public Predicate toPredicate(Root<Product> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
         List<Predicate> predicates = new ArrayList<>();
         SearchCriteria isDeletedCriteria = new SearchCriteria("isDelete", false, SearchOperation.EQUAL);
         add(isDeletedCriteria);
+        predicates.add(hasVariant(root,query,criteriaBuilder));
         for (SearchCriteria criteria : list) {
             switch (criteria.getOperation()) {
                 case GREATER_THAN:
