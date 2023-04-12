@@ -36,7 +36,9 @@ public class Router {
 
 
         public static final String PAY_METHOD = "/paymethod";
-    }
+
+        public static final String USER_PROMO = "/promo";
+        }
 
     public static class USER_API {
         // BASE API
@@ -50,6 +52,8 @@ public class Router {
         public static final String CHANGE_PASSWORD = "/change-password";
 
         public static final String RATING = "/rating";
+
+        public static final String ADDRESS = "/address";
 
     }
 

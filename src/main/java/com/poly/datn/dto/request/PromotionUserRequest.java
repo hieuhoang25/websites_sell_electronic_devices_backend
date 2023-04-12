@@ -21,11 +21,16 @@ public class PromotionUserRequest implements Serializable {
     private Integer id;
     @Size(max = 255)
     private  String namePromotionUser;
-    private  Integer discountValue;
-    private  Integer isUsed;
+    private  Double discountValue;
+    private  Boolean isUsed;
+    private  Boolean isPercent;
+    private Boolean isDeleted;
     private  Instant expirationDate;
+    private  Instant startDate;
     @Size(max = 255)
     private  String promotionCode;
     private  Integer promotion_type_id;
     private  Integer user_id;
+
+    
 }
