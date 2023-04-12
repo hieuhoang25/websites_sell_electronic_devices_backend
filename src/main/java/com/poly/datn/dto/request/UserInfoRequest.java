@@ -13,10 +13,6 @@ import java.util.Set;
 
 @Data
 public class UserInfoRequest {
-
-
-    private String username;
-
     @NotNull(message = "Vui lòng nhập họ và tên")
     @NotBlank(message = "Họ và tên không được để trống")
     private String full_name;
