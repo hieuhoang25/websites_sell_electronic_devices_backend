@@ -3,7 +3,7 @@ WORKDIR /app
 COPY pom.xml ./
 COPY src ./src
 
-COPY src/main/resources/application-testenv.yml ./src/main/resources/application.yml
+COPY src/main/resources/application-prodenv.yml ./src/main/resources/application.yml
 
 RUN mvn clean install
 
