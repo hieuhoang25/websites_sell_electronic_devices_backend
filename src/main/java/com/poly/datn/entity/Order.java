@@ -102,7 +102,7 @@ public class Order {
     public Double getTotal() {
         total = 0.0d;
         if(!orderDetails.isEmpty())
-            total = orderDetails.stream().mapToDouble(OrderDetail::getPriceSum).sum();
+            total = orderDetails.stream().mapToDouble(m -> m.getPriceSum() - m.getPromotionValue()*m.getQuantity()).sum();
         return total;
     }
 

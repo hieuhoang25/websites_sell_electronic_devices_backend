@@ -27,7 +27,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<OrdersUserResponse> findAll() {
-        List<OrdersUserResponse> list= modelConverter.mapAllByIterator(orderRepository.findAll(Sort.by("status.id").ascending()), OrdersUserResponse.class);
+        List<OrdersUserResponse> list= modelConverter.mapAllByIterator(orderRepository.findAll(Sort.by( "createdDate").descending()), OrdersUserResponse.class);
         list.stream()
                 .forEach(o -> {
                     double sum = 0;
