@@ -129,25 +129,4 @@ public class WishlistServiceImpl implements WishlistService {
     wishlists.getNumber(),wishlists.getTotalPages(),
 converter.mapAllByIterator(wishlists.getContent(), WishlistResponse.class));
   }
-
-  // public WishlistResponse mapping(Wishlist source) {
-  // WishlistResponse wl =
-  // converter.getTypeMap(Wishlist.class,WishlistResponse.class)
-  // .addMappings((mapper) -> {
-  // mapper.<String>map((s) -> s.getProduct().getProductName(), (d, v) ->
-  // d.setProduct_name(v));
-  // mapper.<String>map((s) -> s.getProduct().getImage(), (d, v) ->
-  // d.setProduct_image(v));
-  // mapper.<String>map((s) -> s.getProduct().getCategory().getCategoryName(), (d,
-  // v) -> d.setProduct_category_name(v));
-  // mapper.<Integer>map((s) -> s.getProduct().getId(), (d, v) ->
-  // d.setProduct_id(v));
-  // }).map(source);
-  // return wl;
-  // }
-
-  // public List<WishlistResponse> mappingIterator(List<Wishlist> list) {
-  // return list.stream().map((w) -> mapping(w)).collect(Collectors.toList());
-  // }
-
 }
