@@ -1,15 +1,17 @@
 package com.poly.datn.dto.response;
 
-import lombok.Data;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrdersUserResponse implements Serializable {
-
     private Integer id;
     private String user_email;
     private String user_fullName;
@@ -18,7 +20,6 @@ public class OrdersUserResponse implements Serializable {
     private Boolean is_pay;
     private String payment_method;
     private String status_name;
-    private Double sum;
     private Set<OrderDetailResponse> orderDetails;
 }
 
