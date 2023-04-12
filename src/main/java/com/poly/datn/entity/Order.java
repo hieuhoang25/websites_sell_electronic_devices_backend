@@ -81,7 +81,7 @@ public class Order {
     private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
 
     private @Transient Double total;
-
+    private @Transient String address;
 
     public Boolean getPay() {
         return isPay;
@@ -111,7 +111,8 @@ public class Order {
     }
 
     public String getAddress(){
-        return addressLine + " " + district +" "+ province;
+        address = addressLine + " " + district +" "+ province;
+        return address;
     }
     public Integer getId() {
         return id;
