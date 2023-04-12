@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Formula;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.firebase.database.annotations.NotNull;
@@ -82,6 +83,7 @@ public class Order {
 
     private @Transient Double total;
 
+    private @Transient Double promoDiscount;
 
     public Boolean getPay() {
         return isPay;
@@ -101,13 +103,35 @@ public class Order {
 
     public Double getTotal() {
         total = 0.0d;
+        // if(!orderDetails.isEmpty())
+        //     total = orderDetails.stream().mapToDouble(OrderDetail::getPriceSum).sum();
+        // return total;
         if(!orderDetails.isEmpty())
             total = orderDetails.stream().mapToDouble(m -> m.getPriceSum() - m.getPromotionValue()*m.getQuantity()).sum();
         return total;
     }
 
+
     public void setTotal(Double priceSum) {
         this.total = priceSum;
+    }
+
+    public Double getPromoDiscount() {
+        if(this.promotion == null) return 0.0;
+
+        Boolean isPercent = this.promotion.getIsPercent();
+        Double discountValue = this.promotion.getDiscountValue();
+    
+        System.out.println("get percent");
+        if(isPercent) {
+            return getTotal() * (discountValue * 0.01);
+        }else {
+            return discountValue;
+        }
+    }
+
+    public void setPromoDiscount(Double discount) {
+        this.promoDiscount = discount;
     }
 
     public String getAddress(){

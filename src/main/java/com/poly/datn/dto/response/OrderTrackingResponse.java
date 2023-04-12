@@ -22,5 +22,6 @@ public class OrderTrackingResponse implements Serializable {
     private Instant createdDate;
     private String address;
     private Double total;
+    private Double promoDiscount;
     List<OrderDetailResponse> orderDetails;
 }
