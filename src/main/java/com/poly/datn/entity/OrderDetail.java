@@ -45,10 +45,21 @@ public class OrderDetail {
     private Rating rating;
 
     private @Transient Double discount;
-
+    private @Transient String variantName;
+    private @Transient String variantColor;
     public Double getDiscount() {
         discount = productVariant.getDiscount();
         return discount;
+    }
+
+    public String getVariantColor(){
+        variantColor = productVariant.getColor().getColorName();
+        return variantColor;
+    }
+
+    public String getVariantName(){
+        variantName = productVariant.getDisplayName();
+        return variantName;
     }
 
     public void setDiscount(Double discount) {

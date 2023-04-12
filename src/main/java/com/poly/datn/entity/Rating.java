@@ -37,6 +37,19 @@ public class Rating {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    private @Transient String variantName;
+    private @Transient String variantColor;
+
+    public String getVariantColor(){
+        variantColor = orderDetail.getVariantColor();
+        return variantColor;
+    }
+
+    public String getVariantName(){
+        variantName = orderDetail.getVariantName();
+        return variantName;
+    }
+
     public Integer getId() {
         return id;
     }
