@@ -7,6 +7,6 @@ import com.poly.datn.dto.response.ProductRatingResponse;
 import java.util.List;
 
 public interface RatingProductService {
-    List<ProductRatingResponse> rateProduct(List<RatingProductRequest> request);
+    void rateProduct(List<RatingProductRequest> request);
     List<OrderDetailResponse> isRating(Integer orderId);
 }

@@ -25,14 +25,14 @@ public class RatingProductServiceImpl implements RatingProductService {
     private final UserInfoByTokenService userInfoByTokenService;
 
     @Override
-    public List<ProductRatingResponse> rateProduct(List<RatingProductRequest> request) {
+    public void rateProduct(List<RatingProductRequest> request) {
         List<Rating> rating = converter.mapAllByIterator(request, Rating.class);
         rating.stream().forEach(rt -> {
             rt.setUser(userInfoByTokenService.getCurrentUser());
         });
-        List<ProductRatingResponse> ratingResponse =
-                converter.mapAllByIterator(repository.saveAll(rating), ProductRatingResponse.class);
-        return ratingResponse;
+        repository.saveAllAndFlush(rating);
+//        List<ProductRatingResponse> ratingResponse =
+//                converter.mapAllByIterator(repository.saveAll(rating), ProductRatingResponse.class);
     }
 
     @Override

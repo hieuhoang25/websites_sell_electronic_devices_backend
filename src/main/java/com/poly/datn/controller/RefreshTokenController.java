@@ -40,7 +40,6 @@ class RefreshTokenController {
     @GetMapping
     public ResponseEntity<?> refreshToken(HttpServletRequest request) {
         String refresh_token = jwtUtils.getJwtRefreshFromCookies(request);
-        System.out.println(refresh_token);
         Optional<RefreshToken> refreshTokenDB = refreshTokenService.findByToken(refresh_token);
         try {
             if (refreshTokenDB.isPresent()) {

@@ -32,7 +32,11 @@ public class OrderTrackingController {
             @PathVariable @Valid @NotNull(message = "Order status can not be null") Integer statusId,
             @RequestParam Optional<Integer> size,
             @RequestParam Optional<Integer> page) {
-        PageRequest pageRequest = PageRequest.of(page.orElse(0),size.orElse(5), Sort.by("createdDate"));
+        PageRequest pageRequest =
+                PageRequest.of(
+                        page.orElse(0),size.orElse(5),
+                        Sort.by("createdDate").descending()
+                );
         PaginationOrderTracking<OrderTrackingResponse> orderTrackingResponses =
                 service.getUserOrdered(statusId, pageRequest);
         return ResponseEntity.ok(orderTrackingResponses);

@@ -2,21 +2,20 @@ package com.poly.datn.dto.response;
 
 import com.poly.datn.entity.Product;
 import com.poly.datn.entity.User;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.io.Serializable;
 import java.time.Instant;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class RatingResponse implements Serializable {
 
     private Integer id;
     private Integer point;
-    private Instant createdDate;
+    private Instant created_date;
     private String content;
 //    private Product product;
     private Integer user_id;
