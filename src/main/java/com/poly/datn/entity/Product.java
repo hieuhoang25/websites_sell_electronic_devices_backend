@@ -75,19 +75,19 @@ public class Product {
     private @Transient Double averagePoint;
     private @Transient Double discount;
     private @Transient Double discountPrice;
-    @Formula("(SELECT COUNT(*)" +
-            " FROM order_detail od join product_variant pr on pr.id = od.product_variant_id" +
-            " join product p on p.id = pr.product_id" +
-            " WHERE p.is_delete = false and p.id = id)")
-    private Integer quantitySold;
+//    @Formula("(SELECT COUNT(*)" +
+//            " FROM order_detail od join product_variant pr on pr.id = od.product_variant_id" +
+//            " join product p on p.id = pr.product_id" +
+//            " WHERE p.is_delete = false and p.id = id)")
+//    private Integer quantitySold;
 
-    public Integer getQuantitySold() {
-        return quantitySold;
-    }
+//    public Integer getQuantitySold() {
+//        return quantitySold;
+//    }
 
-    public void setQuantitySold(Integer quantitySold) {
-        this.quantitySold = quantitySold;
-    }
+//    public void setQuantitySold(Integer quantitySold) {
+//        this.quantitySold = quantitySold;
+//    }
 
     public void setDiscount(Double discount) {
         this.discount = discount;
