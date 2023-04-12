@@ -23,9 +23,10 @@ import static com.poly.datn.controller.router.Router.USER_API.RATING;
 public class RatingProductController {
     private final RatingProductService service;
     @PostMapping(RATING)
-    public ResponseEntity<List<ProductRatingResponse>> rateProduct(
+    public ResponseEntity rateProduct(
             @RequestBody  List<@Valid RatingProductRequest> request){
-        return ResponseEntity.ok(service.rateProduct(request));
+        service.rateProduct(request);
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping(IS_RATING)

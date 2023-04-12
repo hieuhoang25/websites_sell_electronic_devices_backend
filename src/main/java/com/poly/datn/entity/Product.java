@@ -3,10 +3,13 @@ package com.poly.datn.entity;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -95,8 +98,15 @@ public class Product {
 
     public Double getDiscount() {
         discount = 0.0d;
-        if (promotion != null && promotion.getActivate())
-            discount = promotion.getDiscountAmount();
+        if (promotion != null && promotion.getActivate()){
+            Instant today = Instant.now();
+            Boolean hasExpireDate = promotion.getExpirationDate() != null;
+            if(hasExpireDate && today.isBefore(promotion.getExpirationDate())){
+                discount = promotion.getDiscountAmount();
+            }
+            if(hasExpireDate == false)
+                discount = promotion.getDiscountAmount();
+        }
         return discount;
     }
 
