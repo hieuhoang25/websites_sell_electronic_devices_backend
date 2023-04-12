@@ -21,7 +21,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
     // Method 1
     @Query("SELECT p.id, p.productName, p.description, p.createDate, p.updateDate, " +
             "p.category.id, p.isDelete, p.brand.id, p.promotion.id, p.type, p.image, " +
-            "p.brand.brandName, p.category.categoryName, p.promotion.name" +
+            "p.brand.brandName, p.category.categoryName, p.promotion.name " +
             "FROM Product p LEFT JOIN p.brand LEFT JOIN p.category " +
             "LEFT JOIN p.promotion LEFT JOIN p.promotion.name")
     List<Product> findAllProductAndBrandName(Pageable pageable);
