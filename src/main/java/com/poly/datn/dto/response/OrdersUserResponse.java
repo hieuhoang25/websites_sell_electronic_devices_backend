@@ -21,6 +21,8 @@ public class OrdersUserResponse implements Serializable {
     private String payment_method;
     private String status_name;
     private Double sum;
+
+    private Double total;
     private Set<OrderDetailResponse> orderDetails;
 }
 
