@@ -19,9 +19,12 @@ public class OrderTrackingResponse implements Serializable {
     private String status_name;
     private Integer status_id;
     private String status_title;
-    private Instant createdDate;
+    private Instant created_date;
     private String address;
     private Double total;
-    private Double promoDiscount;
+    private String promotion_name;
+    private Boolean promotion_isPercent;
+    private Double discount;
+    private Double discount_amount;
     List<OrderDetailResponse> orderDetails;
 }
