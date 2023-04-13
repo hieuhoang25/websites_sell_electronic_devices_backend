@@ -3,7 +3,6 @@ package com.poly.datn.entity;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -11,13 +10,11 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Formula;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.firebase.database.annotations.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "orders")
@@ -85,6 +82,22 @@ public class Order {
     private @Transient String promotionName;
     private @Transient Boolean isPercent;
     private @Transient Double discount;
+    private @Transient Double discountAmount;
+
+    public Double getDiscountAmount() {
+        discountAmount = 0.0d;
+        if (promotion != null && getIsPercent() != null) {
+            if (getIsPercent())
+                discountAmount = getTotal() * (promotion.getDiscountValue() / 100);
+            else
+                discountAmount = promotion.getDiscountValue();
+        }
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(Double discountAmount) {
+        this.discountAmount = discountAmount;
+    }
 
     public String getPromotionName() {
         promotionName = "";
@@ -97,25 +110,21 @@ public class Order {
         this.promotionName = promotionName;
     }
 
-    public Boolean getPercent() {
+    public Boolean getIsPercent() {
         isPercent = null;
         if (promotion != null)
-            isPercent = promotion.getPercent();
+            isPercent = promotion.getIsPercent();
         return isPercent;
     }
 
-    public void setPercent(Boolean percent) {
+    public void setIsPercent(Boolean percent) {
         isPercent = percent;
     }
 
     public Double getDiscount() {
         discount = 0.0d;
-        if (promotion != null && isPercent != null) {
-            if (isPercent)
-                discount = total - total * (promotion.getDiscountValue() / 100);
-            else
-                discount = total - promotion.getDiscountValue();
-        }
+        if(promotion != null)
+            discount = promotion.getDiscountValue();
         return discount;
     }
 
@@ -142,9 +151,9 @@ public class Order {
     public Double getTotal() {
         total = 0.0d;
         if (!orderDetails.isEmpty())
-            total = orderDetails.stream().mapToDouble(m -> m.getPriceSum() - m.getPromotionValue() * m.getQuantity()).sum();
-        if (promotion != null && isPercent != null) {
-            if (isPercent)
+            total = orderDetails.stream().mapToDouble(OrderDetail::getDiscountAmount).sum();
+        if (promotion != null && getIsPercent() != null) {
+            if (getIsPercent())
                 total = total - total * (promotion.getDiscountValue() / 100);
             else
                 total = total - promotion.getDiscountValue();
