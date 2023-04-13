@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(setterPrefix = "with")
-@Slf4j
 public class CartDetailResponse implements Serializable {
 
     @NotNull
@@ -69,13 +68,11 @@ public class CartDetailResponse implements Serializable {
             if (hasExpireDate && today.isAfter(promotionProduct.getExpiration_date())) {
                 return builder.withDiscount_amount(0.0);
             } 
-
             if (promotionProduct.getIs_percent()) {
                 Integer per = promotionProduct.getDiscount_amount().intValue();
                 return builder.withDiscount_amount(price * (per * 0.01));
 
             } else {
-                log.info("discount amount : " +  promotionProduct.getDiscount_amount());
                 return builder.withDiscount_amount(promotionProduct.getDiscount_amount());
             }
 
@@ -99,6 +96,4 @@ public class CartDetailResponse implements Serializable {
         }else if(qty == null || qty == 0) qty = 1;
         return new CartDetailRequest(id, cartId, qty,variantId);
     }
-
-
 }
