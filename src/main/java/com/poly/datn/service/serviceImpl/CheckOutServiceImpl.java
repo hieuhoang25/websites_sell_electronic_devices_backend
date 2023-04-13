@@ -68,10 +68,6 @@ public class CheckOutServiceImpl implements CheckOutService {
             saved = orderRepository.save(newOrder).getId();
             
             log.info("Calling mail service...");
-            // UserPrincipal userPrincipal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            // Account account = accountRepository.findByUsername(userPrincipal.getUsername());
-            // mailService.sendEmailThankLetter(account.getUser().getFullName(), account.getUser().getEmail());
-
             User currentUser = userInfoService.getCurrentUser();
             mailService.sendEmailThankLetter(currentUser.getFullName(), currentUser.getEmail());
             Notification notification = new Notification();
@@ -164,6 +160,7 @@ public class CheckOutServiceImpl implements CheckOutService {
                 mapper.map(CartDetail::getQuantity, OrderDetail::setQuantity);
                 mapper.map(CartDetail::getProductVariant, OrderDetail::setProductVariant);
                 mapper.map(CartDetail::getPrice_Detail, OrderDetail::setPriceSum);
+                // mapper.<Double>map(s -> { return (Double)(s.getDiscount_Amount() * s.getQuantity());}, (destination, value) ->  destination.setPromotionValue(value));
                 mapper.map(CartDetail::getDiscount_Amount, OrderDetail::setPromotionValue);
             }).map(cartDetail);
             // ? debug clean later
