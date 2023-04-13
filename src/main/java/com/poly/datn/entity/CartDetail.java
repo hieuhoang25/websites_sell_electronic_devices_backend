@@ -44,7 +44,7 @@ public class CartDetail {
     // d.cart_id = c.id join product_variant v on v.id = d.product_variant_id where
     // d.cart_id = id )")
 
-    @Formula("(select sum(quantity * v.price) from cart_detail d join product_variant v on v.id = d.product_variant_id  where v.id = product_variant_id)")
+    @Formula("(select sum(d.quantity * v.price) from cart_detail d join product_variant v on v.id = d.product_variant_id  where v.id = product_variant_id and d.id = id)")
     private Double price_detail;
 
     @Transient
@@ -54,16 +54,20 @@ public class CartDetail {
         try {
             Double price = productVariant.getPrice();
             PromotionProduct promotionProduct = productVariant.getProduct().getPromotion();
-            if (promotionProduct == null)
+            if (promotionProduct == null || (promotionProduct.getActivate() == null || !promotionProduct.getActivate()))
                 return 0.0;
 
+            Boolean hasExpireDate =  promotionProduct.getExpirationDate() != null;  
+            Instant today = Instant.now();
+            if (hasExpireDate && today.isAfter(promotionProduct.getExpirationDate())) {
+               return 0.0;
+            } 
             if (promotionProduct.getIsPercent()) {
                 Integer per = promotionProduct.getDiscountAmount().intValue();
                 return price * (per * 0.01);
             } else {
                 return  promotionProduct.getDiscountAmount();
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -12,11 +12,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(setterPrefix = "with")
+@Slf4j
 public class CartDetailResponse implements Serializable {
 
     @NotNull
@@ -40,8 +42,6 @@ public class CartDetailResponse implements Serializable {
         return rp;
     }
 
-
-
     public static CartDetailResponseBuilder getPlainCartDetailResponeBuilder(Integer id) {
         CartDetailResponseBuilder builder = new CartDetailResponseBuilder();
         builder.withId(id);
@@ -49,7 +49,6 @@ public class CartDetailResponse implements Serializable {
     }
 
     public static CartDetailResponseBuilder withCartPrice_Detail(CartDetailResponseBuilder builder) {
-
         Integer quantity = (builder.quantity == null) || (builder.quantity == 0)? 1 : builder.quantity;
         Double price_detail = builder.productVariant.getPrice() * quantity;
         return builder.withPrice_detail(price_detail);
@@ -57,24 +56,27 @@ public class CartDetailResponse implements Serializable {
     public static CartDetailResponseBuilder withVariantDiscount_amount(CartDetailResponseBuilder builder) {
         ProductVariantResponse productVariant =  builder.productVariant;
         if (productVariant == null) {
-           
             return builder.withDiscount_amount(0.0);
         }
         try {
-           
             Double price = productVariant.getPrice();
             PromotionProductResponse promotionProduct = productVariant.getProduct_promotion();
-            if (promotionProduct == null) {
 
+            if (promotionProduct == null || (promotionProduct.getActivate() == null || !promotionProduct.getActivate()))
+            return builder.withDiscount_amount(0.0);
+            Boolean hasExpireDate =  promotionProduct.getExpiration_date() != null;  
+            Instant today = Instant.now();
+            if (hasExpireDate && today.isAfter(promotionProduct.getExpiration_date())) {
                 return builder.withDiscount_amount(0.0);
-            }
+            } 
 
             if (promotionProduct.getIs_percent()) {
                 Integer per = promotionProduct.getDiscount_amount().intValue();
                 return builder.withDiscount_amount(price * (per * 0.01));
 
             } else {
-                return builder.withDiscount_amount(price - promotionProduct.getDiscount_amount());
+                log.info("discount amount : " +  promotionProduct.getDiscount_amount());
+                return builder.withDiscount_amount(promotionProduct.getDiscount_amount());
             }
 
         } catch (Exception e) {
@@ -95,8 +97,6 @@ public class CartDetailResponse implements Serializable {
         if(id == null) {
             id = ThreadLocalRandom.current().nextInt(1, (Integer.MAX_VALUE - 1));
         }else if(qty == null || qty == 0) qty = 1;
-
-
         return new CartDetailRequest(id, cartId, qty,variantId);
     }
 
