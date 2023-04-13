@@ -2,9 +2,7 @@ FROM maven:3.8.1-openjdk-17-slim AS builder
 WORKDIR /app
 COPY pom.xml ./
 COPY src ./src
-
-#COPY src/main/resources/application-prod.yml ./src/main/resources/application.yml
-
+COPY src/main/resources/application-dev.yml ./src/main/resources/application.yml
 RUN mvn clean install
 
 # Second stage: Minimal runtime environment

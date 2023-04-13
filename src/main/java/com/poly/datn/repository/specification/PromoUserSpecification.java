@@ -57,7 +57,7 @@ public class PromoUserSpecification {
     public Specification<PromotionUser> checkMinimumAmount(Double total) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.or(
                 criteriaBuilder.isNull(root.get("promotionType").get("conditionMinimum")),
-                criteriaBuilder.greaterThanOrEqualTo(root.get("promotionType").get("conditionMinimum"), total));
+                criteriaBuilder.lessThanOrEqualTo(root.get("promotionType").get("conditionMinimum"), total));
     }
 
     public Specification<PromotionUser> getValidPromoForOrder(Instant now, Double total, Integer userId) {

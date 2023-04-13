@@ -34,3 +34,4 @@ build/
 .vscode/
 /logs/spring-boot-logger.log
 src/main/resources/application-van.yml
+src/main/resources/application.yml
