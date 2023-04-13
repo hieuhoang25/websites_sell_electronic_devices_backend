@@ -21,4 +21,9 @@ public class UpdateOrderStatusServiceImpl implements UpdateOrderStatusService {
     public void updateStatusToCompleted(Integer idOrder) {
         repository.updateStatusToCompleted(idOrder);
     }
+
+    @Override
+    public void updateStatusToCancelled(Integer idOrder) {
+        repository.updateStatusToCancelled(idOrder);
+    }
 }
