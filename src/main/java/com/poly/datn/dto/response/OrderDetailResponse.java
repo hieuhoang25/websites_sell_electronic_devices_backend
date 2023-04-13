@@ -22,4 +22,5 @@ public class OrderDetailResponse implements Serializable {
     private Integer quantity;
     private Double promotion_value;
     private Double discount;
+    private Double discount_amount;
 }

@@ -3,7 +3,6 @@ package com.poly.datn.entity;
 import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -11,13 +10,11 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.Formula;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.google.firebase.database.annotations.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "orders")
@@ -78,12 +75,62 @@ public class Order {
     @Column(name = "postal_id", length = 50)
     private String postalId;
 
-    @OneToMany(mappedBy = "order",  cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<OrderDetail> orderDetails = new LinkedHashSet<>();
 
     private @Transient Double total;
+    private @Transient String promotionName;
+    private @Transient Boolean isPercent;
+    private @Transient Double discount;
+    private @Transient Double discountAmount;
 
-    private @Transient Double promoDiscount;
+    public Double getDiscountAmount() {
+        discountAmount = 0.0d;
+        if (promotion != null && getIsPercent() != null) {
+            if (getIsPercent())
+                discountAmount = getTotal() * (promotion.getDiscountValue() / 100);
+            else
+                discountAmount = promotion.getDiscountValue();
+        }
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(Double discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
+    public String getPromotionName() {
+        promotionName = "";
+        if (promotion != null)
+            promotionName = promotion.getNamePromotionUser();
+        return promotionName;
+    }
+
+    public void setPromotionName(String promotionName) {
+        this.promotionName = promotionName;
+    }
+
+    public Boolean getIsPercent() {
+        isPercent = null;
+        if (promotion != null)
+            isPercent = promotion.getIsPercent();
+        return isPercent;
+    }
+
+    public void setIsPercent(Boolean percent) {
+        isPercent = percent;
+    }
+
+    public Double getDiscount() {
+        discount = 0.0d;
+        if(promotion != null)
+            discount = promotion.getDiscountValue();
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
 
     public Boolean getPay() {
         return isPay;
@@ -103,11 +150,14 @@ public class Order {
 
     public Double getTotal() {
         total = 0.0d;
-        // if(!orderDetails.isEmpty())
-        //     total = orderDetails.stream().mapToDouble(OrderDetail::getPriceSum).sum();
-        // return total;
-        if(!orderDetails.isEmpty())
-            total = orderDetails.stream().mapToDouble(m -> m.getPriceSum() - m.getPromotionValue()*m.getQuantity()).sum();
+        if (!orderDetails.isEmpty())
+            total = orderDetails.stream().mapToDouble(OrderDetail::getDiscountAmount).sum();
+        if (promotion != null && getIsPercent() != null) {
+            if (getIsPercent())
+                total = total - total * (promotion.getDiscountValue() / 100);
+            else
+                total = total - promotion.getDiscountValue();
+        }
         return total;
     }
 
@@ -116,27 +166,10 @@ public class Order {
         this.total = priceSum;
     }
 
-    public Double getPromoDiscount() {
-        if(this.promotion == null) return 0.0;
-
-        Boolean isPercent = this.promotion.getIsPercent();
-        Double discountValue = this.promotion.getDiscountValue();
-    
-        System.out.println("get percent");
-        if(isPercent) {
-            return getTotal() * (discountValue * 0.01);
-        }else {
-            return discountValue;
-        }
+    public String getAddress() {
+        return addressLine + " " + district + " " + province;
     }
 
-    public void setPromoDiscount(Double discount) {
-        this.promoDiscount = discount;
-    }
-
-    public String getAddress(){
-        return addressLine + " " + district +" "+ province;
-    }
     public Integer getId() {
         return id;
     }
@@ -230,7 +263,7 @@ public class Order {
     }
 
     public void setOrderDetails(Set<OrderDetail> orderDetails) {
-        if(!(orderDetails == null)) {
+        if (!(orderDetails == null)) {
             this.orderDetails = new LinkedHashSet<>(orderDetails);
             orderDetails.stream().forEach(detail -> detail.setOrder(this));
         }
