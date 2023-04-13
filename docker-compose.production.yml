@@ -8,4 +8,6 @@ services:
       dockerfile: prod.Dockerfile
     ports:
       - "8079:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: prod
     restart: unless-stopped
