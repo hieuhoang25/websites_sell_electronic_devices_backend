@@ -16,9 +16,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+import static com.poly.datn.controller.router.Router.USER_API.CANCEL_ORDER;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping(Router.USER_API.CANCEL_ORDER)
+@RequestMapping(Router.USER_API.BASE + CANCEL_ORDER)
 @Validated
 public class CancelOrderController {
     private final CancelOrderService service;
