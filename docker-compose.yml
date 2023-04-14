@@ -5,7 +5,7 @@ services:
     container_name: mysqldb
     image: mysql
     volumes:
-      - "./mysqlspringenv-data/db:/var/lib/mysqlenv"
+      - "./volumes/database:/var/lib/mysql"
       - "./src/main/resources/init.sql:/docker-entrypoint-initdb.d/init.sql"
     ports:
       - "3306:3306"
