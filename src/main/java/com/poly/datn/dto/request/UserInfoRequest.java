@@ -18,8 +18,10 @@ public class UserInfoRequest {
     private String full_name;
 
     @ValidEmail
+    @NotBlank
     private String email;
 
     @ValidPhone
+    @NotBlank
     private String phone;
 }
