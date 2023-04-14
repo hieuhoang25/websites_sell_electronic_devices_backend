@@ -22,6 +22,4 @@ public class UserInfoRequest {
 
     @ValidPhone
     private String phone;
-
-
 }
