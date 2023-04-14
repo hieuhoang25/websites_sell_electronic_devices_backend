@@ -1,4 +1,4 @@
-
+#  ebonikshope1A.
 spring:
   servlet:
     multipart:
@@ -25,8 +25,8 @@ spring:
   mail:
     default-encoding: UTF-8
     host: smtp.gmail.com
-    username: ebonik.mobile@gmail.com
-    password: ezfjrofaozuvuvwt
+    username: bonikshope@gmail.com
+    password: osnmzlhkfqpobusv
     port: 587
     properties:
       mail:
