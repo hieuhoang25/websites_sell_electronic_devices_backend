@@ -12,7 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductFlashDealResponse implements Serializable {
-
     private Integer id;
     private String product_name;
     private Integer promotion_id;

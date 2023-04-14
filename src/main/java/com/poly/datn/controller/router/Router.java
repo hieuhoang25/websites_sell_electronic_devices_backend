@@ -54,6 +54,7 @@ public class Router {
         public static final String RATING = "/rating";
 
         public static final String ADDRESS = "/address";
+        public static final String CANCEL_ORDER = "/cancelling-order";
 
     }
 

@@ -25,5 +25,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer>, JpaSpeci
     @Query(value = "select count(o) from Order o where o.status.id = 1")
     Integer countOrderYetApprove();
 
-
+    @Modifying(flushAutomatically = true)
+    @Query("update Order o set o.status.id=4,o.isPay = false where o.id=:idOrder")
+    void updateStatusToCancelled(Integer idOrder);
 }

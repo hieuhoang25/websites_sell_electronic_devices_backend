@@ -19,8 +19,6 @@ public interface ProductVariantRepository extends JpaRepository<ProductVariant, 
             "and o.color.id=:colorId and o.status=true and o.storage.id=:storageId")
     ProductVariant findByProductAndColor(Integer colorId, Integer productId, Integer storageId);
 
-
-
     @Query(value = "select * from product_variant pv left join color c " +
             "on pv.color_id = c.id left join storage s on " +
             "s.id = pv.storage_id where product_id = :id",nativeQuery = true)
@@ -43,4 +41,6 @@ public interface ProductVariantRepository extends JpaRepository<ProductVariant, 
     @Transactional
     @Query(value = "UPDATE product_variant SET status = :isDeleted WHERE id = :id LIMIT 1",nativeQuery = true)
     void delete(@Param("id") Integer id,@Param("isDeleted") Integer isDeleted);
+
+    List<ProductVariant> findByIdIn(List<Integer> productId);
 }
