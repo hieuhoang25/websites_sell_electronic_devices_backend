@@ -10,6 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PromotionTypeResponse implements Serializable {
+    
     private Integer id;
 
     private String name_promotion_type;
@@ -19,5 +20,9 @@ public class PromotionTypeResponse implements Serializable {
     private Double amount;
 
     private Boolean is_limited;
+
+    private String descriptions;
+
+    private Integer limited_amount;
 
 }

@@ -47,6 +47,25 @@ public class OrderDetail {
     private @Transient Double discount;
     private @Transient String variantName;
     private @Transient String variantColor;
+    private @Transient Double discountAmount;
+
+    public void setVariantName(String variantName) {
+        this.variantName = variantName;
+    }
+
+    public void setVariantColor(String variantColor) {
+        this.variantColor = variantColor;
+    }
+
+    public Double getDiscountAmount() {
+        discountAmount = priceSum - promotionValue;
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(Double discountAmount) {
+        this.discountAmount = discountAmount;
+    }
+
     public Double getDiscount() {
         discount = productVariant.getDiscount();
         return discount;

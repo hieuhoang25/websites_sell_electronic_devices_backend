@@ -5,10 +5,14 @@ services:
     container_name: mysqldb
     image: mysql
     volumes:
-      - "./.mysqlspringenv-data/db:/var/lib/mysqlenv"
+      - "./volumes/database:/var/lib/mysql"
+      - "./src/main/resources/init.sql:/docker-entrypoint-initdb.d/init.sql"
+    ports:
+      - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: 123456789
+      MYSQL_ROOT_PASSWORD: 123456789
+      MYSQL_DATABASE: electronic_db
+    restart: on-failure
     networks:
       springboot-mysql-net:
 
@@ -16,9 +20,16 @@ services:
     container_name: springboot-restful-webservices
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: dev.Dockerfile
     ports:
       - "8080:8080"
+    environment:
+      DATABASE_HOST: mysqldb
+      DATABASE_PORT: 3306
+      DATABASE_NAME: electronic_db
+      DATABASE_USER: root
+      DATABASE_PASSWORD: 123456789
+      SPRING_PROFILES_ACTIVE: dev
     depends_on:
       - mysqldb
     networks:

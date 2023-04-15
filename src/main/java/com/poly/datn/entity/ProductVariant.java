@@ -12,6 +12,14 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "product_variant")
+// sp_checkCurrentInvetory
+@NamedStoredProcedureQueries({
+    @NamedStoredProcedureQuery(name = "checkInventoryById", procedureName = "sp_checkCurrentInvetory", parameters = {
+            @StoredProcedureParameter(mode = ParameterMode.IN, name = "variant_id", type = Integer.class),
+            @StoredProcedureParameter(mode = ParameterMode.IN, name = "reQty", type = Integer.class),
+            @StoredProcedureParameter(mode = ParameterMode.OUT, name = "checked", type = Integer.class)
+    })
+})
 public class ProductVariant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

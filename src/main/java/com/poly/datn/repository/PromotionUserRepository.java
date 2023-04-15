@@ -1,7 +1,12 @@
 package com.poly.datn.repository;
 
-import com.poly.datn.entity.PromotionUser;
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-public interface PromotionUserRepository extends JpaRepository<PromotionUser, Integer> {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+import com.poly.datn.entity.PromotionUser;
+
+public interface PromotionUserRepository extends JpaRepository<PromotionUser, Integer> , JpaSpecificationExecutor {
+    // List<PromotionUser> findAllByUserId(Integer userId);
 }

@@ -2,6 +2,8 @@ package com.poly.datn.controller;
 
 import com.poly.datn.controller.router.Router;
 import com.poly.datn.dto.request.BrandRequest;
+import com.poly.datn.dto.response.ErrorResponse;
+import com.poly.datn.repository.BrandRepository;
 import com.poly.datn.service.CRUDBrandService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import static com.poly.datn.controller.router.Router.ADMIN_API.BRAND;
 @Tag(name = Router.ADMIN_API.BASE + BRAND)
 public class CRUDBrandController {
     private final CRUDBrandService crudBrandService;
+    private final BrandRepository brandRepository;
 
     @GetMapping()
     public ResponseEntity<?> listBrand(){
@@ -27,6 +30,7 @@ public class CRUDBrandController {
 
     @PostMapping
     public ResponseEntity<?> createBrand(@Valid  @RequestBody BrandRequest brandRequest){
+        System.out.println(brandRequest);
         return ResponseEntity.ok(crudBrandService.createBranch(brandRequest));
     }
 
@@ -43,8 +47,14 @@ public class CRUDBrandController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteBrand(@PathVariable("id") @NotNull Integer id){
-        crudBrandService.delete(id);
-        return ResponseEntity.ok().build();
+        Integer count = brandRepository.checkCanDelete(id);
+        if(count > 0) {
+            return ResponseEntity.badRequest().body(new ErrorResponse("Không thể xoá thương hiệu này"));
+        }else{
+            crudBrandService.delete(id);
+            return ResponseEntity.ok("deleted success");
+        }
+        
     }
 
 }

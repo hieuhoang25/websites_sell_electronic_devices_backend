@@ -1,0 +1,75 @@
+
+spring:
+  servlet:
+    multipart:
+      max-file-size : 10MB
+      max-request-size: 10MB
+  datasource:
+    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+    hibernate:
+      ddl-auto: none
+  messages:
+    basename: messageErrors
+    fallback-to-system-locale: false
+  web:
+    locale: vi_VN
+    locale-resolver: fixed
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: bonikshope@gmail.com
+    password: osnmzlhkfqpobusv
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
+  liquibase:
+    change-log: classpath:db/changelog.xml
+    enabled: false #false is not use liquibase when no have new design
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  logging:
+    level:
+      org:
+        hibernate: ERROR
+  app:
+    jwtRefreshExpirationMs: 6000
+    jwtExpirationMs: 60000
+    jwtSecret: BonikSecret13296725921461123321123BonikSecret
+    jwtCookieName: bonik
+    jwtRefreshCookieName: bonikRF
+    cors:
+      allowedOrigins: http://localhost:3000,http://localhost:3001,http://localhost:8080,https://bonikphone.shop/swagger-ui/index.html,https://bonikphone.shop,https://admin.bonikphone.shop/,https://api.bonikphone.shop/,https://user.longproxy.com,https://admin.longproxy.com
+      # After successfully authenticating with the OAuth2 Provider,
+      # we'll be generating an auth token for the user and sending the token to the
+      # redirectUri mentioned by the client in the /oauth2/authorize request.
+    oauth2:
+      authorizedRedirectUris:
+        - http://localhost:3000/
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 496256023815-gfnv445ste0ep1o56qqr2j7ffggbd17s.apps.googleusercontent.com
+            client-secret: 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
+            redirect-uri: "{baseUrl}/oauth2/callback"
+            scope:
+              - email
+              - profile
+
+

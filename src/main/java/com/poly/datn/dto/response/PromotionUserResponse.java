@@ -15,11 +15,13 @@ public class PromotionUserResponse implements Serializable {
     private  Integer id;
     @Size(max = 255)
     private  String name_promotion_user;
-    private  Integer discount_value;
-    private  Integer is_used;
+    private  Double discount_value;
+    private  Boolean is_used;
+    private  Boolean is_percent;
     private  Instant create_date;
-    private  Instant update_date;
+    private  Instant start_date;
     private  Instant expiration_date;
+    private Boolean is_deleted;
     @Size(max = 255)
     private  String promotion_code;
     private  Integer promotion_type_id;

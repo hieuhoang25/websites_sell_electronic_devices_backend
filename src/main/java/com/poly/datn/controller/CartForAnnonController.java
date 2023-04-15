@@ -8,7 +8,6 @@ import static com.poly.datn.dto.response.CartDetailResponse.withVariantDiscount_
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
@@ -64,7 +63,12 @@ public class CartForAnnonController {
             respone.withProductVariant(variant).withQuantity(quantity) ;
             withVariantDiscount_amount(respone);
             withCartPrice_Detail(respone);
-            return ResponseEntity.ok().body(respone.build());
+
+            CartDetailResponse obj = respone.build();
+            
+            log.info("respone: price_detail " + obj.getPrice_detail() + " respone quantity: " + 
+            obj.getQuantity());
+            return ResponseEntity.ok().body(obj);
         } catch (Exception e) {
             e.printStackTrace();
             if (e instanceof EntityNotFoundException) {
@@ -90,19 +94,24 @@ public class CartForAnnonController {
         return null;
     }
 
-    @GetMapping("/update")
-    public ResponseEntity<?> updateGuestCart(@RequestBody CartResponse request) {
+    @PostMapping("/update")
+    public ResponseEntity<?> updateGuestCart(@RequestBody List<CartDetailRequest> requestList) {
 
-        Integer cartId = request.getId();
-        List<CartDetailResponse> list = request.getCartDetails();
-        
-        List<CartDetailRequest> requestList = list.stream().map(item -> item.getRequestFromGuestCartDetail(cartId)).collect(Collectors.toList());
-        
-        requestList.removeIf(t -> t == null);
+        try {
+            if(requestList == null) throw new RuntimeException("list is null");
+            
+            CartResponse res = CartResponse.getAnnonCartResponseBuilder(cartService.getRandomId()).build();
+            if(requestList.size() == 0) return ResponseEntity.ok().body(res);
 
-        cartService.updateGuestCart(cartId, requestList);
-
-      
-        return ResponseEntity.ok(request);
+            Integer cartId = requestList.get(0).getCart_id();            
+            requestList.removeIf(t -> t == null);
+    
+            CartResponse response =  cartService.updateGuestCart(cartId, requestList);
+            return ResponseEntity.ok(response);
+        }catch(Exception e) {
+            log.info("Updated cart error");
+            e.printStackTrace();
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 }

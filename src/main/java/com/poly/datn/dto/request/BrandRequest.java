@@ -19,8 +19,8 @@ public class BrandRequest implements Serializable {
     @Size(max = 255)
     @NotBlank(message = "Brand name is not blank")
     @NotNull(message = "Brand name is not null")
-    @Min(1)
-    private String brandName;
+    
+    private String brand_name;
 
     private String image;
 }

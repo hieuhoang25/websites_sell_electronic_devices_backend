@@ -32,7 +32,15 @@ import lombok.AllArgsConstructor;
         @NamedStoredProcedureQuery(name = "updateCartPriceSum", procedureName = "sp_sumTotalInCart", parameters = {
                 @StoredProcedureParameter(mode = ParameterMode.IN, name = "cartId", type = Integer.class),
                 @StoredProcedureParameter(mode = ParameterMode.OUT, name = "updated", type = Integer.class),
-        })
+        }),
+        @NamedStoredProcedureQuery(name = "updatedCartQuantityByInventory", procedureName = "sp_updateCartByInventory", parameters = {
+            @StoredProcedureParameter(mode = ParameterMode.IN, name = "cartId", type = Integer.class),
+            @StoredProcedureParameter(mode = ParameterMode.OUT, name = "ischanged", type = Boolean.class),
+        }),
+        @NamedStoredProcedureQuery(name = "updatedCartByVariantStatus", procedureName = "sp_updateCartByVariantStatus", parameters = {
+            @StoredProcedureParameter(mode = ParameterMode.IN, name = "cartId", type = Integer.class),
+            @StoredProcedureParameter(mode = ParameterMode.OUT, name = "isRemoved", type = Boolean.class),
+        }),
 })
 @AllArgsConstructor
 public class Cart {

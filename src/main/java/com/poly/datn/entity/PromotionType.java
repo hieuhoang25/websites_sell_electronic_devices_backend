@@ -26,6 +26,12 @@ public class PromotionType {
     @Column(name = "is_limited")
     private Boolean isLimited;
 
+    @Column(name = "descriptions")
+    private String descriptions;
+
+    @Column(name = "limited_amount")
+    private Integer limitedAmount;
+
     @OneToMany(mappedBy = "promotionType")
     private Set<PromotionUser> promotionUsers = new LinkedHashSet<>();
 
@@ -77,4 +83,19 @@ public class PromotionType {
         this.promotionUsers = promotionUsers;
     }
 
+    public String getDescriptions() {
+        return descriptions;
+    }
+
+    public void setDescriptions(String descriptions) {
+        this.descriptions = descriptions;
+    }
+
+    public Integer getLimitedAmount() {
+        return limitedAmount;
+    }
+
+    public void setLimitedAmount(Integer limitedAmount) {
+        this.limitedAmount = limitedAmount;
+    }
 }
