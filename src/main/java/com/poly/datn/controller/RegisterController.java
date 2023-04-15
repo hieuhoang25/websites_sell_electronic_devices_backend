@@ -25,13 +25,13 @@ public class RegisterController {
     }
 
     @PostMapping(RESEND_OTP)
-    public ResponseEntity<?> resend(@PathVariable("username") String email){
-        return ResponseEntity.ok(registerService.reSendOTP(email));
+    public ResponseEntity<?> resend(@PathVariable("username") String username){
+        return ResponseEntity.ok(registerService.reSendOTP(username));
     }
 
     @PostMapping(VERIFICATION_OTP)
-    public ResponseEntity<?> verificationOTP(@PathVariable("username") String email, @PathVariable("code") String code){
-        return ResponseEntity.ok(registerService.verifyOtp(code, email));
+    public ResponseEntity<?> verificationOTP(@PathVariable("username") String username, @PathVariable("code") String code){
+        return ResponseEntity.ok(registerService.verifyOtp(code, username));
     }
 
 }
