@@ -2,17 +2,17 @@ package com.poly.datn.repository;
 
 import java.util.List;
 
-import com.poly.datn.dto.response.ProductSellingTop;
+import javax.transaction.Transactional;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.query.Param;
-
-import com.poly.datn.entity.ProductVariant;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
-import javax.transaction.Transactional;
+import com.poly.datn.entity.ProductVariant;
 
 public interface ProductVariantRepository extends JpaRepository<ProductVariant, Integer> {
     @Query("select o from ProductVariant o where o.product.id=:productId " +
@@ -43,4 +43,7 @@ public interface ProductVariantRepository extends JpaRepository<ProductVariant, 
     void delete(@Param("id") Integer id,@Param("isDeleted") Integer isDeleted);
 
     List<ProductVariant> findByIdIn(List<Integer> productId);
+    @Modifying(flushAutomatically = true,clearAutomatically = true)
+    @Procedure(procedureName = "sp_checkCurrentInvetory")
+    Integer checkInventoryById(Integer variantId, Integer reQty);
 }

@@ -65,6 +65,21 @@ public class CartController {
         return ResponseEntity.ok(service.mergeItemsToCart(requesItems));
     }
 
+    @GetMapping("/update")
+    public ResponseEntity<?> updatedCartState() {
+        try {
+            boolean flag = service.updateCart();
+            if(flag) {
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("need changed");
+            }else {
+                return ResponseEntity.ok().body("cart is ok");
+            }
+        }catch(Exception e) {
+            log.info(e.getMessage());
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("'server error'");
+    }
+
     @Operation(summary = "remove all items in cart", description = "Removed items in cart by cart id")
     @DeleteMapping("/{cartId}")
     public ResponseEntity<?> removeAllItemsInCart(@PathVariable Integer cartId) {

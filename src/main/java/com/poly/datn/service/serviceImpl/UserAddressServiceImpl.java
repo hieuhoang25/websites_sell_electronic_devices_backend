@@ -42,9 +42,6 @@ public class UserAddressServiceImpl implements UserAddressService {
 
             List<Address> addressList = addressRepository.findAllByUserId(userId, isDefaultSort.and(idSort))
                     .orElseGet(ArrayList::new);
-
-            // log.info("list size: " + addressList.size());
-            // addressList.forEach(a -> System.out.println("a id: " + a.getId()));
             return converter.mapAllByIterator(addressList, AddressResponse.class);
         } catch (Exception e) {
             log.error("FIND ALL ERRER: " + e.getMessage());
@@ -124,8 +121,7 @@ public class UserAddressServiceImpl implements UserAddressService {
                nextAddress.setIsDefault(true);
                addressRepository.save(nextAddress);
            }    
-           System.out.println("curen u : " + userInfoService.getCurrentUser().getEmail());
-         System.out.println(addresss.getId() + " user : " + addresss.getUser().getEmail());
+           
            log.info("remove address with id " + requestId);
            addressRepository.delete(addresss);
            log.info("finish removed " + requestId);

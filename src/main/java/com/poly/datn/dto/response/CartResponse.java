@@ -29,14 +29,14 @@ public class CartResponse implements Serializable {
 
     private Instant create_date;
 
-    private Float price_sum;
+    private Double price_sum;
 
     private List<CartDetailResponse> cartDetails;
 
     public static CartResponseBuilder getAnnonCartResponseBuilder(Integer cartId) {
         List<CartDetailResponse> detailsList = new ArrayList<>();
         return new CartResponseBuilder().withId(cartId).withCartDetails(detailsList).withCreate_date(Instant.now())
-                .withPrice_sum(0.0f);
+                .withPrice_sum(0.0);
     }
 
     public CartResponse sortCartDetailsByCreateDateDesc() {
@@ -45,6 +45,19 @@ public class CartResponse implements Serializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return this;
+    }
+
+    public CartResponse calPriceSum() {
+
+        if(this.cartDetails == null || this.cartDetails.isEmpty()){
+            this.price_sum = 0.0;
+        } 
+       else {
+        Double sum = cartDetails.stream().mapToDouble((c) -> c.getPrice_detail() * c.getQuantity()).sum(); 
+        this.price_sum = sum;
+       }
+       
         return this;
     }
 
