@@ -21,7 +21,7 @@ public class ProductResponse implements Serializable {
     private Integer category_id;
     private String category_name;
     private Boolean is_delete;
-    private Double discount;
+  // private Double discount;
     private Integer brand_id;
     private String brand_name;
     private Integer promotion_id;
