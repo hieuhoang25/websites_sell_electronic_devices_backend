@@ -1,6 +1,5 @@
 package com.poly.datn.service.serviceImpl;
 
-import java.time.Instant;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -15,6 +14,8 @@ import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.CartDetailRequest;
 import com.poly.datn.dto.request.CartItemRequest;
 import com.poly.datn.dto.response.CartDetailResponse;
+import com.poly.datn.dto.response.CartDetailResponse.CartDetailResponseBuilder;
+import com.poly.datn.dto.response.ProductVariantResponse;
 import com.poly.datn.entity.CartDetail;
 import com.poly.datn.exception.cart.VariantAlreadyInCartException;
 import com.poly.datn.exception.cart.VariantUnavailable;
@@ -22,8 +23,10 @@ import com.poly.datn.repository.CartDetailRepository;
 import com.poly.datn.repository.ProductVariantRepository;
 import com.poly.datn.service.CartDetailService;
 import com.poly.datn.service.CartService;
+import com.poly.datn.service.ProductVariantService;
+import static com.poly.datn.dto.response.CartDetailResponse.withCartPrice_Detail;
+import static com.poly.datn.dto.response.CartDetailResponse.withVariantDiscount_amount;
 
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -40,6 +43,9 @@ public class CartDetailServiceImpl implements CartDetailService {
   
     @Autowired @Lazy
     private CartService cartService;
+
+    @Autowired @Lazy
+    private ProductVariantService variantService;
 
     @Override
     public List<CartDetailResponse> findAllByCartId(Integer cartId) {
@@ -221,6 +227,29 @@ public class CartDetailServiceImpl implements CartDetailService {
     public CartDetailResponse updateGuestCartDetail(CartDetailRequest request) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'updateGuestCartDetail'");
+    }
+
+    @Override
+    public CartDetailResponse buildFromRequest(CartDetailRequest request) {
+        Integer cartDetailId = cartService.getRandomId();
+        CartDetailResponseBuilder respone = CartDetailResponse.getPlainCartDetailResponeBuilder(cartDetailId);
+        try {
+            ProductVariantResponse variant = variantService.findById(request.getProduct_variant_id());
+            respone.withProductVariant(variant).withQuantity(request.getQuantity());
+            withVariantDiscount_amount(respone);
+            withCartPrice_Detail(respone);
+
+            CartDetailResponse obj = respone.build();
+            
+            log.info("respone: price_detail " + obj.getPrice_detail() + " respone quantity: " + 
+            obj.getQuantity());
+            return obj;
+            // return ResponseEntity.ok().body(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.error("build from CartItemRequest request error: " + e.getMessage());
+            return null;
+        }
     }
 
 }

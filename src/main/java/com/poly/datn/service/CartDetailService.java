@@ -23,5 +23,7 @@ public interface CartDetailService {
 
     CartDetailResponse add(CartItemRequest request);
 
+    CartDetailResponse buildFromRequest(CartDetailRequest request);
+
     void delete(CartDetailRequest request);
 }

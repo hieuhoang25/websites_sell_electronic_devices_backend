@@ -31,6 +31,8 @@ public interface CartService {
 
     @Modifying(flushAutomatically = true)
     Integer updatedPriceSum(Integer cartId);
+
+    Integer getRandomId();
     /* 
     ! Logged in user, authenticated-user scenario when userId is omitted
     * Overide later
@@ -45,7 +47,7 @@ public interface CartService {
 
     CartResponse addProductToCart(List<CartDetailRequest> itmes);
 
-    CartResponse updateCart(List<CartDetailRequest> items);
+    boolean updateCart();
 
     CartResponse updateGuestCart(Integer cartId, List<CartDetailRequest> items);
 }

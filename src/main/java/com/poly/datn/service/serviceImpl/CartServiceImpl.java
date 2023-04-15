@@ -1,33 +1,33 @@
 package com.poly.datn.service.serviceImpl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.CartDetailRequest;
 import com.poly.datn.dto.request.CartItemRequest;
-import com.poly.datn.dto.response.CartResponse;
 import com.poly.datn.dto.response.CartDetailResponse;
+import com.poly.datn.dto.response.CartResponse;
 import com.poly.datn.dto.response.CartResponse.CartResponseBuilder;
-import com.poly.datn.entity.Account;
 import com.poly.datn.entity.Cart;
 import com.poly.datn.entity.CartDetail;
 import com.poly.datn.entity.User;
 import com.poly.datn.exception.cart.CartException;
-import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.repository.CartDetailRepository;
 import com.poly.datn.repository.CartRepository;
+import com.poly.datn.repository.ProductVariantRepository;
 import com.poly.datn.repository.UserRepository;
 import com.poly.datn.service.CartDetailService;
 import com.poly.datn.service.CartService;
 import com.poly.datn.service.UserInfoByTokenService;
-
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,10 +41,10 @@ public class CartServiceImpl implements CartService {
     private final CartRepository cartRepo;
     private final ModelConverter modelConverter;
     private final CartDetailRepository cartDetail;
-    private final AccountRepository accountRepository;
     private final CartDetailService cartDetailService;
     private final UserInfoByTokenService userInfoService;;
     private final UserRepository userRepository;
+    private final ProductVariantRepository variantRepository;
  
 
     @Override
@@ -200,9 +200,21 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public CartResponse updateCart(List<CartDetailRequest> items) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateCart'");
+    public boolean updateCart() {
+        try {
+            Integer cartId = getCurrentUser().getCarts().getId();
+            Boolean removedFlag =  cartRepo.updatedCartByVariantStatus(cartId);
+            Boolean updatedFlag =  cartRepo.updatedCartQuantityByInventory(cartId);
+           
+
+            return removedFlag || updatedFlag;
+        }catch(Exception e) {
+            log.info("error: " + e.getMessage());
+            e.printStackTrace();
+
+         
+        }
+        return false;
     }
 
     @Override
@@ -213,16 +225,56 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartResponse updateGuestCart(Integer cartId, List<CartDetailRequest> items) {
-
+        if(cartId == null) cartId = getRandomId();
         CartResponseBuilder cartBuilder =  CartResponse.getAnnonCartResponseBuilder(cartId);
 
+        items.removeIf(i ->
+                            ( i.getId() == null) || (i.getProduct_variant_id() == null ) ||
+                            ( i.getQuantity() == null || i.getQuantity() <= 0 ) ||
+                            ( !variantRepository.existsById(i.getProduct_variant_id()) ) || 
+                            (!variantRepository.isStatusTrue(i.getProduct_variant_id())) 
+                        );
+        
+        items.forEach(System.out::println);
+
+        log.info("=========removed null, status false, non exisist variant===============");
+
+        if(items.isEmpty()) return cartBuilder.withCartDetails(new ArrayList<>()).build();
+
+        List<CartDetailRequest> removedObj = new ArrayList<>();
         if(items.isEmpty()) return cartBuilder.build();
 
-        
-        
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateGuestCart'");
+        log.info("========> checking inventory of guest's cart's items");
+        items.forEach( item -> {
+            Integer itemQty = item.getQuantity() > 5? 5 : item.getQuantity();
+            Integer checked = variantRepository.checkInventoryById(item.getProduct_variant_id(), itemQty);
+            if(checked != 404 && checked < 0) {
+                log.info("====> ");
+                Integer newQty = itemQty + checked;
+                log.info("====> updated Qty: " + newQty);
+                item.setQuantity(newQty);
+            }else if(checked == 404 || checked == 0) {
+                removedObj.add(item);
+            }
+        });
+     
+        log.info("========> removed invalid item :" + Arrays.toString(removedObj.toArray(CartDetailRequest[]::new)));
+        items.removeIf(i -> removedObj.contains(i));
+      
+        log.info("====> request list");
+        items.forEach(System.out::println);
+        if(items.isEmpty()) return cartBuilder.withCartDetails(new ArrayList<>()).build();
+
+        List<CartDetailResponse> detailResponseList = items.stream().map( i -> cartDetailService.buildFromRequest(i)).collect(Collectors.toList());
+      
+        CartResponse returnCartRes = cartBuilder.withCartDetails(detailResponseList).build().sortCartDetailsByCreateDateDesc().calPriceSum();
+
+        return returnCartRes;
     }
+
+    public  Integer  getRandomId() {
+        return ThreadLocalRandom.current().nextInt(1, (Integer.MAX_VALUE - 1));
+    }   
 }
 
     
