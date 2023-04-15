@@ -31,10 +31,13 @@ public interface ProductVariantRepository extends JpaRepository<ProductVariant, 
 
     @Query("select v.status from ProductVariant v where v.id =:id ")    
     boolean isStatusTrue(@Param("id") Integer id);
-    @Query(value = "select product_id, p.image ,p.product_name , sum(od.price_sum - od.promotion_value) as revenue , sum(pv.quantity) as stock  from product_variant pv " +
-            "inner join order_detail od on pv.id = od.product_variant_id " +
-            "inner join product p on pv.product_id = p.id " +
-            "group by product_id",nativeQuery = true)
+    @Query(value = "select product_id, p.image ,p.product_name , sum(od.price_sum - od.promotion_value*od.quantity) as revenue , sum(pv.quantity) as stock  from product_variant pv " +
+            "            inner join order_detail od on pv.id = od.product_variant_id " +
+            "            inner join product p on pv.product_id = p.id " +
+            "            inner JOIN orders  o on o.id = od.order_id " +
+            "            where o.is_pay=true  " +
+            "            group by product_id " +
+            "            limit 5",nativeQuery = true)
     List<LinkedCaseInsensitiveMap<String>> productSellingTops();
 
     @Modifying
