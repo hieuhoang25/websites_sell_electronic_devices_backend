@@ -22,6 +22,7 @@ import lombok.Setter;
 @Builder(setterPrefix = "with")
 public class FlashDealResponse implements Serializable{
 
+    private LocalDateTime current_time;
     private LocalDateTime start_time;
 
     private LocalDateTime expired_time;

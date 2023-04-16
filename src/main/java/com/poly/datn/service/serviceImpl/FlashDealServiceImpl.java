@@ -5,15 +5,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.response.FlashDealResponse;
 import com.poly.datn.dto.response.FlashDealResponse.FlashDealResponseBuilder;
 import com.poly.datn.entity.PromotionProduct;
@@ -29,42 +28,89 @@ import lombok.extern.slf4j.Slf4j;
 public class FlashDealServiceImpl implements FlashDealService {
 
     private final PromotionProductRepository promotionProductRepository;
-    private final ModelConverter converter;
+    private final ZoneId idZ = ZoneId.ofOffset("UTC", ZoneOffset.of("+07"));
 
     @Override
     public List<FlashDealResponse> getCurrentFlashDeal() {
-        ZoneOffset offset = OffsetDateTime.now().getOffset();
-        LocalDateTime start = LocalDateTime.now();
-        LocalDateTime end = LocalDate.now().atTime(LocalTime.MAX);
+        LocalDateTime start = getStartOfToday();
+        LocalDateTime end = getEndOfToday();
 
-        Instant from = start.toInstant(offset), to = end.toInstant(offset);
+        Instant from = convertToInstant(start), to = convertToInstant(end);
 
         List<PromotionProduct> promos = promotionProductRepository
                 .findByUpdatedDateBetweenOrderByUpdatedDateAsc(from, to);
-
         log.info("remove expire promo");
-        excludeExpiration(promos, start);
-
-        return  buildResponse(promos);
+        excludeExpiration(promos, getLocalDatetimeNow());
+        return buildResponse(promos);
     }
 
     @Override
     public List<FlashDealResponse> getTodayFlashDeal() {
         try {
-            LocalDateTime start = LocalDate.now().atStartOfDay();
-            LocalDateTime end = LocalDate.now().atTime(LocalTime.MAX);
+            LocalDateTime start = getStartOfToday();
+            LocalDateTime end = getEndOfToday();
             List<PromotionProduct> promos = promotionProductRepository
                     .findByUpdatedDateBetweenOrderByUpdatedDateAsc(convertToInstant(start), convertToInstant(end));
-        
-             return buildResponse(promos);       
+
+            return buildResponse(promos);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
+    @Override
+    public List<FlashDealResponse> getFlashDealFrom(LocalDateTime start, LocalDateTime end) {
+        Instant from = convertToInstant(start);
+        Instant to = convertToInstant(end);
+        List<PromotionProduct> promos = promotionProductRepository
+                .findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(from, to, true);
+        return buildResponse(promos);
+    }
+
+    @Override
+    public List<FlashDealResponse> getTodayFlashDealExcludedExpire() {
+        try {
+            LocalDateTime now = getLocalDatetimeNow();
+            LocalDateTime start = getStartOfToday();
+            LocalDateTime end = getEndOfToday();
+
+            List<PromotionProduct> promos = promotionProductRepository
+                    .findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(convertToInstant(start),
+                            convertToInstant(end), true);
+            excludeExpiration(promos, now);
+            // promos.removeIf(p -> p.getExpirationDate().isBefore(convertToInstant(now)));
+            return buildResponse(promos);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public List<FlashDealResponse> getFlashDealFromExcludedExpire(LocalDateTime start, LocalDateTime end) {
+        Instant from = convertToInstant(start);
+        Instant to = convertToInstant(end);
+
+        List<PromotionProduct> promos = promotionProductRepository
+                .findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(from, to, true);
+
+        // remove expired one
+        excludeExpiration(promos, start);
+
+        return buildResponse(promos);
+    }
+
+    public List<PromotionProduct> excludeExpiration(List<PromotionProduct> promos, LocalDateTime current) {
+        if (promos == null)
+            return new ArrayList<>();
+        promos.removeIf(p -> p.getExpirationDate().isBefore(convertToInstant(current)));
+        return promos;
+    }
+
     public List<FlashDealResponse> buildResponse(List<PromotionProduct> promos) {
-        if(promos == null) return new ArrayList<FlashDealResponse>();
+        if (promos == null)
+            return new ArrayList<FlashDealResponse>();
         try {
             FlashDealResponseBuilder builder = FlashDealResponse.builder();
             // .FlashDealResponseBuilder;
@@ -73,6 +119,7 @@ public class FlashDealServiceImpl implements FlashDealService {
                     .withName(item.getName())
                     .withExpired_time(convertInstantToLocalDateTime(item.getExpirationDate()))
                     .withStart_time(convertInstantToLocalDateTime(item.getUpdatedDate()))
+                    .withCurrent_time(getLocalDatetimeNow())
                     .build()
                     .setProductResponseList(item.getProducts())).collect(Collectors.toList());
 
@@ -85,61 +132,25 @@ public class FlashDealServiceImpl implements FlashDealService {
 
     }
 
-    @Override
-    public List<FlashDealResponse> getFlashDealFrom(LocalDateTime  start, LocalDateTime end) {
-       
-        Instant from = convertToInstant(start);
-        Instant to = convertToInstant(end);
-        List<PromotionProduct> promos =  promotionProductRepository.findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(from,to,true);        
-        return  buildResponse(promos);
-    }
-
-
-
     public Instant convertToInstant(LocalDateTime time) {
-        ZoneOffset offset = OffsetDateTime.now().getOffset();
+        ZoneOffset offset = OffsetDateTime.ofInstant(Instant.now(), idZ).getOffset();
         return time.toInstant(offset);
-    } 
+    }
 
     public LocalDateTime convertInstantToLocalDateTime(Instant instant) {
         ZoneOffset offset = OffsetDateTime.now().getOffset();
-        return LocalDateTime.ofInstant(instant,offset);
+        return LocalDateTime.ofInstant(instant, offset);
     }
 
-    @Override
-    public List<FlashDealResponse> getTodayFlashDealExcludedExpire() {
-        try {
-            LocalDateTime start = LocalDate.now().atStartOfDay();
-            LocalDateTime end = LocalDate.now().atTime(LocalTime.MAX);
-            List<PromotionProduct> promos = promotionProductRepository
-                    .findByUpdatedDateBetweenOrderByUpdatedDateAsc(convertToInstant(start) , convertToInstant(end));
-                    promos.removeIf(p -> p.getExpirationDate().isBefore(convertToInstant(start))); 
-                    return buildResponse(promos);
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-       
-  
+    public LocalDateTime getLocalDatetimeNow() {
+        return LocalDateTime.now(idZ);
     }
 
-    @Override
-    public List<FlashDealResponse> getFlashDealFromExcludedExpire(LocalDateTime start, LocalDateTime end) {
-        Instant from = convertToInstant(start);
-        Instant to = convertToInstant(end);
-        List<PromotionProduct> promos =  promotionProductRepository.findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(from,to,true);
-        
-        // remove expired one 
-        excludeExpiration(promos, start);
-       
-        return buildResponse(promos);
+    public LocalDateTime getStartOfToday() {
+        return LocalDate.now(idZ).atStartOfDay();
     }
 
-    public List<PromotionProduct> excludeExpiration(List<PromotionProduct> promos, LocalDateTime start) {
-        if(promos == null) return null;
-        promos.removeIf(p -> p.getExpirationDate().isBefore(convertToInstant(start)));
-        return promos;
+    public LocalDateTime getEndOfToday() {
+        return LocalDate.now(idZ).atTime(LocalTime.MAX);
     }
-
-
 }
