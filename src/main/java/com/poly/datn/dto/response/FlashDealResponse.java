@@ -30,9 +30,8 @@ public class FlashDealResponse implements Serializable{
     private boolean activate;
    
     private String name;
-
     private List<ProductFlashDealResponse> products;
-
+    private Boolean start;
     public FlashDealResponse  setProductResponseList(Set<Product> listProducts) {
         ModelConverter converter = new ModelConverter();
       

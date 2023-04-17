@@ -7,6 +7,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
@@ -95,13 +97,18 @@ public class Product {
 
     public Double getDiscount() {
         discount = 0.0d;
+        LocalDate today = LocalDate.now();
+        ZoneId zoneId = ZoneId.systemDefault();
         if (promotion != null && promotion.getActivate()) {
-            Instant today = Instant.now();
             Boolean hasExpireDate = promotion.getExpirationDate() != null;
-            if (hasExpireDate && today.isBefore(promotion.getExpirationDate())) {
-                discount = promotion.getDiscountAmount();
-            }
-            if (hasExpireDate == false)
+            if(promotion.getUpdatedDate() != null && hasExpireDate){
+                LocalDate startDate = promotion.getUpdatedDate().atZone(zoneId).toLocalDate();
+                int tDay = today.getDayOfMonth();
+                int start = startDate.getDayOfMonth();
+                if (tDay == start) {
+                    discount = promotion.getDiscountAmount();
+                }
+            }else
                 discount = promotion.getDiscountAmount();
         }
         return discount;

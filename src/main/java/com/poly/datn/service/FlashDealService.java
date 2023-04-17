@@ -13,6 +13,8 @@ public interface FlashDealService {
 
     public List<FlashDealResponse> getTodayFlashDealExcludedExpire();
 
+    List<FlashDealResponse> getFlashDeal();
+
     public List<FlashDealResponse> getFlashDealFrom(LocalDateTime start, LocalDateTime end);
 
     public List<FlashDealResponse> getFlashDealFromExcludedExpire(LocalDateTime start, LocalDateTime end);
