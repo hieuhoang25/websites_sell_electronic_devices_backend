@@ -68,4 +68,9 @@ public class FlashDealController {
 
     }
 
+    @GetMapping
+    public ResponseEntity<List<FlashDealResponse>> getFlashDeal(){
+        return ResponseEntity.ok(dealService.getFlashDeal());
+    }
+
 }
