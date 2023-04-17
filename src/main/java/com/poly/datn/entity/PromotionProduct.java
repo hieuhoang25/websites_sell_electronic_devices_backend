@@ -6,6 +6,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
@@ -46,6 +48,32 @@ public class PromotionProduct {
     private Boolean isPercent;
     @Column(name = "discount")
     private Double discount;
+    @Transient
+    private Boolean isStart;
+
+    public Boolean getIsStart() {
+        return isStart;
+    }
+
+    public void setIsStart(Boolean isStart) {
+        this.isStart = isStart;
+    }
+
+    @PostLoad
+    public void checkStartDate() {
+        LocalDate today = LocalDate.now();
+        ZoneId zoneId = ZoneId.systemDefault();
+        if (expirationDate != null && updatedDate != null) {
+            LocalDate startDate = updatedDate.atZone(zoneId).toLocalDate();
+            int tDay = today.getDayOfMonth();
+            int start = startDate.getDayOfMonth();
+            if (tDay == start)
+                isStart = true;
+            else
+                isStart = false;
+        } else
+            isStart = null;
+    }
 
     public Boolean getPercent() {
         return isPercent;
