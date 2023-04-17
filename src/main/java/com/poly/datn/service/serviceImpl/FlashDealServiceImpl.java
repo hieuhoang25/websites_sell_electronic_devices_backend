@@ -21,14 +21,16 @@ import com.poly.datn.service.FlashDealService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
+@Transactional(rollbackFor = {Exception.class})
 public class FlashDealServiceImpl implements FlashDealService {
 
     private final PromotionProductRepository promotionProductRepository;
-    private final ZoneId idZ = ZoneId.ofOffset("UTC", ZoneOffset.of("+07"));
+    private final ZoneId idZ = ZoneId.of("Asia/Ho_Chi_Minh");
 
     @Override
     public List<FlashDealResponse> getCurrentFlashDeal() {
@@ -52,11 +54,18 @@ public class FlashDealServiceImpl implements FlashDealService {
             List<PromotionProduct> promos = promotionProductRepository
                     .findByUpdatedDateBetweenOrderByUpdatedDateAsc(convertToInstant(start), convertToInstant(end));
 
+            excludeExpiration(promos, getLocalDatetimeNow());
             return buildResponse(promos);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+    }
+    @Override
+    public List<FlashDealResponse> getFlashDeal(){
+        List<PromotionProduct> promos = promotionProductRepository
+                .findAllValidPromotion(Instant.now());
+        return buildResponse(promos);
     }
 
     @Override
@@ -120,6 +129,7 @@ public class FlashDealServiceImpl implements FlashDealService {
                     .withExpired_time(convertInstantToLocalDateTime(item.getExpirationDate()))
                     .withStart_time(convertInstantToLocalDateTime(item.getUpdatedDate()))
                     .withCurrent_time(getLocalDatetimeNow())
+                    .withStart(item.getIsStart())
                     .build()
                     .setProductResponseList(item.getProducts())).collect(Collectors.toList());
 
