@@ -13,10 +13,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+
 import static java.util.Comparator.*;
 
 @Getter
 @Setter
+@Slf4j
 // @RequiredArgsConstructor
 @NoArgsConstructor
 @Builder(setterPrefix = "with")
@@ -41,7 +44,7 @@ public class CartResponse implements Serializable {
 
     public CartResponse sortCartDetailsByCreateDateDesc() {
         try {
-            cartDetails.sort(comparing(CartDetailResponse::getCreate_date, nullsLast((reverseOrder()))));
+            cartDetails.sort(comparing(CartDetailResponse::getCreate_date, nullsLast((reverseOrder()))).thenComparing(CartDetailResponse::getId));
         } catch (Exception e) {
             e.printStackTrace();
         }
