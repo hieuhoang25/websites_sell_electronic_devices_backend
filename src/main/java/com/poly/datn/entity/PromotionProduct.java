@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -61,13 +62,15 @@ public class PromotionProduct {
 
     @PostLoad
     public void checkStartDate() {
-        LocalDate today = LocalDate.now();
-        ZoneId zoneId = ZoneId.systemDefault();
+        // LocalDate today = LocalDate.now();
+        LocalDateTime now = LocalDateTime.now();
+        ZoneId zoneId = ZoneId.of("Asia/Ho_Chi_Minh");
         if (expirationDate != null && updatedDate != null) {
-            LocalDate startDate = updatedDate.atZone(zoneId).toLocalDate();
-            int tDay = today.getDayOfMonth();
-            int start = startDate.getDayOfMonth();
-            if (tDay == start)
+            LocalDateTime startTime = updatedDate.atZone(zoneId).toLocalDateTime();
+            // LocalDate startDate = updatedDate.atZone(zoneId).toLocalDate();
+            // int tDay = today.getDayOfMonth();
+            // int start = startDate.getDayOfMonth();
+            if (now.isAfter(startTime) || now.isEqual(startTime))
                 isStart = true;
             else
                 isStart = false;

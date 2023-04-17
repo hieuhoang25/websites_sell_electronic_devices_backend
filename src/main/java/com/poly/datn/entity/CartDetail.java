@@ -1,6 +1,10 @@
 package com.poly.datn.entity;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZoneId;
+import java.time.ZoneOffset;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.PostPersist;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -53,11 +56,22 @@ public class CartDetail {
             if (promotionProduct == null || (promotionProduct.getActivate() == null || !promotionProduct.getActivate()))
                 return 0.0;
 
+            LocalDateTime today = LocalDateTime.now();
+            ZoneId zoneId = ZoneId.of("Asia/Ho_Chi_Minh"); 
+            ZoneOffset offset = OffsetDateTime.ofInstant(Instant.now(), zoneId).getOffset();   
+            Instant now = today.toInstant(offset);
+
             Boolean hasExpireDate =  promotionProduct.getExpirationDate() != null;  
-            Instant today = Instant.now();
-            if (hasExpireDate && today.isAfter(promotionProduct.getExpirationDate())) {
+            Boolean hasStartDate = promotionProduct.getUpdatedDate() != null;
+
+            Boolean isStarted = promotionProduct.getUpdatedDate().isBefore(now) || promotionProduct.getUpdatedDate().equals(now);
+
+            if (hasExpireDate && now.isAfter(promotionProduct.getExpirationDate())) {
                return 0.0;
             } 
+
+            if(hasStartDate && !isStarted) return 0.0;
+
             if (promotionProduct.getIsPercent()) {
                 Integer per = promotionProduct.getDiscountAmount().intValue();
                 return price * (per * 0.01);
