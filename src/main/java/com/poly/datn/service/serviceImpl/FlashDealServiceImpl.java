@@ -78,8 +78,8 @@ public class FlashDealServiceImpl implements FlashDealService {
             List<PromotionProduct> promos = promotionProductRepository
                     .findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(convertToInstant(start),
                             convertToInstant(end), true);
-            excludeExpiration(promos, now);
-            // promos.removeIf(p -> p.getExpirationDate().isBefore(convertToInstant(now)));
+            // excludeExpiration(promos, now);
+            promos.removeIf(p -> p.getExpirationDate().isBefore(convertToInstant(now)));
             return buildResponse(promos);
         } catch (Exception e) {
             e.printStackTrace();
