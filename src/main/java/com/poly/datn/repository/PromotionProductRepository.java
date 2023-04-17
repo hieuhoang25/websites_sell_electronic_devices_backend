@@ -27,6 +27,7 @@ public interface PromotionProductRepository extends JpaRepository<PromotionProdu
             "where p.expirationDate is not null " +
             "and p.updatedDate is not null " +
             "and p.expirationDate >:now " +
+            "and ( p.updatedDate <= :now or p.updatedDate > :now) " +
             "and p.activate = true " +
             "and p.id in (SELECT pr.promotion.id from Product pr)" +
             "order by p.expirationDate asc")
