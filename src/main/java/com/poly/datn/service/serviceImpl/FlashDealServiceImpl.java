@@ -22,6 +22,7 @@ import com.poly.datn.service.FlashDealService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
+import org.webjars.NotFoundException;
 
 @Service
 @RequiredArgsConstructor
@@ -61,11 +62,23 @@ public class FlashDealServiceImpl implements FlashDealService {
             return null;
         }
     }
+
     @Override
-    public List<FlashDealResponse> getFlashDeal(){
+    public List<FlashDealResponse> getFlashDeal() {
+        LocalDateTime now = getLocalDatetimeNow();
         List<PromotionProduct> promos = promotionProductRepository
-                .findAllValidPromotion(Instant.now());
+                .findAllValidPromotion(convertToInstant(now));
+        if (promos.isEmpty())
+            throw new NotFoundException("No promotion found!");
         return buildResponse(promos);
+    }
+    @Override
+    public void removeExpiredPromotionOfProduct(List<Integer> listProductId) {
+        LocalDateTime now = getLocalDatetimeNow();
+        listProductId.stream()
+                .forEach(id -> {
+                    promotionProductRepository.removeAllPromotionExpiredOfProduct(id,convertToInstant(now));
+                });
     }
 
     @Override
