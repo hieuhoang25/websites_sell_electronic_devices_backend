@@ -21,5 +21,12 @@ public interface PromotionProductRepository extends JpaRepository<PromotionProdu
    List<PromotionProduct>  findByUpdatedDateBetweenOrderByUpdatedDateAsc(Instant from, Instant to); 
 
    List<PromotionProduct>  findByUpdatedDateBetweenAndActivateOrderByUpdatedDateAsc(Instant from, Instant to, boolean activate); 
-
+    @Query("select p from PromotionProduct p " +
+            "where p.expirationDate is not null " +
+            "and p.updatedDate is not null " +
+            "and p.expirationDate >:now " +
+            "and p.activate = true " +
+            "and p.id in (SELECT pr.promotion.id from Product pr)" +
+            "order by p.expirationDate asc")
+   List<PromotionProduct> findAllValidPromotion(Instant now);
 }
