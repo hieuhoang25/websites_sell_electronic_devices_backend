@@ -15,7 +15,7 @@ public interface FlashDealService {
 
     List<FlashDealResponse> getFlashDeal();
 
-    void removeExpiredPromotionOfProduct(List<Integer> listProductId);
+    void removeExpiredPromotionOfProduct();
 
     public List<FlashDealResponse> getFlashDealFrom(LocalDateTime start, LocalDateTime end);
 

@@ -72,13 +72,11 @@ public class FlashDealServiceImpl implements FlashDealService {
             throw new NotFoundException("No promotion found!");
         return buildResponse(promos);
     }
+
     @Override
-    public void removeExpiredPromotionOfProduct(List<Integer> listProductId) {
+    public void removeExpiredPromotionOfProduct() {
         LocalDateTime now = getLocalDatetimeNow();
-        listProductId.stream()
-                .forEach(id -> {
-                    promotionProductRepository.removeAllPromotionExpiredOfProduct(id,convertToInstant(now));
-                });
+        promotionProductRepository.removeAllPromotionExpiredOfProduct(convertToInstant(now));
     }
 
     @Override

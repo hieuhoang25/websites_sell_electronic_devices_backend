@@ -37,7 +37,6 @@ public interface PromotionProductRepository extends JpaRepository<PromotionProdu
     @Query(value = "update product p " +
             "join promotion_product pm on p.promotion_id = pm.id " +
             "SET p.promotion_id = null " +
-            "where p.id = :productId " +
-            "and pm.expiration_date < :now",nativeQuery = true)
-    void removeAllPromotionExpiredOfProduct(Integer productId, Instant now);
+            "where pm.expiration_date < :now",nativeQuery = true)
+    void removeAllPromotionExpiredOfProduct(Instant now);
 }
