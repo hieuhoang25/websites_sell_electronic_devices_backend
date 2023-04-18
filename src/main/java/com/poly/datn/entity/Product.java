@@ -94,7 +94,9 @@ public class Product {
 //    }
 
     public Integer getQuantity() {
-        quantity = productVariants.stream().mapToInt(ProductVariant::getQuantity).sum();
+        quantity = 0;
+        if (!productVariants.isEmpty())
+            quantity = productVariants.stream().mapToInt(ProductVariant::getQuantity).sum();
         return quantity;
     }
 
