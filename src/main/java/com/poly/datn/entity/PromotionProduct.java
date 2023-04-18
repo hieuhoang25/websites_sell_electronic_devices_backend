@@ -2,6 +2,7 @@ package com.poly.datn.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
@@ -40,7 +41,7 @@ public class PromotionProduct {
 
     @Column(name = "activate")
     private Boolean activate;
-
+    @Where(clause = "is_delete = false")
     @OneToMany(mappedBy = "promotion")
     private Set<Product> products = new LinkedHashSet<>();
 

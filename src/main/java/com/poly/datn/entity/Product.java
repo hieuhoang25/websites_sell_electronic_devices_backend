@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -77,6 +78,7 @@ public class Product {
     private @Transient Double averagePoint;
     private @Transient Double discount;
     private @Transient Double discountPrice;
+    private @Transient Integer quantity;
 //    @Formula("(SELECT COUNT(*)" +
 //            " FROM order_detail od join product_variant pr on pr.id = od.product_variant_id" +
 //            " join product p on p.id = pr.product_id" +
@@ -91,25 +93,34 @@ public class Product {
 //        this.quantitySold = quantitySold;
 //    }
 
+    public Integer getQuantity() {
+        quantity = 0;
+        if (!productVariants.isEmpty())
+            quantity = productVariants.stream().mapToInt(ProductVariant::getQuantity).sum();
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
     public void setDiscount(Double discount) {
         this.discount = discount;
     }
 
     public Double getDiscount() {
         discount = 0.0d;
-        LocalDate today = LocalDate.now();
-        ZoneId zoneId = ZoneId.systemDefault();
+        LocalDateTime today = LocalDateTime.now();
+        ZoneId zoneId = ZoneId.of("Asia/Ho_Chi_Minh");
         if (promotion != null && promotion.getActivate()) {
             Boolean hasExpireDate = promotion.getExpirationDate() != null;
-            if(promotion.getUpdatedDate() != null && hasExpireDate){
-                LocalDate startDate = promotion.getUpdatedDate().atZone(zoneId).toLocalDate();
-                int tDay = today.getDayOfMonth();
-                int start = startDate.getDayOfMonth();
-                if (tDay == start) {
+            Boolean expiredDate =
+                    hasExpireDate && today.isBefore(promotion.getExpirationDate().atZone(zoneId).toLocalDateTime());
+            if (promotion.getUpdatedDate() != null && expiredDate) {
+                LocalDateTime startDate = promotion.getUpdatedDate().atZone(zoneId).toLocalDateTime();
+                if (today.isAfter(startDate) || today.equals(startDate))
                     discount = promotion.getDiscountAmount();
-                }
-            }else
-                discount = promotion.getDiscountAmount();
+            }
         }
         return discount;
     }

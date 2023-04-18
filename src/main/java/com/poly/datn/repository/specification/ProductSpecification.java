@@ -64,11 +64,16 @@ public class ProductSpecification implements Specification<Product> {
     private Predicate hasVariant(Root<Product> root,
                                           CriteriaQuery<?> query,
                                           CriteriaBuilder criteriaBuilder) {
+        //list id of product
         Subquery<Integer> subquery = query.subquery(Integer.class);
+        //product_id from productVariant
         Root<ProductVariant> variant = subquery.from(ProductVariant.class);
+        //(select product_id from productVariant)
         subquery.select(variant.get("product").get("id"));
         Predicate variantExists = criteriaBuilder.equal(variant.get("product"), root);
-        subquery.where(variantExists);
+        Predicate variantIsActive = criteriaBuilder.equal(variant.get("status"),true);
+        //(select product_id from productVariant vr where status = true and vr.product_id = product.id )
+        subquery.where(variantExists,variantIsActive);
         return criteriaBuilder.in(root.get("id")).value(subquery);
     }
 

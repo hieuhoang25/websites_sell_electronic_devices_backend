@@ -70,9 +70,8 @@ public class FlashDealController {
     }
 
     @PutMapping("/removing-expired-promotion-of-product")
-    public ResponseEntity removeExpiredPromotionOfProducts(
-            @RequestBody List<Integer> listProductId){
-        dealService.removeExpiredPromotionOfProduct(listProductId);
+    public ResponseEntity removeExpiredPromotionOfProducts(){
+        dealService.removeExpiredPromotionOfProduct();
         return ResponseEntity.noContent().build();
     }
 

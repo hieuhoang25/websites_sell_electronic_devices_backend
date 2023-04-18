@@ -20,6 +20,7 @@ public class ProductFilterResponse implements Serializable {
     private Double average_point;
     private Double price;
     private Double discount_price;
+    private Integer quantity;
 //    private Integer quantity_sold;
 //    private Boolean promotion_isPercent;
 }
