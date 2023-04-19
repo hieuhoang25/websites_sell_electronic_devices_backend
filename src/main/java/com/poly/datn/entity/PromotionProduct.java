@@ -65,7 +65,7 @@ public class PromotionProduct {
     public void checkStartDate() {
         // LocalDate today = LocalDate.now();
         LocalDateTime now = LocalDateTime.now();
-        ZoneId zoneId = ZoneId.of("Asia/Ho_Chi_Minh");
+        ZoneId zoneId = ZoneId.systemDefault();
         if (expirationDate != null && updatedDate != null) {
             LocalDateTime startTime = updatedDate.atZone(zoneId).toLocalDateTime();
             // LocalDate startDate = updatedDate.atZone(zoneId).toLocalDate();

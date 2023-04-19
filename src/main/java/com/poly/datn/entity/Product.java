@@ -111,7 +111,7 @@ public class Product {
     public Double getDiscount() {
         discount = 0.0d;
         LocalDateTime today = LocalDateTime.now();
-        ZoneId zoneId = ZoneId.of("Asia/Ho_Chi_Minh");
+        ZoneId zoneId = ZoneId.systemDefault();
         if (promotion != null && promotion.getActivate()) {
             Boolean hasExpireDate = promotion.getExpirationDate() != null;
             Boolean expiredDate =
