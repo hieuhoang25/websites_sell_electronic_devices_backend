@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
+import java.time.Instant;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Integer>, JpaSpecificationExecutor {
@@ -64,9 +65,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 
     @Query("SELECT p FROM Product p LEFT JOIN p.promotion pm " +
             "WHERE p.isDelete = false and p.promotion is not null and p.promotion.expirationDate is null " +
+            "AND p.promotion.updatedDate <= :now " +
+            "AND p.promotion.expirationDate > :now " +
             "AND p.id IN (SELECT vr.product.id FROM ProductVariant vr where vr.status = true)" +
             "ORDER BY pm.discountAmount DESC")
-    List<Product> findByBigDiscount();
+    List<Product> findByBigDiscount(Instant now);
 
     @Query("SELECT p FROM Product p WHERE p.isDelete = false " +
             "AND p.id IN (SELECT vr.product.id FROM ProductVariant vr where vr.status = true)" +
