@@ -41,7 +41,7 @@ public class PromotionProduct {
 
     @Column(name = "activate")
     private Boolean activate;
-    @Where(clause = "is_delete = false")
+    @Where(clause = "is_delete = false and id IN (SELECT vr.product_id FROM product_variant vr where vr.status = true)")
     @OneToMany(mappedBy = "promotion")
     private Set<Product> products = new LinkedHashSet<>();
 

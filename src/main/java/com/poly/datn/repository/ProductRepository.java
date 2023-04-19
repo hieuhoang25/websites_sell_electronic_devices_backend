@@ -63,12 +63,14 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
             "like :keysearch and is_delete = :isDeleted or pd.name like :keysearch and is_delete = :isDeleted", nativeQuery = true)
     Integer countProductFilterWithDeleted(@Param("keysearch") String keysearch, @Param("isDeleted") Integer isDeleted);
 
-    @Query("SELECT p FROM Product p LEFT JOIN p.promotion pm " +
-            "WHERE p.isDelete = false and p.promotion is not null and p.promotion.expirationDate is null " +
+    @Query("SELECT p FROM Product p " +
+            "WHERE p.isDelete = false and p.promotion is not null " +
+            "AND p.promotion.expirationDate is not null " +
+            "AND p.promotion.updatedDate is not null " +
             "AND p.promotion.updatedDate <= :now " +
             "AND p.promotion.expirationDate > :now " +
             "AND p.id IN (SELECT vr.product.id FROM ProductVariant vr where vr.status = true)" +
-            "ORDER BY pm.discountAmount DESC")
+            "ORDER BY p.promotion.discountAmount DESC")
     List<Product> findByBigDiscount(Instant now);
 
     @Query("SELECT p FROM Product p WHERE p.isDelete = false " +
