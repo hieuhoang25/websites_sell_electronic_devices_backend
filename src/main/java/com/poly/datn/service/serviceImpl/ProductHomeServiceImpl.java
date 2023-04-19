@@ -10,6 +10,8 @@ import org.springframework.beans.support.PagedListHolder;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -20,7 +22,9 @@ public class ProductHomeServiceImpl implements ProductHomeService {
 
     @Override
     public Pagination bigDiscount(Pageable pageable) {
-        PagedListHolder productPage = new PagedListHolder(repository.findByBigDiscount());
+        LocalDateTime now = LocalDateTime.now();
+        ZoneId zoneId = ZoneId.systemDefault();
+        PagedListHolder productPage = new PagedListHolder(repository.findByBigDiscount(now.atZone(zoneId).toInstant()));
         productPage.setPageSize(pageable.getPageSize());
         productPage.setPage(pageable.getPageNumber());
         List<ProductFilterResponse> productFilterResponses =
