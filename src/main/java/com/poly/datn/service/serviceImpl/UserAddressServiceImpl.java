@@ -2,8 +2,6 @@ package com.poly.datn.service.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.data.domain.Sort;
@@ -90,11 +88,21 @@ public class UserAddressServiceImpl implements UserAddressService {
         try {
             Address address = findEntityById(request.getId());
             Integer defaultId =  getDefaultAddressId();
+
+
             if(defaultId != -1 && request.getIs_default()) {
                 log.info("check correct default");
-                if(defaultId != request.getId()) request.setIs_default(false);
+                if(defaultId != request.getId()) {
+                    request.setIs_default(true);
+                    Address defaultAdd = findDefaultAddressEntityOfUser();   
+                    defaultAdd.setIsDefault(false);
+                    addressRepository.saveAllAndFlush(List.of(defaultAdd));
+                }
             }else if(defaultId == request.getId() && !request.getIs_default()) {
-                request.setIs_default(true);
+                log.info("set defautl false for current default");
+                request.setIs_default(false);
+                boolean setNext = setNextAddressToDefault(address);
+                if(!setNext) throw new RuntimeException("Chỉ có 1 địa chỉ trong danh sách, không thể tắt mặc định, vui lòng thêm địa chỉ khác để tắt mặc định cho địa chỉ này");
             }
             Address updatedAddress = buildAddressEntity(false, request);
             addressRepository.save(updatedAddress);
@@ -102,26 +110,18 @@ public class UserAddressServiceImpl implements UserAddressService {
         }catch(Exception e){
             if(e instanceof EntityNotFoundException) {
                 throw new RuntimeException("Can't found request address to update");
-            }
+            }else throw new RuntimeException(e.getMessage());
         }
-        return null;
+       
     }
 
     @Override
     public boolean removeAddress(Integer requestId) {
         try {
            Address addresss = findEntityById(requestId);  
-           User currentUser =  userInfoService.getCurrentUser();
-           List<Address> addressList = addressRepository.findAllByUserId(currentUser.getId(), isDefaultSort.and(idSort)).get();
-           Integer addressCount = addressList.size();  
 
-        //    set default when remove current default  address
-           if(addresss.getIsDefault() &&  addressCount > 1) {
-               Address nextAddress =  addressList.get(1);
-               nextAddress.setIsDefault(true);
-               addressRepository.save(nextAddress);
-           }    
-           
+        //  !  set default when remove current default  address
+           setNextAddressToDefault(addresss);           
            log.info("remove address with id " + requestId);
            addressRepository.delete(addresss);
            log.info("finish removed " + requestId);
@@ -132,6 +132,25 @@ public class UserAddressServiceImpl implements UserAddressService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    private boolean setNextAddressToDefault(Address requestedAddress) {
+        List<Address> addressList = getCurrentUserAddressList();
+        Integer addressCount = addressList.size();  
+        if(requestedAddress.getIsDefault() &&  addressCount > 1) {
+            Address nextAddress =  addressList.get(1);
+            nextAddress.setIsDefault(true);
+            addressRepository.save(nextAddress);
+            return true;
+        }   else if(addressCount < 1) {
+            return false;
+        }
+        return false;
+    }
+
+    private List<Address> getCurrentUserAddressList() {
+        User currentUser =  userInfoService.getCurrentUser();
+        return addressRepository.findAllByUserId(currentUser.getId(), isDefaultSort.and(idSort)).get();
     }
 
     @Override
@@ -187,12 +206,9 @@ public class UserAddressServiceImpl implements UserAddressService {
 
         if(defaultId != -1) {
             if(address.getId() != defaultId) {
-               Address defaultAdd = findDefaultAddressEntityOfUser();
-               
-
+               Address defaultAdd = findDefaultAddressEntityOfUser();   
                defaultAdd.setIsDefault(false);
                address.setIsDefault(true);
-
                addressRepository.saveAllAndFlush(List.of(defaultAdd,address));
             }
 

@@ -80,7 +80,6 @@ public class AddressController {
             e.printStackTrace();
             return ResponseEntity.badRequest().body(e.getMessage());
         }
-        // return ResponseEntity.badRequest().body("some thing went wrong");
 
     }
 
