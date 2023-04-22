@@ -14,7 +14,6 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         jdbc:
           time_zone: Asia/Ho_Chi_Minh
-
     hibernate:
       ddl-auto: none
   messages:

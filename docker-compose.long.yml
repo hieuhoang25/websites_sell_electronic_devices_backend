@@ -9,6 +9,8 @@ services:
     ports:
       - 8080:8080
     image: backend
+    environment:
+      TZ: Asia/Ho_Chi_Minh
     networks:
       - network1
     container_name: backend-container
