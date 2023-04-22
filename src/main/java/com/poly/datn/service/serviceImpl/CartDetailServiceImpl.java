@@ -75,11 +75,6 @@ public class CartDetailServiceImpl implements CartDetailService {
             Integer cartId = request.getCart_id();
             CartDetail entity = convertCartItemRequestToCartDetailForInsert(validateCartItemRequest(request));
             
-            // ? debug clean later
-            // log.info(" entity " + entity.getId() + " " + entity.getCart().getId() + " " + entity.getQuantity() + " "
-            //         + entity.getProductVariant().getId() + " " + entity.getProductVariant().getStatus());
-            
-            // entity.setCreateDate(Instant.now());
             CartDetail newEntity =  catDetailRepo.saveAndFlush(entity);
             catDetailRepo.refresh(newEntity);
     
@@ -95,7 +90,7 @@ public class CartDetailServiceImpl implements CartDetailService {
                 log.info("catch VariantAlreadyInCartException in add() for variant: ", request.getProduct_variant_id());
                 CartDetail cd =  catDetailRepo.findByProductVariantId(request.getCart_id(), request.getProduct_variant_id());
                 Integer detailId = cd.getId();
-                request.setQuantity(resolveQuantity(cd.getQuantity() + request.getQuantity()));
+                request.setQuantity(resolveQuantity(request.getProduct_variant_id(),cd.getQuantity() + request.getQuantity()));
                 CartDetailRequest updateRequest =  request.toCartDetailRequest(detailId);
                  return update(updateRequest);
             }else if (ex instanceof VariantUnavailable)  {
@@ -126,7 +121,7 @@ public class CartDetailServiceImpl implements CartDetailService {
         CartDetail detail = modelConverter.map(request, CartDetail.class);
         validateCartIdAndItemId(detail);
         CartDetail savedEntity = null;
-        request.setQuantity(resolveQuantity(request.getQuantity()));
+        request.setQuantity(resolveQuantity(request.getProduct_variant_id(), request.getQuantity()));
         try {
             validateVariantStatus(request.getProduct_variant_id());
             
@@ -186,14 +181,14 @@ public class CartDetailServiceImpl implements CartDetailService {
 
         log.warn(
             String.format("Cart: %d V: %d quan: %d", request.getCart_id(), request.getProduct_variant_id(), count));
-        if (count > 0) {
+        if (count >= 0) {
             throw new VariantAlreadyInCartException("Product's already in cart");
         }
         
         // vairant's status valid -> mapper doesn't deep map entity -> variant null
         validateVariantStatus(request.getProduct_variant_id());
         log.info("check variant available");
-        request.setQuantity(resolveQuantity(request.getQuantity()));
+        request.setQuantity(resolveQuantity(request.getProduct_variant_id(), request.getQuantity()));
 
         log.info("validateCartItemRequest finished");
         return request;
@@ -208,7 +203,7 @@ public class CartDetailServiceImpl implements CartDetailService {
 
     }
 
-    private Integer resolveQuantity(Integer quantity) {
+    private Integer resolveQuantity(Integer variantId,Integer quantity) {
         return quantity <= 0? 1: quantity > 5? 5 : quantity;
     }
 

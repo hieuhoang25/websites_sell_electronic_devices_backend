@@ -5,8 +5,8 @@ import static com.poly.datn.controller.router.Router.USER_API.BASE;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.datn.dto.request.CheckOutRequest;
-import com.poly.datn.entity.Account;
 import com.poly.datn.entity.User;
 import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.service.CheckOutService;
@@ -48,11 +47,14 @@ public class CheckoutController {
     @PostMapping
     public ResponseEntity<?> checkoutCurrentUser(@Valid @RequestBody CheckOutRequest request) {
 
-        String name = SecurityContextHolder.getContext().getAuthentication().getName();
-        Account account = accountRepository.findByUsername(name);
-        User user = userInfoService.getCurrentUser();
+      try {
+ User user = userInfoService.getCurrentUser();
         return checkoutByUserId(user.getId(), request);
-
+      }catch(Exception e) {
+        if(e instanceof IllegalArgumentException) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        }else return ResponseEntity.badRequest().body(e.getMessage());
+      }
     }
     
 }
