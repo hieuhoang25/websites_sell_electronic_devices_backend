@@ -69,6 +69,8 @@ public class ProductDetailServiceImpl implements ProductDetailService {
                         return new InventoryResponse(0, true);
                     }else if(checked <0) {
                         return new InventoryResponse( current, true );
+                    }else if(checked == 202) {
+                        return new InventoryResponse(current,true);
                     }
                     return new InventoryResponse(current, false);
                       
