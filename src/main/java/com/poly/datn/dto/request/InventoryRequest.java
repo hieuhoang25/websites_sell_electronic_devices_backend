@@ -20,6 +20,6 @@ public class InventoryRequest implements Serializable {
     private Integer product_variant_id;
 
     @NotNull
-    @Min(1)
+    @Min(0)
     private Integer request_quantity;
 }

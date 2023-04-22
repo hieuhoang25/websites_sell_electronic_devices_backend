@@ -1,29 +1,38 @@
 package com.poly.datn.service.serviceImpl;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.poly.datn.entity.*;
-import com.poly.datn.repository.*;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.poly.datn.common.mapper.ModelConverter;
 import com.poly.datn.dto.request.CheckOutRequest;
 import com.poly.datn.dto.response.PaymentMethodResponse;
-import com.poly.datn.entity.Account;
 import com.poly.datn.entity.Cart;
 import com.poly.datn.entity.CartDetail;
+import com.poly.datn.entity.Notification;
 import com.poly.datn.entity.Order;
 import com.poly.datn.entity.Order.OrderBuilder;
+import com.poly.datn.entity.OrderDetail;
+import com.poly.datn.entity.OrderStatus;
+import com.poly.datn.entity.PaymentMethod;
+import com.poly.datn.entity.PromotionUser;
+import com.poly.datn.entity.User;
 import com.poly.datn.exception.cart.CartException;
-import com.poly.datn.security.UserPrincipal;
+import com.poly.datn.repository.AccountRepository;
+import com.poly.datn.repository.NotificationRepository;
+import com.poly.datn.repository.OrderRepository;
+import com.poly.datn.repository.OrderStatusRepository;
+import com.poly.datn.repository.PaymentMethodRepository;
+import com.poly.datn.repository.PromotionUserRepository;
+import com.poly.datn.repository.UserRepository;
 import com.poly.datn.service.CartService;
 import com.poly.datn.service.CheckOutService;
 import com.poly.datn.service.MailService;
@@ -58,11 +67,23 @@ public class CheckOutServiceImpl implements CheckOutService {
         int saved = -1;
         try {
             Cart userCart = validateCartOfUser(userId);
+          
             Set<CartDetail> cartDetails = userCart.getCartDetails();
+          
+            boolean variantStatusFlag = cartService.updateCartByVariantStatus();
+           
+            if(variantStatusFlag) throw new IllegalArgumentException("Lỗi sản phẩm trong giỏ cập nhật, không thể thanh toán");
+          
+           
 
             Order newOrder = buildOrder(userCart, request);
 
             Set<OrderDetail> orderDetails = mapAllByIterator(cartDetails);
+
+            // removed out stock cart detail;
+            boolean removed = orderDetails.removeIf(e-> e.getQuantity() == 0);
+            log.info("removed");
+            
             newOrder.setOrderDetails(orderDetails);
             log.info("saved order");
             saved = orderRepository.save(newOrder).getId();
