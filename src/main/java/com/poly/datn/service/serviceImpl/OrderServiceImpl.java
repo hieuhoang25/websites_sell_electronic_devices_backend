@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,15 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<OrdersUserResponse> findAll() {
         List<OrdersUserResponse> list= modelConverter.mapAllByIterator(orderRepository.findAll(Sort.by( "createdDate").descending()), OrdersUserResponse.class);
+        Comparator<OrdersUserResponse> comparator = new Comparator<OrdersUserResponse>() {
+            @Override
+            public int compare(OrdersUserResponse o1, OrdersUserResponse o2) {
+                if (o1.getStatus_name().equalsIgnoreCase("Chờ xác nhận") || o1.getStatus_name().equalsIgnoreCase("Đang giao")) return 1;
+                else return -1;
+            }
+        } ;
         list.stream()
+                .sorted(comparator)
                 .forEach(o -> {
                     double sum = 0;
                     for (OrderDetailResponse od:
