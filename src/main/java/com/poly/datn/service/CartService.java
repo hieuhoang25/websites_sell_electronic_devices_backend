@@ -56,5 +56,5 @@ public interface CartService {
     
     CartResponse updateGuestCart(Integer cartId, List<CartDetailRequest> items);
 
-    void refresh(Cart cart);
+    // void refresh(Cart cart);
 }
