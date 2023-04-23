@@ -43,11 +43,18 @@ public interface CartService {
 
     boolean deleteAllItemsInCart(Integer cartId);
 
+    boolean deleteAllWithIdIn(Integer cartId, List<Integer> ids);
+
     User getCurrentUser();
 
     CartResponse addProductToCart(List<CartDetailRequest> itmes);
 
     boolean updateCart();
 
+    boolean updateCartByVariantStatus();
+    boolean updateCartByInventory();
+    
     CartResponse updateGuestCart(Integer cartId, List<CartDetailRequest> items);
+
+    void refresh(Cart cart);
 }

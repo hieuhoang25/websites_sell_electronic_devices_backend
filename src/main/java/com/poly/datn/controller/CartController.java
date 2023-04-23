@@ -3,6 +3,7 @@ package com.poly.datn.controller;
 
 import static com.poly.datn.controller.router.Router.CART_API.CART;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -96,11 +97,5 @@ public class CartController {
     @GetMapping("/{cartId}")
     public ResponseEntity<?> getCartById(@PathVariable Integer cartId) {
         return ResponseEntity.ok(service.findByCartId(cartId));
-    }
-
-   
-
-   
-
-    
+    }    
 }

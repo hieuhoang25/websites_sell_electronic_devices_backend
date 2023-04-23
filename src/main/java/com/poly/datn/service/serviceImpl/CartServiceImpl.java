@@ -62,6 +62,7 @@ public class CartServiceImpl implements CartService {
     @Override
     public CartResponse mergeItemsToCart(List<CartItemRequest> items) {
         Cart cart = getCartEntityByUserId(getCurrentUser().getId());
+       items.removeIf(i -> (i.getProduct_variant_id() <= 0) || (i.getQuantity() < 0));
         try {
             items.forEach(i -> {
                 cartDetailService.add(i);
@@ -70,6 +71,7 @@ public class CartServiceImpl implements CartService {
             ex.printStackTrace();
         }
         // log.info("cart size: " +  get);
+        boolean updated = updateCart();
         return findByUserId(getCurrentUser().getId());
 
     }
@@ -145,24 +147,6 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public CartResponse findByUserId(Integer userId) {
-        // try {
-            
-            // return modelConverter.map(getCartEntityByUserId(userId), CartResponse.class);
-        // }catch(Exception e) {
-        //     if(e instanceof EntityNotFoundException) {
-        //         User currentUser = userInfoService.getCurrentUser();
-        //         log.warn("Cart not found by user with id: ", userId);
-        //         log.info("Create new Cart for user if not exists");
-        //         currentUser.setCarts(new Cart(0));
-        //         userRepository.save(currentUser);
-        //         log.info("created new cart for user done");
-        //        log.info("user cart: ", currentUser.getCarts());
-            //    return modelConverter.map(currentUser.getCarts(), CartResponse.class);
-            // }else {
-            //     log.error("Other error when find cart by user id");
-            //     throw new RuntimeException(e.getMessage());
-            // }
-        // }
         CartResponse response = modelConverter.map(getCartEntityByUserId(userId), CartResponse.class);
         return  response.sortCartDetailsByCreateDateDesc();
     }
@@ -192,6 +176,19 @@ public class CartServiceImpl implements CartService {
             throw new RuntimeException("Error: Can't delete items in cart");
         }
     }
+
+    @Override
+    public boolean deleteAllWithIdIn(Integer cartId, List<Integer> ids) {
+        try {
+            boolean isEmpty = isCartEmpty(cartId);
+            Integer deleted  =  cartDetail.deleteAllWithIdIn(cartId, ids);
+            cartRepo.findById(cartId);
+            return (isEmpty && deleted == 0)? false : true;
+        }catch(Exception ex) {
+            ex.printStackTrace();
+            throw new RuntimeException("Error: Can't delete items in cart");
+        }
+    } 
    
     public User getCurrentUser() {
         User user = userInfoService.getCurrentUser();
@@ -203,19 +200,32 @@ public class CartServiceImpl implements CartService {
     public boolean updateCart() {
         try {
             Integer cartId = getCurrentUser().getCarts().getId();
-            Boolean removedFlag =  cartRepo.updatedCartByVariantStatus(cartId);
-            Boolean updatedFlag =  cartRepo.updatedCartQuantityByInventory(cartId);
-           
+            Boolean removedFlag =  updateCartByVariantStatus();
+            log.info("call updated inventory");
+            Boolean updatedFlag =  updateCartByInventory();
+            log.info("updated inventory flag: ", updatedFlag);
 
+            cartRepo.updateCartPriceSum(cartId);
+            
             return removedFlag || updatedFlag;
         }catch(Exception e) {
             log.info("error: " + e.getMessage());
-            e.printStackTrace();
-
-         
+            e.printStackTrace();   
         }
         return false;
     }
+    @Override
+    public boolean updateCartByVariantStatus() {
+        Integer cartId = getCurrentUser().getCarts().getId();
+        return   cartRepo.updatedCartByVariantStatus(cartId);
+    } 
+
+    @Override
+    public boolean updateCartByInventory() {
+        Integer cartId = getCurrentUser().getCarts().getId();
+        return  cartRepo.updatedCartQuantityByInventory(cartId);
+    }
+    
 
     @Override
     public CartResponse addProductToCart(List<CartDetailRequest> items) {
@@ -230,7 +240,7 @@ public class CartServiceImpl implements CartService {
 
         items.removeIf(i ->
                             ( i.getId() == null) || (i.getProduct_variant_id() == null ) ||
-                            ( i.getQuantity() == null || i.getQuantity() <= 0 ) ||
+                            ( i.getQuantity() == null || i.getQuantity() < 0 ) ||
                             ( !variantRepository.existsById(i.getProduct_variant_id()) ) || 
                             (!variantRepository.isStatusTrue(i.getProduct_variant_id())) 
                         );
@@ -255,6 +265,8 @@ public class CartServiceImpl implements CartService {
                 item.setQuantity(newQty);
             }else if(checked == 404 || checked == 0) {
                 removedObj.add(item);
+            }else if(checked == 202) {
+                item.setQuantity(1);
             }
         });
      
@@ -274,7 +286,16 @@ public class CartServiceImpl implements CartService {
 
     public  Integer  getRandomId() {
         return ThreadLocalRandom.current().nextInt(1, (Integer.MAX_VALUE - 1));
-    }   
+    }
+
+    @Override
+    public void refresh(Cart cart) {
+      cartRepo.refresh(cart);
+    }
+
+   
+
+    
 }
 
     

@@ -27,8 +27,12 @@ public interface CartDetailRepository extends JpaRepository<CartDetail, Integer>
 
 
    @Modifying(flushAutomatically = true, clearAutomatically = true)
-   @Query(value = "delete from cart_detail where cart_id =:cartId", nativeQuery = true)
+   @Query(value = "delete from cart_detail where cart_id =:cartId and quantity > 0", nativeQuery = true)
    Integer deleteAllByCartId(@Param("cartId") Integer cartId);
+
+   @Modifying(flushAutomatically = true, clearAutomatically = true)
+   @Query(value = "delete from cart_detail where cart_id =:cartId and id in :ids", nativeQuery = true)
+   Integer deleteAllWithIdIn(@Param("cartId") Integer cartId, @Param("ids") List<Integer> ids);
 
    @Modifying(flushAutomatically = true)
    @Query(value = "delete from cart_detail where id=:detailId", nativeQuery = true)
