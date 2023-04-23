@@ -32,9 +32,22 @@ public class OrderServiceImpl implements OrderService {
         Comparator<OrdersUserResponse> comparator = new Comparator<OrdersUserResponse>() {
             @Override
             public int compare(OrdersUserResponse o1, OrdersUserResponse o2) {
-                if (o1.getStatus_name().equalsIgnoreCase("Chờ xác nhận") || o1.getStatus_name().equalsIgnoreCase("Đang giao")) return 1;
-                else return -1;
+                String status1 =  o1.getStatus_name();
+                String status2 = o2.getStatus_name();
+               if (status1.equalsIgnoreCase("Chờ xác nhận") && !status2.equalsIgnoreCase("Chờ xác nhận"))
+                return -1;
+               else
+                   if  (status1.equalsIgnoreCase("Đang giao") && !status2.equalsIgnoreCase("Đang giao"))
+                       return 1;
+                   else
+                       if (status1.equalsIgnoreCase("Chờ xác nhận")&&status2.equalsIgnoreCase("Đang giao"))
+                           return -1;
+                       else
+                           if (status1.equalsIgnoreCase("Đang giao")&&status2.equalsIgnoreCase("Chờ xác nhận"))
+                               return 1;
+                           return 0;
             }
+
         } ;
         list.stream()
                 .sorted(comparator)
@@ -43,7 +56,7 @@ public class OrderServiceImpl implements OrderService {
                     for (OrderDetailResponse od:
                          o.getOrderDetails()) {
                         double pv = od.getPromotion_value() == null ? 0 : od.getPromotion_value();
-                        sum+= od.getPrice_sum() - pv;
+                        sum+= od.getPrice_sum() - pv*od.getQuantity();
                     }
                     o.setSum(sum);
                 });
