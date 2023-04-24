@@ -24,6 +24,7 @@ import java.io.IOException;
         servers = {
                 @Server(url = "http://localhost:8080", description = "Default Server URL"),
                 @Server(url = "https://api.bonikphone.shop"),
+                @Server(url = "https://api.longproxy.com")
         })
 //@SecurityScheme(name = "bearerAuth", type = SecuritySchemeType.HTTP, bearerFormat = "JWT", scheme = "bearer")
 @EnableScheduling
