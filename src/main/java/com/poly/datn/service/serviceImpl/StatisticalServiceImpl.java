@@ -40,7 +40,7 @@ public class StatisticalServiceImpl implements StatisticalService {
         List<OrdersUserResponse> list= modelConverter.mapAllByIterator(orderRepository.findAll(), OrdersUserResponse.class);
         Map<String, Object> revenueOfLastMonth =new HashMap<>();
         Map<String, Object> revenueOfThisMonth =new HashMap<>();
-        for (int i = 0; i < daysOfWeek.length-1; i++) {
+        for (int i = 0; i < daysOfWeek.length; i++) {
             int index = i+1;
           Double sumOfDayInLastMonth = list.stream()
                     .filter(o -> {
@@ -57,7 +57,7 @@ public class StatisticalServiceImpl implements StatisticalService {
                   .mapToDouble(o -> o.getTotal())
                   .sum();
             revenueOfLastMonth.put(daysOfWeek[i],sumOfDayInLastMonth);
-            revenueOfThisMonth.put(daysOfWeek[i],sumOfDayInLastMonth);
+            revenueOfThisMonth.put(daysOfWeek[i],sumOfDayInThisMonth);
         }
 
         revenue.setLastMonth(revenueOfLastMonth);
