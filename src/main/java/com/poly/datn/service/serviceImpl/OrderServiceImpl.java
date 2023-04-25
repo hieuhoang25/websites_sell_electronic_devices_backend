@@ -9,21 +9,26 @@ import com.poly.datn.repository.OrderDetailRepository;
 import com.poly.datn.repository.OrderRepository;
 import com.poly.datn.service.OrderService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
+@Slf4j
 public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
 
     private OrderDetailRepository orderDetailRepository;
 
     private ModelConverter modelConverter;
+
 
 
     @Override
@@ -52,15 +57,32 @@ public class OrderServiceImpl implements OrderService {
         list.stream()
                 .sorted(comparator)
                 .forEach(o -> {
-                    double sum = 0;
-                    for (OrderDetailResponse od:
-                         o.getOrderDetails()) {
-                        double pv = od.getPromotion_value() == null ? 0 : od.getPromotion_value();
-                        sum+= od.getPrice_sum() - pv*od.getQuantity();
-                    }
-                    o.setSum(sum);
-                });
+                    o.setSum(o.getTotal());
+                })
+                ;
         return list;
 
+    }
+
+    @Override
+    public List<OrdersUserResponse> findAll(List<String> status) {
+        log.info("{}",status);
+        if (status.isEmpty()) return findAll();
+        else{
+            return findAll()
+                    .stream()
+                    .filter(o->status.contains(o.getStatus_name()))
+                    .collect(Collectors.toList());
+        }
+    }
+
+    @Override
+    public Map<String, Object> countOrdersByStatus() {
+        Map<String, Object> keyValue = new HashMap<>();
+        keyValue.put("CXN", orderRepository.countNumberOfOrderByStatus(1));// Chờ xác nhận
+        keyValue.put("DG", orderRepository.countNumberOfOrderByStatus(2));//Đang giao
+        keyValue.put("HT", orderRepository.countNumberOfOrderByStatus(3));//Hoàn thành
+        keyValue.put("DH", orderRepository.countNumberOfOrderByStatus(4));//Đã hủy
+        return keyValue;
     }
 }
