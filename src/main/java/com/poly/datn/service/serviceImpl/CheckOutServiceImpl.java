@@ -154,6 +154,8 @@ public class CheckOutServiceImpl implements CheckOutService {
                 throw new RuntimeException(((CartException) ex).getMessage());
             } else if(ex instanceof IllegalArgumentException) {
                 throw new IllegalArgumentException(ex.getMessage());
+            }else if(ex instanceof InventoryException){
+                throw new InventoryException(ex.getMessage());
             }else {
                 throw ex;
             }
@@ -295,10 +297,7 @@ public class CheckOutServiceImpl implements CheckOutService {
 
     public List<Integer> getCartIdsList(Set<CartDetail> cartDetails) {
         Stream<CartDetail> stream = cartDetails.stream().filter(e -> e.getQuantity() > 0);
-        
-        // stream.forEach(e -> System.out.println("qty > 0: " + e.getProductVariant().getId()));
         List<Integer> ids = stream.map(e -> e.getId()).collect(Collectors.toList());
-        ids.forEach(e -> System.out.println("id: " + e));
         return ids;
     }
     
