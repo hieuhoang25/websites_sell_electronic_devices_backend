@@ -7,7 +7,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -17,7 +20,12 @@ public class OrderController {
     private OrderService orderService;
 
     @GetMapping()
-    public ResponseEntity<?> fetchAll(){
-        return ResponseEntity.ok(orderService.findAll());
+    public ResponseEntity<?> fetchAll(@RequestParam("status") List<String> status){
+        return ResponseEntity.ok(orderService.findAll(status));
+    }
+
+    @GetMapping("/count-status")
+    public ResponseEntity<?> countOrders(){
+        return ResponseEntity.ok(orderService.countOrdersByStatus());
     }
 }
