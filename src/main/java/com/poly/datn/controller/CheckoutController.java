@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.datn.dto.request.CheckOutRequest;
 import com.poly.datn.entity.User;
+import com.poly.datn.exception.InventoryException;
 import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.service.CheckOutService;
 import com.poly.datn.service.UserInfoByTokenService;
@@ -28,33 +29,45 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class CheckoutController {
 
-    final CheckOutService checkoutService;
+  final CheckOutService checkoutService;
 
-    final  OrderTrackingByIdController orderService;
+  final OrderTrackingByIdController orderService;
 
-    final AccountRepository accountRepository;
-    final UserInfoByTokenService userInfoService;
+  final AccountRepository accountRepository;
+  final UserInfoByTokenService userInfoService;
 
-   
-    public ResponseEntity<?>checkoutByUserId(@PathVariable Integer userId, @Valid @RequestBody CheckOutRequest request) {
-        
-       
-        Integer trackId = checkoutService.checkout(userId, request);
-        
-        return trackId < 0? ResponseEntity.badRequest().body("Error: Can't process checkout") : ResponseEntity.ok().body(orderService.getTrackingOrderById(trackId));
+  public ResponseEntity<?> checkoutByUserId(@PathVariable Integer userId, @Valid @RequestBody CheckOutRequest request) {
+
+    Integer trackId;
+    try {
+      trackId = checkoutService.checkout(userId, request);
+      return trackId < 0 ? ResponseEntity.badRequest().body("Error: Can't process checkout")
+          : ResponseEntity.ok().body(orderService.getTrackingOrderById(trackId));
+    } catch (Exception e) {
+      if (e instanceof IllegalArgumentException) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+      } else if (e instanceof InventoryException) {
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+      } else
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
 
-    @PostMapping
-    public ResponseEntity<?> checkoutCurrentUser(@Valid @RequestBody CheckOutRequest request) {
+  }
 
-      try {
- User user = userInfoService.getCurrentUser();
-        return checkoutByUserId(user.getId(), request);
-      }catch(Exception e) {
-        if(e instanceof IllegalArgumentException) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        }else return ResponseEntity.badRequest().body(e.getMessage());
-      }
+  @PostMapping
+  public ResponseEntity<?> checkoutCurrentUser(@Valid @RequestBody CheckOutRequest request) {
+
+    try {
+      User user = userInfoService.getCurrentUser();
+      return checkoutByUserId(user.getId(), request);
+    } catch (Exception e) {
+      if (e instanceof IllegalArgumentException) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+      } else if (e instanceof InventoryException) {
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+      } else
+        return ResponseEntity.badRequest().body(e.getMessage());
     }
-    
+  }
+
 }
