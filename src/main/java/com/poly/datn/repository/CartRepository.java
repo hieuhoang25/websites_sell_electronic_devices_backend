@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import com.poly.datn.entity.Cart;
 
-public interface CartRepository extends JpaRepository<Cart, Integer> {
+public interface CartRepository extends JpaRepository<Cart, Integer>,CartCustomRespository {
 
     @Query("select c from Cart c where c.user.id =:userId")
     Optional<Cart> findCartByUserId(@Param("userId") Integer userId);

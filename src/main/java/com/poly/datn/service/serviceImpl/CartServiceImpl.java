@@ -216,12 +216,14 @@ public class CartServiceImpl implements CartService {
     }
     @Override
     public boolean updateCartByVariantStatus() {
+        log.info("call updated status");
         Integer cartId = getCurrentUser().getCarts().getId();
         return   cartRepo.updatedCartByVariantStatus(cartId);
     } 
 
     @Override
     public boolean updateCartByInventory() {
+        log.info("call updated inventory");
         Integer cartId = getCurrentUser().getCarts().getId();
         return  cartRepo.updatedCartQuantityByInventory(cartId);
     }
@@ -288,10 +290,10 @@ public class CartServiceImpl implements CartService {
         return ThreadLocalRandom.current().nextInt(1, (Integer.MAX_VALUE - 1));
     }
 
-    // @Override
-    // public void refresh(Cart cart) {
-    //   cartRepo.refresh(cart);
-    // }
+    @Override
+    public void refresh(Cart cart) {
+      cartRepo.refresh(cart);
+    }
 
    
 
