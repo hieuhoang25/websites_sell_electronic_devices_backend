@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.poly.datn.dto.request.CheckOutRequest;
 import com.poly.datn.entity.User;
+import com.poly.datn.exception.InventoryException;
 import com.poly.datn.repository.AccountRepository;
 import com.poly.datn.service.CheckOutService;
 import com.poly.datn.service.UserInfoByTokenService;
@@ -39,9 +40,16 @@ public class CheckoutController {
     public ResponseEntity<?>checkoutByUserId(@PathVariable Integer userId, @Valid @RequestBody CheckOutRequest request) {
         
        
-        Integer trackId = checkoutService.checkout(userId, request);
+        Integer trackId;
+        try {
+          trackId = checkoutService.checkout(userId, request);
+          return trackId < 0? ResponseEntity.badRequest().body("Error: Can't process checkout") : ResponseEntity.ok().body(orderService.getTrackingOrderById(trackId));
+        } catch (InventoryException e) {
+          e.printStackTrace();
+         return ResponseEntity.badRequest().body(e.getMessage());
+        }
         
-        return trackId < 0? ResponseEntity.badRequest().body("Error: Can't process checkout") : ResponseEntity.ok().body(orderService.getTrackingOrderById(trackId));
+       
     }
 
     @PostMapping
@@ -53,7 +61,12 @@ public class CheckoutController {
       }catch(Exception e) {
         if(e instanceof IllegalArgumentException) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-        }else return ResponseEntity.badRequest().body(e.getMessage());
+        }else if(e instanceof InventoryException) {
+          return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(e.getMessage());
+        }
+        else return ResponseEntity.badRequest().body(e.getMessage());
+      }catch(Error error) {
+        return ResponseEntity.badRequest().body(error.getMessage());
       }
     }
     
