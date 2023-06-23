@@ -1,4 +1,7 @@
 #  ebonikshope1A.
+srping:
+ profiles:
+   active: dev
 spring:
   servlet:
     multipart:
