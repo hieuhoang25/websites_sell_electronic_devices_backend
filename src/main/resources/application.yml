@@ -1,8 +1,9 @@
 #  ebonikshope1A.
-srping:
- profiles:
-   active: dev
+
+
 spring:
+  profiles:
+    active: dev
   servlet:
     multipart:
       max-file-size : 10MB
