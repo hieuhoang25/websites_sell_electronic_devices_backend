@@ -5,9 +5,9 @@ spring:
       max-file-size : 10MB
       max-request-size: 10MB
   datasource:
-    url: jdbc:mysql://${DATABASE_HOST}:${DATABASE_PORT}/${DATABASE_NAME}
-    username: ${DATABASE_USER}
-    password: ${DATABASE_PASSWORD}
+    url: jdbc:mysql://${DATABASE_HOST:localhost}:${DATABASE_PORT:3306}/${DATABASE_NAME:electronic_db}
+    username: ${DATABASE_USER:root}
+    password: ${DATABASE_PASSWORD:1234}
   jpa:
     show-sql: true
     properties:
@@ -65,8 +65,8 @@ spring:
       client:
         registration:
           google:
-            client-id: 496256023815-gfnv445ste0ep1o56qqr2j7ffggbd17s.apps.googleusercontent.com
-            client-secret: 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
+            client-id: 810401209445-amhdn90r6918a3uo0sg8rtmcr1l16pfs.apps.googleusercontent.com
+            client-secret: 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
             redirect-uri: "{baseUrl}/oauth2/callback"
             scope:
               - email

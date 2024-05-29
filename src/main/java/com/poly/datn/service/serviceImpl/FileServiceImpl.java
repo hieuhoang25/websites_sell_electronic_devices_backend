@@ -23,15 +23,20 @@ import java.util.stream.Collectors;
 @Component
 public class FileServiceImpl implements FileService {
 
-    private String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/bonik-f7b39.appspot.com/o/%s?alt=media";
+    private final String DOWNLOAD_URL = "https://firebasestorage.googleapis.com/v0/b/bonik-f7b39.appspot.com/o/%s?alt=media";
+
+    private final  String classPath = "image-cloud-98533-firebase-adminsdk-egb09-95daffa97d.json";
+    private final  String appSpot = "image-cloud-98533.appspot.com";
+
+    private final String projectId = "image-cloud-98533";
 
     private String uploadFile(File file, String fileName) throws IOException {
-        BlobId blobId = BlobId.of("bonik-f7b39.appspot.com", fileName);
+        BlobId blobId = BlobId.of(appSpot, fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
-        ClassPathResource serviceAccount = new ClassPathResource("bonik-f7b39-firebase-adminsdk-74rcu-82b22fbb2e.json");
+        ClassPathResource serviceAccount = new ClassPathResource(classPath);
         Storage storage = StorageOptions.newBuilder().
                 setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream())).
-                setProjectId("bonik").build().getService();
+                setProjectId(projectId).build().getService();
         storage.create(blobInfo, Files.readAllBytes(file.toPath()));
 
         return String.format(DOWNLOAD_URL, URLEncoder.encode(fileName, String.valueOf(StandardCharsets.UTF_8)));
@@ -60,6 +65,7 @@ public class FileServiceImpl implements FileService {
             file.delete();                                                                // to delete the copy of uploaded file stored in the project folder
             return fileName;                     // Your customized response
         } catch (Exception e) {
+            e.printStackTrace();
             throw new RuntimeException("Upload file unsuccessfully!");
         }
     }
@@ -70,9 +76,9 @@ public class FileServiceImpl implements FileService {
         String destFilePath = "Z:\\New folder\\" + destFileName;                                    // to set destination file path
 
         ////////////////////////////////   Download  ////////////////////////////////////////////////////////////////////////
-        Credentials credentials = GoogleCredentials.fromStream(new FileInputStream("bonik-f7b39-firebase-adminsdk-74rcu-82b22fbb2e.json"));
+        Credentials credentials = GoogleCredentials.fromStream(new FileInputStream(classPath));
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
-        Blob blob = storage.get(BlobId.of("bonik-f7b39.appspot.com", fileName));
+        Blob blob = storage.get(BlobId.of(appSpot, fileName));
         blob.downloadTo(Paths.get(destFilePath));
         return "Successfully Downloaded!";
     }
@@ -80,13 +86,13 @@ public class FileServiceImpl implements FileService {
     @Override
     public boolean delete(String fileName) throws IOException {
         // TODO Auto-generated method stub
-        BlobId blobId = BlobId.of("bonik-f7b39.appspot.com", fileName);
+        BlobId blobId = BlobId.of(appSpot, fileName);
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
-        ClassPathResource serviceAccount = new ClassPathResource("bonik-f7b39-firebase-adminsdk-74rcu-82b22fbb2e.json");
+        ClassPathResource serviceAccount = new ClassPathResource(classPath);
 
         Storage storage = StorageOptions.newBuilder().
                 setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream())).
-                setProjectId("bonik").build().getService();
+                setProjectId(projectId).build().getService();
         return storage.delete(blobId);
     }
 

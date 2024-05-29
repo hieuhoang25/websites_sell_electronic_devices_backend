@@ -32,11 +32,11 @@ public class BackendApplication {
     public static void main(String[] args) throws IOException {
         SpringApplication.run(BackendApplication.class, args);
         ClassPathResource serviceAccount = new ClassPathResource(
-                "bonik-f7b39-firebase-adminsdk-74rcu-82b22fbb2e.json");
+                "image-cloud-98533-firebase-adminsdk-egb09-95daffa97d.json");
 
         FirebaseOptions options = new FirebaseOptions.Builder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount.getInputStream()))
-                .setStorageBucket("bonik-f7b39.appspot.com")
+                .setStorageBucket("image-cloud-98533.appspot.com")
                 .build();
 
         FirebaseApp.initializeApp(options);
